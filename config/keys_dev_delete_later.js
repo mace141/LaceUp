@@ -2,6 +2,6 @@
 
 module.exports = {
   mongoURI:
-    "mongodb+srv://<username>:<password>@app-name.mroze.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-  secretOrKey: "secret_key_hash",
+    "mongodb+srv://admin:xsFHS0QnqzilzRSt@cluster0.e9sgg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  secretOrKey: "skv7nXueu8T3ELhC2",
 };
