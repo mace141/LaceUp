@@ -68,9 +68,15 @@ class SignupForm extends React.Component {
             <br />
             <input
               type="text"
-              value={this.state.handle}
-              onChange={this.update("handle")}
-              placeholder="Handle"
+              value={this.state.fname}
+              onChange={this.update("fname")}
+              placeholder="First Name"
+            />
+            <input
+              type="text"
+              value={this.state.lname}
+              onChange={this.update("lname")}
+              placeholder="Last Name"
             />
             <br />
             <input

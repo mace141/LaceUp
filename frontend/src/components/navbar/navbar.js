@@ -45,9 +45,7 @@ class NavBar extends React.Component {
     return (
       <>
         <div className="navbar-left">
-          <Link to="/" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
-            LaceUp
-          </Link>
+          <Link to="/">LaceUp</Link>
         </div>
         <div className="navbar-right">
           <Link
@@ -66,7 +64,7 @@ class NavBar extends React.Component {
     );
   }
   render() {
-    return <nav className="full-header">{this.mainDisp()}</nav>;
+    return <nav className="full-navbar">{this.mainDisp()}</nav>;
   }
 }
 export default NavBar;
