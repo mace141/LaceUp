@@ -23,11 +23,11 @@ const UserSchema = new Schema({
         required: true
     },
     bio: {
-        type: Text,
+        type: String,
         required: false
     },
     home_court: {
-        type: String,
+        type: Number,
         required: false
     },
     favorite_sports: {
