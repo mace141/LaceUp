@@ -17,13 +17,15 @@ module.exports = function validateRegisterInput(data) {
     ? data.favorite_sports
     : "";
   data.avatar = validText(data.avatar) ? data.avatar : "";
-//   data.teams = validText(data.teams) ? data.teams : "";
-//   data.events = validText(data.events) ? data.events: "";
-//   data.posts = validText(data.posts) ? data.posts: "";
+  // data.teams = validText(data.teams) ? data.teams : "";
+  // data.events = validText(data.events) ? data.events : "";
+  // data.posts = validText(data.posts) ? data.posts : "";
 
   //username - no validation on presence
-  if (!Validator.isLength(data.username, { min: 3, max: 30 })) {
-    errors.username = "Username must be between 3-30 characters";
+  if (data.username) {
+    if (!Validator.isLength(data.username, { min: 3, max: 30 })) {
+      errors.username = "Username must be between 3-30 characters";
+    }
   }
 
   if (Validator.isEmpty(data.email)) {
@@ -33,7 +35,7 @@ module.exports = function validateRegisterInput(data) {
   if (!Validator.isEmail(data.email)) {
     errors.email = "Please enter a valid email";
   }
-//   possibly normalize email
+  //   possibly normalize email
   if (Validator.isEmpty(data.fname)) {
     errors.fname = "An first name is required";
   }
@@ -43,30 +45,33 @@ module.exports = function validateRegisterInput(data) {
   }
 
   //can use strong password validator
-  if(!Validator.isLength(data.password, {min: 6, max: 50})) {
-      errors.password = 'Password must contain at least 6 characters'
+  if (!Validator.isLength(data.password, { min: 6, max: 50 })) {
+    errors.password = "Password must contain at least 6 characters";
   }
 
-  if(Validator.isEmpty(data.password)) {
-      errors.password = "A password is required"
+  if (Validator.isEmpty(data.password)) {
+    errors.password = "A password is required";
   }
 
   if (Validator.isEmpty(data.password2)) {
-      errors.password2 = "Must confirm password"
+    errors.password2 = "Must confirm password";
   }
 
   if (!Validator.equals(data.password, data.password2)) {
-      errors.password2 = "Passwords must match"
+    errors.password2 = "Passwords must match";
   }
 
-  if(!Validator.isLength(data.bio), {min: 1, max: undefined}) {
-      errors.bio = "Bio must contain at least one character"
+  if (data.bio) {
+    if (!Validator.isLength(data.bio)) {
+      errors.bio = "Bio must contain at least one character";
+    }
   }
 
   // add necessary validations for home_court, favorite_sports, avatar
+  // validations not necessary for assocations as will likely choose from dropdown, etc.
 
   return {
-      errors,
-      isValid: Object.keys(errors).length === 0
-  }
+    errors,
+    isValid: Object.keys(errors).length === 0,
+  };
 };

@@ -35,6 +35,10 @@ router.post("/register", (req, res) => {
         home_court: req.body.home_court,
         favorite_sports: req.body.favorite_sports,
         avatar: req.body.avatar,
+        teams: req.body.teams,
+        events: req.body.events,
+        posts: req.body.posts
+
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hashed) => {

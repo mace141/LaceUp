@@ -53,6 +53,11 @@ const UserSchema = new Schema({
     required: false,
     //eventually, events: [{type: Schema.Types.ObjectId, ref: "Event"}]
   },
+  posts: {
+    type: Number,
+    required: false,
+    //eventually, posts: [{type: Schema.Types.ObjectId, ref: "Post"}]
+  },
   date: {
     type: Date,
     default: Date.now,
