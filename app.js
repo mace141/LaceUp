@@ -3,8 +3,9 @@ const app = express();
 const db = require("./config/keys.js").mongoURI;
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require('passport');
 
-const users = require("./routes/api/users");
+const users = require('./routes/api/users')
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -15,8 +16,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 //parse json sent to frontend
 
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
-app.get("/", (req, res) => res.send("test1234"));
+
 app.use("/api/users", users);
 // //backend api/users route
 

@@ -29,6 +29,7 @@ const UserSchema = new Schema({
     home_court: {
         type: Number,
         required: false
+        //will need to be a reference to park.id when built
     },
     favorite_sports: {
         type: String,
@@ -46,4 +47,4 @@ const UserSchema = new Schema({
 
 })
 
-module.exports = User = mongoose.model('users', UserSchema);
+module.exports = User = mongoose.model('User', UserSchema);

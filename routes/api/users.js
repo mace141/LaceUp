@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const jwt = require('jsonwebtoken')
-const keys = require('../../config/keys')
-
+const jwt = require("jsonwebtoken");
+const keys = require("../../config/keys");
+const passport = require("passport");
 const User = require("../../models/User");
 
 router.get("/test", (req, res) => res.json({ msg: "Users route" }));
-
 
 //register
 router.post("/register", (req, res) => {
@@ -45,25 +44,67 @@ router.post("/register", (req, res) => {
 //login
 
 router.post("/login", (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
+  const email = req.body.email;
+  const password = req.body.password;
 
-    User.findOne({email}).then(user => {
-        if(!user) {
-            return res.status(404).json({email: 'Cannot find a user with that email address'});
-        }
+  User.findOne({ email }).then((user) => {
+    if (!user) {
+      return res
+        .status(404)
+        .json({ email: "Cannot find a user with that email address" });
+    }
 
-        // match stored password digest to input password
-        bcrypt.compare(password, user.password).then(match => {
-            if (match) {
-                res.json({ msg: "Success"});
-            } else {
-                return res.status(400).json({password: "Invalid password"})
-            }
-        })
-    })
+    // match stored password digest to input password
+    bcrypt.compare(password, user.password).then((match) => {
+      if (match) {
+        const payload = {
+          id: user.id,
+          username: user.username,
+          fname: user.fname,
+          lname: user.lname,
+          email: user.email,
+          bio: user.bio,
+          home_court: user.home_court,
+          favorite_sports: user.favorite_sports,
+          avatar: user.avatar,
+        };
+
+        jwt.sign(
+          payload,
+          keys.secretOrKey,
+          { expiresIn: 1800 },
+          (err, token) => {
+            res.json({
+              success: true,
+              token: "Bearer" + token,
+            });
+          }
+        );
+      } else {
+        return res.status(400).json({ password: "Incorrect password" });
+      }
+    });
+  });
 });
 
+//current user
 
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({
+      id: user.id,
+      username: user.username,
+      fname: user.fname,
+      lname: user.lname,
+      email: user.email,
+      bio: user.bio,
+      home_court: user.home_court,
+      favorite_sports: user.favorite_sports,
+      avatar: user.avatar,
+    });
+  }
+);
 
 module.exports = router;
