@@ -5,12 +5,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require('passport');
 
-<<<<<<< HEAD
 const users = require("./routes/api/users");
 const events = require("./routes/api/events");
-=======
-const users = require('./routes/api/users')
->>>>>>> origin
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true } )

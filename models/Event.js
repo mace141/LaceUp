@@ -7,8 +7,8 @@ const EventSchema = new Schema({
         required: false
     },
     user_id: {
-        type: Number,
-        required: false
+        type: Schema.Types.ObjectId,
+        ref: 'users'
     },
     teams_id: {
         type: Number,
@@ -44,4 +44,4 @@ const EventSchema = new Schema({
 
 })
 
-module.exports = Event = mongoose.model('events', EventSchema);
+module.exports = Event = mongoose.model('event', EventSchema);
