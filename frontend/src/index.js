@@ -7,6 +7,7 @@ import configureStore from "./store/store";
 import { setAuthToken } from "./util/session_api_util";
 import { logout } from "./actions/session_actions";
 
+import "../../style/main.scss";
 document.addEventListener("DOMContentLoaded", () => {
   let store;
   if (localStorage.jwtToken) {
