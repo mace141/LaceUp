@@ -20,7 +20,6 @@ class SignupForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.isValidEmail = this.isValidEmail.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handleName = this.handleName.bind(this);
     this.checkPasswordMatch = this.checkPasswordMatch.bind(this);
@@ -69,7 +68,6 @@ class SignupForm extends React.Component {
 
   setForm(num) {
     return (e) => {
-      // e.preventDefault;
       this.setState({ formNum: num });
     };
   }
