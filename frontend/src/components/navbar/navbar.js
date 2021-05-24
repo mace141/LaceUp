@@ -23,29 +23,50 @@ class NavBar extends React.Component {
     currEle.classList.remove("selected");
   }
 
-  mainDisp() {}
+  sessionLinks() {
+    const { openModal, currentUser } = this.props;
+    if (!currentUser) {
+      return (
+        <nav className="login-signup">
+          <button className="login-btn" onClick={() => openModal("login")}>
+            Sign In
+          </button>
+          <button className="signup-btn" onClick={() => openModal("signup")}>
+            Create account
+          </button>
+        </nav>
+      );
+    } else {
+      // logged in display
+    }
+  }
+  mainDisp() {
+    // Display for every user
+    return (
+      <>
+        <div className="navbar-left">
+          <Link to="/" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
+            LaceUp
+          </Link>
+        </div>
+        <div className="navbar-right">
+          <Link
+            to="/explore"
+            onFocus={this.handleTabClick}
+            onBlur={this.leaveTab}
+          >
+            Explore
+          </Link>
+          <Link to="/host" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
+            Host
+          </Link>
+          {this.sessionLinks}
+        </div>
+      </>
+    );
+  }
   render() {
-    const { openModal, logout, currentUser } = this.props;
-
-    const sessionLinks = () => (
-      <nav className="login-signup">
-        <button className="loginBtn" onClick={() => openModal("login")}>
-          Sign In
-        </button>
-        <button className="signupBtn" onClick={() => openModal("signup")}>
-          Create account
-        </button>
-      </nav>
-    );
-
-    const display = currentUser ? (
-      <></>
-    ) : (
-      // NOT LOGGED IN DISPLAY
-      <>{sessionLinks()}</>
-    );
-
-    return <nav className="full_header"></nav>;
+    return <nav className="full-header">{this.mainDisp()}</nav>;
   }
 }
 export default NavBar;

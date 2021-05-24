@@ -6,8 +6,8 @@ import { logout } from "../../actions/session_actions";
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.entities.users[state.session.id],
-    currPath: window.location.href,
+    currentUser: null,
+    // currPath: window.location.href,
   };
 };
 
