@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import UpcomingEventsIndex from '../events/upcoming_events_index';
+import EventsIndex from '../events/events_index';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -17,9 +17,17 @@ class Profile extends React.Component {
 
   render() {
     const { events } = this.props;
-    const newEvents = events.filter(event => Date.parse(event.dateTime) > Date.now());
-    const oldEvents = events.filter(event => Date.parse(event.dateTime) < Date.now());
-    const tabs = [<p>Club Component</p>, <UpcomingEventsIndex events={newEvents}/>, <PastEventsIndex events={oldEvents}/>]
+
+    const newEvents = events.filter(
+      event => Date.parse(event.dateTime) > Date.now()
+    ).sort((a, b) => Date.parse(a.dateTime) > Date.parse(b.dateTime) ? -1 : 1);
+
+    const oldEvents = events.filter(
+      event => Date.parse(event.dateTime) < Date.now()
+    ).sort((a, b) => Date.parse(a.dateTime) < Date.parse(b.dateTime) ? -1 : 1);
+
+    const tabs = [<p>Club Component</p>, <EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>];
+
     return (
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>

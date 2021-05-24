@@ -1,7 +1,7 @@
 import React from 'react';
 import EventIndexItem from './events_index_item';
 
-const UpcomingEventsIndex = ({ events }) => {
+const EventsIndex = ({ events }) => {
 
   return (
     <div>
@@ -12,4 +12,4 @@ const UpcomingEventsIndex = ({ events }) => {
   )
 }
 
-export default UpcomingEventsIndex;
+export default EventsIndex;
