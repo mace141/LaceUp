@@ -3,9 +3,14 @@ const app = express();
 const db = require("./config/keys.js").mongoURI;
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require('passport');
 
+<<<<<<< HEAD
 const users = require("./routes/api/users");
 const events = require("./routes/api/events");
+=======
+const users = require('./routes/api/users')
+>>>>>>> origin
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true } )
@@ -16,8 +21,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
 //parse json sent to frontend
 
+app.use(passport.initialize());
+require("./config/passport")(passport);
 
-app.get("/", (req, res) => res.send("test1234"));
+
 app.use("/api/users", users);
 app.use("/api/events", events);
 // //backend api/users route
