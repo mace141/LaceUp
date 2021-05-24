@@ -5,9 +5,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 const users = require("./routes/api/users");
+const events = require("./routes/api/events");
 
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true } )
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
@@ -18,6 +19,7 @@ app.use(bodyParser.json())
 
 app.get("/", (req, res) => res.send("test1234"));
 app.use("/api/users", users);
+app.use("/api/events", events);
 // //backend api/users route
 
 const port = process.env.PORT || 5000;
