@@ -17,9 +17,6 @@ module.exports = function validateRegisterInput(data) {
     ? data.favorite_sports
     : "";
   data.avatar = validText(data.avatar) ? data.avatar : "";
-  // data.teams = validText(data.teams) ? data.teams : "";
-  // data.events = validText(data.events) ? data.events : "";
-  // data.posts = validText(data.posts) ? data.posts : "";
 
   //username - no validation on presence
   if (data.username) {
@@ -68,7 +65,7 @@ module.exports = function validateRegisterInput(data) {
   }
 
   // add necessary validations for home_court, favorite_sports, avatar
-  // validations not necessary for assocations as will likely choose from dropdown, etc.
+
 
   return {
     errors,
