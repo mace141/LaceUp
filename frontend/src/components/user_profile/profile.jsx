@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import EventsIndex from '../events/events_index';
+import UserDetail from './user_detail';
+import { fetchUser } from '../../actions/user';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -17,6 +20,7 @@ class Profile extends React.Component {
 
   render() {
     const { events } = this.props;
+    if (!events) return null;
 
     const newEvents = events.filter(
       event => Date.parse(event.dateTime) > Date.now()
@@ -44,15 +48,16 @@ class Profile extends React.Component {
 
 const mapSTP = ({ entities: { users, events }, session: { currentUser } }, ownProps) => ({
   user: users[ownProps.match.params.id],
-  events: Object.values(events).filter(
-    event => Object.values(event.teams).filter(
-      team => team.players.includes(currentUser)
-    )
-  )
+  events: Object.values(events)
+  // events: Object.values(events).filter(
+  //   event => Object.values(event.teams).filter(
+  //     team => team.players.includes(currentUser)
+  //   )
+  // )
 });
 
 const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId))
 });
 
-export default connect(mapSTP, mapDTP)(Profile);
+export default withRouter(connect(mapSTP, mapDTP)(Profile));
