@@ -212,6 +212,8 @@ class SignupForm extends React.Component {
       password: this.state.password,
       password2: this.state.password2,
       username: this.state.username,
+      fname: this.state.fname,
+      lname: this.state.lname,
     };
 
     this.props.signup(user, this.props.history);

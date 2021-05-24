@@ -24,6 +24,7 @@ class NavBar extends React.Component {
   }
 
   sessionLinks() {
+    // conditional rendering for logged in/out
     const { openModal, currentUser } = this.props;
     if (!currentUser) {
       return (
