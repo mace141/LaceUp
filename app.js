@@ -12,11 +12,10 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 //parse json sent to frontend
 
-
-app.get("/", (req, res) => res.send("test1234"));
+// app.get("/", (req, res) => res.send("test1234"));
 app.use("/api/users", users);
 // //backend api/users route
 
