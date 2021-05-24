@@ -42,7 +42,7 @@ class Profile extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users, events, clubs }, session: { currentUser } }, ownProps) => ({
+const mapSTP = ({ entities: { users, events }, session: { currentUser } }, ownProps) => ({
   user: users[ownProps.match.params.id],
   events: Object.values(events).filter(
     event => Object.values(event.teams).filter(
