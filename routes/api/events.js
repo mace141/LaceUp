@@ -13,12 +13,6 @@ router.post('/create',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
     
-    // const { errors, isValid} = validateEventInput(req.body);
-
-    // if (!isValid) {
-    //     return res.status(400).json(errors);
-    // }
-
         const newEvent = new Event({
             location_id: req.body.location_id,
             user_id: req.user.id,
