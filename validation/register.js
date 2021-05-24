@@ -17,6 +17,9 @@ module.exports = function validateRegisterInput(data) {
     ? data.favorite_sports
     : "";
   data.avatar = validText(data.avatar) ? data.avatar : "";
+//   data.teams = validText(data.teams) ? data.teams : "";
+//   data.events = validText(data.events) ? data.events: "";
+//   data.posts = validText(data.posts) ? data.posts: "";
 
   //username - no validation on presence
   if (!Validator.isLength(data.username, { min: 3, max: 30 })) {

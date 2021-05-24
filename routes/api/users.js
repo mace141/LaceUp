@@ -67,6 +67,9 @@ router.post("/login", (req, res) => {
           home_court: user.home_court,
           favorite_sports: user.favorite_sports,
           avatar: user.avatar,
+          teams: user.teams,
+          events: user.events,
+          posts: user.posts
         };
 
         jwt.sign(
@@ -103,6 +106,9 @@ router.get(
       home_court: user.home_court,
       favorite_sports: user.favorite_sports,
       avatar: user.avatar,
+      teams: user.teams,
+      events: user.events,
+      posts: user.posts
     });
   }
 );
