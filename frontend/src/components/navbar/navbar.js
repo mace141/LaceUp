@@ -60,7 +60,7 @@ class NavBar extends React.Component {
           <Link to="/host" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
             Host
           </Link>
-          {this.sessionLinks}
+          {this.sessionLinks()}
         </div>
       </>
     );

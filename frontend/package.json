@@ -23,7 +23,7 @@
     "web-vitals": "^1.1.2"
   },
   "optionalDependencies": {
-     "fsevents": "2.x.x"
+    "fsevents": "2.x.x"
   },
   "scripts": {
     "start": "react-scripts start",
