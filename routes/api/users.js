@@ -6,15 +6,24 @@ const keys = require("../../config/keys");
 const passport = require("passport");
 const User = require("../../models/User");
 
+const validateRegisterInput = require("../../validation/register");
+const validateLoginInput = require("../../validation/login");
+
 router.get("/test", (req, res) => res.json({ msg: "Users route" }));
 
 //register
 router.post("/register", (req, res) => {
+  const { errors, isValid } = validateRegisterInput(req.body);
+
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
-      return res
-        .status(400)
-        .json({ email: "A user alredy exists with this email." });
+      errors.email = "A user is already registered with that email";
+      return res.status(400).json(errors);
+      
     } else {
       const newUser = new User({
         username: req.body.username,
@@ -44,14 +53,18 @@ router.post("/register", (req, res) => {
 //login
 
 router.post("/login", (req, res) => {
+  const {errors, isValid} = validateLoginInput(req.body);
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   const email = req.body.email;
   const password = req.body.password;
 
   User.findOne({ email }).then((user) => {
     if (!user) {
-      return res
-        .status(404)
-        .json({ email: "Cannot find a user with that email address" });
+      errors.email = "Cannot find a user with that email address"
+      return res.status(404).json(errors);
     }
 
     // match stored password digest to input password
@@ -69,7 +82,7 @@ router.post("/login", (req, res) => {
           avatar: user.avatar,
           teams: user.teams,
           events: user.events,
-          posts: user.posts
+          posts: user.posts,
         };
 
         jwt.sign(
@@ -84,13 +97,14 @@ router.post("/login", (req, res) => {
           }
         );
       } else {
-        return res.status(400).json({ password: "Incorrect password" });
+        errors.password = "Incorrect password"
+        return res.status(400).json(errors);
       }
     });
   });
 });
 
-//current user
+//** TEST ROUTE **
 
 router.get(
   "/current",
@@ -108,7 +122,7 @@ router.get(
       avatar: user.avatar,
       teams: user.teams,
       events: user.events,
-      posts: user.posts
+      posts: user.posts,
     });
   }
 );

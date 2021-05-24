@@ -29,6 +29,7 @@ module.exports = function validateRegisterInput(data) {
   if (Validator.isEmpty(data.email)) {
     errors.email = "An email is required";
   }
+
   if (!Validator.isEmail(data.email)) {
     errors.email = "Please enter a valid email";
   }
@@ -36,13 +37,16 @@ module.exports = function validateRegisterInput(data) {
   if (Validator.isEmpty(data.fname)) {
     errors.fname = "An first name is required";
   }
+
   if (Validator.isEmpty(data.lname)) {
     errors.lname = "An last name is required";
   }
+
   //can use strong password validator
   if(!Validator.isLength(data.password, {min: 6, max: 50})) {
       errors.password = 'Password must contain at least 6 characters'
   }
+
   if(Validator.isEmpty(data.password)) {
       errors.password = "A password is required"
   }
@@ -50,15 +54,19 @@ module.exports = function validateRegisterInput(data) {
   if (Validator.isEmpty(data.password2)) {
       errors.password2 = "Must confirm password"
   }
+
   if (!Validator.equals(data.password, data.password2)) {
       errors.password2 = "Passwords must match"
   }
+
   if(!Validator.isLength(data.bio), {min: 1, max: undefined}) {
-      errors.bio = "Bio must contain at least one "
+      errors.bio = "Bio must contain at least one character"
   }
+
+  // add necessary validations for home_court, favorite_sports, avatar
 
   return {
       errors,
-      isValid = Object.keys(errors).length === 0
+      isValid: Object.keys(errors).length === 0
   }
 };

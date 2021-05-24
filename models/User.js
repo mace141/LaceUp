@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -27,20 +27,21 @@ const UserSchema = new Schema({
     required: false,
   },
   favorite_sports: {
-      type: String,
-      required: false,
-    },
-    avatar: {
-        type: String,
-        required: false,
-        data: Buffer,
-    },
-    home_court: {
-      type: Number,
-      required: false,
-      //eventually, home_court: [{type: Schema.Types.ObjectId, ref: "Park"}], in park user points to user id
-    },
+    type: String,
+    required: false,
+  },
+  avatar: {
+    type: String,
+    required: false,
+    data: Buffer,
+  },
 
+  //associations
+  home_court: {
+    type: Number,
+    required: false,
+    //eventually, home_court: [{type: Schema.Types.ObjectId, ref: "Park"}], in park user points to user id
+  },
   teams: {
     type: Number,
     required: false,
@@ -58,4 +59,4 @@ const UserSchema = new Schema({
   },
 });
 
-module.exports = User = mongoose.model('User', UserSchema);
+module.exports = User = mongoose.model("User", UserSchema);
