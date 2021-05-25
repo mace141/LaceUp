@@ -124,14 +124,6 @@ router.get(
   }
 );
 
-// router.get("/:id",
-//   (req, res) => {
-//     User.findById(req.params._id)
-//       .then((user) => res.json(user))
-//       .catch((err) =>
-//         res.status(404).json({ nouserfound: "No user found with that id" })
-//       );
-//   };
 
 router.get("/:id", (req, res) => {
   User.findById(req.params.id).then(user => res.json(user)).catch(err=> res.status(404).json({ nouserfound: "No user found with that id"}))
