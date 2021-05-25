@@ -141,7 +141,7 @@ class SignupForm extends React.Component {
           onKeyPress={this.handleEnterClick}
         />
         <br />
-        {isPasswordMatch ? null : "Password's do not match"}
+        {isPasswordMatch ? "true" : "Passwords do not match"}
         {}
         <button onClick={this.checkPasswordMatch}>Continue</button>
       </>
