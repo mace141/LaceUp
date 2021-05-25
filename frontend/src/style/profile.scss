@@ -33,6 +33,9 @@
       position: absolute;
       top: 5px;
       right: 5px;
+      color: $primary;
+      border: none;
+      font-weight: 600;
     }
   }
 }
@@ -40,8 +43,13 @@
 .profile-tabs {
   display: flex;
   justify-content: space-around;
-  margin-top: 20px;
+  margin-top: 24px;
   font-size: 20px;
   color: $primary;
   border-bottom: 1px solid $primary;
+  padding-bottom: 5px;
+
+  button {
+    border: none;
+  }
 }

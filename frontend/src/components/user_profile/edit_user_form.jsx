@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { updateUser } from '../../actions/user';
 import { closeModal } from '../../actions/modal_actions';
 import { fetchParks } from '../../actions/park';
@@ -16,9 +17,9 @@ class EditUserForm extends React.Component {
     this.handleCourts = this.handleCourts.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchParks();
-  }
+  // componentDidMount() {
+  //   this.props.fetchParks();
+  // }
 
   handleInput(field) {
     return e => this.setState({ [field]: e.target.value });
@@ -138,4 +139,4 @@ const mapDTP = dispatch => ({
   fetchParks: () => dispatch(fetchParks())
 });
 
-export default connect(mapSTP, mapDTP)(EditUserForm);
+export default withRouter(connect(mapSTP, mapDTP)(EditUserForm));

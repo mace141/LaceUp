@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import EventsIndex from '../events/events_index';
 import UserDetail from './user_detail';
 import { fetchUser } from '../../actions/user';
+import { fetchParks } from '../../actions/park';
+import { fetchUsersEvents } from '../../actions/event';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -15,9 +17,11 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchUser, match } = this.props;
+    const { fetchUser, fetchParks, fetchUsersEvents, match } = this.props;
 
     fetchUser(match.params.id);
+    fetchParks();
+    fetchUsersEvents(match.params.id);
   }
 
   render() {
@@ -60,7 +64,9 @@ const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) =>
 })};
 
 const mapDTP = dispatch => ({
-  fetchUser: userId => dispatch(fetchUser(userId))
+  fetchUser: userId => dispatch(fetchUser(userId)),
+  fetchParks: () => dispatch(fetchParks()),
+  fetchUsersEvents: userId => dispatch(fetchUsersEvents(userId))
 });
 
 export default withRouter(connect(mapSTP, mapDTP)(Profile));
