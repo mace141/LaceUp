@@ -6,7 +6,7 @@ class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // TEMP: empty state
+      sessionChange: this.props.loggedIn,
     };
 
     this.handleTabClick = this.handleTabClick.bind(this);
@@ -29,16 +29,27 @@ class NavBar extends React.Component {
     if (!currentUser) {
       return (
         <nav className="login-signup">
-          <button className="login-btn" onClick={() => openModal("login")}>
+          <button
+            className="login-btn form-button"
+            onClick={() => openModal("login")}
+          >
             Sign In
           </button>
-          <button className="signup-btn" onClick={() => openModal("signup")}>
+          <button
+            className="signup-btn form-button"
+            onClick={() => openModal("signup")}
+          >
             Create account
           </button>
         </nav>
       );
     } else {
       // logged in display
+      return (
+        <nav className="login-signup">
+          <button onClick={() => this.props.logout()}>Logout</button>
+        </nav>
+      );
     }
   }
   mainDisp() {
