@@ -215,7 +215,6 @@ class SignupForm extends React.Component {
       fname: this.state.fname,
       lname: this.state.lname,
     };
-
     this.props.signup(user, this.props.history);
   }
 
