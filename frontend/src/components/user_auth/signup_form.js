@@ -120,6 +120,7 @@ class SignupForm extends React.Component {
     const { isPasswordMatch } = this.state;
     return (
       <>
+        <button onClick={this.setForm(0)}>Back</button>
         <h1>Enter a password</h1>
         <input
           type="password"
@@ -136,7 +137,7 @@ class SignupForm extends React.Component {
           onKeyPress={this.handleEnterClick}
         />
         <br />
-        {isPasswordMatch ? "true" : "Password's do not match"}
+        {isPasswordMatch ? null : "Password's do not match"}
         {}
         <button onClick={this.checkPasswordMatch}>Continue</button>
       </>
@@ -157,6 +158,7 @@ class SignupForm extends React.Component {
     const { isLname, isFname } = this.state;
     return (
       <>
+        <button onClick={this.setForm(1)}>Back</button>
         <br />
         <input
           type="text"
@@ -164,7 +166,7 @@ class SignupForm extends React.Component {
           onChange={this.update("fname")}
           placeholder="First Name"
         />
-        {isFname ? <></> : "Please enter a first name"}
+        {isFname ? null : "Please enter a first name"}
         <br />
         <input
           type="text"
@@ -172,7 +174,7 @@ class SignupForm extends React.Component {
           onChange={this.update("lname")}
           placeholder="Last Name"
         />
-        {isLname ? <></> : "Please enter a last name"}
+        {isLname ? null : "Please enter a last name"}
         <br />
         <input
           type="text"
