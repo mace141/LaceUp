@@ -5,14 +5,15 @@ import EventsIndex from '../events/events_index';
 import UserDetail from './user_detail';
 import { fetchUser } from '../../actions/user';
 import { fetchParks } from '../../actions/park';
-import { fetchUsersEvents } from '../../actions/event';
+import { fetchUsersEvents } from '../../util/event_api';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      tabIdx: 0
+      tabIdx: 0,
+      events: []
     };
   }
 
@@ -21,23 +22,24 @@ class Profile extends React.Component {
 
     fetchUser(match.params.id);
     fetchParks();
-    fetchUsersEvents(match.params.id);
+    fetchUsersEvents(match.params.id).then(
+      payload => this.setState({ events: payload.data }) 
+    );
   }
 
   render() {
-    const { events } = this.props;
-    if (!events) return null;
-
+    const { events } = this.state;
+    
     const newEvents = events.filter(
-      event => Date.parse(event.dateTime) > Date.now()
-    ).sort((a, b) => Date.parse(a.dateTime) > Date.parse(b.dateTime) ? -1 : 1);
+      event => Date.parse(event.date) > Date.now()
+    ).sort((a, b) => Date.parse(a.date) > Date.parse(b.date) ? -1 : 1);
 
     const oldEvents = events.filter(
-      event => Date.parse(event.dateTime) < Date.now()
-    ).sort((a, b) => Date.parse(a.dateTime) < Date.parse(b.dateTime) ? -1 : 1);
+      event => Date.parse(event.date) <= Date.now()
+    ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? -1 : 1);
 
     const tabs = [<p>Club Component</p>, <EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>];
-
+    debugger
     return (
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
@@ -54,19 +56,13 @@ class Profile extends React.Component {
 
 const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => {
   return ({
-  user: users[ownProps.match.params.id],
-  events: Object.values(events)
-  // events: Object.values(events).filter(
-  //   event => Object.values(event.teams).filter(
-  //     team => team.players.includes(user)
-  //   )
-  // )
+  user: users[ownProps.match.params.id]
 })};
 
 const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
   fetchParks: () => dispatch(fetchParks()),
-  fetchUsersEvents: userId => dispatch(fetchUsersEvents(userId))
+  fetchUsersEvents: userId => fetchUsersEvents(userId)
 });
 
 export default withRouter(connect(mapSTP, mapDTP)(Profile));

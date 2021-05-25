@@ -4,7 +4,7 @@ export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
 
 const receiveEvents = payload => ({
   type: RECEIVE_EVENTS,
-  events: payload.events
+  events: payload.data
 });
 
 export const fetchUsersEvents = userId => dispatch => (
