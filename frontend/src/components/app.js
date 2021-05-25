@@ -1,4 +1,5 @@
 import React from "react";
+import { Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 import { Switch } from "react-router-dom";
 import Profile from "./user_profile/profile";
@@ -17,6 +18,7 @@ const App = () => (
       {/* <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} /> */}
+      <Route exact path='/users/:id' component={Profile}/> 
     </Switch>
   </div>
 );
