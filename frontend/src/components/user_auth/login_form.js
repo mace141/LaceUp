@@ -44,7 +44,9 @@ class LoginForm extends React.Component {
 
     this.props.login(user);
   }
-
+  closeForm() {
+    this.props.closeModal();
+  }
   // Render the session errors if there are any
   renderErrors() {
     return (
@@ -79,6 +81,8 @@ class LoginForm extends React.Component {
             {this.renderErrors()}
           </div>
         </form>
+
+        {this.props.currentUser ? this.props.closeModal() : <></>}
       </div>
     );
   }

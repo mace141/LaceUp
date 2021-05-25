@@ -207,7 +207,7 @@ class SignupForm extends React.Component {
   }
 
   handleSubmit() {
-    debugger;
+    // debugger;
     let user = {
       email: this.state.email,
       password: this.state.password,
@@ -216,7 +216,7 @@ class SignupForm extends React.Component {
       fname: this.state.fname,
       lname: this.state.lname,
     };
-    this.props.signup(user, this.props.history);
+    this.props.signup(user, this.props.history).then(this.props.closeModal());
   }
 
   render() {
