@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const passport = require("passport")
+const passport = require("passport");
 
 const Team = require("../../models/Team");
 
@@ -18,23 +18,39 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
-    Team.findById(req.params.id).then( par => res.json(park)).catch(err => res.status(404).json({ noteamfound: "No team found with that id"}))
-})
+  Team.findById(req.params.id)
+    .then((team) => res.json(team))
+    .catch((err) =>
+      res.status(404).json({ noteamfound: "No team found with that id" })
+    );
+});
 
-router.post("/", passport.authenticate("jwt", { session: false}), (req, res) => {
-    const { errors, isValid } = validateTeamInput(req.body)
-
+router.post(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateTeamInput(req.body);
     if (!isValid) {
-        return res.status(400).json(errors);
+      return res.status(400).json(errors);
     }
 
-    const newTeam = new Team({
-        name: req.body.name,
-        numPlayers: req.body.numPlayers,
-        playersToFill: req.body.playersToFill,
-        // players: req.body.players,
-        // event: red.body.event.id
-    })
-})
+    Team.findOne({ name: req.body.name }).then((team) => {
+      if (team) {
+        errors.team = "A team already exists with that name";
+        return res.status(400).json(errors);
+      } else {
+        const newTeam = new Team({
+          name: req.body.name,
+          numPlayers: req.body.numPlayers,
+          playersToFill: req.body.playersToFill,
+          players: req.body.players,
+          event: req.body.event,
+        });
+        newTeam.save().then((team) => res.json(team));
+      }
+    });
+
+  }
+);
 
 module.exports = router;
