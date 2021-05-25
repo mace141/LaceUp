@@ -5,7 +5,6 @@ export const fetchUser = userId => {
 };
 
 export const updateUser = formData => {
-  return axios.post(`/api/users/${formData.get('user[id]')}`, formData, {
-    headers: formData.getHeaders()
-  })
+  debugger
+  return axios.post(`/api/users/${formData.get('user[id]')}`, formData)
 };

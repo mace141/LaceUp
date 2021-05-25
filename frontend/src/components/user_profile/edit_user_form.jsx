@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateUser } from '../../actions/user';
 import { closeModal } from '../../actions/modal_actions';
+import { fetchParks } from '../../actions/park';
 
 class EditUserForm extends React.Component {
   constructor(props) {
@@ -13,6 +14,10 @@ class EditUserForm extends React.Component {
     this.handleSports = this.handleSports.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCourts = this.handleCourts.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchParks();
   }
 
   handleInput(field) {
@@ -64,7 +69,7 @@ class EditUserForm extends React.Component {
     e.preventDefault();
 
     const formData = new FormData();
-
+    debugger
     formData.append('user[id]', this.state.id);
     formData.append('user[avatar]', this.state.avatar);
     formData.append('user[username]', this.state.username);
@@ -78,7 +83,7 @@ class EditUserForm extends React.Component {
   }
 
   render() {
-
+    
     return (
       <div className='modal'>
         <h1>Update Info</h1>
@@ -108,7 +113,7 @@ class EditUserForm extends React.Component {
                 <label>Home Courts</label>
                 <select multiple onChange={this.handleCourts}>
                   {this.props.parks.map(park => (
-                    <option value={park.name}></option>
+                    <option value={park.name}>{park.name}</option>
                   ))}
                 </select>
               </div>
@@ -121,14 +126,17 @@ class EditUserForm extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users, parks }, session: { currentUser } }) => ({
-  user: users[currentUser],
+const mapSTP = ({ entities: { users, parks }, session: { user } }) => {
+  // debugger
+  return ({
+  user: users[user],
   parks
-});
+})};
 
 const mapDTP = dispatch => ({
   updateUser: user => dispatch(updateUser(user)),
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModal()),
+  fetchParks: () => dispatch(fetchParks())
 });
 
 export default connect(mapSTP, mapDTP)(EditUserForm);
