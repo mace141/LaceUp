@@ -10,15 +10,14 @@ const mapStateToProps = ({ errors }) => {
     errors: errors.session,
     formType: "login",
     navLink: <Link to="/signup">sign up instead</Link>,
+    // currentUser: session.user,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     processForm: (user) => dispatch(login(user)),
-    otherForm: (
-      <button onClick={() => dispatch(openModal("login"))}>Login</button>
-    ),
+    otherForm: () => dispatch(openModal("signup")),
     closeModal: () => dispatch(closeModal()),
     login: (user) => dispatch(login(user)),
   };

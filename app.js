@@ -3,7 +3,7 @@ const app = express();
 const db = require("./config/keys.js").mongoURI;
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const passport = require('passport');
+const passport = require("passport");
 
 const users = require("./routes/api/users");
 const events = require("./routes/api/events");
