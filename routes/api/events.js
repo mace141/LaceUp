@@ -79,7 +79,7 @@ router.delete('/delete/:id',
         res.json('deleted');
 });
 
-router.put('/update/:id',
+router.patch('/update/:id',
     passport.authenticate('jwt', { session: false }),
     async (req, res) => {
 
