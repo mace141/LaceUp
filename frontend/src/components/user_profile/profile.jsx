@@ -1,37 +1,49 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import EventsIndex from '../events/events_index';
+import UserDetail from './user_detail';
+import { fetchUser } from '../../actions/user';
+import { fetchParks } from '../../actions/park';
+import { fetchUsersEvents } from '../../util/event_api';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      tabIdx: 0
+      tabIdx: 0,
+      events: []
     };
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.match.params.id);
+    const { fetchUser, fetchParks, fetchUsersEvents, match } = this.props;
+
+    fetchUser(match.params.id);
+    fetchParks();
+    fetchUsersEvents(match.params.id).then(
+      payload => this.setState({ events: payload.data }) 
+    );
   }
 
   render() {
-    const { events } = this.props;
-
+    const { events } = this.state;
+    
     const newEvents = events.filter(
-      event => Date.parse(event.dateTime) > Date.now()
-    ).sort((a, b) => Date.parse(a.dateTime) > Date.parse(b.dateTime) ? -1 : 1);
+      event => Date.parse(event.date) > Date.now()
+    ).sort((a, b) => Date.parse(a.date) > Date.parse(b.date) ? -1 : 1);
 
     const oldEvents = events.filter(
-      event => Date.parse(event.dateTime) < Date.now()
-    ).sort((a, b) => Date.parse(a.dateTime) < Date.parse(b.dateTime) ? -1 : 1);
+      event => Date.parse(event.date) <= Date.now()
+    ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? -1 : 1);
 
     const tabs = [<p>Club Component</p>, <EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>];
-
+    debugger
     return (
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
-        <nav className='tabs'>
+        <nav className='profile-tabs'>
           <button onClick={() => this.setState({ tabIdx: 0 })}>Clubs</button>
           <button onClick={() => this.setState({ tabIdx: 1 })}>Schedule</button>
           <button onClick={() => this.setState({ tabIdx: 2 })}>History</button>
@@ -42,17 +54,15 @@ class Profile extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users, events }, session: { currentUser } }, ownProps) => ({
-  user: users[ownProps.match.params.id],
-  events: Object.values(events).filter(
-    event => Object.values(event.teams).filter(
-      team => team.players.includes(currentUser)
-    )
-  )
-});
+const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => {
+  return ({
+  user: users[ownProps.match.params.id]
+})};
 
 const mapDTP = dispatch => ({
-  fetchUser: userId => dispatch(fetchUser(userId))
+  fetchUser: userId => dispatch(fetchUser(userId)),
+  fetchParks: () => dispatch(fetchParks()),
+  fetchUsersEvents: userId => fetchUsersEvents(userId)
 });
 
-export default connect(mapSTP, mapDTP)(Profile);
+export default withRouter(connect(mapSTP, mapDTP)(Profile));
