@@ -2,10 +2,6 @@ const Validator = require("validator");
 const validText = require("./valid_text");
 
 module.exports = function validateParkInput(data) {
-<<<<<<< HEAD
-    let errors = {}
-}
-=======
   let errors = {};
 
   data.name = validText(data.name) ? data.name : "";
@@ -38,4 +34,3 @@ module.exports = function validateParkInput(data) {
     isValid: Object.keys(errors).length === 0,
   };
 };
->>>>>>> 2a8a86cada34d290355d58e2f8cbbee15dae567d

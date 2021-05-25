@@ -43,9 +43,8 @@ const UserSchema = new Schema({
     //eventually, home_court: [{type: Schema.Types.ObjectId, ref: "Park"}], in park user points to user id
   },
   team_id: {
-    type: Number,
-    required: false,
-    //eventually, teams: [{type: Schema.Types.ObjectId, ref: "Team"}] // in teams, user points to user id
+    type: Schema.Types.ObjectId, 
+    ref: "teams"
   },
 
   event_id: {
@@ -54,9 +53,8 @@ const UserSchema = new Schema({
   },
   // },
   post_id: {
-    type: Number,
-    required: false,
-    //eventually, posts: [{type: Schema.Types.ObjectId, ref: "Post"}]
+    type: Schema.Types.ObjectId, 
+    ref: "posts"
   },
   date: {
     type: Date,

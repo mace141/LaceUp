@@ -5,12 +5,16 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
+const { db } = require("../../models/User");
+const { MongoClient, ObjectID } = require("mongodb");
+
+
 const User = require("../../models/User");
 const Event = require("../../models/Event");
 
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
-
+const validateUpdateInput = require("../../validation/update")
 
 //register
 router.post("/register", (req, res) => {
@@ -107,6 +111,37 @@ router.post("/login", (req, res) => {
   });
 });
 
+
+router.delete(
+  "/delete/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    await db.collection("users").deleteOne({ _id: ObjectID(req.params.id) });
+    res.json("deleted");
+  }
+);
+
+
+router.put(
+  "/update/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const { errors, isValid } = validateRegisterInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    await db
+      .collection("users")
+      .replaceOne({ _id: ObjectID(req.params.id) }, req.body);
+    res.json("updated");
+  }
+);
+
+
+
+
 //** TEST ROUTE **
 
 router.get(
@@ -119,8 +154,6 @@ router.get(
   }
 );
 
-
-
 router.get("/:id", (req, res) => {
   User.findById(req.params.id)
     .then((user) => res.json(user))
@@ -131,17 +164,16 @@ router.get("/:id", (req, res) => {
     );
 });
 
+
 //user events
-router.get("/:id/events", (req, res) => {
-  Event.find({ user_id: req.body.id })
-    .then((events) => res.json(events))
-    .catch((err) =>
-      res.status(404).json({
-        noeventsfound: "No events found for that user",
-      })
-    );
-});
-
-
+// router.get("/:id/events", (req, res) => {
+//   Event.find({ user_id: req.body.id })
+//     .then((events) => res.json(events))
+//     .catch((err) =>
+//       res.status(404).json({
+//         noeventsfound: "No events found for that user",
+//       })
+//     );
+// });
 
 module.exports = router;

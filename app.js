@@ -11,7 +11,6 @@ const parks = require('./routes/api/parks')
 const teams = require('./routes/api/teams')
 const events = require("./routes/api/events");
 const posts = require('./routes/api/posts');
-const teams = require("./routes/api/teams")
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true } )
