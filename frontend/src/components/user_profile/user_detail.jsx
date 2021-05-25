@@ -22,8 +22,8 @@ const UserDetail = ({ user, park, openModal }) => {
 }
 
 const mapSTP = ({ entities: { users, parks }, session: { user } }) => {
-  debugger
   const showUser = users[user];
+  
   if (showUser) {
     return ({
       // park: parks[showUser.home_court],

@@ -15,14 +15,9 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    debugger
     const { fetchUser, match } = this.props;
 
-    if (match.params.id[0] == "\"") {
-      fetchUser(match.params.id.slice(1, match.params.id.length - 1));
-    } else {
-      fetchUser(match.params.id)
-    }
+    fetchUser(match.params.id);
   }
 
   render() {
@@ -54,7 +49,6 @@ class Profile extends React.Component {
 }
 
 const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => {
-  debugger
   return ({
   user: users[ownProps.match.params.id],
   events: Object.values(events)
