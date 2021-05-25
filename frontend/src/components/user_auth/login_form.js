@@ -17,10 +17,6 @@ class LoginForm extends React.Component {
 
   // Once the user has been authenticated, redirect to the Tweets page
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
-      this.props.history.push("/tweets");
-    }
-
     // Set or clear errors
     this.setState({ errors: nextProps.errors });
   }
@@ -36,15 +32,22 @@ class LoginForm extends React.Component {
   // Handle form submission
   handleSubmit(e) {
     e.preventDefault();
-
     let user = {
       email: this.state.email,
       password: this.state.password,
     };
 
-    this.props.login(user);
+    const { login, errors, closeModal } = this.props;
+    login(user).then(() => {
+      if (errors) {
+        if (errors.length === 0) {
+          closeModal();
+        }
+      } else {
+        closeModal();
+      }
+    });
   }
-
   // Render the session errors if there are any
   renderErrors() {
     return (
@@ -58,8 +61,12 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <div className="login-form-outer-container">
+        <h1>LaceUp</h1> {/* logo goes here */}
+        <form
+          className="login-form-inner-container"
+          onSubmit={this.handleSubmit}
+        >
           <div>
             <input
               type="text"
@@ -75,7 +82,11 @@ class LoginForm extends React.Component {
               placeholder="Password"
             />
             <br />
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Log in" />
+            <span>or</span>
+            <button onClick={this.props.otherForm} type="button">
+              Sign up
+            </button>
             {this.renderErrors()}
           </div>
         </form>

@@ -7,6 +7,7 @@ import { logout } from "../../actions/session_actions";
 const mapStateToProps = (state) => {
   return {
     loggedIn: state.session.isAuthenticated,
+    currentUser: state.session.user,
     // currPath: window.location.href,
   };
 };

@@ -34,11 +34,11 @@ module.exports = function validateRegisterInput(data) {
   }
   //   possibly normalize email
   if (Validator.isEmpty(data.fname)) {
-    errors.fname = "An first name is required";
+    errors.fname = "A first name is required";
   }
 
   if (Validator.isEmpty(data.lname)) {
-    errors.lname = "An last name is required";
+    errors.lname = "A last name is required";
   }
 
   //can use strong password validator
@@ -65,7 +65,6 @@ module.exports = function validateRegisterInput(data) {
   }
 
   // add necessary validations for home_court, favorite_sports, avatar
-
 
   return {
     errors,

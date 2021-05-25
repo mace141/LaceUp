@@ -17,3 +17,22 @@
   width: 500px;
   height: 500px;
 }
+.modal-logo {
+  
+}
+.login-form-outer-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-form-inner-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
