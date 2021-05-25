@@ -120,23 +120,28 @@ router.get(
 );
 
 
-//show user
 
 router.get("/:id", (req, res) => {
-    User.findById(req.params.id)
-    .then(user => res.json(user)).catch(err => res.status(404).json({
-      nouserfound: "No user found with that id"
-    }))
+  User.findById(req.params.id)
+    .then((user) => res.json(user))
+    .catch((err) =>
+      res.status(404).json({
+        nouserfound: "No user found with that id",
+      })
+    );
 });
 
 //user events
 router.get("/:id/events", (req, res) => {
-  Event.find({ user_id: req.body.id}).then((events => res.json(events))).catch(err => res.status(404).json({
-    noeventsfound: "No events found for that user"
-  }));
-})
+  Event.find({ user_id: req.body.id })
+    .then((events) => res.json(events))
+    .catch((err) =>
+      res.status(404).json({
+        noeventsfound: "No events found for that user",
+      })
+    );
+});
 
-router.get("/:")
 
 
 module.exports = router;
