@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import React from "react";
 import ExploreMain from "./explore_main";
 
 const mapStateToProps = (state) => {
@@ -9,9 +8,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // processForm: (user) => dispatch(login(user)),
-    // otherForm: () => dispatch(openModal("signup")),
-    // closeModal: () => dispatch(closeModal()),
-    // login: (user) => dispatch(login(user)),
+    // fetchEvents: () => dispatch(fetchEvents()),
   };
 };
 
