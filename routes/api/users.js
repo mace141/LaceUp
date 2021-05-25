@@ -107,30 +107,19 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     res.json({
-      // id: user.id,
-      // username: user.username,
-      // fname: user.fname,
-      // lname: user.lname,
-      // email: user.email,
-      // bio: user.bio,
-      // home_court: user.home_court,
-      // favorite_sports: user.favorite_sports,
-      // avatar: user.avatar,
-      // teams: user.teams,
-      // events: user.events,
-      // posts: user.posts,
       msg: "Persits",
     });
   }
 );
 
-router.get("/:id"),
-  (req, res) => {
-    User.findById(req.params.id)
-      .then((user) => res.json(user))
-      .catch((err) =>
-        res.status(404).json({ nouserfound: "No user found with that id" })
-      );
-  };
+
+router.get("/:id", (req, res) => {
+  User.findById(req.params.id).then(user => res.json(user)).catch(err=> res.status(404).json({ nouserfound: "No user found with that id"}))
+})
+
+// router.get("/", (req, res) => {
+//   User.find().then(users => res.json(users)).catch(err => res.status(404).json({ nousersfound: "No users"}))
+// })
+
 
 module.exports = router;
