@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-<<<<<<< HEAD
 export const fetchAllEvents = () => {
     return axios.get('/api/events/')
 };
@@ -24,8 +23,3 @@ export const createEvent = event => {
 export const deleteEvent = eventId => {
     return axios.delete(`/api/events/delete/${eventId}`)
 };
-=======
-export const fetchUsersEvents = userId => (
-  axios.get(`/api/events/user/${userId}`)
-);
->>>>>>> main

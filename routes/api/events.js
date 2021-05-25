@@ -74,11 +74,6 @@ router.get("/park/:location_id", (req, res) => {
     );
 });
 
-<<<<<<< HEAD
-router.patch('/update/:id',
-    passport.authenticate('jwt', { session: false }),
-    async (req, res) => {
-=======
 router.delete(
   "/delete/:id",
   passport.authenticate("jwt", { session: false }),
@@ -87,7 +82,6 @@ router.delete(
     res.json("deleted");
   }
 );
->>>>>>> main
 
 router.put(
   "/update/:id",
@@ -128,7 +122,7 @@ router.put(
 //       num_teams: req.body.num_teams,
 //     })
 //       .then((event) => {
-//         res.json('event');
+//         res.json(event);
 //       })
 //       .catch((err) => {
 //         res.status(400).json(err);
@@ -136,4 +130,4 @@ router.put(
 //   }
 // );
 
-module.exports = router;
+// module.exports = router;
