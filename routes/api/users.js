@@ -1,15 +1,16 @@
 const express = require("express");
 const router = express.Router();
+const app = express();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
 const User = require("../../models/User");
+const Event = require("../../models/Event");
 
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
 
-router.get("/test", (req, res) => res.json({ msg: "Users route" }));
 
 //register
 router.post("/register", (req, res) => {
@@ -34,6 +35,9 @@ router.post("/register", (req, res) => {
         home_court: req.body.home_court,
         favorite_sports: req.body.favorite_sports,
         avatar: req.body.avatar,
+        event_id: req.body.event_id,
+        team_id: req.body.team_id,
+        post_id: req.body.team_id
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hashed) => {
@@ -79,6 +83,9 @@ router.post("/login", (req, res) => {
           home_court: user.home_court,
           favorite_sports: user.favorite_sports,
           avatar: user.avatar,
+          event_id: user.event_id,
+          team_id: req.body.team_id,
+          post_id: req.body.team_id,
         };
 
         jwt.sign(
@@ -107,30 +114,29 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     res.json({
-      // id: user.id,
-      // username: user.username,
-      // fname: user.fname,
-      // lname: user.lname,
-      // email: user.email,
-      // bio: user.bio,
-      // home_court: user.home_court,
-      // favorite_sports: user.favorite_sports,
-      // avatar: user.avatar,
-      // teams: user.teams,
-      // events: user.events,
-      // posts: user.posts,
       msg: "Persits",
     });
   }
 );
 
-router.get("/:id"),
-  (req, res) => {
+
+//show user
+
+router.get("/:id", (req, res) => {
     User.findById(req.params.id)
-      .then((user) => res.json(user))
-      .catch((err) =>
-        res.status(404).json({ nouserfound: "No user found with that id" })
-      );
-  };
+    .then(user => res.json(user)).catch(err => res.status(404).json({
+      nouserfound: "No user found with that id"
+    }))
+});
+
+//user events
+router.get("/:id/events", (req, res) => {
+  Event.find({ user_id: req.body.id}).then((events => res.json(events))).catch(err => res.status(404).json({
+    noeventsfound: "No events found for that user"
+  }));
+})
+
+router.get("/:")
+
 
 module.exports = router;
