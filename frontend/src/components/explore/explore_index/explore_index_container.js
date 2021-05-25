@@ -8,10 +8,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // fetchEvents: () => dispatch(fetchEvents()),
-    // processForm: (user) => dispatch(login(user)),
-    // otherForm: () => dispatch(openModal("signup")),
     // closeModal: () => dispatch(closeModal()),
-    // login: (user) => dispatch(login(user)),
   };
 };
 

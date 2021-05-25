@@ -16,7 +16,7 @@ class MapContainer extends Component {
   }
   render() {
     const { events } = this.props;
-
+    // console.log(process.env); // display for
     return (
       <>
         <Map
