@@ -8,8 +8,8 @@ const passport = require("passport");
 
 const users = require('./routes/api/users')
 const parks = require('./routes/api/parks')
+const teams = require('./routes/api/teams')
 const events = require("./routes/api/events");
-const teams = require("./routes/api/teams")
 const posts = require('./routes/api/posts');
 
 mongoose

@@ -20,8 +20,17 @@ const ParkSchema = new Schema({
         type: String,
         required: true
     },
-    coordinate: {
-        type: String,
+    // coordinate: {
+    //     type: [Number],
+    //     required: true
+    // },
+    // split coordiate into lat lng
+    lng: {
+        type: Number,
+        required: true
+    },
+    lat: {
+        type: Number,
         required: true
     },
     // //array of two numbers ie 
@@ -32,14 +41,14 @@ const ParkSchema = new Schema({
     },
     //sports.split(',') to make array for frontend!!
 
-    // events: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "events"
-    // },
-    // users: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "users"
-    // },
+    events: {
+        type: Schema.Types.ObjectId,
+        ref: "events"
+    },
+    users: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+    },
     date: {
         type: Date,
         default: Date.now
