@@ -15,9 +15,19 @@ const EventSchema = new Schema({
         required: false
     },
     date: {
-        type: Date
-        // min: [Date.now, "Must create a future event"],
-        // max: ["2025-01-01"]
+        type: Date,
+        // required: true,
+        // validate: {
+        //     validator: function (v) {
+        //         return (
+        //             v && // check that there is a date object
+        //             v.getTime() > Date.now() + 24 * 60 * 60 * 1000 &&
+        //             v.getTime() < Date.now() + 30 * 24 * 60 * 60 * 1000
+        //         );
+        //     },
+        //     message:
+        //         "An event must be at least 1 day from now and not more than 90 days.",
+        // }
     },
     sport: {
         type: String,
