@@ -32,19 +32,19 @@ class LoginForm extends React.Component {
   // Handle form submission
   handleSubmit(e) {
     e.preventDefault();
-
     let user = {
       email: this.state.email,
       password: this.state.password,
     };
 
-    this.props.login(user).then(() => {
-      if (this.props.errors) {
-        if (this.props.errors.length === 0) {
-          this.props.closeModal();
+    const { login, errors, closeModal } = this.props;
+    login(user).then(() => {
+      if (errors) {
+        if (errors.length === 0) {
+          closeModal();
         }
       } else {
-        this.props.closeModal();
+        closeModal();
       }
     });
   }

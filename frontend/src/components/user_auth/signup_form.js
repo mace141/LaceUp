@@ -215,7 +215,17 @@ class SignupForm extends React.Component {
       fname: this.state.fname,
       lname: this.state.lname,
     };
-    this.props.signup(user, this.props.history).then(this.props.closeModal());
+
+    const { signup, errors, closeModal } = this.props;
+    signup(user).then(() => {
+      if (errors) {
+        if (errors.length === 0) {
+          closeModal();
+        }
+      } else {
+        closeModal();
+      }
+    });
   }
 
   render() {
