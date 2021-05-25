@@ -107,18 +107,6 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     res.json({
-      // id: user.id,
-      // username: user.username,
-      // fname: user.fname,
-      // lname: user.lname,
-      // email: user.email,
-      // bio: user.bio,
-      // home_court: user.home_court,
-      // favorite_sports: user.favorite_sports,
-      // avatar: user.avatar,
-      // teams: user.teams,
-      // events: user.events,
-      // posts: user.posts,
       msg: "Persits",
     });
   }
