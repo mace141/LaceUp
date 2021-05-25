@@ -7,7 +7,7 @@ class EditUserForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = this.props.user;
+    this.state = { ...this.props.user };
 
     this.handleFile = this.handleFile.bind(this);
     this.handleSports = this.handleSports.bind(this);
