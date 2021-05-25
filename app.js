@@ -7,6 +7,7 @@ const passport = require('passport');
 
 const users = require("./routes/api/users");
 const events = require("./routes/api/events");
+const posts = require('./routes/api/posts');
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true } )
@@ -23,6 +24,7 @@ require("./config/passport")(passport);
 
 app.use("/api/users", users);
 app.use("/api/events", events);
+app.use("/api/posts", posts);
 // //backend api/users route
 
 const port = process.env.PORT || 5000;
