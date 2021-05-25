@@ -1,17 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { updateUser } from '../../actions/user';
+import { closeModal } from '../../actions/modal_actions';
+import { fetchParks } from '../../actions/park';
 
 class EditUserForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = this.props.user;
+    this.state = { ...this.props.user };
 
     this.handleFile = this.handleFile.bind(this);
     this.handleSports = this.handleSports.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCourts = this.handleCourts.bind(this);
   }
+
+  // componentDidMount() {
+  //   this.props.fetchParks();
+  // }
 
   handleInput(field) {
     return e => this.setState({ [field]: e.target.value });
@@ -62,7 +70,7 @@ class EditUserForm extends React.Component {
     e.preventDefault();
 
     const formData = new FormData();
-
+    debugger
     formData.append('user[id]', this.state.id);
     formData.append('user[avatar]', this.state.avatar);
     formData.append('user[username]', this.state.username);
@@ -76,7 +84,7 @@ class EditUserForm extends React.Component {
   }
 
   render() {
-
+    
     return (
       <div className='modal'>
         <h1>Update Info</h1>
@@ -106,7 +114,7 @@ class EditUserForm extends React.Component {
                 <label>Home Courts</label>
                 <select multiple onChange={this.handleCourts}>
                   {this.props.parks.map(park => (
-                    <option value={park.name}></option>
+                    <option value={park.name}>{park.name}</option>
                   ))}
                 </select>
               </div>
@@ -119,14 +127,16 @@ class EditUserForm extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users, parks }, session: { currentUser } }) => ({
-  user: users[currentUser],
+const mapSTP = ({ entities: { users, parks } }, ownProps) => {
+  return ({
+  user: users[ownProps.match.params.id],
   parks
-});
+})};
 
 const mapDTP = dispatch => ({
   updateUser: user => dispatch(updateUser(user)),
-  closeModal: () => dispatch(closeModal())
+  closeModal: () => dispatch(closeModal()),
+  fetchParks: () => dispatch(fetchParks())
 });
 
-export default connect(mapSTP, mapDTP)(EditUserForm);
+export default withRouter(connect(mapSTP, mapDTP)(EditUserForm));
