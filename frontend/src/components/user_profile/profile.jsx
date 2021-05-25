@@ -15,7 +15,14 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.match.params.id);
+    debugger
+    const { fetchUser, match } = this.props;
+
+    if (match.params.id[0] == "\"") {
+      fetchUser(match.params.id.slice(1, match.params.id.length - 1));
+    } else {
+      fetchUser(match.params.id)
+    }
   }
 
   render() {
@@ -46,7 +53,9 @@ class Profile extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => ({
+const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => {
+  debugger
+  return ({
   user: users[ownProps.match.params.id],
   events: Object.values(events)
   // events: Object.values(events).filter(
@@ -54,7 +63,7 @@ const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) =>
   //     team => team.players.includes(user)
   //   )
   // )
-});
+})};
 
 const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId))
