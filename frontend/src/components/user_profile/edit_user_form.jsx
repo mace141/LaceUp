@@ -17,10 +17,6 @@ class EditUserForm extends React.Component {
     this.handleCourts = this.handleCourts.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.props.fetchParks();
-  // }
-
   handleInput(field) {
     return e => this.setState({ [field]: e.target.value });
   }
@@ -71,7 +67,7 @@ class EditUserForm extends React.Component {
 
     const formData = new FormData();
     debugger
-    formData.append('user[id]', this.state.id);
+    formData.append('user[id]', this.state._id);
     formData.append('user[avatar]', this.state.avatar);
     formData.append('user[username]', this.state.username);
     formData.append('user[bio]', this.state.bio);
@@ -86,7 +82,7 @@ class EditUserForm extends React.Component {
   render() {
     
     return (
-      <div className='modal'>
+      <div className='modal edit-user-form'>
         <h1>Update Info</h1>
         <div>
           <form onSubmit={this.handleSubmit}>
@@ -128,8 +124,9 @@ class EditUserForm extends React.Component {
 }
 
 const mapSTP = ({ entities: { users, parks } }, ownProps) => {
+  debugger
   return ({
-  user: users[ownProps.match.params.id],
+  user: users[ownProps.location.pathname.slice(7)],
   parks
 })};
 

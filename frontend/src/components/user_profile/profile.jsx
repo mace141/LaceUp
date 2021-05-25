@@ -38,15 +38,15 @@ class Profile extends React.Component {
       event => Date.parse(event.date) <= Date.now()
     ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? -1 : 1);
 
-    const tabs = [<p>Club Component</p>, <EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>];
+    const tabs = [<EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>, <p>Club Component</p>];
     debugger
     return (
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
         <nav className='profile-tabs'>
-          <button onClick={() => this.setState({ tabIdx: 0 })}>Clubs</button>
-          <button onClick={() => this.setState({ tabIdx: 1 })}>Schedule</button>
-          <button onClick={() => this.setState({ tabIdx: 2 })}>History</button>
+          <button onClick={() => this.setState({ tabIdx: 0 })}>Schedule</button>
+          <button onClick={() => this.setState({ tabIdx: 1 })}>History</button>
+          <button onClick={() => this.setState({ tabIdx: 2 })}>Clubs</button>
         </nav>
         {tabs[this.state.tabIdx]}
       </section>
