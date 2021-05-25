@@ -2,14 +2,12 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
+const { db } = require("../../models/User");
+const { MongoClient, ObjectID } = require("mongodb");
 
 const Team = require("../../models/Team");
 
 const validateTeamInput = require("../../validation/teams");
-
-router.get("/test", (req, res) => {
-  res.json({ msg: "Team test" });
-});
 
 router.get("/", (req, res) => {
   Team.find()
@@ -43,13 +41,48 @@ router.post(
           name: req.body.name,
           numPlayers: req.body.numPlayers,
           playersToFill: req.body.playersToFill,
-          players: req.body.players,
-          event: req.body.event,
+          players: req.user.id,
+          event: req.event,
         });
         newTeam.save().then((team) => res.json(team));
       }
     });
+  }
+);
 
+
+router.put(
+  "/update/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const { errors, isValid } = validateTeamInput(req.body);
+
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+
+    Team.findByIdAndUpdate(req.params.id, {
+      name: req.body.name,
+      numPlayers: req.body.numPlayers,
+      playersToFill: req.body.playersToFill,
+      players: req.user.id,
+      event: req.event,
+    })
+      .then((team) => {
+        res.json(team);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  }
+);
+
+router.delete(
+  "/delete/:id",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    await db.collection("teams").deleteOne({ _id: ObjectID(req.params.id) });
+    res.json("deleted team");
   }
 );
 
