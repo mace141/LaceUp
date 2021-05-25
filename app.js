@@ -9,6 +9,7 @@ const passport = require("passport");
 const users = require('./routes/api/users')
 const parks = require('./routes/api/parks')
 const events = require("./routes/api/events");
+const posts = require('./routes/api/posts');
 const teams = require("./routes/api/teams")
 
 mongoose
@@ -29,6 +30,7 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/parks", parks);
 app.use("/api/events", events);
+app.use("/api/posts", posts);
 app.use("/api/teams", teams)
 
 // //backend api/users route
