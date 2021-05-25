@@ -15,8 +15,8 @@ module.exports = function validateParkInput(data) {
   data.coordinate = data.coordinate ? data.coordinate : "";
 
   data.sports = data.sports ? data.sports : "";
-  data.events = validText(data.events) ? data.events : "";
-  data.users = validText(data.users) ? data.users : "";
+  // data.events = validText(data.events) ? data.events : "";
+  // data.users = validText(data.users) ? data.users : "";
 
   // data.events, data.users are associations
 
