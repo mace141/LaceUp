@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
-// const jwt = require('jsonwebtoken');
+const { db } = require('../../models/Event');
 
 const Event = require('../../models/Event'); 
 const validateEventInput = require('../../validation/event');
+const { MongoClient, ObjectID } = require('mongodb');
 
 router.get("/test", (req, res) => res.json({ msg: "Events route" }));
 
@@ -71,25 +72,26 @@ router.get('/park/:location_id', (req, res) => {
         );
 });
 
-// router.patch('/edit/:id', (req, res) => {
+router.delete('/delete/:id', 
+    passport.authenticate('jwt', { session: false }),
+    async (req, res) => {
+        await db.collection('events').deleteOne({ _id: ObjectID(req.params.id) });
+        res.json('deleted');
+});
 
-//     Event.findById(req.params.id, function (err, p) {
-//         if (!p)
-//             return next(new Error('Unable to edit this event'));
-//         else {
-//             // do your updates here
-//             p.modified = new Date();
+router.put('/update/:id',
+    passport.authenticate('jwt', { session: false }),
+    async (req, res) => {
 
-//             p.save(function (err) {
-//                 if (err)
-//                     console.log('error')
-//                 else
-//                     console.log('success')
-    
-//         });
-//     }
-// });
+        const { errors, isValid } = validateEventInput(req.body);
 
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
+        
+        await db.collection('events').replaceOne({ _id: ObjectID(req.params.id) }, req.body );
+        res.json('updated');
+    });
 
 
 module.exports = router;
