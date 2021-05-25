@@ -3,12 +3,15 @@ const app = express();
 const db = require("./config/keys.js").mongoURI;
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-const passport = require('passport');
+const passport = require("passport");
+
 
 const users = require('./routes/api/users')
+const parks = require('./routes/api/parks')
+const events = require("./routes/api/events");
 
 mongoose
-  .connect(db, { useNewUrlParser: true })
+  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true } )
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
@@ -16,15 +19,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //parse json sent to frontend
 
-<<<<<<< HEAD
-// app.get("/", (req, res) => res.send("test1234"));
-=======
+
+app.get("/", (req, res) => res.send("LaceUp"))
+
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
-
->>>>>>> main
 app.use("/api/users", users);
+app.use("/api/parks", parks);
+app.use("/api/events", events);
+
 // //backend api/users route
 
 const port = process.env.PORT || 5000;
