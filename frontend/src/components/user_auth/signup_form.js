@@ -91,6 +91,10 @@ class SignupForm extends React.Component {
           <div className="user-auth-error">Please enter a valid email</div>
         )}
         <button onClick={this.handleEmail}>Continue</button>
+        <span>or</span>
+        <button onClick={this.props.otherForm} type="button">
+          Log in
+        </button>
       </>
     );
   }
