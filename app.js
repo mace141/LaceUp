@@ -8,11 +8,9 @@ const passport = require("passport");
 
 const users = require('./routes/api/users')
 const parks = require('./routes/api/parks')
-<<<<<<< HEAD
 const teams = require('./routes/api/teams')
-=======
 const events = require("./routes/api/events");
->>>>>>> 940cbbb7d52a3af18ea8b7cbbf0d124739532c81
+const teams = require("./routes/api/teams")
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true } )
@@ -31,12 +29,9 @@ require("./config/passport")(passport);
 
 app.use("/api/users", users);
 app.use("/api/parks", parks);
-<<<<<<< HEAD
-app.use("/api/teams", teams);
-=======
 app.use("/api/events", events);
+app.use("/api/teams", teams)
 
->>>>>>> 940cbbb7d52a3af18ea8b7cbbf0d124739532c81
 // //backend api/users route
 
 const port = process.env.PORT || 5000;
