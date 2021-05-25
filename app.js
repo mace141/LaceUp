@@ -16,14 +16,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //parse json sent to frontend
 
-<<<<<<< HEAD
-// app.get("/", (req, res) => res.send("test1234"));
-=======
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
 
->>>>>>> main
 app.use("/api/users", users);
 // //backend api/users route
 

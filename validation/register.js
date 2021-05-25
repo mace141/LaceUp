@@ -12,7 +12,6 @@ module.exports = function validateRegisterInput(data) {
   data.password2 = validText(data.password2) ? data.password2 : "";
   data.bio = validText(data.bio) ? data.bio : "";
   data.home_court = validText(data.home_court) ? data.home_court : "";
-  //may need to remove validText validation here if just an id.
   data.favorite_sports = validText(data.favorite_sports)
     ? data.favorite_sports
     : "";
@@ -34,11 +33,11 @@ module.exports = function validateRegisterInput(data) {
   }
   //   possibly normalize email
   if (Validator.isEmpty(data.fname)) {
-    errors.fname = "An first name is required";
+    errors.fname = "A first name is required";
   }
 
   if (Validator.isEmpty(data.lname)) {
-    errors.lname = "An last name is required";
+    errors.lname = "A last name is required";
   }
 
   //can use strong password validator

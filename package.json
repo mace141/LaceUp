@@ -27,8 +27,8 @@
     "nodemon": "^2.0.7"
   },
   "optionalDependencies": {
-     "fsevents": "2.x.x"
-  },  
+    "fsevents": "2.x.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",

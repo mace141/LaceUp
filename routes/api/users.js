@@ -23,7 +23,6 @@ router.post("/register", (req, res) => {
     if (user) {
       errors.email = "A user is already registered with that email";
       return res.status(400).json(errors);
-      
     } else {
       const newUser = new User({
         username: req.body.username,
@@ -53,7 +52,7 @@ router.post("/register", (req, res) => {
 //login
 
 router.post("/login", (req, res) => {
-  const {errors, isValid} = validateLoginInput(req.body);
+  const { errors, isValid } = validateLoginInput(req.body);
   if (!isValid) {
     return res.status(400).json(errors);
   }
@@ -63,7 +62,7 @@ router.post("/login", (req, res) => {
 
   User.findOne({ email }).then((user) => {
     if (!user) {
-      errors.email = "Cannot find a user with that email address"
+      errors.email = "Cannot find a user with that email address";
       return res.status(404).json(errors);
     }
 
@@ -80,7 +79,6 @@ router.post("/login", (req, res) => {
           home_court: user.home_court,
           favorite_sports: user.favorite_sports,
           avatar: user.avatar,
-
         };
 
         jwt.sign(
@@ -95,7 +93,7 @@ router.post("/login", (req, res) => {
           }
         );
       } else {
-        errors.password = "Incorrect password"
+        errors.password = "Incorrect password";
         return res.status(400).json(errors);
       }
     });
@@ -108,20 +106,7 @@ router.get(
   "/current",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    res.json({
-      id: user.id,
-      username: user.username,
-      fname: user.fname,
-      lname: user.lname,
-      email: user.email,
-      bio: user.bio,
-      home_court: user.home_court,
-      favorite_sports: user.favorite_sports,
-      avatar: user.avatar,
-      teams: user.teams,
-      events: user.events,
-      posts: user.posts,
-    });
+    res.json({ msg: "Success" });
   }
 );
 
