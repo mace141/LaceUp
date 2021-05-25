@@ -9,6 +9,7 @@ const passport = require("passport");
 const users = require('./routes/api/users')
 const parks = require('./routes/api/parks')
 const events = require("./routes/api/events");
+const teams = require("./routes/api/teams")
 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true } )
@@ -28,6 +29,7 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/parks", parks);
 app.use("/api/events", events);
+app.use("/api/teams", teams)
 
 // //backend api/users route
 
