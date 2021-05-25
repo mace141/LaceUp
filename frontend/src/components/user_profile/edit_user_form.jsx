@@ -126,10 +126,9 @@ class EditUserForm extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { users, parks }, session: { user } }) => {
-  // debugger
+const mapSTP = ({ entities: { users, parks } }, ownProps) => {
   return ({
-  user: users[user],
+  user: users[ownProps.match.params.id],
   parks
 })};
 

@@ -37,7 +37,7 @@ class Profile extends React.Component {
     return (
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
-        <nav className='tabs'>
+        <nav className='profile-tabs'>
           <button onClick={() => this.setState({ tabIdx: 0 })}>Clubs</button>
           <button onClick={() => this.setState({ tabIdx: 1 })}>Schedule</button>
           <button onClick={() => this.setState({ tabIdx: 2 })}>History</button>

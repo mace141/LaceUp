@@ -76,7 +76,13 @@ class NavBar extends React.Component {
     );
   }
   render() {
-    return <nav className="full-navbar">{this.mainDisp()}</nav>;
+    return (
+      <div className='nav-background'>
+        <nav className="full-navbar">
+          {this.mainDisp()}
+        </nav>
+      </div>
+    )
   }
 }
 export default NavBar;
