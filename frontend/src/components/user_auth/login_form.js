@@ -15,6 +15,7 @@ class LoginForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
   }
 
+  // Once the user has been authenticated, redirect to the Tweets page
   componentWillReceiveProps(nextProps) {
     // Set or clear errors
     this.setState({ errors: nextProps.errors });
@@ -37,8 +38,12 @@ class LoginForm extends React.Component {
       password: this.state.password,
     };
 
-    this.props.processForm(user).then(() => {
-      if (!this.props.errors) {
+    this.props.login(user).then(() => {
+      if (this.props.errors) {
+        if (this.props.errors.length === 0) {
+          this.props.closeModal();
+        }
+      } else {
         this.props.closeModal();
       }
     });
