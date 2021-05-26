@@ -50,7 +50,6 @@ router.post(
   }
 );
 
-
 router.put(
   "/update/:id",
   passport.authenticate("jwt", { session: false }),
@@ -61,19 +60,23 @@ router.put(
       return res.status(400).json(errors);
     }
 
-    Team.findByIdAndUpdate(req.params.id, {
-      name: req.body.name,
-      numPlayers: req.body.numPlayers,
-      playersToFill: req.body.playersToFill,
-      players_id: req.user.id,
-      event_id: req.event.id,
-    })
-      .then((team) => {
-        res.json(team);
-      })
-      .catch((err) => {
-        res.status(400).json(err);
-      });
+    Team.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        name: req.body.name,
+        numPlayers: req.body.numPlayers,
+        playersToFill: req.body.playersToFill,
+        players_id: req.user.id,
+        event_id: req.event.id,
+      },
+      { new: true },
+      function (err, result) {
+        if (err) {
+          res.json(err);
+        }
+        res.json(result);
+      }
+    );
   }
 );
 

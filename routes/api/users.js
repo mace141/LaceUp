@@ -8,13 +8,12 @@ const passport = require("passport");
 const { db } = require("../../models/User");
 const { MongoClient, ObjectID } = require("mongodb");
 
-
 const User = require("../../models/User");
 const Event = require("../../models/Event");
 
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
-const validateUpdateInput = require("../../validation/update")
+const validateUpdateInput = require("../../validation/update");
 
 //register
 router.post("/register", (req, res) => {
@@ -111,7 +110,6 @@ router.post("/login", (req, res) => {
   });
 });
 
-
 router.delete(
   "/delete/:id",
   passport.authenticate("jwt", { session: false }),
@@ -120,7 +118,6 @@ router.delete(
     res.json("deleted");
   }
 );
-
 
 // router.put(
 //   "/update/:id",
@@ -135,7 +132,7 @@ router.delete(
 //     await db
 //       .collection("users")
 //       .replaceOne({ _id: ObjectID(req.params.id) }, req.body)
-    
+
 //     res.json('hitting database');
 //     res.json("updated");
 //   }
@@ -150,37 +147,28 @@ router.put(
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    debugger
-    User.findByIdAndUpdate({ _id: req.params.id }, {
-      username: req.body.username,
-      fname: req.body.fname,
-      lname: req.body.lname,
-      email: req.body.email,
-      bio: req.body.bio,
-      // home_court: body.home_court.id,
-      favorite_sports: req.body.favorite_sports,
-      avatar: req.body.avatar,
-    }, {new: true}
-    , function(err, result) {
-      if (err) {
-        res.json(err)
+    User.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        username: req.body.username,
+        fname: req.body.fname,
+        lname: req.body.lname,
+        email: req.body.email,
+        bio: req.body.bio,
+        // home_court: body.home_court.id,
+        favorite_sports: req.body.favorite_sports,
+        avatar: req.body.avatar,
+      },
+      { new: true },
+      function (err, result) {
+        if (err) {
+          res.json(err);
+        }
+        res.json(result);
       }
-      res.json(result);
-    }
-    )
-      // .then((user) => {
-      //   res.json(user);
-      // })
-      // .catch((err) => {
-      //   res.json('hitting err');
-      // });
+    );
   }
 );
-
-
-
-
-
 
 //** TEST ROUTE **
 
@@ -203,7 +191,6 @@ router.get("/:id", (req, res) => {
       })
     );
 });
-
 
 //user events
 // router.get("/:id/events", (req, res) => {
