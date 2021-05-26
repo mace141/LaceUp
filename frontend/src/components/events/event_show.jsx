@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchEvent } from '../../actions/event_actions';
+import { receiveEvent } from '../../actions/event_actions';
 import { fetchParks } from '../../actions/park';
+import { fetchEvent } from '../../util/event_api';
+import { fetchUser } from '../../util/user_api';
 import TeamsIndex from '../teams/teams_index';
 
 class EventShow extends React.Component {
@@ -11,22 +13,31 @@ class EventShow extends React.Component {
 
     this.state = {
       tabIdx: 0,
-      event: null
+      event: null,
+      eventHost: null
     };
   }
 
   componentDidMount() {
-    const { fetchEvent, fetchParks, match } = this.props;
+    const { 
+      fetchEvent, fetchParks, fetchUser, receiveEvent, match, dispatch
+    } = this.props;
 
-    fetchEvent(match.params.id).then(res => console.log(res));
-    this.setState({ tabIdx: 0 });
+    fetchEvent(match.params.id).then(payload => {
+      dispatch(receiveEvent(payload));
+      fetchUser(payload.data.user_id).then(payload => {
+        const user = payload.data;
+        const name = `${user.fname} ${user.lname}`;
+        this.setState({ eventHost: name });
+      });
+    });
     fetchParks();
   }
 
   render() {
     const { event, parks } = this.props;
-    if (!parks || !event) return null;
-    // if (!event) return null;
+    if (!parks) return null;
+    if (!event) return null; 
 
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const date = new Date(event.date);
@@ -36,7 +47,6 @@ class EventShow extends React.Component {
     const year = date.getFullYear();
     const hours = date.getHours();
     const minutes = date.getMinutes();
-
     const time = `${hours}:${minutes}`;
 
     const tabs = [<TeamsIndex teams={event.teams}/>];
@@ -59,6 +69,9 @@ class EventShow extends React.Component {
           <div className='team-size'>
             <p>Team Size: <span>{event.team_size}</span></p>
           </div>
+          <div className='event-host'>
+            <p>Hosted by: <span>{this.state.eventHost}</span></p>
+          </div>
         </div>
         <p>Players</p>
         {tabs[this.state.tabIdx]}
@@ -73,8 +86,11 @@ const mapSTP = ({ entities: { events, parks } }, ownProps) => ({
 });
 
 const mapDTP = dispatch => ({
-  fetchEvent: eventId => dispatch(fetchEvent(eventId)),
-  fetchParks: () => dispatch(fetchParks())
+  fetchEvent: eventId => fetchEvent(eventId),
+  fetchParks: () => dispatch(fetchParks()),
+  fetchUser: userId => fetchUser(userId),
+  receiveEvent: payload => receiveEvent(payload),
+  dispatch
 });
 
 const EventShowContainer = withRouter(connect(mapSTP, mapDTP)(EventShow));

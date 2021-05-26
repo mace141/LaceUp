@@ -13,7 +13,7 @@ const receiveEvents = payload => ({
     events: payload.data
 });
 
-const receiveEvent = payload => ({
+export const receiveEvent = payload => ({
     type: RECEIVE_EVENT,
     event: payload.data
 });
