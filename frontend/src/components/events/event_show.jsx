@@ -43,7 +43,7 @@ class EventShow extends React.Component {
             <p>Date/Time: <span>{`${time}, ${month} ${day}, ${year}`}</span></p>
           </div>
           <div className='location'>
-            <p>Location: <span>{event.location}</span></p>
+            <p>Location: <span>{event.location_id}</span></p>
           </div>
           <div className='sport'>
             <p>Sport: <span>{event.sport}</span></p>
@@ -62,8 +62,9 @@ class EventShow extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { events } }, ownProps) => ({
-  event: events[ownProps.match.params.id]
+const mapSTP = ({ entities: { events, parks } }, ownProps) => ({
+  event: events[ownProps.match.params.id],
+  parks
 });
 
 const mapDTP = dispatch => ({
