@@ -54,7 +54,6 @@ class MapContainer extends Component {
             <EventIndexContainer park={selectedPlace} />
           ) : (
             parks.map((key, i) => {
-              // debugger;
               return <ExploreIndexItemContainer key={key._id} park={key} />;
             })
           )}
