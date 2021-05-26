@@ -1,23 +1,33 @@
 import React from 'react';
 
 const EventIndexItem = ({ event }) => {
-  debugger
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const date = new Date(event.date);
+
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  const year = date.getFullYear();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  const time = `${hours}:${minutes}`
+
   return (
-    <div className='event-item'>
+    <div className='profile-event-item'>
       <div className='date-time'>
-        <p>Date/Time: {event.date}</p>
+        <p>Date/Time: <span>{`${time}, ${month} ${day}, ${year}`}</span></p>
       </div>
       <div className='location'>
-        <p>Location: {event.location_id}</p>
+        <p>Location: <span>{event.location_id}</span></p>
       </div>
       <div className='sport'>
-        <p>Sport: {event.sport}</p>
+        <p>Sport: <span>{event.sport}</span></p>
       </div>
       <div className='team-size'>
-        <p>Team Size: {event.team_size}</p>
+        <p>Team Size: <span>{event.team_size}</span></p>
       </div>
       <div className='skill'>
-        <p>Skill level: {event.skill}</p>
+        <p>Skill level: <span>{event.skill}</span></p>
       </div>
     </div>
   )

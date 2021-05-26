@@ -99,7 +99,7 @@ router.post("/login", (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer" + token,
+              token: "Bearer " + token,
             });
           }
         );
@@ -124,6 +124,7 @@ router.delete(
 
 // router.put(
 //   "/update/:id",
+<<<<<<< HEAD
 //   passport.authenticate("jwt", { session: false }),
 //   async (req, res) => {
 //     const { errors, isValid } = validateRegisterInput(req.body);
@@ -135,6 +136,21 @@ router.delete(
 //     await db
 //       .collection("users")
 //       .replaceOne({ _id: ObjectID(req.params.id) }, req.body);
+=======
+//   // passport.authenticate("jwt", { session: false }),
+//   async (req, res) => {
+//     const { errors, isValid } = validateRegisterInput(req.body);
+
+//     // if (!isValid) {
+//     //   return res.status(400).json(errors);
+//     // }
+
+//     await db
+//       .collection("users")
+//       .replaceOne({ _id: ObjectID(req.params.id) }, req.body)
+    
+//     res.json('hitting database');
+>>>>>>> 39f24b383690bd30c03da5d6ad6afe53362800a8
 //     res.json("updated");
 //   }
 // );
@@ -143,31 +159,40 @@ router.put(
   "/update/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    // const { errors, isValid } = validateUpdateInput(req.body);
+    const { errors, isValid } = validateUpdateInput(req.body);
 
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
-
-    User.findByIdAndUpdate({_id: req.params.id}, {
-      // id: user.id,
-      username: req.user.username,
-      fname: req.user.fname,
-      lname: req.user.lname,
-      email: req.user.email,
-      bio: req.user.bio,
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+    debugger
+    User.findByIdAndUpdate({ _id: req.params.id }, {
+      username: req.body.username,
+      fname: req.body.fname,
+      lname: req.body.lname,
+      email: req.body.email,
+      bio: req.body.bio,
       // home_court: body.home_court.id,
-      favorite_sports: req.user.favorite_sports,
-      avatar: req.user.avatar,
-    })
-      .then((user) => {
-        res.json(user);
-      })
-      .catch((err) => {
-        res.status(400).json(err);
-      });
+      favorite_sports: req.body.favorite_sports,
+      avatar: req.body.avatar,
+    }, {new: true}
+    , function(err, result) {
+      if (err) {
+        res.json(err)
+      }
+      res.json(result);
+    }
+    )
+      // .then((user) => {
+      //   res.json(user);
+      // })
+      // .catch((err) => {
+      //   res.json('hitting err');
+      // });
   }
 );
+
+
+
 
 
 
