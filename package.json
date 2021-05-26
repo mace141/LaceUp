@@ -7,6 +7,7 @@
     "node": "14.17.0"
   },
   "dependencies": {
+    "@heroku/buildpack-registry": "^1.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "check-node-version": "^4.1.0",
