@@ -5,12 +5,7 @@ import EventsIndex from '../events/events_index';
 import UserDetail from './user_detail';
 import { fetchUser } from '../../actions/user';
 import { fetchParks } from '../../actions/park';
-<<<<<<< HEAD
 import { fetchEventsByUser } from '../../util/event_api';
-=======
-import { fetchUsersEvents } from '../../util/event_api';
-import { receiveEvents } from '../../actions/event';
->>>>>>> main
 
 class Profile extends React.Component {
   constructor(props) {
@@ -23,7 +18,6 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-<<<<<<< HEAD
     const { fetchUser, fetchParks, fetchEventsByUser, match } = this.props;
 
     fetchUser(match.params.id);
@@ -31,18 +25,6 @@ class Profile extends React.Component {
     fetchEventsByUser(match.params.id).then(
       payload => this.setState({ events: payload.data }) 
     );
-=======
-    const { 
-      fetchUser, fetchParks, fetchUsersEvents, match, dispatch, receiveEvents
-    } = this.props;
-
-    fetchUser(match.params.id);
-    fetchParks();
-    fetchUsersEvents(match.params.id).then(payload => {
-      this.setState({ events: payload.data });
-      dispatch(receiveEvents(payload));
-    });
->>>>>>> main
   }
 
   render() {
@@ -81,13 +63,7 @@ const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) =>
 const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
   fetchParks: () => dispatch(fetchParks()),
-<<<<<<< HEAD
   fetchEventsByUser: userId => fetchEventsByUser(userId)
-=======
-  fetchUsersEvents: userId => fetchUsersEvents(userId),
-  receiveEvents: payload => receiveEvents(payload),
-  dispatch
->>>>>>> main
 });
 
 export default withRouter(connect(mapSTP, mapDTP)(Profile));

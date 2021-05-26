@@ -1,4 +1,5 @@
 import * as EventAPI from "../util/event_api";
+// import {fetchParksEvents, fetchUsersEvents} from "../util/event_api"
 
 export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_EVENT_ERRORS = "RECEIVE_EVENT_ERRORS";
