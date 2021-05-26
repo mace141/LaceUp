@@ -1,7 +1,12 @@
+.nav-background {
+  background: $neutralLight;
+}
+
 .full-navbar {
   background: $neutralLight;
-  width: 100%;
+  max-width: 1100px;
   height: 48px;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   align-items: center;

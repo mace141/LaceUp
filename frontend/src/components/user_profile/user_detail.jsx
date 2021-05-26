@@ -1,25 +1,38 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { openModal } from '../../actions/modal_actions';
 
-const UserDetail = ({ user, parks, openModal }) => {
+const UserDetail = ({ user, park, openModal, match, currentUserId }) => {
+  if (!user) return null;
 
+  const editBtn = match.params.id == currentUserId ? (
+    <button onClick={() => openModal('editUser')}>Edit</button>
+  ) : null;
+  
   return (
-    <div>
-      <div>
+    <div className='user-detail'>
+      <div className='user-avatar'>
         <img src={user.avatarUrl} alt="Avatar"/>
       </div>
-      <div>
+      <div className='user-info'>
         <p>{`${user.fname} ${user.lname}`}</p>
-        <p>Favorite Sport{user.sports.length > 1 ? 's' : ''}: {user.sports.length ? user.sports.join(', ') : 'None'}</p>
-        <p>Home Court{parks.length > 1 ? 's' : ''}: {parks.length ? parks.join(', ') : 'None'}</p>
-        <button onClick={() => openModal('editUser')}>Edit</button>
+        {/* <p>Favorite Sport{user.sports.length > 1 ? 's' : ''}: {user.sports.length ? user.sports.join(', ') : 'None'}</p> */}
+        <p>Favorite Sports: {user.favorite_sports}</p>
+        {/* <p>Home Court{parks.length > 1 ? 's' : ''}: {parks.length ? parks.join(', ') : 'None'}</p> */}
+        {/* <p>Home Court: {park.name}</p> */}
+        {editBtn}
       </div>
     </div>
   )
 }
 
-const mapSTP = ({ entities: { users, parks }, session: { currentUser } }) => ({
-  parks: users[currentUser].homeCourt.map(parkId => parks[parkId])
+const mapSTP = ({ session: { user } }) => ({
+  currentUserId: user.id
 });
 
-export default connect(mapSTP)(UserDetail);
+const mapDTP = dispatch => ({
+  openModal: modal => dispatch(openModal(modal))
+});
+
+export default withRouter(connect(mapSTP, mapDTP)(UserDetail));

@@ -1,0 +1,55 @@
+.profile-container {
+  margin: 20px auto;
+  max-width: 1100px;
+}
+
+.user-detail {
+  display: flex;
+  background: $neutralLight;
+  border: 1px solid $primary;
+  border-radius: 8px;
+  padding: 20px;
+
+  .user-avatar {
+    width: 80px;
+    height: 80px;
+    border: 1px solid $primary;
+    border-radius: 50%;
+    margin-right: 15px;
+  }
+
+  
+  .user-info {
+    position: relative;
+    width: 90%;
+    
+    p {
+      font-weight: 600;
+      color: $primary;
+      font-size: 32px;
+    }
+
+    button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: $primary;
+      border: none;
+      font-weight: 600;
+    }
+  }
+}
+
+.profile-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 24px;
+  font-size: 20px;
+  color: $primary;
+  border-bottom: 1px solid $primary;
+  padding-bottom: 5px;
+
+  button {
+    border: none;
+  }
+}
