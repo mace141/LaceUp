@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require("express");
 const app = express();
 const db = require("./config/keys.js").mongoURI;
@@ -19,6 +20,13 @@ mongoose
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //parse json sent to frontend
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/public'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'public', 'index.html'));
+  })
+}
 
 app.get("/", (req, res) => res.send("LaceUp"));
 
