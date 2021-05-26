@@ -15,7 +15,6 @@ class ExploreIndexItem extends React.Component {
     if (!park) {
       return null;
     } else {
-      // debugger;
       return (
         <>
           <div className="explore-index-item">
