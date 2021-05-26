@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import eventsReducer from './events';
+import eventsReducer from './events_reducer';
 import parksReducer from './parks';
 import usersReducer from './users';
 

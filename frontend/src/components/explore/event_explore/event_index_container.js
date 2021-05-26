@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import EventIndex from "./event_index";
-import { fetchParksEvents } from "../../../actions/event";
+import { fetchParksEvents } from "../../../actions/event_actions";
 const mapStateToProps = (state, ownProps) => {
   return {
     park: ownProps.park,

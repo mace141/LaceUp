@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchEvent } from '../../actions/event';
+import { fetchEvent } from '../../actions/event_actions';
 import TeamsIndex from '../teams/teams_index';
 
 class EventShow extends React.Component {
