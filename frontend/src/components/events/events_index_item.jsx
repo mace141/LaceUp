@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EventIndexItem = ({ event }) => {
-  debugger
+
   return (
     <div className='event-item'>
       <div className='date-time'>
