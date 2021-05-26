@@ -14,6 +14,7 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "frontend": "file:frontend",
+    "heroku": "^7.54.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "mongoose": "^5.12.10",
