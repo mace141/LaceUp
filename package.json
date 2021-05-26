@@ -7,9 +7,6 @@
     "node": "14.17.0"
   },
   "dependencies": {
-    "@heroku-cli/plugin-buildpacks": "^7.54.0",
-    "@heroku/buildpack-registry": "^1.0.1",
-    "async-file": "^2.0.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "check-node-version": "^4.1.0",
@@ -17,18 +14,15 @@
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "frontend": "file:frontend",
-    "heroku": "^7.54.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "mongoose": "^5.12.10",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react-redux": "^7.2.4",
-    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "valid-url": "^1.0.9",
     "validator": "^13.6.0"
   },
   "devDependencies": {
