@@ -15,6 +15,8 @@ class EventForm extends React.Component {
             num_teams: "",
             skill: "",
             type: "",
+            day: "",
+            time: ""
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,37 +24,27 @@ class EventForm extends React.Component {
         this.handleErrors = this.handleErrors.bind(this);
     }
 
-    // handleSubmit(e) {
-    //     e.preventDefault();
-    //     const formData = new FormData();
-    //     formData.append('event[date]', this.state.date);
-    //     formData.append('event[location_id]', this.state.location_id);
-    //     formData.append('event[sport]', this.state.sport);
-    //     formData.append('event[team_size]', this.state.team_size);
-    //     formData.append('event[num_teams]', this.state.num_teams);
-    //     formData.append('event[skill]', this.state.skill);
-    //     this.props.createEvent(formData)
-    //         .then(this.props.closeModal);
-    // }
+    componentDidMount() {
+        this.props.fetchParks();
+    }
 
     handleSubmit(e) {
         e.preventDefault();
-
+        debugger
         let event = {
-            date: this.state.date,
+            date: `${this.state.day}T${this.state.time}`,
             user_id: this.props.currentuser.id,
-            location_id: this.state.location_id,
+            location_id: this.state.location_id,//"60ae5911e26764fd4c494ec6",
             sport: this.state.sport,
             team_size: this.state.team_size,
             num_teams: this.state.num_teams,
             skill: this.state.skill,
             type: this.state.type,
         };
-        debugger
+        
         // const { createEvent, closeModal, errors } = this.props;
         this.props.createEvent(event)
             .then(this.props.closeModal());
-        debugger
     }
 
 
@@ -78,7 +70,8 @@ class EventForm extends React.Component {
     }
 
     render() {
-        console.log(this.props);
+        const parks = Object.values(this.props.parks);
+        
         return (
             <div className="login-form-outer-container">
                 <h1>LaceUp</h1> {/* logo goes here */}
@@ -86,17 +79,22 @@ class EventForm extends React.Component {
                     className="login-form-inner-container"
                     onSubmit={this.handleSubmit}>
                     <div>
+                        <label>Date/Time</label>
+                        <br/>
                         <input
-                            type="text"
-                            value={this.state.date}
-                            onChange={this.update("date")}
-                            placeholder="Date"/>
+                            type="date"
+                            value={this.state.day}
+                            onChange={this.update("day")}/>
+                        <input 
+                            type="time" 
+                            value={this.state.time} 
+                            onChange={this.update('time')}/>
                         <br />
-                        <input
-                            type="text"
-                            value={this.state.location_id}
-                            onChange={this.update("location_id")}
-                            placeholder="Location"/>
+                        <select onChange={this.update('location_id')}>
+                            {parks.map(park => (
+                                <option value={park._id}>{park.name}</option>
+                            ))}
+                        </select>
                         <br />
                         <input
                             type="text"
@@ -122,11 +120,13 @@ class EventForm extends React.Component {
                             onChange={this.update("type")}
                             placeholder="Type" />
                         <br />
-                        <input
-                            type="text"
-                            value={this.state.skill}
-                            onChange={this.update("skill")}
-                            placeholder="Skill level" />
+                        <select onChange={this.update('skill')}>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                            <option value="Expert">Expert</option>
+                            <option value="Professional">Professional</option>
+                        </select>
                         <br />
                         <button>
                             Create Event
