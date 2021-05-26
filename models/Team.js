@@ -17,12 +17,12 @@ const TeamSchema = new Schema({
     },
     //minimum numbers of player for a sport (preset value)- numPlayers?
 
-    players_id:{
-        type: Schema.Types.ObjectId,
+    player_id:{
+        type: mongoose.Types.ObjectId,
         ref: "users"
     },
     event_id: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "events"
     },
     date: {

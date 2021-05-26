@@ -38,8 +38,8 @@ router.post("/register", (req, res) => {
         home_court: req.body.home_court,
         favorite_sports: req.body.favorite_sports,
         avatar: req.body.avatar,
-        // event_id: req.body.event_id,
-        // team_id: req.body.team_id,
+        event_id: req.body.event_id,
+        team_id: req.body.team_id,
         // post_id: req.body.team_id
       });
       bcrypt.genSalt(10, (err, salt) => {
@@ -86,9 +86,9 @@ router.post("/login", (req, res) => {
           // home_court: body.home_court.id,
           favorite_sports: user.favorite_sports,
           avatar: user.avatar,
-          // event_id: user.event_id,
-          // team_id: req.body.team_id,
-          // post_id: req.body.team_id,
+          event_id: user.event_id,
+          team_id: req.body.team_id,
+          post_id: req.body.post_id,
         };
 
         jwt.sign(
@@ -190,18 +190,26 @@ router.get(
   }
 );
 
+// router.get("/:id", (req, res) => {
+//   User.findById(req.params.id)
+//     .then((user) => res.json(user))
+//     .catch((err) =>
+//       res.status(404).json({
+//         nouserfound: "No user found with that id",
+//       })
+//     );
+// });
+
+
 router.get("/:id", (req, res) => {
-  User.findById(req.params.id)
-    .then((user) => res.json(user))
-    .catch((err) =>
-      res.status(404).json({
-        nouserfound: "No user found with that id",
-      })
-    );
+  let user = User.findById(req.params.id);
+  let userEvents = Event.find({ user_id: req.params.id });
+  let userTeams = Team.find({ player_id: req.params.id})
+  let userPosts = Post.find({ user_id: req.params.id})
+  Promise.all([user, userEvents, userTeams,])
+    .then((data) => res.json(data))
+    .catch((err) => res.status(404).json(err));
 });
-
-
-
 
 //user events
 // router.get("/:id/events", (req, res) => {

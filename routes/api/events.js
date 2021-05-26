@@ -10,6 +10,25 @@ const { MongoClient, ObjectID } = require("mongodb");
 
 router.get("/test", (req, res) => res.json({ msg: "Events route" }));
 
+//quick access post
+// router.post(
+//   "/create",
+//   (req, res) => {
+//     const newEvent = new Event({
+//       location_id: req.body.location_id,
+//       user_id: req.body.user_id,
+//       teams_id: req.body.teams_id,
+//       date: req.body.date,
+//       sport: req.body.sport,
+//       skill: req.body.skill,
+//       type: req.body.type,
+//       team_size: req.body.team_size,
+//       num_teams: req.body.num_teams,
+//     });
+
+//     newEvent.save().then((event) => res.json(event));
+//   }
+
 router.post(
   "/create",
   passport.authenticate("jwt", { session: false }),
