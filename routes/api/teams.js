@@ -41,15 +41,14 @@ router.post(
           name: req.body.name,
           numPlayers: req.body.numPlayers,
           playersToFill: req.body.playersToFill,
-          players: req.user.id,
-          event: req.event,
+          players_id: req.user.id,
+          event_id: req.event.id,
         });
         newTeam.save().then((team) => res.json(team));
       }
     });
   }
 );
-
 
 router.put(
   "/update/:id",
@@ -61,19 +60,23 @@ router.put(
       return res.status(400).json(errors);
     }
 
-    Team.findByIdAndUpdate(req.params.id, {
-      name: req.body.name,
-      numPlayers: req.body.numPlayers,
-      playersToFill: req.body.playersToFill,
-      players: req.user.id,
-      event: req.event,
-    })
-      .then((team) => {
-        res.json(team);
-      })
-      .catch((err) => {
-        res.status(400).json(err);
-      });
+    Team.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        name: req.body.name,
+        numPlayers: req.body.numPlayers,
+        playersToFill: req.body.playersToFill,
+        players_id: req.user.id,
+        event_id: req.event.id,
+      },
+      { new: true },
+      function (err, result) {
+        if (err) {
+          res.json(err);
+        }
+        res.json(result);
+      }
+    );
   }
 );
 

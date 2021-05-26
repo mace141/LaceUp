@@ -46,10 +46,30 @@
   margin-top: 24px;
   font-size: 20px;
   color: $primary;
-  border-bottom: 1px solid $primary;
+  border-bottom: 2px solid $primary;
   padding-bottom: 5px;
 
   button {
     border: none;
+  }
+}
+
+.profile-events-index {
+  padding: 20px;
+  background: $neutralLight;
+  border-left: 1px solid $primary;
+  border-right: 1px solid $primary;
+  border-bottom: 1px solid $primary;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.profile-event-item {
+  margin-bottom: 20px;
+  color: $primary;
+  font-weight: 600;
+
+  span {
+    font-weight: 400;
   }
 }

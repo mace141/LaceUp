@@ -47,6 +47,9 @@ class NavBar extends React.Component {
       // logged in display
       return (
         <nav className="login-signup">
+          <Link to={`/users/${this.props.currentUser.id}`}>
+            Profile
+          </Link>
           <button onClick={() => this.props.logout()}>Logout</button>
         </nav>
       );

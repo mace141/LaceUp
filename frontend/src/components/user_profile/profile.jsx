@@ -5,7 +5,12 @@ import EventsIndex from '../events/events_index';
 import UserDetail from './user_detail';
 import { fetchUser } from '../../actions/user';
 import { fetchParks } from '../../actions/park';
+<<<<<<< HEAD
 import { fetchEventsByUser } from '../../util/event_api';
+=======
+import { fetchUsersEvents } from '../../util/event_api';
+import { receiveEvents } from '../../actions/event';
+>>>>>>> main
 
 class Profile extends React.Component {
   constructor(props) {
@@ -18,6 +23,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
+<<<<<<< HEAD
     const { fetchUser, fetchParks, fetchEventsByUser, match } = this.props;
 
     fetchUser(match.params.id);
@@ -25,6 +31,18 @@ class Profile extends React.Component {
     fetchEventsByUser(match.params.id).then(
       payload => this.setState({ events: payload.data }) 
     );
+=======
+    const { 
+      fetchUser, fetchParks, fetchUsersEvents, match, dispatch, receiveEvents
+    } = this.props;
+
+    fetchUser(match.params.id);
+    fetchParks();
+    fetchUsersEvents(match.params.id).then(payload => {
+      this.setState({ events: payload.data });
+      dispatch(receiveEvents(payload));
+    });
+>>>>>>> main
   }
 
   render() {
@@ -37,16 +55,16 @@ class Profile extends React.Component {
     const oldEvents = events.filter(
       event => Date.parse(event.date) <= Date.now()
     ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? -1 : 1);
-
-    const tabs = [<p>Club Component</p>, <EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>];
-    debugger
+    
+    const tabs = [<EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>, <p>Club Component</p>];
+    
     return (
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
         <nav className='profile-tabs'>
-          <button onClick={() => this.setState({ tabIdx: 0 })}>Clubs</button>
-          <button onClick={() => this.setState({ tabIdx: 1 })}>Schedule</button>
-          <button onClick={() => this.setState({ tabIdx: 2 })}>History</button>
+          <button onClick={() => this.setState({ tabIdx: 0 })}>Schedule</button>
+          <button onClick={() => this.setState({ tabIdx: 1 })}>History</button>
+          <button onClick={() => this.setState({ tabIdx: 2 })}>Clubs</button>
         </nav>
         {tabs[this.state.tabIdx]}
       </section>
@@ -56,13 +74,20 @@ class Profile extends React.Component {
 
 const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => {
   return ({
-  user: users[ownProps.match.params.id]
-})};
+    user: users[ownProps.match.params.id]
+  })
+};
 
 const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
   fetchParks: () => dispatch(fetchParks()),
+<<<<<<< HEAD
   fetchEventsByUser: userId => fetchEventsByUser(userId)
+=======
+  fetchUsersEvents: userId => fetchUsersEvents(userId),
+  receiveEvents: payload => receiveEvents(payload),
+  dispatch
+>>>>>>> main
 });
 
 export default withRouter(connect(mapSTP, mapDTP)(Profile));

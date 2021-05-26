@@ -17,11 +17,11 @@ const TeamSchema = new Schema({
     },
     //minimum numbers of player for a sport (preset value)- numPlayers?
 
-    players:{
+    players_id:{
         type: Schema.Types.ObjectId,
         ref: "users"
     },
-    event: {
+    event_id: {
         type: Schema.Types.ObjectId,
         ref: "events"
     },
