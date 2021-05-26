@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { fetchEvent } from '../../actions/event';
 import TeamsIndex from '../teams/teams_index';
 
 class EventShow extends React.Component {
@@ -8,16 +9,20 @@ class EventShow extends React.Component {
     super(props);
 
     this.state = {
-      tabIdx: 0
+      tabIdx: 0,
+      event: null
     };
   }
 
   componentDidMount() {
-
+    this.props.fetchEvent(this.props.match.params.id).then(res => console.log(res));
+    this.setState({ tabIdx: 0 });
   }
 
   render() {
     const { event } = this.props;
+    if (!event) return null;
+
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const date = new Date(event.date);
 
@@ -61,6 +66,10 @@ const mapSTP = ({ entities: { events } }, ownProps) => ({
   event: events[ownProps.match.params.id]
 });
 
-const EventShowContainer = withRouter(connect(mapSTP)(EventShow));
+const mapDTP = dispatch => ({
+  fetchEvent: eventId => dispatch(fetchEvent(eventId))
+});
+
+const EventShowContainer = withRouter(connect(mapSTP, mapDTP)(EventShow));
 
 export default EventShowContainer;

@@ -29,3 +29,6 @@ export const fetchUsersEvents = (userId) =>
 
 export const fetchParksEvents = (parkId) =>
     axios.get(`/api/events/park/${parkId}`);
+
+export const fetchEvent = (eventId) => 
+  axios.get(`/api/events/${eventId}`);
