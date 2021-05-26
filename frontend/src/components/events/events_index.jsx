@@ -1,13 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import EventIndexItem from './events_index_item';
 
 const EventsIndex = ({ events }) => {
-
+  
   return (
-    <div>
-      {events.map(event => (
-        <EventIndexItem key={event.id} event={event}/>
-      ))}
+    <div className='profile-events-index'>
+      <ul>
+        {events.map(event => (
+          <Link to={`/events/${event._id}`}>
+            <EventIndexItem key={event._id} event={event}/>
+          </Link>
+        ))}
+      </ul>
     </div>
   )
 }

@@ -17,16 +17,12 @@ class EditUserForm extends React.Component {
     this.handleCourts = this.handleCourts.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.props.fetchParks();
-  // }
-
   handleInput(field) {
     return e => this.setState({ [field]: e.target.value });
   }
 
   handleSports(e) {
-    const options = this.state.favoriteSports;
+    const options = this.state.favorite_sports.split(', ');
 
     if (e.target.checked) {
       options.push(e.target.value);
@@ -35,11 +31,11 @@ class EditUserForm extends React.Component {
       options.splice(index, 1);
     }
 
-    this.setState({ favoriteSports: options });
+    this.setState({ favorite_sports: options.join(', ') });
   }
 
   handleCourts(e) {
-    const options = this.state.homeCourts;
+    const options = this.state.home_court;
 
     if (e.target.selected) {
       options.push(e.target.value);
@@ -48,7 +44,7 @@ class EditUserForm extends React.Component {
       options.splice(index, 1);
     }
 
-    this.setState({ homeCourts: options });
+    this.setState({ home_courts: options });
   }
 
   handleFile(e) {
@@ -70,15 +66,15 @@ class EditUserForm extends React.Component {
     e.preventDefault();
 
     const formData = new FormData();
-    debugger
-    formData.append('user[id]', this.state.id);
-    formData.append('user[avatar]', this.state.avatar);
-    formData.append('user[username]', this.state.username);
-    formData.append('user[bio]', this.state.bio);
-    formData.append('user[favoriteSports]', this.state.favoriteSports);
-    formData.append('user[homeCourts]', this.state.homeCourts);
-
-    this.props.updateUser(formData);
+    
+    // formData.append('user[id]', this.state._id);
+    // formData.append('user[avatar]', this.state.avatar);
+    // formData.append('user[username]', this.state.username);
+    // formData.append('user[bio]', this.state.bio);
+    // formData.append('user[favoriteSports]', this.state.favorite_sports);
+    // formData.append('user[homeCourts]', this.state.home_court);
+    
+    this.props.updateUser(this.state);
     document.getElementById('avatar-input').value = "";
     this.props.closeModal();
   }
@@ -86,7 +82,7 @@ class EditUserForm extends React.Component {
   render() {
     
     return (
-      <div className='modal'>
+      <div className='modal edit-user-form'>
         <h1>Update Info</h1>
         <div>
           <form onSubmit={this.handleSubmit}>
@@ -112,7 +108,7 @@ class EditUserForm extends React.Component {
               </div>
               <div>
                 <label>Home Courts</label>
-                <select multiple onChange={this.handleCourts}>
+                <select onChange={this.handleCourts}>
                   {this.props.parks.map(park => (
                     <option value={park.name}>{park.name}</option>
                   ))}
@@ -129,7 +125,7 @@ class EditUserForm extends React.Component {
 
 const mapSTP = ({ entities: { users, parks } }, ownProps) => {
   return ({
-  user: users[ownProps.match.params.id],
+  user: users[ownProps.location.pathname.slice(7)],
   parks
 })};
 

@@ -16,19 +16,21 @@ const UserDetail = ({ user, park, openModal, match, currentUserId }) => {
         <img src={user.avatarUrl} alt="Avatar"/>
       </div>
       <div className='user-info'>
+        <p>{user.username}</p>
         <p>{`${user.fname} ${user.lname}`}</p>
         {/* <p>Favorite Sport{user.sports.length > 1 ? 's' : ''}: {user.sports.length ? user.sports.join(', ') : 'None'}</p> */}
         <p>Favorite Sports: {user.favorite_sports}</p>
         {/* <p>Home Court{parks.length > 1 ? 's' : ''}: {parks.length ? parks.join(', ') : 'None'}</p> */}
         {/* <p>Home Court: {park.name}</p> */}
+        <p>Bio: {user.bio}</p>
         {editBtn}
       </div>
     </div>
   )
 }
 
-const mapSTP = ({ session: { user } }) => ({
-  currentUserId: user.id
+const mapSTP = (state, ownProps) => ({
+  currentUserId: ownProps.match.params.id
 });
 
 const mapDTP = dispatch => ({

@@ -35,13 +35,11 @@ const UserSchema = new Schema({
     required: false,
     data: Buffer,
   },
-
   //associations
-  home_court: {
-    type: Number,
-    required: false,
-    //eventually, home_court: [{type: Schema.Types.ObjectId, ref: "Park"}], in park user points to user id
-  },
+  // home_court: {
+  //   type: mongoose.Types.ObjectId,
+  //   ref: "parks",
+  // },
   team_id: {
     type: Schema.Types.ObjectId, 
     ref: "teams"
