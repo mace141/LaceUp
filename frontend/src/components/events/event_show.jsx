@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchEvent } from '../../actions/event_actions';
+import { fetchParks } from '../../actions/park';
 import TeamsIndex from '../teams/teams_index';
 
 class EventShow extends React.Component {
@@ -15,13 +16,17 @@ class EventShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchEvent(this.props.match.params.id).then(res => console.log(res));
+    const { fetchEvent, fetchParks, match } = this.props;
+
+    fetchEvent(match.params.id).then(res => console.log(res));
     this.setState({ tabIdx: 0 });
+    fetchParks();
   }
 
   render() {
-    const { event } = this.props;
-    if (!event) return null;
+    const { event, parks } = this.props;
+    if (!parks || !event) return null;
+    // if (!event) return null;
 
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const date = new Date(event.date);
@@ -43,7 +48,7 @@ class EventShow extends React.Component {
             <p>Date/Time: <span>{`${time}, ${month} ${day}, ${year}`}</span></p>
           </div>
           <div className='location'>
-            <p>Location: <span>{event.location_id}</span></p>
+            <p>Location: <span>{parks[event.location_id].name}</span></p>
           </div>
           <div className='sport'>
             <p>Sport: <span>{event.sport}</span></p>
@@ -68,7 +73,8 @@ const mapSTP = ({ entities: { events, parks } }, ownProps) => ({
 });
 
 const mapDTP = dispatch => ({
-  fetchEvent: eventId => dispatch(fetchEvent(eventId))
+  fetchEvent: eventId => dispatch(fetchEvent(eventId)),
+  fetchParks: () => dispatch(fetchParks())
 });
 
 const EventShowContainer = withRouter(connect(mapSTP, mapDTP)(EventShow));
