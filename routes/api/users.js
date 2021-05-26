@@ -8,13 +8,12 @@ const passport = require("passport");
 const { db } = require("../../models/User");
 const { MongoClient, ObjectID } = require("mongodb");
 
-
 const User = require("../../models/User");
 const Event = require("../../models/Event");
 
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
-const validateUpdateInput = require("../../validation/update")
+const validateUpdateInput = require("../../validation/update");
 
 //register
 router.post("/register", (req, res) => {
@@ -84,7 +83,7 @@ router.post("/login", (req, res) => {
           lname: user.lname,
           email: user.email,
           bio: user.bio,
-          home_court: user.home_court,
+          // home_court: body.home_court.id,
           favorite_sports: user.favorite_sports,
           avatar: user.avatar,
           // event_id: user.event_id,
@@ -99,7 +98,7 @@ router.post("/login", (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer" + token,
+              token: "Bearer " + token,
             });
           }
         );
@@ -111,7 +110,6 @@ router.post("/login", (req, res) => {
   });
 });
 
-
 router.delete(
   "/delete/:id",
   passport.authenticate("jwt", { session: false }),
@@ -121,26 +119,64 @@ router.delete(
   }
 );
 
+// router.put(
+//   "/update/:id",
+//   // passport.authenticate("jwt", { session: false }),
+//   async (req, res) => {
+//     const { errors, isValid } = validateRegisterInput(req.body);
+
+//     // if (!isValid) {
+//     //   return res.status(400).json(errors);
+//     // }
+
+//     await db
+//       .collection("users")
+//       .replaceOne({ _id: ObjectID(req.params.id) }, req.body)
+
+//     res.json('hitting database');
+//     res.json("updated");
+//   }
+// );
+//user search
+
+router.get("/search", (req, res) => {
+  const search = req.query.name;
+  User.find({ username: { $regex: search, $options: "$i" } }).then((data) => {
+    res.json(data);
+  });
+});
 
 router.put(
   "/update/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    const { errors, isValid } = validateRegisterInput(req.body);
+    const { errors, isValid } = validateUpdateInput(req.body);
 
     if (!isValid) {
       return res.status(400).json(errors);
     }
-
-    await db
-      .collection("users")
-      .replaceOne({ _id: ObjectID(req.params.id) }, req.body);
-    res.json("updated");
+    User.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        username: req.body.username,
+        fname: req.body.fname,
+        lname: req.body.lname,
+        email: req.body.email,
+        bio: req.body.bio,
+        // home_court: body.home_court.id,
+        favorite_sports: req.body.favorite_sports,
+        avatar: req.body.avatar,
+      },
+      { new: true },
+      function (err, result) {
+        if (err) {
+          res.json(err);
+        }
+        res.json(result);
+      }
+    );
   }
 );
-
-
-
 
 //** TEST ROUTE **
 
@@ -163,6 +199,8 @@ router.get("/:id", (req, res) => {
       })
     );
 });
+
+
 
 
 //user events
