@@ -16,14 +16,16 @@ const App = () => (
   <div>
     <Modal />
     <NavBarContainer />
-    <Switch>
-      {/* <AuthRoute exact path="/" component={MainPage} />
-      <AuthRoute exact path="/login" component={LoginFormContainer} />
-      <AuthRoute exact path="/signup" component={SignupFormContainer} /> */}
-      <Route exact path="/explore" component={ExploreMainContainer} />
-      <Route exact path='/users/:id' component={Profile}/> 
-      <Route exact path='/events/:id' component={EventShowContainer}/>
-    </Switch>
+    <div className="main-content-div">
+      <Switch>
+        {/* <AuthRoute exact path="/" component={MainPage} />
+        <AuthRoute exact path="/login" component={LoginFormContainer} />
+        <AuthRoute exact path="/signup" component={SignupFormContainer} /> */}
+        <Route exact path="/explore" component={ExploreMainContainer} />
+        <Route exact path="/users/:id" component={Profile} />
+        <Route exact path="/events/:id" component={EventShowContainer} />
+      </Switch>
+    </div>
   </div>
 );
 

@@ -1,3 +1,4 @@
+@use "sass:math";
 @import "reset.scss";
 @import "palette.scss";
 @import "modal.scss";
@@ -7,6 +8,24 @@
 @import "edit_user_form.scss";
 
 body {
-  background-color: $neutralLighter;
+  background-color: #f2f2f2;
   font-family: Arial, Helvetica, sans-serif;
+}
+.main-content-div {
+  margin: 0 auto;
+  position: absolute;
+  z-index: -1;
+  width: 80%;
+  background: white;
+  top: 56px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: 0 auto;
+  min-height: calc(100vh-56px);
+}
+
+body {
+  background: #f2f2f2;
+  // background-color: white;
 }
