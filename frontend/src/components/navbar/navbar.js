@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { Link } from "react-router-dom";
+import logo from "../../style/assets/logoB.png";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -47,9 +48,7 @@ class NavBar extends React.Component {
       // logged in display
       return (
         <nav className="login-signup">
-          <Link to={`/users/${this.props.currentUser.id}`}>
-            Profile
-          </Link>
+          <Link to={`/users/${this.props.currentUser.id}`}>Profile</Link>
           <button onClick={() => this.props.logout()}>Logout</button>
         </nav>
       );
@@ -61,7 +60,9 @@ class NavBar extends React.Component {
     return (
       <>
         <div className="navbar-left">
-          <Link to="/">LaceUp</Link>
+          <Link to="/">
+            <img classNam="header-logo" src={logo}></img>
+          </Link>
         </div>
         <div className="navbar-right">
           <Link
@@ -74,7 +75,7 @@ class NavBar extends React.Component {
           {/* <Link to="/host" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
             Host
           </Link> */}
-          <Link to="/host" onClick={() => openModal("newEvent")} >
+          <Link to="/host" onClick={() => openModal("newEvent")}>
             Host
           </Link>
           {this.sessionLinks()}
@@ -84,12 +85,10 @@ class NavBar extends React.Component {
   }
   render() {
     return (
-      <div className='nav-background'>
-        <nav className="full-navbar">
-          {this.mainDisp()}
-        </nav>
+      <div className="nav-background">
+        <nav className="full-navbar">{this.mainDisp()}</nav>
       </div>
-    )
+    );
   }
 }
 export default NavBar;
