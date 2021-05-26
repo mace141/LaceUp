@@ -73,7 +73,9 @@ class EventShow extends React.Component {
             <p>Hosted by: <span>{this.state.eventHost}</span></p>
           </div>
         </div>
-        <p>Players</p>
+        <div>
+          <span>Players</span>
+        </div>
         {tabs[this.state.tabIdx]}
       </div>
     )
