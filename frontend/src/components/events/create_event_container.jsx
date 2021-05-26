@@ -5,13 +5,12 @@ import { createEvent } from "../../actions/event_actions";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import EventForm from "./event_form";
 
-const mapStateToProps = ({errors}) => {
+const mapStateToProps = (state, ownProps) => {
     return {
         // navLink: <Link to="/event">Event</Link>,
         // currentuser: state.entities.users[state.session.id],
-        // currentuser: state.session.user.id,
-        // events: state.entities.events,
-        errors: errors.event
+        currentuser: state.session.user,
+        errors: state.errors.event
     };
 };
 

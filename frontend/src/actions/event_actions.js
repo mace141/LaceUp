@@ -51,8 +51,8 @@ export const fetchEventsByLocation = (locationId) => (dispatch) => {
 
 export const createEvent = (event) => (dispatch) => {
     return EventAPI.createEvent(event)
-        .then((event) => dispatch(receiveEvent(event))),
-        (err) => dispatch(receiveEventErrors(err.response.data))
+        .then((data) => dispatch(receiveEvent(data)));
+        // (err) => dispatch(receiveEventErrors(err.response.data))
 };
 
 export const deleteEvent = (eventId) => (dispatch) => {
