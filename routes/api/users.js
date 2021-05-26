@@ -137,7 +137,7 @@ router.delete(
 //     res.json("updated");
 //   }
 // );
-//user search
+// user search
 
 router.get("/search", (req, res) => {
   const search = req.query.name;

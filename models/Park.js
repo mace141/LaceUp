@@ -29,8 +29,7 @@ const ParkSchema = new Schema({
         type: Number,
         required: true
     },
-    // //array of two numbers ie 
-    // // ['40.7128° N', '74.0060° W']
+
     sports: {
         type: String,
         required: true
