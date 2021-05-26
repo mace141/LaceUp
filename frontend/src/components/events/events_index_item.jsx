@@ -1,6 +1,7 @@
 import React from 'react';
 
 const EventIndexItem = ({ event }) => {
+
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const date = new Date(event.date);
 

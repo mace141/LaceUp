@@ -7,17 +7,24 @@ class ExploreIndexItem extends React.Component {
     super(props);
   }
   componentDidMount() {
-    this.props.fetchEvents(this.props.eventId);
+    // this.props.fetchEvents(this.props.eventId);
   }
 
   render() {
-    const { event } = this.props;
-    if (!event) {
+    const { park } = this.props;
+    if (!park) {
       return null;
     } else {
+      // debugger;
       return (
         <>
-          <div className="explore-index-item"></div>
+          <div className="explore-index-item">
+            <h1>{park.name}</h1>
+            <h2>
+              {park.address}, {park.borough}
+            </h2>
+            <h2>{park.sports}</h2>
+          </div>
         </>
       );
     }
