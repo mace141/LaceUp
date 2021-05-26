@@ -36,6 +36,16 @@ router.post(
   }
 );
 
+router.get("/:id", (req, res) => {
+  Event.findById(req.params.id)
+    .then((event) => res.json(event))
+    .catch((err) =>
+      res.status(404).json({
+        nouserfound: "No event found with that id",
+      })
+    );
+});
+
 router.get("/", (req, res) => {
   Event.find()
     .sort({ date: -1 })
