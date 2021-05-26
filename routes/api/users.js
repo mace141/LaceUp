@@ -124,19 +124,6 @@ router.delete(
 
 // router.put(
 //   "/update/:id",
-<<<<<<< HEAD
-//   passport.authenticate("jwt", { session: false }),
-//   async (req, res) => {
-//     const { errors, isValid } = validateRegisterInput(req.body);
-
-//     if (!isValid) {
-//       return res.status(400).json(errors);
-//     }
-
-//     await db
-//       .collection("users")
-//       .replaceOne({ _id: ObjectID(req.params.id) }, req.body);
-=======
 //   // passport.authenticate("jwt", { session: false }),
 //   async (req, res) => {
 //     const { errors, isValid } = validateRegisterInput(req.body);
@@ -150,7 +137,6 @@ router.delete(
 //       .replaceOne({ _id: ObjectID(req.params.id) }, req.body)
     
 //     res.json('hitting database');
->>>>>>> 39f24b383690bd30c03da5d6ad6afe53362800a8
 //     res.json("updated");
 //   }
 // );
