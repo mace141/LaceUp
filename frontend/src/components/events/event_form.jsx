@@ -35,10 +35,12 @@ class EventForm extends React.Component {
     //         .then(this.props.closeModal);
     // }
 
-    handleSubmit() {
+    handleSubmit(e) {
+        e.preventDefault();
+
         let event = {
             date: this.state.date,
-            // user_id: this.props.currentUser[id],
+            user_id: this.props.currentuser.id,
             location_id: this.state.location_id,
             sport: this.state.sport,
             team_size: this.state.team_size,
@@ -47,9 +49,10 @@ class EventForm extends React.Component {
             type: this.state.type,
         };
         debugger
-        const { createEvent, closeModal, errors } = this.props;
-        createEvent(event)
-        .then(() => closeModal());
+        // const { createEvent, closeModal, errors } = this.props;
+        this.props.createEvent(event)
+            .then(this.props.closeModal());
+        debugger
     }
 
 
@@ -75,6 +78,7 @@ class EventForm extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <div className="login-form-outer-container">
                 <h1>LaceUp</h1> {/* logo goes here */}
@@ -124,10 +128,10 @@ class EventForm extends React.Component {
                             onChange={this.update("skill")}
                             placeholder="Skill level" />
                         <br />
-                        <button type="submit">
+                        <button>
                             Create Event
                         </button>
-                        {this.handleErrors()}
+                        {/* {this.handleErrors()} */}
                     </div>
                 </form>
             </div>
