@@ -2,7 +2,7 @@ import * as EventAPI from '../util/event_api';
 
 export const RECEIVE_EVENTS = 'RECEIVE_EVENTS';
 
-const receiveEvents = payload => ({
+export const receiveEvents = payload => ({
   type: RECEIVE_EVENTS,
   events: payload.data
 });

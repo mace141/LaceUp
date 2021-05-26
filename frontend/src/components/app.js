@@ -8,6 +8,7 @@ import Profile from "./user_profile/profile";
 import NavBarContainer from "./navbar/navbar_container";
 import Modal from "./modal/modal";
 import ExploreMainContainer from "./explore/explore_main_container";
+import EventShowContainer from "./events/event_show";
 // import LoginFormContainer from "./user_auth/login_form_container";
 // import SignupFormContainer from "./user_auth/signup_form_container";
 
@@ -21,6 +22,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} /> */}
       <Route exact path="/explore" component={ExploreMainContainer} />
       <Route exact path='/users/:id' component={Profile}/> 
+      <Route exact path='/events/:id' component={EventShowContainer}/>
     </Switch>
   </div>
 );
