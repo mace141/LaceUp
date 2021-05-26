@@ -173,7 +173,7 @@ router.put(
 //       num_teams: req.body.num_teams,
 //     })
 //       .then((event) => {
-//         res.json('event');
+//         res.json(event);
 //       })
 //       .catch((err) => {
 //         res.status(400).json(err);

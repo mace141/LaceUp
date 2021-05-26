@@ -37,6 +37,7 @@ app.use("/api/users", users);
 app.use("/api/parks", parks);
 app.use("/api/events", events);
 app.use("/api/teams", teams);
+app.use("/api/posts", posts);
 
 // //backend api/users route
 

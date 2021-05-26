@@ -56,6 +56,7 @@ class NavBar extends React.Component {
     }
   }
   mainDisp() {
+    const { openModal, currentUser } = this.props;
     // Display for every user
     return (
       <>
@@ -70,7 +71,10 @@ class NavBar extends React.Component {
           >
             Explore
           </Link>
-          <Link to="/host" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
+          {/* <Link to="/host" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
+            Host
+          </Link> */}
+          <Link to="/host" onClick={() => openModal("newEvent")} >
             Host
           </Link>
           {this.sessionLinks()}
