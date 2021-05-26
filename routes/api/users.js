@@ -150,7 +150,7 @@ router.put(
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    debugger
+    
     User.findByIdAndUpdate({ _id: req.params.id }, {
       username: req.body.username,
       fname: req.body.fname,

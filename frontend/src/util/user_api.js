@@ -5,10 +5,8 @@ export const fetchUser = userId => {
 };
 
 export const updateUser = user => {
-  debugger
   const newUser = { ...user };
-  const wildcard = user._id;
-
   delete newUser._id
-  return axios.put(`/api/users/update/${wildcard}`, newUser)
+
+  return axios.put(`/api/users/update/${user._id}`, newUser)
 };
