@@ -4,7 +4,11 @@ export const fetchUser = userId => {
   return axios.get(`/api/users/${userId}`)
 };
 
-export const updateUser = formData => {
+export const updateUser = user => {
   debugger
-  return axios.post(`/api/users/${formData.get('user[id]')}`, formData)
+  const newUser = { ...user };
+  const wildcard = user._id;
+
+  delete newUser._id
+  return axios.put(`/api/users/update/${wildcard}`, newUser)
 };

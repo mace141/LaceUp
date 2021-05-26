@@ -37,9 +37,9 @@ class Profile extends React.Component {
     const oldEvents = events.filter(
       event => Date.parse(event.date) <= Date.now()
     ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? -1 : 1);
-
+    
     const tabs = [<EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>, <p>Club Component</p>];
-    debugger
+    
     return (
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
@@ -56,8 +56,9 @@ class Profile extends React.Component {
 
 const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => {
   return ({
-  user: users[ownProps.match.params.id]
-})};
+    user: users[ownProps.match.params.id]
+  })
+};
 
 const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
