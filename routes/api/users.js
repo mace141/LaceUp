@@ -137,6 +137,14 @@ router.delete(
 //     res.json("updated");
 //   }
 // );
+//user search
+
+router.get("/search", (req, res) => {
+  const search = req.query.name;
+  User.find({ username: { $regex: search, $options: "$i" } }).then((data) => {
+    res.json(data);
+  });
+});
 
 router.put(
   "/update/:id",
@@ -191,6 +199,9 @@ router.get("/:id", (req, res) => {
       })
     );
 });
+
+
+
 
 //user events
 // router.get("/:id/events", (req, res) => {
