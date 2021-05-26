@@ -74,6 +74,14 @@ router.get("/park/:location_id", (req, res) => {
     );
 });
 
+router.get("/:id/teams", (req, res) => {
+  Event.findById(req.params.id, "teams_id")
+    .then((team) => res.json(team))
+    .catch((err) =>
+      res.status(404).json({ noteamsfound: "No teams found for that event" })
+    );
+});
+
 router.delete(
   "/delete/:id",
   passport.authenticate("jwt", { session: false }),

@@ -84,7 +84,7 @@ router.post("/login", (req, res) => {
           lname: user.lname,
           email: user.email,
           bio: user.bio,
-          home_court: user.home_court,
+          // home_court: body.home_court.id,
           favorite_sports: user.favorite_sports,
           avatar: user.avatar,
           // event_id: user.event_id,
@@ -122,23 +122,52 @@ router.delete(
 );
 
 
+// router.put(
+//   "/update/:id",
+//   passport.authenticate("jwt", { session: false }),
+//   async (req, res) => {
+//     const { errors, isValid } = validateRegisterInput(req.body);
+
+//     if (!isValid) {
+//       return res.status(400).json(errors);
+//     }
+
+//     await db
+//       .collection("users")
+//       .replaceOne({ _id: ObjectID(req.params.id) }, req.body);
+//     res.json("updated");
+//   }
+// );
+
 router.put(
   "/update/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
-    const { errors, isValid } = validateRegisterInput(req.body);
+    // const { errors, isValid } = validateUpdateInput(req.body);
 
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
 
-    await db
-      .collection("users")
-      .replaceOne({ _id: ObjectID(req.params.id) }, req.body);
-    res.json("updated");
+    User.findByIdAndUpdate({_id: req.params.id}, {
+      // id: user.id,
+      username: req.user.username,
+      fname: req.user.fname,
+      lname: req.user.lname,
+      email: req.user.email,
+      bio: req.user.bio,
+      // home_court: body.home_court.id,
+      favorite_sports: req.user.favorite_sports,
+      avatar: req.user.avatar,
+    })
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
   }
 );
-
 
 
 

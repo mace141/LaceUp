@@ -20,11 +20,7 @@ const ParkSchema = new Schema({
         type: String,
         required: true
     },
-    // coordinate: {
-    //     type: [Number],
-    //     required: true
-    // },
-    // split coordiate into lat lng
+    
     lng: {
         type: Number,
         required: true

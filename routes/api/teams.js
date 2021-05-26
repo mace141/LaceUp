@@ -41,8 +41,8 @@ router.post(
           name: req.body.name,
           numPlayers: req.body.numPlayers,
           playersToFill: req.body.playersToFill,
-          players: req.user.id,
-          event: req.event,
+          players_id: req.user.id,
+          event_id: req.event.id,
         });
         newTeam.save().then((team) => res.json(team));
       }
@@ -65,8 +65,8 @@ router.put(
       name: req.body.name,
       numPlayers: req.body.numPlayers,
       playersToFill: req.body.playersToFill,
-      players: req.user.id,
-      event: req.event,
+      players_id: req.user.id,
+      event_id: req.event.id,
     })
       .then((team) => {
         res.json(team);

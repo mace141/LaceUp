@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const EventSchema = new Schema({
   location_id: {
-    type: Number,
-    required: false,
+    type: Schema.Types.ObjectId,
+    ref: "parks",
   },
   user_id: {
     type: Schema.Types.ObjectId,
