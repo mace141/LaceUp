@@ -20,11 +20,7 @@ const ParkSchema = new Schema({
         type: String,
         required: true
     },
-    // coordinate: {
-    //     type: [Number],
-    //     required: true
-    // },
-    // split coordiate into lat lng
+    
     lng: {
         type: Number,
         required: true
@@ -45,10 +41,10 @@ const ParkSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "events"
     },
-    users: {
-        type: Schema.Types.ObjectId,
-        ref: "users"
-    },
+    // users: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "users"
+    // },
     date: {
         type: Date,
         default: Date.now
