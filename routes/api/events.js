@@ -117,7 +117,7 @@ router.put(
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    User.findByIdAndUpdate(
+    Event.findByIdAndUpdate(
       { _id: req.params.id },
       {
         location_id: req.body.location_id,
