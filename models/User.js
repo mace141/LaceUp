@@ -41,18 +41,24 @@ const UserSchema = new Schema({
   //   ref: "parks",
   // },
   team_id: {
-    type: Schema.Types.ObjectId, 
-    ref: "teams"
+    //eventually, teams: [{type: Schema.Types.ObjectId, ref: "Team"}] // in teams, user points to user id
+    type: mongoose.Types.ObjectId, 
+    ref: "Team"
   },
-
+  // home_court: {
+  //   type: Number,
+  //   required: false,
+  //   //eventually, home_court: [{type: Schema.Types.ObjectId, ref: "Park"}], in park user points to user id
+  // },
   event_id: {
-    type: Schema.Types.ObjectId,
-    ref: "events",
+    type: mongoose.Types.ObjectId,
+    ref: "event",
   },
   // },
   post_id: {
-    type: Schema.Types.ObjectId, 
-    ref: "posts"
+    //eventually, posts: [{type: Schema.Types.ObjectId, ref: "Post"}]
+    type: mongoose.Types.ObjectId, 
+    ref: "Post"
   },
   date: {
     type: Date,

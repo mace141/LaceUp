@@ -8,10 +8,11 @@ import { fetchParks } from '../../actions/park';
 class EditUserForm extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = { 
       ...this.props.user, 
       favorite_sports: "",
+      home_court: this.props.parks[0]._id
     };
 
     this.handleFile = this.handleFile.bind(this);
@@ -20,7 +21,6 @@ class EditUserForm extends React.Component {
   }
 
   handleInput(field) {
-    debugger
     return e => this.setState({ [field]: e.target.value });
   }
 
@@ -33,7 +33,7 @@ class EditUserForm extends React.Component {
       let index = options.indexOf(e.target.value);
       options.splice(index, 1);
     }
-    debugger
+    
     let sports = options.join(', ');
     if (sports[0] == ',') sports = sports.slice(2);
 
