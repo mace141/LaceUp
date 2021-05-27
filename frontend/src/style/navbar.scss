@@ -26,13 +26,13 @@
 }
 
 .navbar-right {
+  display: flex;
+  align-items: center;
   // margin-left: 20px;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  width: 380px;
+  // flex-direction: row;
+  // justify-content: space-between;
+  // width: 380px;
   // padding: 10px;
 }
 
@@ -48,11 +48,11 @@
   object-fit: cover;
 }
 .login-signup {
-  margin-right: 20px;
-  width: 200px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  // margin-right: 20px;
+  // width: 200px;
+  // flex-direction: row;
+  // justify-content: space-between;
 }
 
 // .selected {

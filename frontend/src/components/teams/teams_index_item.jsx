@@ -39,9 +39,12 @@ class TeamsIndexItem extends React.Component {
   }
 }
 
-const mapSTP = ({ session: { user: { id } } }) => ({
+const mapSTP = ({ session: { user } }) => {
+  let id;
+  if (user) id = user.id;
+  return ({
   currentUserId: id
-});
+})};
 
 const mapDTP = dispatch => ({
   addPlayer: (team_id, player_id) => dispatch(addPlayer(team_id, player_id))
