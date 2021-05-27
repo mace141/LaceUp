@@ -1,0 +1,35 @@
+.event-show {
+  margin: 20px auto;
+  max-width: 1100px;
+}
+
+.event-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 15px;
+  background: $neutralLightest;
+  border: 1px solid $primary;
+  border-radius: 8px;
+  padding: 20px;
+  color: $primary;
+  font-size: 24px;
+  
+  p {
+    font-weight: 600;
+    span {
+      font-weight: 400;
+    }
+  }
+
+  + div {
+    display: flex;
+    border-bottom: 1px solid $primary;
+
+    span {
+      margin: 20px auto 10px;
+      color: $primary;
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+}

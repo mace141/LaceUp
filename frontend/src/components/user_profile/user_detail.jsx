@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { openModal } from '../../actions/modal_actions';
 
-const UserDetail = ({ user, park, openModal, match, currentUserId }) => {
+const UserDetail = ({ user, openModal, match, currentUserId }) => {
   if (!user) return null;
 
   const editBtn = match.params.id == currentUserId ? (
@@ -21,7 +21,7 @@ const UserDetail = ({ user, park, openModal, match, currentUserId }) => {
         {/* <p>Favorite Sport{user.sports.length > 1 ? 's' : ''}: {user.sports.length ? user.sports.join(', ') : 'None'}</p> */}
         <p>Favorite Sports: {user.favorite_sports}</p>
         {/* <p>Home Court{parks.length > 1 ? 's' : ''}: {parks.length ? parks.join(', ') : 'None'}</p> */}
-        {/* <p>Home Court: {park.name}</p> */}
+        <p>Home Court: {user.home_court}</p>
         <p>Bio: {user.bio}</p>
         {editBtn}
       </div>

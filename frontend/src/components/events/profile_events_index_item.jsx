@@ -1,6 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const EventIndexItem = ({ event }) => {
+const EventIndexItem = ({ event, parks }) => {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const date = new Date(event.date);
 
@@ -18,7 +19,7 @@ const EventIndexItem = ({ event }) => {
         <p>Date/Time: <span>{`${time}, ${month} ${day}, ${year}`}</span></p>
       </div>
       <div className='location'>
-        <p>Location: <span>{event.location_id}</span></p>
+        <p>Location: <span>{parks[event.location_id].name}</span></p>
       </div>
       <div className='sport'>
         <p>Sport: <span>{event.sport}</span></p>
@@ -29,8 +30,15 @@ const EventIndexItem = ({ event }) => {
       <div className='team-size'>
         <p>Team Size: <span>{event.team_size}</span></p>
       </div>
+      <div className='num-teams'>
+        <p># of Teams: <span>{event.num_teams}</span></p>
+      </div>
     </div>
   )
 }
 
-export default EventIndexItem;
+const mapSTP = ({ entities: { parks } }) => ({
+  parks
+});
+
+export default connect(mapSTP)(EventIndexItem);
