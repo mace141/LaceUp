@@ -7,7 +7,15 @@
     "node": "14.17.0"
   },
   "dependencies": {
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "aws-sdk": "^2.916.0",
+=======
     "aws-sdk": "^2.914.0",
+>>>>>>> 5669b7d89bce6926401ae44082d35386e4a93a8e
+=======
+    "aws-sdk": "^2.916.0",
+>>>>>>> be_routes_2
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "check-node-version": "^4.1.0",
