@@ -8,14 +8,13 @@ class EventForm extends React.Component {
         this.state = {
             event: {},
             errors: {},
-            date: "",
             location_id: "",
             sport: "",
             team_size: "",
             num_teams: "",
             skill: "",
             type: "",
-            day: "",
+            date: "",
             time: ""
         };
 
@@ -30,11 +29,11 @@ class EventForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        debugger
+        
         let event = {
-            date: `${this.state.day}T${this.state.time}`,
+            date: `${this.state.date}T${this.state.time}`,
             user_id: this.props.currentuser.id,
-            location_id: this.state.location_id,//"60ae5911e26764fd4c494ec6",
+            location_id: this.state.location_id,
             sport: this.state.sport,
             team_size: this.state.team_size,
             num_teams: this.state.num_teams,
@@ -42,9 +41,14 @@ class EventForm extends React.Component {
             type: this.state.type,
         };
         
-        // const { createEvent, closeModal, errors } = this.props;
-        this.props.createEvent(event)
-            .then(this.props.closeModal());
+        const { createEvent, closeModal, receiveEvent, dispatch, history } = this.props;
+        
+        createEvent(event).then(payload => {
+            dispatch(receiveEvent(payload));
+            closeModal();
+            history.push(`/events/${payload.data._id}`)
+        });
+
     }
 
 
@@ -84,7 +88,7 @@ class EventForm extends React.Component {
                         <input
                             type="date"
                             value={this.state.day}
-                            onChange={this.update("day")}/>
+                            onChange={this.update("date")}/>
                         <input 
                             type="time" 
                             value={this.state.time} 
