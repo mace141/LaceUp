@@ -7,6 +7,7 @@ import {
   ButtonNext,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
+import SearchContainer from "./search_container";
 import splash0 from "../../style/assets/splash0.jpeg";
 import splash1 from "../../style/assets/splash1.jpeg";
 import splash2 from "../../style/assets/splash2.jpg";
@@ -16,14 +17,15 @@ class Splash extends React.Component {
   }
 
   componentDidMount() {
-    // this.props.fetchEvents();
+    this.props.fetchParks();
   }
 
   render() {
-    const { openModal, songs } = this.props;
+    const { openModal, parks } = this.props;
 
     return (
       <div className="splash-page-whole">
+        <SearchContainer parks={parks} />
         <div className="carousel-container">
           <CarouselProvider
             naturalSlideWidth={100}
