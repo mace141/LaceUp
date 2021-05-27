@@ -1,3 +1,4 @@
+import { RECEIVE_EVENT } from "../actions/event_actions";
 import { RECEIVE_TEAM, RECEIVE_TEAMS } from "../actions/team";
 
 const teamsReducer = (state = {}, action) => {
@@ -12,6 +13,9 @@ const teamsReducer = (state = {}, action) => {
     case RECEIVE_TEAMS:
       //may need  debugging
       nextState = action.teams;
+      return nextState;
+    case RECEIVE_EVENT: 
+      action.payload.data[1].forEach(team => nextState[team._id] = team)
       return nextState;
     default:
       return state;

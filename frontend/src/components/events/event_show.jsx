@@ -13,8 +13,8 @@ class EventShow extends React.Component {
 
     this.state = {
       tabIdx: 0,
-      event: null,
-      eventHost: null
+      eventHost: null,
+      teams: null
     };
   }
 
@@ -24,10 +24,10 @@ class EventShow extends React.Component {
     } = this.props;
 
     fetchEvent(match.params.id).then(payload => {
-      debugger
       dispatch(receiveEvent(payload));
-      fetchUser(payload.data.user_id).then(payload => {
-        const user = payload.data;
+      debugger
+      fetchUser(payload.data[0].user_id._id).then(payload => {
+        const user = payload.data[0];
         const name = `${user.fname} ${user.lname}`;
         this.setState({ eventHost: name });
       });
@@ -39,7 +39,7 @@ class EventShow extends React.Component {
     const { event, parks } = this.props;
     if (!parks) return null;
     if (!event) return null; 
-
+    
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const date = new Date(event.date);
 

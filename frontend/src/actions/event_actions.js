@@ -15,7 +15,7 @@ const receiveEvents = payload => ({
 
 export const receiveEvent = payload => ({
     type: RECEIVE_EVENT,
-    event: payload.data
+    payload
 });
 
 const removeEvent = eventId => ({

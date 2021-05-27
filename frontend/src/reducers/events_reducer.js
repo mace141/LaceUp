@@ -11,7 +11,7 @@ const eventsReducer = (state = {}, action) => {
             action.events.forEach(e => nextState[e._id] = e);
             return nextState;
         case RECEIVE_EVENT:
-            newState[action.event._id] = action.event;
+            newState[action.payload.data[0]._id] = action.payload.data[0];
             return newState; 
         case REMOVE_EVENT:
             delete newState[action.eventId];
