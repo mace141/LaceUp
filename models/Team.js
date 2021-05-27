@@ -44,24 +44,19 @@ const TeamSchema = new Schema({
     type: Number,
     required: true,
   },
-
   playersToFill: {
     type: Number,
     required: true,
   },
-  //minimum numbers of player for a sport (preset value)- numPlayers?
-
-  player_id: [{
-    type: mongoose.Types.ObjectId,
-    ref: "User",
-    //     type: Array,
-    //     required: false
-  }],
+  player_id: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   event_id: {
     type: mongoose.Types.ObjectId,
     ref: "event",
-    // type: String,
-    // required: true
   },
   date: {
     type: Date,

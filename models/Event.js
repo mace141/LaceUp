@@ -16,11 +16,8 @@ const EventSchema = new Schema({
       ref: "Team",
     },
   ],
-
   date: {
     type: Date,
-    // min: [Date.now, "Must create a future event"],
-    // max: ["2025-01-01"]
   },
   sport: {
     type: String,

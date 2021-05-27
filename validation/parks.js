@@ -12,7 +12,6 @@ module.exports = function validateParkInput(data) {
 
   data.borough = validText(data.borough) ? data.borough : "";
 
-
   data.sports = data.sports ? data.sports : "";
 
   data.lat = validText(data.lat) ? data.lat : "";
@@ -43,7 +42,7 @@ module.exports = function validateParkInput(data) {
   if (Validator.isEmpty(data.sports)) {
     errors.sport = "A sport is required";
   }
-  //error here ^^ 
+  //error here ^^
   return {
     errors,
     isValid: Object.keys(errors).length === 0,
