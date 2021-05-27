@@ -10,6 +10,7 @@ class ExploreMain extends React.Component {
     this.props.fetchParks();
   }
   render() {
+    // debugger;
     const { parks, preSelected } = this.props;
     if (!parks) {
       return <>Loading</>;
