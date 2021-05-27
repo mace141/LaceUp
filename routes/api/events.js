@@ -130,18 +130,9 @@ router.patch(
   (req, res) => {
     // const { errors, isValid } = validateEventInput(req.body);
 
-<<<<<<< HEAD
     if (!isValid) {
       return res.status(400).json(errors);
     }
-=======
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
-
-    let newPlayer;
-
->>>>>>> be_routes_2
     Event.findByIdAndUpdate(
       { _id: req.params.id },
       {
@@ -165,7 +156,6 @@ router.patch(
   }
 );
 
-<<<<<<< HEAD
 // router.put(
 //   "/update/:id",
 //   passport.authenticate("jwt", { session: false }),
@@ -196,6 +186,4 @@ router.patch(
 //   }
 // );
 
-=======
->>>>>>> be_routes_2
 module.exports = router;
