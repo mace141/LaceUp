@@ -113,6 +113,6 @@ router.patch(
   //   await db.collection("teams").deleteOne({ _id: ObjectID(req.params.id) });
   //   res.json("deleted team");
   // }
-});
+// });
 
 module.exports = router;
