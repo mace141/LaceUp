@@ -13,7 +13,11 @@ const Event = require("../../models/Event");
 
 const validateRegisterInput = require("../../validation/register");
 const validateLoginInput = require("../../validation/login");
+<<<<<<< HEAD
 const validateUpdateInput = require("../../validation/update");
+=======
+
+>>>>>>> be_routes
 
 //register
 router.post("/register", (req, res) => {
@@ -38,9 +42,15 @@ router.post("/register", (req, res) => {
         home_court: req.body.home_court,
         favorite_sports: req.body.favorite_sports,
         avatar: req.body.avatar,
+<<<<<<< HEAD
         // event_id: req.body.event_id,
         // team_id: req.body.team_id,
         // post_id: req.body.team_id
+=======
+        event_id: req.body.event_id,
+        team_id: req.body.team_id,
+        post_id: req.body.team_id
+>>>>>>> be_routes
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hashed) => {
@@ -86,9 +96,15 @@ router.post("/login", (req, res) => {
           // home_court: body.home_court.id,
           favorite_sports: user.favorite_sports,
           avatar: user.avatar,
+<<<<<<< HEAD
           // event_id: user.event_id,
           // team_id: req.body.team_id,
           // post_id: req.body.team_id,
+=======
+          event_id: user.event_id,
+          team_id: req.body.team_id,
+          post_id: req.body.team_id,
+>>>>>>> be_routes
         };
 
         jwt.sign(
@@ -190,6 +206,7 @@ router.get(
   }
 );
 
+<<<<<<< HEAD
 router.get("/:id", (req, res) => {
   User.findById(req.params.id)
     .then((user) => res.json(user))
@@ -202,6 +219,26 @@ router.get("/:id", (req, res) => {
 
 
 
+=======
+
+//show user
+
+router.get("/:id", (req, res) => {
+    User.findById(req.params.id)
+    .then(user => res.json(user)).catch(err => res.status(404).json({
+      nouserfound: "No user found with that id"
+    }))
+});
+
+//user events
+router.get("/:id/events", (req, res) => {
+  Event.find({ user_id: req.body.id}).then((events => res.json(events))).catch(err => res.status(404).json({
+    noeventsfound: "No events found for that user"
+  }));
+})
+
+router.get("/:")
+>>>>>>> be_routes
 
 //user events
 // router.get("/:id/events", (req, res) => {
