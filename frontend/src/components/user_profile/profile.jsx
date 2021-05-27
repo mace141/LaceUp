@@ -29,12 +29,12 @@ class Profile extends React.Component {
     );
   }
 
-  toggleTabs() {
+  toggleTabs(num) {
     const tabs = document.getElementsByClassName('tabs');
     for (let tab of tabs) {
       tab.style.fontWeight = 400;
     }
-    document.getElementById(`tab${this.state.tabIdx}`).style.fontWeight = 600;
+    document.getElementById(`tab${num}`).style.fontWeight = 600;
   }
 
   render() {
@@ -54,21 +54,24 @@ class Profile extends React.Component {
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
         <nav className='profile-tabs'>
-          <button id='tab0' className='tabs'
-                  onClick={() => {
-                    this.setState({ tabIdx: 0 });
-                    this.toggleTabs();
-                  }}>Schedule</button>
-          <button id='tab1' className='tabs'
-                  onClick={() => {
-                    this.setState({ tabIdx: 1 });
-                    this.toggleTabs();
-                  }}>History</button>
-          <button id='tab2' className='tabs'
-                  onClick={() => {
-                    this.setState({ tabIdx: 2 });
-                    this.toggleTabs();
-                  }}>Clubs</button>
+          <div onClick={() => {
+                        this.setState({ tabIdx: 0 });
+                        this.toggleTabs(0);
+                      }} className='tabs' id='tab0' style={{fontWeight:600}}>
+            <button>Schedule</button>
+          </div>
+          <div onClick={() => {
+                        this.setState({ tabIdx: 1 });
+                        this.toggleTabs(1);
+                      }} className='tabs' id='tab1'>
+            <button>History</button>
+          </div>
+          <div onClick={() => {
+                        this.setState({ tabIdx: 2 });
+                        this.toggleTabs(2);
+                      }} className='tabs' id='tab2'>
+            <button>Clubs</button>
+          </div>
         </nav>
         {tabs[this.state.tabIdx]}
       </section>
