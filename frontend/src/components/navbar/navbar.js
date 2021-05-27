@@ -75,7 +75,7 @@ class NavBar extends React.Component {
             >
               Explore
             </Link>
-            <button onClick={() => openModal("newEvent")}>
+            <button className='host-btn' onClick={() => openModal("newEvent")}>
               Host
             </button>
             {this.sessionLinks()}

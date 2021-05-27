@@ -73,8 +73,8 @@ class MapContainer extends Component {
             zoom={13}
             // style={defaultMapStyles.styles}
             initialCenter={{
-              lat: 40.6826,
-              lng: -73.9754,
+              lat: 40.6710,
+              lng: -73.9999,
             }}
           >
             {Object.entries(parks).map((key, i) => {

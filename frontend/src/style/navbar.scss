@@ -55,9 +55,9 @@
   justify-content: space-between;
 }
 
-.selected {
-  background: red;
-}
+// .selected {
+//   background: red;
+// }
 
 .form-button {
   // border: 0;
@@ -67,6 +67,10 @@
   padding: 7px;
   // margin-left: 3px;
   // margin-right: 3px;
+}
+
+.host-btn {
+  border: none;
 }
 
 .login-btn {
