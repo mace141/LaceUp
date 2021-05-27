@@ -40,7 +40,9 @@ router.post("/register", (req, res) => {
         avatar: req.body.avatar,
         event_id: req.body.event_id,
         team_id: req.body.team_id,
-        post_id: req.body.team_id
+
+        // post_id: req.body.team_id
+
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hashed) => {
@@ -83,7 +85,7 @@ router.post("/login", (req, res) => {
           lname: user.lname,
           email: user.email,
           bio: user.bio,
-          // home_court: body.home_court.id,
+          home_court: user.home_court,
           favorite_sports: user.favorite_sports,
           avatar: user.avatar,
           event_id: user.event_id,
@@ -119,13 +121,6 @@ router.delete(
   }
 );
 
-router.get("/search", (req, res) => {
-  const search = req.query.name;
-  User.find({ username: { $regex: search, $options: "$i" } }).then((data) => {
-    res.json(data);
-  });
-});
-
 router.patch(
   "/:id",
   passport.authenticate("jwt", { session: false }),
@@ -143,7 +138,7 @@ router.patch(
         lname: req.body.lname,
         email: req.body.email,
         bio: req.body.bio,
-        // home_court: body.home_court.id,
+        home_court: req.body.home_court,
         favorite_sports: req.body.favorite_sports,
         avatar: req.body.avatar,
       },
@@ -199,7 +194,6 @@ router.get(
   }
 );
 
-
 router.get("/:id", (req, res) => {
   let user = User.findById(req.params.id);
   let userEvents = Event.find({ user_id: req.params.id });
@@ -209,35 +203,5 @@ router.get("/:id", (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.status(404).json(err));
 });
-
-
-//show user
-
-// router.get("/:id", (req, res) => {
-//     User.findById(req.params.id)
-//     .then(user => res.json(user)).catch(err => res.status(404).json({
-//       nouserfound: "No user found with that id"
-//     }))
-// });
-
-//user events
-// router.get("/:id/events", (req, res) => {
-//   Event.find({ user_id: req.body.id}).then((events => res.json(events))).catch(err => res.status(404).json({
-//     noeventsfound: "No events found for that user"
-//   }));
-// })
-
-// router.get("/:")
-
-//user events
-// router.get("/:id/events", (req, res) => {
-//   Event.find({ user_id: req.body.id })
-//     .then((events) => res.json(events))
-//     .catch((err) =>
-//       res.status(404).json({
-//         noeventsfound: "No events found for that user",
-//       })
-//     );
-// });
 
 module.exports = router;

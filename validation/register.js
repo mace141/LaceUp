@@ -17,10 +17,9 @@ module.exports = function validateRegisterInput(data) {
     ? data.favorite_sports
     : "";
 
-  data.avatar = (data.avatar) ? data.avatar : undefined;
-  data.team_id = (data.team_id) ? data.team_id : undefined;
-  data.event_id = (data.event_id) ? data.event_id : undefined;
-
+  data.avatar = data.avatar ? data.avatar : undefined;
+  data.team_id = data.team_id ? data.team_id : undefined;
+  data.event_id = data.event_id ? data.event_id : undefined;
 
   //username - no validation on presence
   if (data.username) {

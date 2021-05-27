@@ -77,26 +77,35 @@ class SignupForm extends React.Component {
   firstPage() {
     return (
       <>
-        <div className="signup-form">
+        <div className="login-form-outer-container">
+          <h1 className="modal-singin">Sign Up</h1>
+          <div onClick={this.props.closeModal} className="close-x">x</div>
+          <p className="modal-slogan">Lets start with an email</p>
+          {/* <br /> */}
+          <div className="login-form-inner-container">
+          <div>
+              {this.state.isValidEmail ? (
+                <></>
+              ) : (
+                <div className="user-auth-error">Please enter a valid email</div>
+              )}
+          <label className="modal-label">Email:</label>
           <br />
           <input
+            className="modal-input"
             type="text"
             value={this.state.email}
             onChange={this.update("email")}
-            placeholder="Email"
             onKeyPress={this.handleEnterClick}
           />
+          <br />
+              <p className="modal-nav-sentence">Already a member of LacedUp?</p>
+              <p className="modal-nav-link" onClick={this.props.otherForm}> Sign in</p>
+          <br />
         </div>
-        {this.state.isValidEmail ? (
-          <></>
-        ) : (
-          <div className="user-auth-error">Please enter a valid email</div>
-        )}
-        <button onClick={this.handleEmail}>Continue</button>
-        <span>or</span>
-        <button onClick={this.props.otherForm} type="button">
-          Log in
-        </button>
+          <button className="modal-login-two" onClick={this.handleEmail}>Continue</button>
+        </div>
+        </div>
       </>
     );
   }
@@ -126,26 +135,42 @@ class SignupForm extends React.Component {
     const { isPasswordMatch, isPasswordLength, password } = this.state;
     return (
       <>
-        <button onClick={this.setForm(0)}>Back</button>
-        <h1>Enter a password</h1>
-        <input
-          type="password"
-          value={this.state.password}
-          onChange={this.update("password")}
-          placeholder="Password"
-        />
-        <br />
-        <input
-          type="password"
-          value={this.state.password2}
-          onChange={this.update("password2")}
-          placeholder="Confirm Password"
-          onKeyPress={this.handleEnterClick}
-        />
-        <br />
-        {isPasswordMatch ? null : "Passwords do not match"}
-        {isPasswordLength ? null : "Password must be at least 6 characters"}
-        <button onClick={this.handlePassword}>Continue</button>
+        <div className="login-form-outer-container">
+            <h1 className="modal-singin">Sign Up</h1>
+            <div onClick={this.props.closeModal} className="close-x">x</div>
+            <p className="modal-two-slogan">Next step is providing a password</p>
+          <div className="login-form-inner-container">
+            <div>
+              <div className="modal-password-errors">
+                {isPasswordMatch ? null : "Passwords do not match"}
+                <br />
+                {isPasswordLength ? null : "Password must be at least 6 characters"}
+              </div>
+              <label className="modal-label">Password:</label>
+              <br />
+              <input
+                className="modal-input"
+                type="password"
+                value={this.state.password}
+                onChange={this.update("password")}
+              />
+              <section className="modal-input-space"></section>
+              <br />
+              <label className="modal-label">Confirm password:</label>
+              <br />
+              <input
+                className="modal-input"
+                type="password"
+                value={this.state.password2}
+                onChange={this.update("password2")}
+                onKeyPress={this.handleEnterClick}
+              />
+              <br />
+              <p className="modal-back-link" onClick={this.setForm(0)}>Back</p>
+            </div>
+            <button className="modal-login-three" onClick={this.handlePassword}>Continue</button>
+          </div>
+        </div>
       </>
     );
   }
@@ -171,33 +196,52 @@ class SignupForm extends React.Component {
     const { isLname, isFname } = this.state;
     return (
       <>
-        <button onClick={this.setForm(1)}>Back</button>
-        <br />
-        <input
-          type="text"
-          value={this.state.fname}
-          onChange={this.update("fname")}
-          placeholder="First Name"
-        />
-        {isFname ? null : "Please enter a first name"}
-        <br />
-        <input
-          type="text"
-          value={this.state.lname}
-          onChange={this.update("lname")}
-          placeholder="Last Name"
-        />
-        {isLname ? null : "Please enter a last name"}
-        <br />
-        <input
-          type="text"
-          value={this.state.username}
-          onChange={this.update("username")}
-          placeholder="Username"
-          onKeyPress={this.handleEnterClick}
-        />
-        <br />
-        <button onClick={this.handleName}>Continue</button>
+        <div className="login-form-outer-container">
+            <h1 className="modal-singin">Sign Up</h1>
+            <div onClick={this.props.closeModal} className="close-x">x</div>
+            <p className="modal-two-slogan">Last step is your name!</p>
+          <div className="login-form-inner-container">
+            <div>
+              <div className="modal-password-errors">
+                {isFname ? null : "Please enter a first name"}
+                <br />
+                {isLname ? null : "Please enter a last name"}
+              </div>
+              <label className="modal-label">First Name:</label>
+              <br />
+            <input
+              className="modal-input"
+              type="text"
+              value={this.state.fname}
+              onChange={this.update("fname")}
+              />
+            <section className="modal-input-space"></section>
+            <br />
+              <label className="modal-label">Last Name:</label>
+              <br />
+            <input
+              className="modal-input"
+              type="text"
+              value={this.state.lname}
+              onChange={this.update("lname")}
+              />
+            <section className="modal-input-space"></section>
+            <br />
+            <label className="modal-label">Username:</label>
+            <br />
+            <input
+              className="modal-input"
+              type="text"
+              value={this.state.username}
+              onChange={this.update("username")}
+              onKeyPress={this.handleEnterClick}
+            />
+            <br />
+              <p className="modal-back-link" onClick={this.setForm(1)}>Back</p>
+            </div>
+            <button className="modal-login-three" onClick={this.handleName}>Sign up</button>
+          </div>
+        </div>
       </>
     );
   }

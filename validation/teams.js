@@ -13,12 +13,9 @@ module.exports = function validateParkInput(data) {
   if (Validator.isEmpty(data.name)) {
     errors.name = "A name is required";
   }
-
   if (Validator.isEmpty(data.numPlayers)) {
     errors.numPlayers = "At least one player is required";
   }
-  // //   isIn - value in array
-
   if (!Validator.isInt(data.numPlayers)) {
     errors.numPlayers = "A valid number is required";
   }
@@ -31,8 +28,8 @@ module.exports = function validateParkInput(data) {
     errors.playersToFill = "A valid number is required";
   }
 
-  if(Validator.isEmpty(data.event_id)) {
-    errors.event_id = "A team must belong to an event"
+  if (Validator.isEmpty(data.event_id)) {
+    errors.event_id = "A team must belong to an event";
   }
 
   return {

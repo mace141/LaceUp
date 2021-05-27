@@ -1,10 +1,12 @@
 import { connect } from "react-redux";
 import ExploreMain from "./explore_main";
 import { fetchParks } from "../../actions/park";
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   // debugger;
+
   return {
     parks: state.entities.parks,
+    preSelected: ownProps.history.location.state,
   };
 };
 

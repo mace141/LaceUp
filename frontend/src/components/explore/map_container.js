@@ -9,10 +9,17 @@ const LoadingContainer = () => <div className="map-container-div"></div>;
 class MapContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedPlace: {},
-      activeMarker: null,
-    };
+    if (!!props.preSelected) {
+      this.state = {
+        selectedPlace: props.preSelected,
+        activeMarker: true,
+      };
+    } else {
+      this.state = {
+        selectedPlace: {},
+        activeMarker: null,
+      };
+    }
   }
   componentDidMount() {}
 
@@ -38,7 +45,7 @@ class MapContainer extends Component {
     const { activeMarker, selectedPlace } = this.state;
     if (!parks) return null;
     else {
-      debugger;
+      // debugger;
       return (
         <div className="explore-page-container">
           <div className="explore-side-window">
@@ -66,8 +73,8 @@ class MapContainer extends Component {
             zoom={13}
             // style={defaultMapStyles.styles}
             initialCenter={{
-              lat: 40.73061,
-              lng: -73.9712,
+              lat: 40.6826,
+              lng: -73.9754,
             }}
           >
             {Object.entries(parks).map((key, i) => {

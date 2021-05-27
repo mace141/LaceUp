@@ -20,7 +20,6 @@ const ParkSchema = new Schema({
     type: String,
     required: true,
   },
-
   lng: {
     type: Number,
     required: true,
@@ -34,7 +33,6 @@ const ParkSchema = new Schema({
     type: String,
     required: true,
   },
-  //sports.split(',') to make array for frontend!!
 
   events: {
     type: mongoose.Types.ObjectId,

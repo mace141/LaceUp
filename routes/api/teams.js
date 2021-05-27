@@ -23,19 +23,6 @@ router.get("/:id", async (req, res) => {
   res.json(teams).catch((err) => res.status(404).json(err));
 });
 
-router.put("/:id/addplayer", async (req, res) => {
-  const team = await Team.findById(req.params.id);
-  let player = await User.findById(req.body.player_id);
-  if (team.player_id.includes(player.id)) {
-    res.status(400).json("Player already on the team!");
-  } else {
-    team.player_id = team.player_id.concat(player);
-    team.save().then((team) => {
-      res.json(team);
-    });
-  }
-});
-
 router.post(
   "/",
   // passport.authenticate("jwt", { session: false }),
@@ -53,8 +40,6 @@ router.post(
       .save()
       .then((team) => res.json(team))
       .catch((err) => res.status(404).json(err));
-    //   }
-    // }
   }
 );
 
@@ -67,7 +52,6 @@ router.patch(
     // if (!isValid) {
     //   return res.status(400).json(errors);
     // }
-
     Team.findByIdAndUpdate(
       { _id: req.params.id },
       {
@@ -88,22 +72,23 @@ router.patch(
   }
 );
 
-// router.delete("/delete/:id", (req, res) => {
-//   // passport.authenticate("jwt", { session: false }),
+router.put("/:id/addplayer", async (req, res) => {
+  const team = await Team.findById(req.params.id);
+  let player = await User.findById(req.body.player_id);
+  if (team.player_id.includes(player.id)) {
+    res.status(400).json("Player already on the team!");
+  } else {
+    team.player_id = team.player_id.concat(player);
+    team.save().then((team) => {
+      res.json(team);
+    });
+  }
+});
 
-//   Team.deleteOne()
-//   Team.findByIdAndDelete(req.params.id, function (err, result) {
-//     if (err) {
-//       res.json(err);
-//     }
-//     res.json("Team deleted");
-//   });
-
-
-  // async (req, res) => {
-  //   await db.collection("teams").deleteOne({ _id: ObjectID(req.params.id) });
-  //   res.json("deleted team");
-  // }
-// });
+router.delete("/delete/:id", async (req, res) => {
+  // passport.authenticate("jwt", { session: false }),
+  await db.collection("teams").deleteOne({ _id: ObjectID(req.params.id) });
+  res.json("deleted team");
+});
 
 module.exports = router;
