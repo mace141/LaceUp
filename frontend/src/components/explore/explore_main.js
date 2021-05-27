@@ -10,6 +10,7 @@ class ExploreMain extends React.Component {
     if (!parks) {
       return <>Loading</>;
     } else {
+      debugger;
       return (
         <>
           <div className="explore-map-outer">
