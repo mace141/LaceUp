@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import EventsIndex from '../events/events_index';
+import EventsIndex from '../events/profile_events_index';
 import UserDetail from './user_detail';
 import { fetchUser } from '../../actions/user';
 import { fetchParks } from '../../actions/park';
-import { fetchUsersEvents } from '../../util/event_api';
+import { fetchEventsByUser } from '../../util/event_api';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -18,11 +18,11 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchUser, fetchParks, fetchUsersEvents, match } = this.props;
+    const { fetchUser, fetchParks, fetchEventsByUser, match } = this.props;
 
     fetchUser(match.params.id);
     fetchParks();
-    fetchUsersEvents(match.params.id).then(
+    fetchEventsByUser(match.params.id).then(
       payload => this.setState({ events: payload.data }) 
     );
   }
@@ -32,11 +32,11 @@ class Profile extends React.Component {
     
     const newEvents = events.filter(
       event => Date.parse(event.date) > Date.now()
-    ).sort((a, b) => Date.parse(a.date) > Date.parse(b.date) ? -1 : 1);
+    ).sort((a, b) => Date.parse(a.date) > Date.parse(b.date) ? 1 : -1);
 
     const oldEvents = events.filter(
       event => Date.parse(event.date) <= Date.now()
-    ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? -1 : 1);
+    ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? 1 : -1);
     
     const tabs = [<EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>, <p>Club Component</p>];
     
@@ -63,7 +63,7 @@ const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) =>
 const mapDTP = dispatch => ({
   fetchUser: userId => dispatch(fetchUser(userId)),
   fetchParks: () => dispatch(fetchParks()),
-  fetchUsersEvents: userId => fetchUsersEvents(userId)
+  fetchEventsByUser: userId => fetchEventsByUser(userId)
 });
 
 export default withRouter(connect(mapSTP, mapDTP)(Profile));

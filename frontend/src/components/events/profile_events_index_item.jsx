@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const EventIndexItem = ({ event }) => {
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const EventIndexItem = ({ event, parks }) => {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const date = new Date(event.date);
 
   const month = months[date.getMonth()];
@@ -10,7 +11,7 @@ const EventIndexItem = ({ event }) => {
   const hours = date.getHours();
   const minutes = date.getMinutes();
 
-  const time = `${hours}:${minutes}`
+  const time = `${hours}:${minutes}`;
 
   return (
     <div className='profile-event-item'>
@@ -18,19 +19,23 @@ const EventIndexItem = ({ event }) => {
         <p>Date/Time: <span>{`${time}, ${month} ${day}, ${year}`}</span></p>
       </div>
       <div className='location'>
-        <p>Location: <span>{event.location_id}</span></p>
+        <p>Location: <span>{parks[event.location_id].name}</span></p>
       </div>
       <div className='sport'>
         <p>Sport: <span>{event.sport}</span></p>
       </div>
-      <div className='team-size'>
-        <p>Team Size: <span>{event.team_size}</span></p>
-      </div>
       <div className='skill'>
         <p>Skill level: <span>{event.skill}</span></p>
+      </div>
+      <div className='team-size'>
+        <p>Team Size: <span>{event.team_size}</span></p>
       </div>
     </div>
   )
 }
 
-export default EventIndexItem;
+const mapSTP = ({ entities: { parks } }) => ({
+  parks
+});
+
+export default connect(mapSTP)(EventIndexItem);

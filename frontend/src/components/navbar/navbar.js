@@ -1,6 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 import { Link } from "react-router-dom";
+import logo from "../../style/assets/logoB.png";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -47,20 +48,23 @@ class NavBar extends React.Component {
       // logged in display
       return (
         <nav className="login-signup">
-          <Link to={`/users/${this.props.currentUser.id}`}>
-            Profile
-          </Link>
+          <Link to={`/users/${this.props.currentUser.id}`}>Profile</Link>
           <button onClick={() => this.props.logout()}>Logout</button>
         </nav>
       );
     }
   }
   mainDisp() {
+    const { openModal, currentUser } = this.props;
     // Display for every user
     return (
       <>
         <div className="navbar-left">
-          <Link to="/">LaceUp</Link>
+          <div className="header-logo-container">
+            <Link className="header-logo" to="/">
+              <img className="header-logo" src={logo}></img>
+            </Link>
+          </div>
         </div>
         <div className="navbar-right">
           <Link
@@ -70,9 +74,12 @@ class NavBar extends React.Component {
           >
             Explore
           </Link>
-          <Link to="/host" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
+          {/* <Link to="/host" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
             Host
-          </Link>
+          </Link> */}
+          <span onClick={() => openModal("newEvent")}>
+            Host
+          </span>
           {this.sessionLinks()}
         </div>
       </>
@@ -80,12 +87,10 @@ class NavBar extends React.Component {
   }
   render() {
     return (
-      <div className='nav-background'>
-        <nav className="full-navbar">
-          {this.mainDisp()}
-        </nav>
+      <div className="nav-background">
+        <nav className="full-navbar">{this.mainDisp()}</nav>
       </div>
-    )
+    );
   }
 }
 export default NavBar;

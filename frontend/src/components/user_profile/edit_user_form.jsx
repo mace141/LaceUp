@@ -14,7 +14,6 @@ class EditUserForm extends React.Component {
     this.handleFile = this.handleFile.bind(this);
     this.handleSports = this.handleSports.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleCourts = this.handleCourts.bind(this);
   }
 
   handleInput(field) {
@@ -32,19 +31,6 @@ class EditUserForm extends React.Component {
     }
 
     this.setState({ favorite_sports: options.join(', ') });
-  }
-
-  handleCourts(e) {
-    const options = this.state.home_court;
-
-    if (e.target.selected) {
-      options.push(e.target.value);
-    } else {
-      let index = options.indexOf(e.target.value);
-      options.splice(index, 1);
-    }
-
-    this.setState({ home_courts: options });
   }
 
   handleFile(e) {
@@ -108,7 +94,7 @@ class EditUserForm extends React.Component {
               </div>
               <div>
                 <label>Home Courts</label>
-                <select onChange={this.handleCourts}>
+                <select onChange={this.handleInput('home_court')}>
                   {this.props.parks.map(park => (
                     <option value={park.name}>{park.name}</option>
                   ))}
@@ -126,7 +112,7 @@ class EditUserForm extends React.Component {
 const mapSTP = ({ entities: { users, parks } }, ownProps) => {
   return ({
   user: users[ownProps.location.pathname.slice(7)],
-  parks
+  parks: Object.values(parks)
 })};
 
 const mapDTP = dispatch => ({

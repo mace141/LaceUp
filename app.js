@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require("express");
 const app = express();
 const db = require("./config/keys.js").mongoURI;
@@ -20,6 +21,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 //parse json sent to frontend
 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('frontend/build'));
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  })
+}
+
 app.get("/", (req, res) => res.send("LaceUp"));
 
 app.use(passport.initialize());
@@ -29,6 +37,7 @@ app.use("/api/users", users);
 app.use("/api/parks", parks);
 app.use("/api/events", events);
 app.use("/api/teams", teams);
+app.use("/api/posts", posts);
 
 // //backend api/users route
 
