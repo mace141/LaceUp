@@ -39,8 +39,12 @@
 
 .join-game-btn {
   border-radius: 4px;
-  background: #c2b4b4;
+  background: $primary;
   box-shadow: none;
   padding: 7px;
   color: white;
+  :hover {
+    // padding: 7px;
+    background-color: $primaryDark;
+  }
 }
