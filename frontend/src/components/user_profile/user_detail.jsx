@@ -9,7 +9,7 @@ const UserDetail = ({ user, openModal, match, currentUserId }) => {
   const editBtn = match.params.id == currentUserId ? (
     <button onClick={() => openModal('editUser')}>Edit</button>
   ) : null;
-  debugger
+  
   return (
     <div className='user-detail'>
       <div className='user-avatar'>

@@ -1,12 +1,13 @@
 import React from 'react';
+import TeamsIndexItem from './teams_index_item';
 
 const TeamsIndex = ({ teams }) => {
   return (
-    <> 
-      {/* {teams.map(team => (
-        <TeamIndexItem team={team}/>
-      ))} */}
-    </>
+    <div className='team-index'> 
+      {teams.map(team => (
+        <TeamsIndexItem team={team}/>
+      ))}
+    </div>
   )
 };
 

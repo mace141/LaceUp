@@ -13,6 +13,9 @@ const receiveTeam = (payload) => ({
   team: payload.data,
 });
 
+export const createTeam = team => dispatch => 
+  TeamAPI.createTeam(team).then(payload => dispatch(receiveTeam(payload)));
+
 export const fetchTeams = () => (dispatch) =>
   TeamAPI.fetchTeams().then((teams) => dispatch(receiveTeams(teams)));
 

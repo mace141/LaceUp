@@ -1,3 +1,4 @@
+import { RECEIVE_EVENT } from "../actions/event_actions";
 import { RECEIVE_TEAM, RECEIVE_TEAMS } from "../actions/team";
 
 const teamsReducer = (state = {}, action) => {

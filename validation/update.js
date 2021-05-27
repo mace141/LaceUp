@@ -25,12 +25,12 @@ module.exports = function validateUpdateInput(data) {
   if (!Validator.isEmail(data.email)) {
     errors.email = "Please enter a valid email";
   }
-  if (!Validator.isLength(data.password, { min: 6, max: 50 })) {
-    errors.password = "Password must contain at least 6 characters";
-  }
-  if (!Validator.equals(data.password, data.password2)) {
-    errors.password2 = "Passwords must match";
-  }
+  // if (!Validator.isLength(data.password, { min: 6, max: 500 })) {
+  //   errors.password = "Password must contain at least 6 characters";
+  // }
+  // if (!Validator.equals(data.password, data.password2)) {
+  //   errors.password2 = "Passwords must match";
+  // }
   if (data.bio) {
     if (!Validator.isLength(data.bio)) {
       errors.bio = "Bio must contain at least one character";
