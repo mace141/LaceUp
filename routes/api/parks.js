@@ -23,26 +23,41 @@ router.get('/:id', (req, res) => {
 
 //to create parks, may remove
 
-router.post("/", passport.authenticate('jwt', { session: false }), (req, res) => {
-    const { errors, isValid } = validateParkInput(req.body);
-
-    if (!isValid) {
-        return res.status(400).json(errors);
-    }
-
+router.post("/",  (req, res) => {
     const newPark = new Park({
         name: req.body.name,
         address: req.body.address,
         zip: req.body.zip,
         borough: req.body.zip,
-        coordinate: req.body.coordinate,
+        lat: req.body.lat,
+        lng: req.body.lng,
         sports: req.body.sports,
-        // events: req.body.events,
+        events: req.body.events,
         // users: req.body.users
     });
 
     newPark.save().then(park => res.json(park))
 })
+// router.post("/", passport.authenticate('jwt', { session: false }), (req, res) => {
+//     const { errors, isValid } = validateParkInput(req.body);
+
+//     if (!isValid) {
+//         return res.status(400).json(errors);
+//     }
+
+//     const newPark = new Park({
+//         name: req.body.name,
+//         address: req.body.address,
+//         zip: req.body.zip,
+//         borough: req.body.zip,
+//         coordinate: req.body.coordinate,
+//         sports: req.body.sports,
+//         // events: req.body.events,
+//         // users: req.body.users
+//     });
+
+//     newPark.save().then(park => res.json(park))
+// })
 
 
 module.exports = router;

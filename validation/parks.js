@@ -12,9 +12,11 @@ module.exports = function validateParkInput(data) {
 
   data.borough = validText(data.borough) ? data.borough : "";
 
-  data.coordinate = data.coordinate ? data.coordinate : "";
 
   data.sports = data.sports ? data.sports : "";
+
+  data.lat = validText(data.lat) ? data.lat : "";
+  data.lng = validText(data.lng) ? data.lng : "";
   // data.events = validText(data.events) ? data.events : "";
   // data.users = validText(data.users) ? data.users : "";
 
@@ -32,8 +34,11 @@ module.exports = function validateParkInput(data) {
   if (Validator.isEmpty(data.borough)) {
     errors.borough = "A borough is required";
   }
-  if (Validator.isEmpty(data.coordinate)) {
-    errors.coordinate = "A coordinate is required";
+  if (Validator.isEmpty(data.lat)) {
+    errors.coordinate = "A lattitude is required";
+  }
+  if (Validator.isEmpty(data.lng)) {
+    errors.coordinate = "A longitude is required";
   }
   if (Validator.isEmpty(data.sports)) {
     errors.sport = "A sport is required";

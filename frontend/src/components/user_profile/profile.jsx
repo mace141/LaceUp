@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import EventsIndex from '../events/profile_events_index';
 import UserDetail from './user_detail';
-import { fetchUser } from '../../actions/user';
+import { receiveUser } from '../../actions/user';
+import { fetchUser } from '../../util/user_api';
 import { fetchParks } from '../../actions/park';
 import { fetchEventsByUser } from '../../util/event_api';
 
@@ -20,21 +21,21 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchUser, fetchParks, fetchEventsByUser, match } = this.props;
+    const { fetchUser, fetchParks, receiveUser, dispatch, match } = this.props;
 
-    fetchUser(match.params.id);
     fetchParks();
-    fetchEventsByUser(match.params.id).then(
-      payload => this.setState({ events: payload.data }) 
-    );
+    fetchUser(match.params.id).then(payload => {
+      dispatch(receiveUser(payload));
+      this.setState({ events: payload.data[1] });
+    });
   }
 
-  toggleTabs() {
+  toggleTabs(num) {
     const tabs = document.getElementsByClassName('tabs');
     for (let tab of tabs) {
       tab.style.fontWeight = 400;
     }
-    document.getElementById(`tab${this.state.tabIdx}`).style.fontWeight = 600;
+    document.getElementById(`tab${num}`).style.fontWeight = 600;
   }
 
   render() {
@@ -54,21 +55,24 @@ class Profile extends React.Component {
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
         <nav className='profile-tabs'>
-          <button id='tab0' className='tabs'
-                  onClick={() => {
-                    this.setState({ tabIdx: 0 });
-                    this.toggleTabs();
-                  }}>Schedule</button>
-          <button id='tab1' className='tabs'
-                  onClick={() => {
-                    this.setState({ tabIdx: 1 });
-                    this.toggleTabs();
-                  }}>History</button>
-          <button id='tab2' className='tabs'
-                  onClick={() => {
-                    this.setState({ tabIdx: 2 });
-                    this.toggleTabs();
-                  }}>Clubs</button>
+          <div onClick={() => {
+                        this.setState({ tabIdx: 0 });
+                        this.toggleTabs(0);
+                      }} className='tabs' id='tab0' style={{fontWeight:600}}>
+            <button>Schedule</button>
+          </div>
+          <div onClick={() => {
+                        this.setState({ tabIdx: 1 });
+                        this.toggleTabs(1);
+                      }} className='tabs' id='tab1'>
+            <button>History</button>
+          </div>
+          <div onClick={() => {
+                        this.setState({ tabIdx: 2 });
+                        this.toggleTabs(2);
+                      }} className='tabs' id='tab2'>
+            <button>Clubs</button>
+          </div>
         </nav>
         {tabs[this.state.tabIdx]}
       </section>
@@ -78,14 +82,17 @@ class Profile extends React.Component {
 
 const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => {
   return ({
-    user: users[ownProps.match.params.id]
+    user: users[ownProps.match.params.id],
+
   })
 };
 
 const mapDTP = dispatch => ({
-  fetchUser: userId => dispatch(fetchUser(userId)),
+  fetchUser: userId => fetchUser(userId),
+  receiveUser: payload => receiveUser(payload),
   fetchParks: () => dispatch(fetchParks()),
-  fetchEventsByUser: userId => fetchEventsByUser(userId)
+  fetchEventsByUser: userId => fetchEventsByUser(userId),
+  dispatch
 });
 
 export default withRouter(connect(mapSTP, mapDTP)(Profile));

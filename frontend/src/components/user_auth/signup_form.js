@@ -14,7 +14,9 @@ class SignupForm extends React.Component {
       password2: "",
       errors: {},
       isPasswordMatch: true,
+      isPasswordLength: true,
       isValidEmail: true,
+      isValidPw: false,
       isFname: true,
       isLname: true,
     };
@@ -22,7 +24,7 @@ class SignupForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEmail = this.handleEmail.bind(this);
     this.handleName = this.handleName.bind(this);
-    this.checkPasswordMatch = this.checkPasswordMatch.bind(this);
+    this.handlePassword = this.handlePassword.bind(this);
     this.setForm = this.setForm.bind(this);
     this.clearedErrors = false;
   }
@@ -130,7 +132,7 @@ class SignupForm extends React.Component {
   }
 
   secondPage() {
-    const { isPasswordMatch } = this.state;
+    const { isPasswordMatch, isPasswordLength, password } = this.state;
     return (
       <>
         <div className="login-form-outer-container">
@@ -161,23 +163,30 @@ class SignupForm extends React.Component {
               />
               <br />
               <p className="modal-back-link" onClick={this.setForm(0)}>Back</p>
-              {/* {isPasswordMatch ? "true" : "Passwords do not match"}
-              {} */}
+              {isPasswordMatch ? null : "Passwords do not match"}
+              {isPasswordLength ? null : "Password must be at least 6 characters"}
             </div>
-            <button className="modal-login-three" onClick={this.checkPasswordMatch}>Continue</button>
+            <button className="modal-login-three" onClick={this.handlePassword}>Continue</button>
           </div>
         </div>
       </>
     );
   }
 
-  checkPasswordMatch() {
+  handlePassword() {
     const { password, password2 } = this.state;
-
+    if (password.length > 5) {
+      this.setState({ isPasswordLength: true });
+    } else {
+      this.setState({ isPasswordLength: false });
+    }
     if (password !== password2) {
       this.setState({ isPasswordMatch: false });
     } else {
-      this.setState({ isPasswordMatch: true, formNum: 2 });
+      this.setState({ isPasswordMatch: true });
+    }
+    if (password === password && password.length > 5) {
+      this.setState({ formNum: 2 });
     }
   }
 

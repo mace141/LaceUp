@@ -37,22 +37,27 @@ const UserSchema = new Schema({
   },
   //associations
   // home_court: {
-  //   type: mongoose.Types.ObjectId,
-  //   ref: "parks",
+  //   type: Number,
+  //   required: false,
+  //   //eventually, home_court: [{type: Schema.Types.ObjectId, ref: "Park"}], in park user points to user id
   // },
   team_id: {
-    type: Schema.Types.ObjectId, 
-    ref: "teams"
+    type: mongoose.Types.ObjectId, 
+    ref: "Team"
   },
-
+  // home_court: {
+  //   type: Number,
+  //   required: false,
+  //   //eventually, home_court: [{type: Schema.Types.ObjectId, ref: "Park"}], in park user points to user id
+  // },
   event_id: {
-    type: Schema.Types.ObjectId,
-    ref: "events",
+    type: mongoose.Types.ObjectId,
+    ref: "event",
   },
   // },
   post_id: {
-    type: Schema.Types.ObjectId, 
-    ref: "posts"
+    type: mongoose.Types.ObjectId, 
+    ref: "Post"
   },
   date: {
     type: Date,
