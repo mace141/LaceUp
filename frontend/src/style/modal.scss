@@ -28,7 +28,7 @@
 
 .modal-singin {
     align-items: left;
-  margin-left: 20px;
+  margin-left: 22px;
   margin-top: 15px;
     font-size: 22px;
   font-family: sans-serif;
@@ -38,8 +38,16 @@
 .modal-slogan {
   font-size: 13px;
   font-family: sans-serif;
-   margin-left: 20px;
+   margin-left: 22px;
   margin-bottom: 15px;
+  margin-top: 3px;;
+}
+
+.modal-two-slogan {
+  font-size: 13px;
+  font-family: sans-serif;
+   margin-left: 22px;
+  margin-bottom: 0px;
   margin-top: 3px;;
 }
 
@@ -86,6 +94,41 @@
   padding-left: 10px;
 }
 
+.modal-date-input {
+  text-align: left;
+  text-decoration: none; 
+  border-radius: 10px; 
+  border-color: lightgrey;
+  border-width: 1px;
+  box-shadow: inset 0 0 0 1px black;
+  color: lightgrey;
+  margin-top: -1px;
+  width: 100px;
+  border-radius: 5px;
+  height: 33px;
+  font-size: 10px;
+  font-family: sans-serif;
+  padding-left: 10px;
+  margin-right: 15px;
+}
+
+.modal-time-input {
+  text-align: left;
+  text-decoration: none; 
+  // border-radius: 10px; 
+  border-color: lightgrey;
+  border-width: 1px;
+  box-shadow: inset 0 0 0 1px black;
+  color: lightgrey;
+  margin-top: -1px;
+  width: 80px;
+  border-radius: 5px;
+  height: 33px;
+  font-size: 10px;
+  font-family: sans-serif;
+  padding-left: 10px;
+}
+
 
 .modal-nav-sentence {
   display: inline-block;
@@ -109,24 +152,89 @@
   cursor: pointer;
 }
 
-// .modal-login {
-//   border-radius: 4px;
-//   background: #40916c;
-//   padding-top: 5px;
-//   padding-bottom: 5px;
-//   padding-left: 7px;
-//   padding-right: 7px;
-//   color: white; 
-//   margin-left: 180px;
-//   margin-top: 15px;
-// }
+.modal-drop {
+  display: inline-block;
+  margin-right: 15px;
+}
 
-// .modal-login:hover {
-//   box-shadow: inset 0 0 0 1px black;
-//   font-weight: 600;
-//   padding-left: 5px;
-//   padding-right: 5px;
-// }
+.modal-dropdown {
+  height: 30px;
+  padding-left: 3px;
+  font-family: sans-serif;
+    border-radius: 8px; 
+  border-color: lightgrey;
+  border-width: 1px;
+  box-shadow: inset 0 0 0 1px black;
+}
+
+.modal-dropdown-park {
+  height: 30px;
+  width: 170px;
+  padding-left: 3px;
+  font-family: sans-serif;
+    border-radius: 8px; 
+  border-color: lightgrey;
+  border-width: 1px;
+  box-shadow: inset 0 0 0 1px black;
+}
+
+.modal-dropdown-sport {
+  height: 30px;
+  width: 110px;
+  padding-left: 3px;
+  font-family: sans-serif;
+    border-radius: 8px; 
+  border-color: lightgrey;
+  border-width: 1px;
+  box-shadow: inset 0 0 0 1px black;
+}
+
+.modal-dropdown-number {
+    height: 33px;
+    margin-top: -1px;
+  padding-left: 17px;
+  padding-right: 7px;
+  font-family: sans-serif;
+  border-radius: 6px; 
+  border-color: lightgrey;
+  border-width: 1px;
+  box-shadow: inset 0 0 0 1px black;
+}
+
+.modal-dropdown-numteams {
+    height: 30px;
+    // width: 80px;
+  padding-left: 24px;
+  padding-right: 10px;
+  font-family: sans-serif;
+    border-radius: 8px; 
+  border-color: lightgrey;
+  border-width: 1px;
+  box-shadow: inset 0 0 0 1px black;
+}
+
+.modal-dropdown-skill {
+  height: 30px;
+  padding-left: 3px;
+  width: 90px;
+  font-family: sans-serif;
+    border-radius: 8px; 
+  border-color: lightgrey;
+  border-width: 1px;
+  box-shadow: inset 0 0 0 1px black;
+}
+
+.modal-dropdown-type {
+  height: 30px;
+  padding-left: 3px;
+  width: 105px;
+  font-family: sans-serif;
+    border-radius: 8px; 
+  border-color: lightgrey;
+  border-width: 1px;
+  box-shadow: inset 0 0 0 1px black;
+}
+
 
 .modal-login-two {
   border-radius: 40px;
@@ -136,9 +244,21 @@
   padding-left: 7px;
   padding-right: 7px;
   color: white; 
-  // margin-left: 180px;
   margin-top: 20px;
-  // margin-bottom: 2px;
+  width: 92%;
+  text-align: center;
+}
+
+.modal-login-four {
+  border-radius: 40px;
+  background: #40916c;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  // padding-left: 7px;
+  // padding-right: 7px;
+  color: white; 
+  margin-top: 30px;
+  margin-left: -10px;
   width: 92%;
   text-align: center;
 }
@@ -178,6 +298,13 @@
   margin-left: 2px;
   // padding-top: -10;
  }
+
+.modal-password-errors {
+     color: red;
+    font-size: 12px;
+  font-family: sans-serif;
+  margin-left: 2px;
+}
 
  .modal-back-link {
   display: inline-block;
