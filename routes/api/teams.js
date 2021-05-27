@@ -40,30 +40,21 @@ router.post(
   "/",
   // passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateTeamInput(req.body);
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
-
-    Team.findOne({ name: req.body.name }).then((team) => {
-      if (team) {
-        errors.team = `A team already exists with the name ${team.name}`;
-        return res.status(400).json(errors);
-      } else {
-        const newTeam = new Team({
-          name: req.body.name,
-          numPlayers: req.body.numPlayers,
-          playersToFill: req.body.playersToFill,
-          // player_id: req.body.player_id,
-          // player_id: req.user.id,
-          event_id: req.body.event_id,
-        });
-        newTeam
-          .save()
-          .then((team) => res.json(team))
-          .catch((err) => res.status(404).json(err));
-      }
+    const newTeam = new Team({
+      name: req.body.name,
+      numPlayers: req.body.numPlayers,
+      playersToFill: req.body.playersToFill,
+      // player_id: req.body.player_id,
+      // player_id: req.user.id,
+      event_id: req.body.event_id,
     });
+    
+    newTeam
+      .save()
+      .then((team) => res.json(team))
+      .catch((err) => res.status(404).json(err));
+    //   }
+    // }
   }
 );
 

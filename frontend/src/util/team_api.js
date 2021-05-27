@@ -3,6 +3,8 @@ import axios from "axios";
 export const fetchTeams = () => axios.get("api/teams");
 export const fetchTeam = (teamId) => axios.get(`api/teams/${teamId}`);
 
+export const createTeam = team => axios.post('/api/teams', team);
+
 export const updateTeam = (team) => {
   const newTeam = { ...team };
   const wildcard = team._id;

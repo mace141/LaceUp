@@ -14,9 +14,6 @@ const teamsReducer = (state = {}, action) => {
       //may need  debugging
       nextState = action.teams;
       return nextState;
-    case RECEIVE_EVENT: 
-      action.payload.data[1].forEach(team => nextState[team._id] = team)
-      return nextState;
     default:
       return state;
   }

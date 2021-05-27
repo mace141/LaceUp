@@ -41,10 +41,24 @@ class EventForm extends React.Component {
             type: this.state.type,
         };
         
-        const { createEvent, closeModal, receiveEvent, dispatch, history } = this.props;
+        const { 
+            createEvent, closeModal, receiveEvent, createTeam, dispatch, history 
+        } = this.props;
         
         createEvent(event).then(payload => {
             dispatch(receiveEvent(payload));
+            let team;
+            for (let i = 0; i < payload.data.num_teams; i++) {
+                debugger
+                team = {
+                    player_id: [],
+                    name: `Team ${i + 1}`,
+                    numPlayers: payload.data.team_size,
+                    playersToFill: 0,
+                    event_id: payload.data._id
+                }
+                createTeam(team);
+            }
             closeModal();
             history.push(`/events/${payload.data._id}`)
         });

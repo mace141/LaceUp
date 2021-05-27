@@ -6,6 +6,7 @@ import { openModal, closeModal } from "../../actions/modal_actions";
 import EventForm from "./event_form";
 import { fetchParks } from "../../actions/park";
 import { receiveEvent } from "../../actions/event_actions";
+import { createTeam } from "../../actions/team";
 
 const mapStateToProps = ({ entities: { parks }, session, errors }, ownProps) => {
     return {
@@ -24,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
         createEvent: (event) =>createEvent(event),
         receiveEvent: event => receiveEvent(event),
         fetchParks: () => dispatch(fetchParks()),
+        createTeam: team => dispatch(createTeam(team)),
         dispatch
     };
 };
