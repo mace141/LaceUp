@@ -25,7 +25,9 @@ class Splash extends React.Component {
 
     return (
       <div className="splash-page-whole">
-        <SearchContainer parks={parks} />
+        <div className="search-comp-container">
+          <SearchContainer parks={parks} />
+        </div>
         <div className="carousel-container">
           <CarouselProvider
             naturalSlideWidth={100}

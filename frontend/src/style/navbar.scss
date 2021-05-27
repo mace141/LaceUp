@@ -36,11 +36,13 @@
 .header-logo-container {
   width: 250px;
   // background: blue;
-  height: 250px;
+  height: 56px;
 }
 .header-logo {
   width: 100%;
-  height: 100%;
+  height: 60px;
+  // overflow: hidden;
+  object-fit: cover;
 }
 .login-signup {
   margin-right: 20px;
