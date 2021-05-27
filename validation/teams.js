@@ -7,15 +7,17 @@ module.exports = function validateParkInput(data) {
   data.name = validText(data.name) ? data.name : "";
   data.numPlayers = validText(data.numPlayers) ? data.numPlayers : "";
   data.playersToFill = validText(data.playersToFill) ? data.playersToFill : "";
+  data.event_id = validText(data.event_id) ? data.event_id : "";
+  data.player_id = validText(data.player_id) ? data.player_id : "";
 
   if (Validator.isEmpty(data.name)) {
     errors.name = "A name is required";
-  }  
+  }
 
   if (Validator.isEmpty(data.numPlayers)) {
     errors.numPlayers = "At least one player is required";
   }
-// //   isIn - value in array
+  // //   isIn - value in array
 
   if (!Validator.isInt(data.numPlayers)) {
     errors.numPlayers = "A valid number is required";

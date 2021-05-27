@@ -44,15 +44,20 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId, 
     ref: "teams"
   },
-
+  // home_court: {
+  //   type: Number,
+  //   required: false,
+  //   //eventually, home_court: [{type: Schema.Types.ObjectId, ref: "Park"}], in park user points to user id
+  // },
   event_id: {
-    type: Schema.Types.ObjectId,
-    ref: "events",
+    type: mongoose.Types.ObjectId,
+    ref: "event",
   },
   // },
   post_id: {
-    type: Schema.Types.ObjectId, 
-    ref: "posts"
+    //eventually, posts: [{type: Schema.Types.ObjectId, ref: "Post"}]
+    type: mongoose.Types.ObjectId, 
+    ref: "Post"
   },
   date: {
     type: Date,
