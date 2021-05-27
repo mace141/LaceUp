@@ -17,10 +17,10 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const teams = await Team.findById(req.params.id)
-    .populate("player_id, event_id")
-  res.json(players);
-
+  const teams = await Team.findById(req.params.id).populate(
+    "player_id, event_id"
+  );
+  res.json(players).catch((err) => res.status(404).json(err));
 });
 
 router.post(

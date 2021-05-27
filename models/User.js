@@ -41,17 +41,17 @@ const UserSchema = new Schema({
   //   ref: "parks",
   // },
   team_id: {
-    type: Schema.Types.ObjectId, 
+    type: mongoose.Types.ObjectId, 
     ref: "Team"
   },
 
   event_id: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Types.ObjectId,
     ref: "event",
   },
   // },
   post_id: {
-    type: Schema.Types.ObjectId, 
+    type: mongoose.Types.ObjectId, 
     ref: "Post"
   },
   date: {

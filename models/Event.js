@@ -10,6 +10,11 @@ const EventSchema = new Schema({
     type: mongoose.Types.ObjectId,
     ref: "User",
   },
+  // team_id: {
+  //   type: Array,
+  //   required: false
+  //   // ref: "Team",
+  // },
   team_id: {
     type: [mongoose.Types.ObjectId],
     ref: "Team",
