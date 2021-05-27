@@ -24,6 +24,7 @@ class EventShow extends React.Component {
     } = this.props;
 
     fetchEvent(match.params.id).then(payload => {
+      debugger
       dispatch(receiveEvent(payload));
       fetchUser(payload.data.user_id).then(payload => {
         const user = payload.data;
