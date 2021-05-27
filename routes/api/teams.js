@@ -20,17 +20,17 @@ router.get("/:id", async (req, res) => {
   const teams = await Team.findById(req.params.id).populate(
     "player_id, event_id"
   );
-  res.json(players).catch((err) => res.status(404).json(err));
+  res.json(teams).catch((err) => res.status(404).json(err));
 });
 
 router.post(
   "/",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validateTeamInput(req.body);
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
 
     Team.findOne({ name: req.body.name }).then((team) => {
       if (team) {
@@ -41,8 +41,8 @@ router.post(
           name: req.body.name,
           numPlayers: req.body.numPlayers,
           playersToFill: req.body.playersToFill,
-          // player_id: req.body.player_id,
-          player_id: req.user.id,
+          player_id: req.body.player_id,
+          // player_id: req.user.id,
           event_id: req.body.event_id,
         });
         newTeam
@@ -56,13 +56,13 @@ router.post(
 
 router.patch(
   "/:id",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateTeamInput(req.body);
+    // const { errors, isValid } = validateTeamInput(req.body);
 
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
 
     Team.findByIdAndUpdate(
       { _id: req.params.id },
