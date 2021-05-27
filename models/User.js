@@ -41,8 +41,9 @@ const UserSchema = new Schema({
   //   ref: "parks",
   // },
   team_id: {
-    type: Schema.Types.ObjectId, 
-    ref: "teams"
+    //eventually, teams: [{type: Schema.Types.ObjectId, ref: "Team"}] // in teams, user points to user id
+    type: mongoose.Types.ObjectId, 
+    ref: "Team"
   },
   // home_court: {
   //   type: Number,

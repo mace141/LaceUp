@@ -199,6 +199,7 @@ router.get(
   }
 );
 
+
 router.get("/:id", (req, res) => {
   let user = User.findById(req.params.id);
   let userEvents = Event.find({ user_id: req.params.id });
@@ -208,9 +209,6 @@ router.get("/:id", (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.status(404).json(err));
 });
-
-
-//show user
 
 // router.get("/:id", (req, res) => {
 //     User.findById(req.params.id)
