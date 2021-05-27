@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import logo from "../../style/assets/logoB.png";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -62,33 +63,43 @@ class LoginForm extends React.Component {
   render() {
     return (
       <div className="login-form-outer-container">
-        <h1>LaceUp</h1> {/* logo goes here */}
+        {/* <img className="modal-logo" src={logo}></img> */}
+        <h1 className= "modal-singin">Sign In</h1>
+        <div onClick={this.props.closeModal} className="close-x">x</div>
+        <p className="modal-slogan">Sign up, link up, lace up</p>
         <form
           className="login-form-inner-container"
           onSubmit={this.handleSubmit}
         >
           <div>
+            {this.renderErrors()}
+            <label className="modal-label">Email:</label>
+            <br />
             <input
+              className="modal-input"
               type="text"
               value={this.state.email}
               onChange={this.update("email")}
-              placeholder="Email"
+              // placeholder="Email"
             />
+            <section className="modal-input-space"></section>
+            <br />
+            <label className="modal-label">Password:</label>
             <br />
             <input
+              className="modal-input"
               type="password"
               value={this.state.password}
               onChange={this.update("password")}
-              placeholder="Password"
+              // placeholder="Password"
             />
             <br />
-            <input type="submit" value="Log in" />
-            <span>or</span>
-            <button onClick={this.props.otherForm} type="button">
-              Sign up
-            </button>
-            {this.renderErrors()}
+              <p className="modal-nav-sentence">Still need to join LacedUp?</p>
+              <p className="modal-nav-link" onClick={this.props.otherForm}> Sign up</p>
+            <br />
           </div>
+            {/* <input className="modal-login" type="submit" value="Log in" /> */}
+            <input className="modal-login-two" type="submit" value="Log in" />
         </form>
       </div>
     );
