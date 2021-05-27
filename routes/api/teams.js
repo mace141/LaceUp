@@ -6,6 +6,7 @@ const { db } = require("../../models/User");
 const { MongoClient, ObjectID } = require("mongodb");
 
 const Team = require("../../models/Team");
+const User = require("../../models/User");
 
 const validateTeamInput = require("../../validation/teams");
 
@@ -15,12 +16,11 @@ router.get("/", (req, res) => {
     .catch((err) => res.status(404).json({ noteamsfound: "No teams found" }));
 });
 
-router.get("/:id", (req, res) => {
-  Team.findById(req.params.id)
-    .then((team) => res.json(team))
-    .catch((err) =>
-      res.status(404).json({ noteamfound: "No team found with that id" })
-    );
+router.get("/:id", async (req, res) => {
+  const teams = await Team.findById(req.params.id).populate(
+    "player_id, event_id"
+  );
+  res.json(teams);
 });
 
 router.post(
@@ -53,31 +53,16 @@ router.post(
   }
 );
 
-//quick access
-// router.post(
-//   "/",
+router.patch(
+  "/:id",
+  // passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // const { errors, isValid } = validateTeamInput(req.body);
 
-//   (req, res) => {
-//     const newTeam = new Team({
-//       name: req.body.name,
-//       numPlayers: req.body.numPlayers,
-//       playersToFill: req.body.playersToFill,
-//       player_id: req.user.id,
-//       event_id: req.body.event_id,
-//     });
-//     newTeam.save().then((team) => res.json(team));
-//   }
-// );
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
 
-router.put(
-  "/update/:id",
-  passport.authenticate("jwt", { session: false }),
-  async (req, res) => {
-    const { errors, isValid } = validateTeamInput(req.body);
-
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
 
     Team.findByIdAndUpdate(
       { _id: req.params.id },
@@ -85,8 +70,8 @@ router.put(
         name: req.body.name,
         numPlayers: req.body.numPlayers,
         playersToFill: req.body.playersToFill,
-        player_id: req.body.user.id,
-        event_id: req.body.event.id,
+        $push: { player_id: req.body.player_id },
+        event_id: req.body.event_id,
       },
       { new: true },
       function (err, result) {
@@ -98,6 +83,7 @@ router.put(
     );
   }
 );
+
 
 router.delete(
   "/delete/:id",

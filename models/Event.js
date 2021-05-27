@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const EventSchema = new Schema({
   location_id: {
     type: mongoose.Types.ObjectId,
-    ref: "parks",
+    ref: "Park",
   },
   user_id: {
     type: mongoose.Types.ObjectId,
-    ref: "users",
+    ref: "User",
   },
   teams_id: {
     type: mongoose.Types.ObjectId,
-    ref: "teams",
+    ref: "Team",
   },
   date: {
     type: Date,
