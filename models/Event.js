@@ -3,16 +3,21 @@ const Schema = mongoose.Schema;
 
 const EventSchema = new Schema({
   location_id: {
-    type: Schema.Types.ObjectId,
-    ref: "parks",
+    type: mongoose.Types.ObjectId,
+    ref: "Park",
   },
   user_id: {
-    type: Schema.Types.ObjectId,
-    ref: "users",
+    type: mongoose.Types.ObjectId,
+    ref: "User",
   },
-  teams_id: {
-    type: Schema.Types.ObjectId,
-    ref: "teams",
+  // team_id: {
+  //   type: Array,
+  //   required: false
+  //   // ref: "Team",
+  // },
+  team_id: {
+    type: [mongoose.Types.ObjectId],
+    ref: "Team",
   },
   date: {
     type: Date,

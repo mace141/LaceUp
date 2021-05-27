@@ -16,7 +16,11 @@ module.exports = function validateRegisterInput(data) {
   data.favorite_sports = validText(data.favorite_sports)
     ? data.favorite_sports
     : "";
-  data.avatar = validText(data.avatar) ? data.avatar : "";
+
+  data.avatar = (data.avatar) ? data.avatar : undefined;
+  data.team_id = (data.team_id) ? data.team_id : undefined;
+  data.event_id = (data.event_id) ? data.event_id : undefined;
+
 
   //username - no validation on presence
   if (data.username) {
