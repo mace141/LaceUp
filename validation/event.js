@@ -19,12 +19,6 @@ module.exports = function validateEventInput(data) {
     errors.num_teams = "Must specify the number of teams";
   }
 
-  // Need to tweak below validator to make sure the event is created for the future
-
-  // if (!Validator.isLength(data.date, { min: Date.now, max: '2025-12-31' })) {
-  //     errors.date = 'Must create a future event';
-  // }
-
   return {
     errors,
     isValid: Object.keys(errors).length === 0,
