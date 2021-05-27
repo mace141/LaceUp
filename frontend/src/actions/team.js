@@ -24,3 +24,6 @@ export const fetchTeam = (teamId) => (dispatch) =>
 
 export const updateTeam = (team) => (dispatch) =>
   TeamAPI.updateTeam(team).then((team) => dispatch(receiveTeam(team)));
+
+export const addPlayer = (team_id, player_id) => dispatch => 
+  TeamAPI.addPlayer(team_id, player_id).then(payload => dispatch(receiveTeam(payload)))

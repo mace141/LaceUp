@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchEvent } from '../../actions/event_actions';
 import { fetchParks } from '../../actions/park';
+import { fetchTeams } from '../../actions/team';
 import { fetchUser } from '../../util/user_api';
 import TeamsIndex from '../teams/teams_index';
 
@@ -16,9 +17,10 @@ class EventShow extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchEvent,  match } = this.props;
+    const { fetchEvent, fetchTeams, match } = this.props;
 
     fetchEvent(match.params.id);
+    fetchTeams();
   }
 
   render() {
@@ -36,7 +38,7 @@ class EventShow extends React.Component {
     const time = `${hours}:${minutes}`;
     
     const tabs = [<TeamsIndex teams={teams}/>];
-    
+    debugger
     return (
       <div className='event-show'>
         <div className='event-details'>
@@ -80,6 +82,7 @@ const mapDTP = dispatch => ({
   fetchEvent: eventId => dispatch(fetchEvent(eventId)),
   fetchParks: () => dispatch(fetchParks()),
   fetchUser: userId => fetchUser(userId),
+  fetchTeams: () => dispatch(fetchTeams())
 });
 
 const EventShowContainer = withRouter(connect(mapSTP, mapDTP)(EventShow));

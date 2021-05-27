@@ -12,3 +12,6 @@ export const updateTeam = (team) => {
   delete newTeam._id;
   return axios.put(`/api/teams/update/${wildcard}`, newTeam);
 };
+
+export const addPlayer = (team_id, player_id) => 
+  axios.put(`/api/teams/${team_id}/addplayer`, { player_id })
