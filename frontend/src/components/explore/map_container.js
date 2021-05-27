@@ -1,51 +1,103 @@
 import React, { Component } from "react";
-import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
+import ExploreIndexItemContainer from "./explore_index/explore_index_item_container";
+import EventIndexContainer from "./event_explore/event_index_container";
 
-const containerStyle = {
-  position: "absolute",
-  width: "100%",
-  height: "100%",
-};
+const events = {};
+const LoadingContainer = () => <div className="map-container-div"></div>;
 
 class MapContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedPlace: {},
+      activeMarker: null,
+    };
   }
-  componentDidMount() {
-    // this.props.fetchEvent();
-  }
-  render() {
-    const { events } = this.props;
-    // console.log(process.env); // display for
-    return (
-      <>
-        <Map
-          id="map"
-          containerStyle={containerStyle}
-          google={this.props.google}
-          // mapId="cd6df84189302f98"
-          zoom={13}
-          // style={defaultMapStyles.styles}
-          initialCenter={{
-            lat: 40.73061,
-            lng: -73.935242,
-          }}
-        >
-          <Marker
-            name={"Tompkins Square Park"}
-            onClick={() => console.log("Tompkins")}
-            position={{ lat: 40.7264, lng: -73.9818 }}
-          />
+  componentDidMount() {}
 
-          {/* {Object.keys(events).map((key, i) => {
-            return <Marker key={key} />;
-          })} */}
-        </Map>
-      </>
-    );
+  onMarkerClick = (props, marker, e) => {
+    this.setState({
+      selectedPlace: props.park,
+      activeMarker: marker,
+      showingInfoWindow: true,
+    });
+  };
+
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null,
+      });
+    }
+  };
+
+  render() {
+    const { parks } = this.props;
+    const { activeMarker, selectedPlace } = this.state;
+    if (!parks) return null;
+    else {
+      debugger;
+      return (
+        <div className="explore-page-container">
+          <div className="explore-side-window">
+            {activeMarker ? (
+              <EventIndexContainer park={selectedPlace} />
+            ) : (
+              Object.entries(parks).map((key, i) => {
+                return <ExploreIndexItemContainer key={key[0]} park={key[1]} />;
+              })
+            )}
+          </div>
+
+          <Map
+            id="map"
+            containerStyle={{
+              position: "relative",
+              width: "75%",
+              display: "inline-block",
+              width: "100%",
+              height: `${window.innerHeight - 60}px`,
+            }}
+            google={this.props.google}
+            onClick={this.onMapClicked}
+            // mapId="cd6df84189302f98"
+            zoom={13}
+            // style={defaultMapStyles.styles}
+            initialCenter={{
+              lat: 40.73061,
+              lng: -73.9712,
+            }}
+          >
+            {Object.entries(parks).map((key, i) => {
+              return (
+                <Marker
+                  key={key[1]._id}
+                  park={key[1]}
+                  onClick={this.onMarkerClick}
+                  name={key[1].name}
+                  position={{ lat: key[1].lat, lng: key[1].lng }}
+                />
+              );
+            })}
+
+            <InfoWindow
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+            >
+              <div>
+                <h1>{this.state.selectedPlace.name}</h1>
+              </div>
+            </InfoWindow>
+          </Map>
+        </div>
+      );
+    }
   }
 }
 
 export default GoogleApiWrapper({
   apiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  LoadingContainer: LoadingContainer,
 })(MapContainer);

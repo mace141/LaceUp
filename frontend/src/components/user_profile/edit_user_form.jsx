@@ -9,42 +9,35 @@ class EditUserForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { ...this.props.user };
+    this.state = { 
+      ...this.props.user, 
+      favorite_sports: "",
+    };
 
     this.handleFile = this.handleFile.bind(this);
     this.handleSports = this.handleSports.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleCourts = this.handleCourts.bind(this);
   }
 
   handleInput(field) {
+    debugger
     return e => this.setState({ [field]: e.target.value });
   }
 
   handleSports(e) {
     const options = this.state.favorite_sports.split(', ');
-
-    if (e.target.checked) {
-      options.push(e.target.value);
-    } else {
-      let index = options.indexOf(e.target.value);
-      options.splice(index, 1);
-    }
-
-    this.setState({ favorite_sports: options.join(', ') });
-  }
-
-  handleCourts(e) {
-    const options = this.state.home_court;
-
+    
     if (e.target.selected) {
       options.push(e.target.value);
     } else {
       let index = options.indexOf(e.target.value);
       options.splice(index, 1);
     }
+    debugger
+    let sports = options.join(', ');
+    if (sports[0] == ',') sports = sports.slice(2);
 
-    this.setState({ home_courts: options });
+    this.setState({ favorite_sports: sports });
   }
 
   handleFile(e) {
@@ -73,7 +66,7 @@ class EditUserForm extends React.Component {
     // formData.append('user[bio]', this.state.bio);
     // formData.append('user[favoriteSports]', this.state.favorite_sports);
     // formData.append('user[homeCourts]', this.state.home_court);
-    
+    debugger
     this.props.updateUser(this.state);
     document.getElementById('avatar-input').value = "";
     this.props.closeModal();
@@ -101,16 +94,20 @@ class EditUserForm extends React.Component {
               <textarea placeholder="Enter your bio" onChange={this.handleInput('bio')}>{this.state.bio}</textarea>
               <div>
                 <label>Favorite Sports</label>
-                <input type='checkbox' value="Basketball" onChange={this.handleSports}/>Basketball
-                <input type='checkbox' value="Soccer" onChange={this.handleSports}/>Soccer
-                <input type='checkbox' value="Tennis" onChange={this.handleSports}/>Tennis
-                <input type='checkbox' value="Handball" onChange={this.handleSports}/>Handball
+                <select multiple>
+                  <option value="Basketball" onClick={this.handleSports}>Basketball</option>
+                  <option value="Soccer" onClick={this.handleSports}>Soccer</option>
+                  <option value="Tennis" onClick={this.handleSports}>Tennis</option>
+                  <option value="Baseball" onClick={this.handleSports}>Baseball</option>
+                  <option value="Football" onClick={this.handleSports}>Football</option>
+                  <option value="Handball" onClick={this.handleSports}>Handball</option>
+                </select>
               </div>
               <div>
                 <label>Home Courts</label>
-                <select onChange={this.handleCourts}>
+                <select onChange={this.handleInput('home_court')}>
                   {this.props.parks.map(park => (
-                    <option value={park.name}>{park.name}</option>
+                    <option value={park._id}>{park.name}</option>
                   ))}
                 </select>
               </div>
@@ -126,7 +123,7 @@ class EditUserForm extends React.Component {
 const mapSTP = ({ entities: { users, parks } }, ownProps) => {
   return ({
   user: users[ownProps.location.pathname.slice(7)],
-  parks
+  parks: Object.values(parks)
 })};
 
 const mapDTP = dispatch => ({

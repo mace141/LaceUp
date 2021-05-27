@@ -41,10 +41,10 @@ const ParkSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "events"
     },
-    users: {
-        type: Schema.Types.ObjectId,
-        ref: "users"
-    },
+    // users: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "users"
+    // },
     date: {
         type: Date,
         default: Date.now

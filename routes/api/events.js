@@ -36,6 +36,16 @@ router.post(
   }
 );
 
+router.get("/:id", (req, res) => {
+  Event.findById(req.params.id)
+    .then((event) => res.json(event))
+    .catch((err) =>
+      res.status(404).json({
+        nouserfound: "No event found with that id",
+      })
+    );
+});
+
 router.get("/", (req, res) => {
   Event.find()
     .sort({ date: -1 })
@@ -62,7 +72,7 @@ router.get("/team/:teams_id", (req, res) => {
       res.status(404).json({ noeventsfound: "No events found for that team" })
     );
 });
-
+//
 router.get("/park/:location_id", (req, res) => {
   Event.find({ location_id: req.params.location_id })
     .sort({ date: -1 })
@@ -91,6 +101,23 @@ router.delete(
   }
 );
 
+// router.put(
+//   "/update/:id",
+//   passport.authenticate("jwt", { session: false }),
+//   async (req, res) => {
+//     const { errors, isValid } = validateEventInput(req.body);
+
+//     if (!isValid) {
+//       return res.status(400).json(errors);
+//     }
+
+//     await db
+//       .collection("events")
+//       .replaceOne({ _id: ObjectID(req.params.id) }, req.body);
+//     res.json("updated");
+//   }
+// );
+
 router.put(
   "/update/:id",
   passport.authenticate("jwt", { session: false }),
@@ -100,11 +127,27 @@ router.put(
     if (!isValid) {
       return res.status(400).json(errors);
     }
-
-    await db
-      .collection("events")
-      .replaceOne({ _id: ObjectID(req.params.id) }, req.body);
-    res.json("updated");
+    Event.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        location_id: req.body.location_id,
+        user_id: req.user.id,
+        teams_id: req.body.teams_id,
+        date: req.body.date,
+        sport: req.body.sport,
+        skill: req.body.skill,
+        type: req.body.type,
+        team_size: req.body.team_size,
+        num_teams: req.body.num_teams,
+      },
+      { new: true },
+      function (err, result) {
+        if (err) {
+          res.json(err);
+        }
+        res.json(result);
+      }
+    );
   }
 );
 
@@ -130,7 +173,7 @@ router.put(
 //       num_teams: req.body.num_teams,
 //     })
 //       .then((event) => {
-//         res.json('event');
+//         res.json(event);
 //       })
 //       .catch((err) => {
 //         res.status(400).json(err);

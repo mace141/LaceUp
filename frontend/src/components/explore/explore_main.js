@@ -2,14 +2,23 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import MapContainer from "./map_container";
 class ExploreMain extends React.Component {
+  componentDidMount() {
+    this.props.fetchParks();
+  }
   render() {
-    return (
-      <>
-        <div className="explore-map-outer">
-          <MapContainer className="map-container" />
-        </div>
-      </>
-    );
+    const { parks } = this.props;
+    if (!parks) {
+      return <>Loading</>;
+    } else {
+      debugger;
+      return (
+        <>
+          <div className="explore-map-outer">
+            <MapContainer parks={parks} />
+          </div>
+        </>
+      );
+    }
   }
 }
 
