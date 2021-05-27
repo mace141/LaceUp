@@ -1,8 +1,11 @@
 .nav-background {
   background: $neutralLighter;
+  position: fixed;
+  width: 100%;
 }
 
 .full-navbar {
+  // position: fixed;
   background: white;
   // max-width: 1100px;56px;
   height: 56px;
