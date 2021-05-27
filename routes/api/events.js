@@ -35,6 +35,16 @@ router.post(
   }
 );
 
+router.get("/park/:location_id", (req, res) => {
+  Event.find({ location_id: req.params.location_id })
+    .sort({ date: -1 })
+    .then((events) => res.json(events))
+    .catch((err) =>
+      res
+        .status(404)
+        .json({ noeventsfound: "No events found for that location" })
+    );
+});
 router.get("/", (req, res) => {
   Event.find()
     .sort({ date: -1 })
