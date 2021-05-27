@@ -17,10 +17,23 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const teams = await Team.findById(req.params.id).populate(
-    "player_id, event_id"
-  );
+  const teams = await Team.findById(req.params.id)
+    .populate({ path: "player_id" })
+    .populate("event_id");
   res.json(teams).catch((err) => res.status(404).json(err));
+});
+
+router.put("/:id/addplayer", async (req, res) => {
+  const team = await Team.findById(req.params.id);
+  let player = await User.findById(req.body.player_id);
+  if (team.player_id.includes(player.id)) {
+    res.status(400).json("Player already on the team!");
+  } else {
+    team.player_id = team.player_id.concat(player);
+    team.save().then((team) => {
+      res.json(team);
+    });
+  }
 });
 
 router.post(
@@ -41,7 +54,7 @@ router.post(
           name: req.body.name,
           numPlayers: req.body.numPlayers,
           playersToFill: req.body.playersToFill,
-          player_id: req.body.player_id,
+          // player_id: req.body.player_id,
           // player_id: req.user.id,
           event_id: req.body.event_id,
         });
@@ -70,7 +83,7 @@ router.patch(
         name: req.body.name,
         numPlayers: req.body.numPlayers,
         playersToFill: req.body.playersToFill,
-        $push: { player_id: req.body.player_id },
+        // $push: { player_id: req.body.player_id },
         event_id: req.body.event_id,
       },
       { new: true },
@@ -84,13 +97,22 @@ router.patch(
   }
 );
 
-router.delete(
-  "/delete/:id",
-  passport.authenticate("jwt", { session: false }),
-  async (req, res) => {
-    await db.collection("teams").deleteOne({ _id: ObjectID(req.params.id) });
-    res.json("deleted team");
-  }
-);
+// router.delete("/delete/:id", (req, res) => {
+//   // passport.authenticate("jwt", { session: false }),
+
+//   Team.deleteOne()
+//   Team.findByIdAndDelete(req.params.id, function (err, result) {
+//     if (err) {
+//       res.json(err);
+//     }
+//     res.json("Team deleted");
+//   });
+
+
+  // async (req, res) => {
+  //   await db.collection("teams").deleteOne({ _id: ObjectID(req.params.id) });
+  //   res.json("deleted team");
+  // }
+});
 
 module.exports = router;
