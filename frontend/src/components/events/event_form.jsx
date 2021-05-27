@@ -49,7 +49,7 @@ class EventForm extends React.Component {
             dispatch(receiveEvent(payload));
             let team;
             for (let i = 0; i < payload.data.num_teams; i++) {
-                debugger
+                
                 team = {
                     player_id: [],
                     name: `Team ${i + 1}`,

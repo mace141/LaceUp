@@ -22,7 +22,7 @@ class EventShow extends React.Component {
   }
 
   render() {
-    const { event } = this.props;
+    const { event, teams } = this.props;
     if (!event) return null; 
     
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -35,7 +35,7 @@ class EventShow extends React.Component {
     const minutes = date.getMinutes();
     const time = `${hours}:${minutes}`;
     
-    const tabs = [<TeamsIndex teamIds={event.team_id}/>];
+    const tabs = [<TeamsIndex teams={teams}/>];
     
     return (
       <div className='event-show'>
@@ -71,8 +71,9 @@ class EventShow extends React.Component {
   }
 }
 
-const mapSTP = ({ entities: { events } }, ownProps) => ({
-  event: events[ownProps.match.params.id]
+const mapSTP = ({ entities: { events, teams } }, ownProps) => ({
+  event: events[ownProps.match.params.id],
+  teams: Object.values(teams).filter(team => team.event_id == ownProps.match.params.id)
 });
 
 const mapDTP = dispatch => ({

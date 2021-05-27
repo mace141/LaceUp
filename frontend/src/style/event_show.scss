@@ -33,3 +33,37 @@
     }
   }
 }
+
+.team-index {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 15px;
+  padding: 20px;
+
+  .team-item {
+    position: relative;
+    color: $primary;
+
+    h1, h2, .player-slots {
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-weight: 600;
+    }
+
+    h2 {
+      font-size: 14px;
+    }
+
+    button {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+
+    .player-slots span {
+      margin: 5px;
+    }
+  }
+}
