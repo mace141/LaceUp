@@ -210,6 +210,9 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.status(404).json(err));
 });
 
+
+//show user
+
 // router.get("/:id", (req, res) => {
 //     User.findById(req.params.id)
 //     .then(user => res.json(user)).catch(err => res.status(404).json({

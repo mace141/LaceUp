@@ -37,11 +37,11 @@ const UserSchema = new Schema({
   },
   //associations
   // home_court: {
-  //   type: mongoose.Types.ObjectId,
-  //   ref: "parks",
+  //   type: Number,
+  //   required: false,
+  //   //eventually, home_court: [{type: Schema.Types.ObjectId, ref: "Park"}], in park user points to user id
   // },
   team_id: {
-    //eventually, teams: [{type: Schema.Types.ObjectId, ref: "Team"}] // in teams, user points to user id
     type: mongoose.Types.ObjectId, 
     ref: "Team"
   },
@@ -56,7 +56,6 @@ const UserSchema = new Schema({
   },
   // },
   post_id: {
-    //eventually, posts: [{type: Schema.Types.ObjectId, ref: "Post"}]
     type: mongoose.Types.ObjectId, 
     ref: "Post"
   },

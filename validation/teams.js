@@ -31,6 +31,10 @@ module.exports = function validateParkInput(data) {
     errors.playersToFill = "A valid number is required";
   }
 
+  if(Validator.isEmpty(data.event_id)) {
+    errors.event_id = "A team must belong to an event"
+  }
+
   return {
     errors,
     isValid: Object.keys(errors).length === 0,
