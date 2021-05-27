@@ -71,34 +71,37 @@ class Search extends React.Component {
   render() {
     const { filtered, enterClickRedirect } = this.state;
     return (
-      <div className="search-bar-container">
-        {enterClickRedirect ? (
-          <Redirect
-            to={{
-              pathname: "/explore",
-              state: { selectedPlace: filtered[0] },
-            }}
-          />
-        ) : null}
-        <div>
+      <div className="silent-click" onClick={() => console.log("click off")}>
+        <div className="search-bar-container">
+          {enterClickRedirect ? (
+            <Redirect
+              to={{
+                pathname: "/explore",
+                state: { selectedPlace: filtered[0] },
+              }}
+            />
+          ) : null}
           <input
             type="text"
             className="search-bar-input"
             onChange={this.handleChange}
             placeholder="Search by park..."
             onFocus={this.dispDrop}
-            onBlur={this.unDispDrop}
+            // onBlur={this.unDispDrop}
             onKeyPress={this.handleEnterClick}
           />
           <ul
             id="search-res"
             className="search-results-ul"
+            onFocus={this.dispDrop}
+            onBlur={this.unDispDrop}
             style={{ display: this.state.displayDrop }}
             // display={this.state.displayDrop ? "inline-block" : "none"}
           >
             {this.state.filtered.map((park) => (
-              <li key={park._id} classname="search-results-li">
+              <li key={park._id} className="search-results-li">
                 <Link
+                  className="search-res-link"
                   to={{
                     pathname: `/explore`,
                     state: {
