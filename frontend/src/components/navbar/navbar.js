@@ -59,28 +59,30 @@ class NavBar extends React.Component {
     // Display for every user
     return (
       <>
-        <div className="navbar-left">
-          <div className="header-logo-container">
-            <Link className="header-logo" to="/">
-              <img className="header-logo" src={logo}></img>
-            </Link>
+        <div className="navbar-inner">
+          <div className="navbar-left">
+            <div className="header-logo-container">
+              <Link className="header-logo" to="/">
+                <img className="header-logo" src={logo}></img>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="navbar-right">
-          <Link
-            to="/explore"
-            onFocus={this.handleTabClick}
-            onBlur={this.leaveTab}
-          >
-            Explore
-          </Link>
-          {/* <Link to="/host" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
+          <div className="navbar-right">
+            <Link
+              to="/explore"
+              onFocus={this.handleTabClick}
+              onBlur={this.leaveTab}
+            >
+              Explore
+            </Link>
+            {/* <Link to="/host" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
             Host
           </Link> */}
-          <Link to="/host" onClick={() => openModal("newEvent")}>
-            Host
-          </Link>
-          {this.sessionLinks()}
+            <Link to="/host" onClick={() => openModal("newEvent")}>
+              Host
+            </Link>
+            {this.sessionLinks()}
+          </div>
         </div>
       </>
     );

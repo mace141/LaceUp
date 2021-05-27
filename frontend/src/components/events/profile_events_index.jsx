@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import EventIndexItem from './events_index_item';
+import EventIndexItem from './profile_events_index_item';
 
 const EventsIndex = ({ events }) => {
   

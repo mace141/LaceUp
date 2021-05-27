@@ -30,6 +30,9 @@ const EventIndexItem = ({ event, parks }) => {
       <div className='team-size'>
         <p>Team Size: <span>{event.team_size}</span></p>
       </div>
+      <div className='num-teams'>
+        <p># of Teams: <span>{event.num_teams}</span></p>
+      </div>
     </div>
   )
 }

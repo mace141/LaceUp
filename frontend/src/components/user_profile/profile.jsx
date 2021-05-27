@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import EventsIndex from '../events/events_index';
+import EventsIndex from '../events/profile_events_index';
 import UserDetail from './user_detail';
 import { fetchUser } from '../../actions/user';
 import { fetchParks } from '../../actions/park';
@@ -15,6 +15,8 @@ class Profile extends React.Component {
       tabIdx: 0,
       events: []
     };
+
+    this.toggleTabs = this.toggleTabs.bind(this);
   }
 
   componentDidMount() {
@@ -27,16 +29,24 @@ class Profile extends React.Component {
     );
   }
 
+  toggleTabs(num) {
+    const tabs = document.getElementsByClassName('tabs');
+    for (let tab of tabs) {
+      tab.style.fontWeight = 400;
+    }
+    document.getElementById(`tab${num}`).style.fontWeight = 600;
+  }
+
   render() {
     const { events } = this.state;
     
     const newEvents = events.filter(
       event => Date.parse(event.date) > Date.now()
-    ).sort((a, b) => Date.parse(a.date) > Date.parse(b.date) ? -1 : 1);
+    ).sort((a, b) => Date.parse(a.date) > Date.parse(b.date) ? 1 : -1);
 
     const oldEvents = events.filter(
       event => Date.parse(event.date) <= Date.now()
-    ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? -1 : 1);
+    ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? 1 : -1);
     
     const tabs = [<EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>, <p>Club Component</p>];
     
@@ -44,9 +54,24 @@ class Profile extends React.Component {
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
         <nav className='profile-tabs'>
-          <button onClick={() => this.setState({ tabIdx: 0 })}>Schedule</button>
-          <button onClick={() => this.setState({ tabIdx: 1 })}>History</button>
-          <button onClick={() => this.setState({ tabIdx: 2 })}>Clubs</button>
+          <div onClick={() => {
+                        this.setState({ tabIdx: 0 });
+                        this.toggleTabs(0);
+                      }} className='tabs' id='tab0' style={{fontWeight:600}}>
+            <button>Schedule</button>
+          </div>
+          <div onClick={() => {
+                        this.setState({ tabIdx: 1 });
+                        this.toggleTabs(1);
+                      }} className='tabs' id='tab1'>
+            <button>History</button>
+          </div>
+          <div onClick={() => {
+                        this.setState({ tabIdx: 2 });
+                        this.toggleTabs(2);
+                      }} className='tabs' id='tab2'>
+            <button>Clubs</button>
+          </div>
         </nav>
         {tabs[this.state.tabIdx]}
       </section>
