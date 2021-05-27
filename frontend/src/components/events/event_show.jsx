@@ -64,10 +64,13 @@ class EventShow extends React.Component {
             <p>Sport: <span>{event.sport}</span></p>
           </div>
           <div className='skill'>
-            <p>Skill level: <span>{event.skill}</span></p>
+            <p>Skill Level: <span>{event.skill}</span></p>
           </div>
           <div className='team-size'>
             <p>Team Size: <span>{event.team_size}</span></p>
+          </div>
+          <div className='num-teams'>
+            <p># of Teams: <span>{event.num_teams}</span></p>
           </div>
           <div className='event-host'>
             <p>Hosted by: <span>{this.state.eventHost}</span></p>

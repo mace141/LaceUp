@@ -15,6 +15,8 @@ class Profile extends React.Component {
       tabIdx: 0,
       events: []
     };
+
+    this.toggleTabs = this.toggleTabs.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +27,14 @@ class Profile extends React.Component {
     fetchEventsByUser(match.params.id).then(
       payload => this.setState({ events: payload.data }) 
     );
+  }
+
+  toggleTabs() {
+    const tabs = document.getElementsByClassName('tabs');
+    for (let tab of tabs) {
+      tab.style.fontWeight = 400;
+    }
+    document.getElementById(`tab${this.state.tabIdx}`).style.fontWeight = 600;
   }
 
   render() {
@@ -44,9 +54,21 @@ class Profile extends React.Component {
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
         <nav className='profile-tabs'>
-          <button onClick={() => this.setState({ tabIdx: 0 })}>Schedule</button>
-          <button onClick={() => this.setState({ tabIdx: 1 })}>History</button>
-          <button onClick={() => this.setState({ tabIdx: 2 })}>Clubs</button>
+          <button id='tab0' className='tabs'
+                  onClick={() => {
+                    this.setState({ tabIdx: 0 });
+                    this.toggleTabs();
+                  }}>Schedule</button>
+          <button id='tab1' className='tabs'
+                  onClick={() => {
+                    this.setState({ tabIdx: 1 });
+                    this.toggleTabs();
+                  }}>History</button>
+          <button id='tab2' className='tabs'
+                  onClick={() => {
+                    this.setState({ tabIdx: 2 });
+                    this.toggleTabs();
+                  }}>Clubs</button>
         </nav>
         {tabs[this.state.tabIdx]}
       </section>
