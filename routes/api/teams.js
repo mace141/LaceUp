@@ -17,10 +17,10 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const teams = await Team.findById(req.params.id).populate(
-    "player_id, event_id"
-  );
-  res.json(teams);
+  const teams = await Team.findById(req.params.id)
+    .populate("player_id, event_id")
+  res.json(players);
+
 });
 
 router.post(
@@ -41,6 +41,7 @@ router.post(
           name: req.body.name,
           numPlayers: req.body.numPlayers,
           playersToFill: req.body.playersToFill,
+          // player_id: req.body.player_id,
           player_id: req.user.id,
           event_id: req.body.event_id,
         });
@@ -55,14 +56,13 @@ router.post(
 
 router.patch(
   "/:id",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // const { errors, isValid } = validateTeamInput(req.body);
+    const { errors, isValid } = validateTeamInput(req.body);
 
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
-
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
 
     Team.findByIdAndUpdate(
       { _id: req.params.id },
@@ -83,7 +83,6 @@ router.patch(
     );
   }
 );
-
 
 router.delete(
   "/delete/:id",

@@ -42,17 +42,17 @@ const UserSchema = new Schema({
   // },
   team_id: {
     type: Schema.Types.ObjectId, 
-    ref: "teams"
+    ref: "Team"
   },
 
   event_id: {
     type: Schema.Types.ObjectId,
-    ref: "events",
+    ref: "event",
   },
   // },
   post_id: {
     type: Schema.Types.ObjectId, 
-    ref: "posts"
+    ref: "Post"
   },
   date: {
     type: Date,

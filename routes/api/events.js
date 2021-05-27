@@ -242,6 +242,7 @@ router.post(
     const newEvent = new Event({
       location_id: req.body.location_id,
       user_id: req.body.user_id,
+      // user_id: req.user.id,
       teams_id: req.body.teams_id,
       date: req.body.date,
       sport: req.body.sport,

@@ -146,8 +146,8 @@ router.get("/search", (req, res) => {
   });
 });
 
-router.put(
-  "/update/:id",
+router.patch(
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const { errors, isValid } = validateUpdateInput(req.body);
@@ -200,13 +200,12 @@ router.get(
 //     );
 // });
 
-
 router.get("/:id", (req, res) => {
   let user = User.findById(req.params.id);
   let userEvents = Event.find({ user_id: req.params.id });
-  let userTeams = Team.find({ player_id: req.params.id})
-  let userPosts = Post.find({ user_id: req.params.id})
-  Promise.all([user, userEvents, userTeams,])
+  let userTeams = Team.find({ player_id: req.params.id });
+  let userPosts = Post.find({ user_id: req.params.id });
+  Promise.all([user, userEvents, userTeams])
     .then((data) => res.json(data))
     .catch((err) => res.status(404).json(err));
 });
