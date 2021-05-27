@@ -28,12 +28,10 @@
 .navbar-right {
   display: flex;
   align-items: center;
-  // margin-left: 20px;
 
-  // flex-direction: row;
-  // justify-content: space-between;
-  // width: 380px;
-  // padding: 10px;
+  > button {
+    margin-left: 10px;
+  }
 }
 
 .header-logo-container {
@@ -48,18 +46,17 @@
   object-fit: cover;
 }
 .login-signup {
-  // display: flex;
-  // margin-right: 20px;
-  // width: 200px;
-  // flex-direction: row;
-  // justify-content: space-between;
+  
+  button, a {
+    margin-left: 10px;
+  }
 }
 
 // .selected {
 //   background: red;
 // }
 
-.form-button {
+.form-button, .logout-btn {
   // border: 0;
   border-radius: 4px;
   background: $primary;
@@ -67,6 +64,10 @@
   padding: 7px;
   // margin-left: 3px;
   // margin-right: 3px;
+}
+
+.logout-btn {
+  color: white;
 }
 
 .host-btn {

@@ -43,7 +43,7 @@
   box-shadow: none;
   padding: 7px;
   color: white;
-  :hover {
+  &:hover {
     // padding: 7px;
     background-color: $primaryDark;
   }
