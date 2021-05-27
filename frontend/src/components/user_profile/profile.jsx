@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import EventsIndex from '../events/events_index';
+import EventsIndex from '../events/profile_events_index';
 import UserDetail from './user_detail';
 import { fetchUser } from '../../actions/user';
 import { fetchParks } from '../../actions/park';
@@ -32,11 +32,11 @@ class Profile extends React.Component {
     
     const newEvents = events.filter(
       event => Date.parse(event.date) > Date.now()
-    ).sort((a, b) => Date.parse(a.date) > Date.parse(b.date) ? -1 : 1);
+    ).sort((a, b) => Date.parse(a.date) > Date.parse(b.date) ? 1 : -1);
 
     const oldEvents = events.filter(
       event => Date.parse(event.date) <= Date.now()
-    ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? -1 : 1);
+    ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? 1 : -1);
     
     const tabs = [<EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>, <p>Club Component</p>];
     
