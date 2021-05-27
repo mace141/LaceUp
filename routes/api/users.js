@@ -40,8 +40,12 @@ router.post("/register", (req, res) => {
         avatar: req.body.avatar,
         event_id: req.body.event_id,
         team_id: req.body.team_id,
+<<<<<<< HEAD
         // post_id: req.body.team_id
 
+=======
+        post_id: req.body.team_id
+>>>>>>> main
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hashed) => {
@@ -87,10 +91,16 @@ router.post("/login", (req, res) => {
           // home_court: body.home_court.id,
           favorite_sports: user.favorite_sports,
           avatar: user.avatar,
+<<<<<<< HEAD
 
           // event_id: user.event_id,
           // team_id: req.body.team_id,
           // post_id: req.body.team_id,
+=======
+          event_id: user.event_id,
+          team_id: req.body.team_id,
+          post_id: req.body.post_id,
+>>>>>>> main
         };
 
         jwt.sign(
@@ -223,13 +233,13 @@ router.get("/:id", (req, res) => {
 // });
 
 //user events
-router.get("/:id/events", (req, res) => {
-  Event.find({ user_id: req.body.id}).then((events => res.json(events))).catch(err => res.status(404).json({
-    noeventsfound: "No events found for that user"
-  }));
-})
+// router.get("/:id/events", (req, res) => {
+//   Event.find({ user_id: req.body.id}).then((events => res.json(events))).catch(err => res.status(404).json({
+//     noeventsfound: "No events found for that user"
+//   }));
+// })
 
-router.get("/:")
+// router.get("/:")
 
 //user events
 // router.get("/:id/events", (req, res) => {
