@@ -17,7 +17,8 @@ const eventsReducer = (state = {}, action) => {
             delete newState[action.eventId];
             return newState;
         case RECEIVE_USER:
-            return { ...state, ...action.user.events };
+            action.payload.data[1].forEach(e => newState[e._id] = e);
+            return newState;
         default:
             return state;
     }

@@ -38,9 +38,11 @@ router.post("/register", (req, res) => {
         home_court: req.body.home_court,
         favorite_sports: req.body.favorite_sports,
         avatar: req.body.avatar,
-        // event_id: req.body.event_id,
-        // team_id: req.body.team_id,
+        event_id: req.body.event_id,
+        team_id: req.body.team_id,
+
         // post_id: req.body.team_id
+
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hashed) => {
@@ -86,9 +88,9 @@ router.post("/login", (req, res) => {
           // home_court: body.home_court.id,
           favorite_sports: user.favorite_sports,
           avatar: user.avatar,
-          // event_id: user.event_id,
-          // team_id: req.body.team_id,
-          // post_id: req.body.team_id,
+          event_id: user.event_id,
+          team_id: req.body.team_id,
+          post_id: req.body.post_id,
         };
 
         jwt.sign(
@@ -119,35 +121,8 @@ router.delete(
   }
 );
 
-// router.put(
-//   "/update/:id",
-//   // passport.authenticate("jwt", { session: false }),
-//   async (req, res) => {
-//     const { errors, isValid } = validateRegisterInput(req.body);
-
-//     // if (!isValid) {
-//     //   return res.status(400).json(errors);
-//     // }
-
-//     await db
-//       .collection("users")
-//       .replaceOne({ _id: ObjectID(req.params.id) }, req.body)
-
-//     res.json('hitting database');
-//     res.json("updated");
-//   }
-// );
-//user search
-
-router.get("/search", (req, res) => {
-  const search = req.query.name;
-  User.find({ username: { $regex: search, $options: "$i" } }).then((data) => {
-    res.json(data);
-  });
-});
-
-router.put(
-  "/update/:id",
+router.patch(
+  "/:id",
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     const { errors, isValid } = validateUpdateInput(req.body);
@@ -177,8 +152,37 @@ router.put(
     );
   }
 );
+// router.put(
+//   "/:id",
+//   passport.authenticate("jwt", { session: false }),
+//   async (req, res) => {
+//     const { errors, isValid } = validateUpdateInput(req.body);
 
-//** TEST ROUTE **
+//     if (!isValid) {
+//       return res.status(400).json(errors);
+//     }
+//     User.findByIdAndUpdate(
+//       { _id: req.params.id },
+//       {
+//         username: req.body.username,
+//         fname: req.body.fname,
+//         lname: req.body.lname,
+//         email: req.body.email,
+//         bio: req.body.bio,
+//         // home_court: body.home_court.id,
+//         favorite_sports: req.body.favorite_sports,
+//         avatar: req.body.avatar,
+//       },
+//       { new: true },
+//       function (err, result) {
+//         if (err) {
+//           res.json(err);
+//         }
+//         res.json(result);
+//       }
+//     );
+//   }
+// );
 
 router.get(
   "/current",
@@ -191,27 +195,13 @@ router.get(
 );
 
 router.get("/:id", (req, res) => {
-  User.findById(req.params.id)
-    .then((user) => res.json(user))
-    .catch((err) =>
-      res.status(404).json({
-        nouserfound: "No user found with that id",
-      })
-    );
+  let user = User.findById(req.params.id);
+  let userEvents = Event.find({ user_id: req.params.id });
+  let userTeams = Team.find({ player_id: req.params.id });
+  let userPosts = Post.find({ user_id: req.params.id });
+  Promise.all([user, userEvents, userTeams])
+    .then((data) => res.json(data))
+    .catch((err) => res.status(404).json(err));
 });
-
-
-
-
-//user events
-// router.get("/:id/events", (req, res) => {
-//   Event.find({ user_id: req.body.id })
-//     .then((events) => res.json(events))
-//     .catch((err) =>
-//       res.status(404).json({
-//         noeventsfound: "No events found for that user",
-//       })
-//     );
-// });
 
 module.exports = router;

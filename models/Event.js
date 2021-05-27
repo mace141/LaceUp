@@ -3,21 +3,21 @@ const Schema = mongoose.Schema;
 
 const EventSchema = new Schema({
   location_id: {
-    type: Schema.Types.ObjectId,
-    ref: "parks",
+    type: mongoose.Types.ObjectId,
+    ref: "Park",
   },
   user_id: {
-    type: Schema.Types.ObjectId,
-    ref: "users",
+    type: mongoose.Types.ObjectId,
+    ref: "User",
   },
-  teams_id: {
-    type: Schema.Types.ObjectId,
-    ref: "teams",
-  },
+  team_id: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Team",
+    },
+  ],
   date: {
     type: Date,
-    // min: [Date.now, "Must create a future event"],
-    // max: ["2025-01-01"]
   },
   sport: {
     type: String,
@@ -44,6 +44,5 @@ const EventSchema = new Schema({
     default: Date.now,
   },
 });
-
 
 module.exports = Event = mongoose.model("event", EventSchema);
