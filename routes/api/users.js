@@ -119,26 +119,6 @@ router.delete(
   }
 );
 
-// router.put(
-//   "/update/:id",
-//   // passport.authenticate("jwt", { session: false }),
-//   async (req, res) => {
-//     const { errors, isValid } = validateRegisterInput(req.body);
-
-//     // if (!isValid) {
-//     //   return res.status(400).json(errors);
-//     // }
-
-//     await db
-//       .collection("users")
-//       .replaceOne({ _id: ObjectID(req.params.id) }, req.body)
-
-//     res.json('hitting database');
-//     res.json("updated");
-//   }
-// );
-// user search
-
 router.get("/search", (req, res) => {
   const search = req.query.name;
   User.find({ username: { $regex: search, $options: "$i" } }).then((data) => {
@@ -177,8 +157,37 @@ router.patch(
     );
   }
 );
+// router.put(
+//   "/:id",
+//   passport.authenticate("jwt", { session: false }),
+//   async (req, res) => {
+//     const { errors, isValid } = validateUpdateInput(req.body);
 
-//** TEST ROUTE **
+//     if (!isValid) {
+//       return res.status(400).json(errors);
+//     }
+//     User.findByIdAndUpdate(
+//       { _id: req.params.id },
+//       {
+//         username: req.body.username,
+//         fname: req.body.fname,
+//         lname: req.body.lname,
+//         email: req.body.email,
+//         bio: req.body.bio,
+//         // home_court: body.home_court.id,
+//         favorite_sports: req.body.favorite_sports,
+//         avatar: req.body.avatar,
+//       },
+//       { new: true },
+//       function (err, result) {
+//         if (err) {
+//           res.json(err);
+//         }
+//         res.json(result);
+//       }
+//     );
+//   }
+// );
 
 router.get(
   "/current",
@@ -190,16 +199,6 @@ router.get(
   }
 );
 
-// router.get("/:id", (req, res) => {
-//   User.findById(req.params.id)
-//     .then((user) => res.json(user))
-//     .catch((err) =>
-//       res.status(404).json({
-//         nouserfound: "No user found with that id",
-//       })
-//     );
-// });
-
 router.get("/:id", (req, res) => {
   let user = User.findById(req.params.id);
   let userEvents = Event.find({ user_id: req.params.id });
@@ -209,16 +208,5 @@ router.get("/:id", (req, res) => {
     .then((data) => res.json(data))
     .catch((err) => res.status(404).json(err));
 });
-
-//user events
-// router.get("/:id/events", (req, res) => {
-//   Event.find({ user_id: req.body.id })
-//     .then((events) => res.json(events))
-//     .catch((err) =>
-//       res.status(404).json({
-//         noeventsfound: "No events found for that user",
-//       })
-//     );
-// });
 
 module.exports = router;

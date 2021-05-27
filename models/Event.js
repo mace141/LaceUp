@@ -10,8 +10,8 @@ const EventSchema = new Schema({
     type: mongoose.Types.ObjectId,
     ref: "User",
   },
-  teams_id: {
-    type: mongoose.Types.ObjectId,
+  team_id: {
+    type: [mongoose.Types.ObjectId],
     ref: "Team",
   },
   date: {

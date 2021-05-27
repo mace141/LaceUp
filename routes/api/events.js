@@ -231,19 +231,19 @@ router.get("/test", (req, res) => res.json({ msg: "Events route" }));
 
 router.post(
   "/create",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // const { errors, isValid } = validateEventInput(req.body);
+    const { errors, isValid } = validateEventInput(req.body);
 
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
 
     const newEvent = new Event({
       location_id: req.body.location_id,
-      user_id: req.body.user_id,
-      // user_id: req.user.id,
-      teams_id: req.body.teams_id,
+      // user_id: req.body.user_id,
+      user_id: req.user.id,
+      team_id: req.body.team_id,
       date: req.body.date,
       sport: req.body.sport,
       skill: req.body.skill,
@@ -267,28 +267,28 @@ router.get("/", (req, res) => {
 
 router.get("/:id", async (req, res) => {
   const event = await Event.findById(req.params.id).populate(
-    "teams_id, location_id, user_id"
+    "team_id, location_id, user_id"
   );
   res.json(event);
 });
 
 
-router.get("/:id/teams", async (req, res) => {
-  const teams = await Event.findById(req.params.id).populate(
-    "teams_id"
-  );
-  const players = await Team.find({team_id: req.body.team_id}).populate("players_id")
-  res.json(teams);
-  const teamsObj = {};
-  const playersObj = {};
-  players.forEach(player => {
-    playersObj[player.id] = player
-  });
-  teams.forEach(team => {
-    teamObj[team.id] = team
-  });
-  return res.json({ teams: teamsObj, players: playersObj})
-});
+// router.get("/:id/teams", async (req, res) => {
+//   const teams = await Event.findById(req.params.id).populate(
+//     "teams_id"
+//   );
+//   const players = await Team.find({team_id: req.body.team_id}).populate("players_id")
+//   res.json(teams);
+//   const teamsObj = {};
+//   const playersObj = {};
+//   players.forEach(player => {
+//     playersObj[player.id] = player
+//   });
+//   teams.forEach(team => {
+//     teamObj[team.id] = team
+//   });
+//   return res.json({ teams: teamsObj, players: playersObj})
+// });
 
 
 router.get("/user/:user_id", (req, res) => {
@@ -300,8 +300,8 @@ router.get("/user/:user_id", (req, res) => {
     );
 });
 
-router.get("/team/:teams_id", (req, res) => {
-  Event.find({ teams_id: req.params.teams_id })
+router.get("/team/:team_id", (req, res) => {
+  Event.find({ team_id: req.params.team_id })
     .sort({ date: -1 })
     .then((events) => res.json(events))
     .catch((err) =>
@@ -364,13 +364,13 @@ router.delete(
 
 router.patch(
   "/:id",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateEventInput(req.body);
+    // const { errors, isValid } = validateEventInput(req.body);
 
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
 
     let newPlayer;
 
@@ -378,8 +378,7 @@ router.patch(
       { _id: req.params.id },
       {
         location_id: req.body.location_id,
-        // user_id: req.user.id,
-        teams_id: req.body.teams_id,
+        $push: { team_id: req.body.team_id },
         date: req.body.date,
         sport: req.body.sport,
         skill: req.body.skill,
