@@ -60,13 +60,6 @@ class EditUserForm extends React.Component {
 
     const formData = new FormData();
     
-    // formData.append('user[id]', this.state._id);
-    // formData.append('user[avatar]', this.state.avatar);
-    // formData.append('user[username]', this.state.username);
-    // formData.append('user[bio]', this.state.bio);
-    // formData.append('user[favoriteSports]', this.state.favorite_sports);
-    // formData.append('user[homeCourts]', this.state.home_court);
-    debugger
     this.props.updateUser(this.state);
     document.getElementById('avatar-input').value = "";
     this.props.closeModal();

@@ -40,8 +40,6 @@ router.post(
       .save()
       .then((team) => res.json(team))
       .catch((err) => res.status(404).json(err));
-    //   }
-    // }
   }
 );
 
