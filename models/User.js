@@ -35,6 +35,7 @@ const UserSchema = new Schema({
     required: false,
     data: Buffer,
   },
+
   // home_court: {
   //   type: Number,
   //   required: false,
@@ -44,6 +45,7 @@ const UserSchema = new Schema({
     type: mongoose.Types.ObjectId,
     ref: "Team",
   },
+
   event_id: {
     type: mongoose.Types.ObjectId,
     ref: "event",
