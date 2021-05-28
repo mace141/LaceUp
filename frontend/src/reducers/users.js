@@ -1,5 +1,5 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
-import { RECEIVE_USERS, RECEIVE_USER, REMOVE_USER, RECEIVE_UPDATED_USER } from '../actions/user';
+import { RECEIVE_USER, RECEIVE_UPDATED_USER } from '../actions/user';
 
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);

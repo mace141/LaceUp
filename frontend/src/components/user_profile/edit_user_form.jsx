@@ -34,7 +34,7 @@ class EditUserForm extends React.Component {
     }
     
     let sports = options.join(', ');
-    if (sports[0] == ',') sports = sports.slice(2);
+    if (sports[0] === ',') sports = sports.slice(2);
 
     this.setState({ favorite_sports: sports });
   }

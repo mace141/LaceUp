@@ -18,6 +18,7 @@ class TeamsIndexItem extends React.Component {
     addPlayer(team._id, currentUserId)
     window.location.reload()
   }
+
   render() {
     const { team, event } = this.props;
 
@@ -36,7 +37,7 @@ class TeamsIndexItem extends React.Component {
         teamSpots.push('empty');
       }
     }
-    debugger
+    
     return (
       <div className='team-item'>
         <h1>{team.name}</h1>

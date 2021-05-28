@@ -4,9 +4,6 @@ export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const REMOVE_EVENT = 'REMOVE_EVENT';
 export const RECEIVE_EVENT_ERRORS = 'RECEIVE_EVENT_ERRORS';
-// export const RECEIVE_USER_EVENTS = 'RECEIVE_USER_EVENTS';
-// export const RECEIVE_TEAM_EVENTS = 'RECEIVE_TEAM_EVENTS';
-// export const RECEIVE_LOCATION_EVENTS = 'RECEIVE_LOCATION_EVENTS';
 
 const receiveEvents = payload => ({
     type: RECEIVE_EVENTS,
@@ -52,7 +49,6 @@ export const fetchEventsByLocation = (locationId) => (dispatch) => {
 export const createEvent = (event) => (dispatch) => {
     return EventAPI.createEvent(event)
         .then((data) => dispatch(receiveEvent(data)));
-        // (err) => dispatch(receiveEventErrors(err.response.data))
 };
 
 export const deleteEvent = (eventId) => (dispatch) => {
@@ -69,12 +65,10 @@ export const fetchEvent = eventId => dispatch => (
 export const fetchUsersEvents = (userId) => (dispatch) =>
     EventAPI.fetchUsersEvents(userId).then(
         (events) => dispatch(receiveEvents(events))
-        // (err) => dispatch(receiveErrors(err.response.data.noeventsfound))
 );
 
 export const fetchParksEvents = (parkId) => (dispatch) =>
     EventAPI.fetchParksEvents(parkId).then(
         (events) => dispatch(receiveEvents(events)),
-        // (err) => dispatch(receiveErrors(err.response.data.noeventsfound))
 );
   
