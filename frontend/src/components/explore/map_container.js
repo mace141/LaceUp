@@ -49,6 +49,9 @@ class MapContainer extends Component {
       return (
         <div className="explore-page-container">
           <div className="explore-side-window">
+            {activeMarker ? null : (
+              <h1 className="side-window-header">Parks on LaceUp</h1>
+            )}
             {activeMarker ? (
               <EventIndexContainer park={selectedPlace} />
             ) : (
@@ -73,7 +76,7 @@ class MapContainer extends Component {
             zoom={13}
             // style={defaultMapStyles.styles}
             initialCenter={{
-              lat: 40.6710,
+              lat: 40.671,
               lng: -73.9999,
             }}
           >

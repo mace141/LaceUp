@@ -13,8 +13,20 @@
   flex-direction: column;
   overflow-y: scroll;
   // position: relative;
+  div:nth-child(odd) {
+    // background: $neutralLighter;
+    background: pink;
+  }
 }
-
+.side-window-header {
+  text-align: center;
+  font-size: large;
+  padding: 20px;
+  font-weight: bolder;
+  font-style: oblique;
+  // background: pink;
+  border-bottom: 1px solid black;
+}
 .explore-index-item {
   // margin: 1px;
   display: flex;
@@ -23,9 +35,11 @@
   flex-direction: column;
   height: 200px;
   background: none;
+  padding-top: 10px;
+  padding-left: 10px;
   // border-radius: 3px;
   box-shadow: 1 30px 5px rgb(25 0 25 / 3%);
-  border-bottom: 2px solid rgb(202, 197, 193);
+  border-bottom: 1px solid rgb(202, 197, 193);
   // border-top: 2px solid rgb(141, 140, 139);
 }
 

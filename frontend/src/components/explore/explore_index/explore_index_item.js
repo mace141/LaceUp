@@ -18,7 +18,6 @@ class ExploreIndexItem extends React.Component {
       return (
         <>
           <div className="explore-index-item">
-            <h1>{park.name}</h1>
             <Link
               className="search-res-link"
               to={{
@@ -28,7 +27,7 @@ class ExploreIndexItem extends React.Component {
                 },
               }}
             >
-              Click here
+              <h1 className="park-idx-header">Events at {park.name}</h1>
             </Link>
             <h2>
               {park.address}, {park.borough}
