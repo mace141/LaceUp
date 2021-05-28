@@ -4,8 +4,6 @@ import { openModal } from "../../actions/modal_actions";
 import { fetchParks } from "../../actions/park";
 import Splash from "./splash";
 
-// import { fetchEvents } from "../../actions/event_actions";
-
 const mSTP = (state, ownProps) => {
   return {};
 };

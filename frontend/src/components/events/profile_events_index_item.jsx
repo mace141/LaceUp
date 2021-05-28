@@ -10,8 +10,7 @@ const EventIndexItem = ({ event, parks }) => {
   const year = date.getFullYear();
   const hours = date.getHours();
   const minutes = date.getMinutes();
-
-  const time = `${hours}:${minutes}`;
+  const time = `${hours > 12 ? hours - 12 : hours}:${minutes < 10 ? '0'+minutes : minutes} ${hours > 12 ? 'PM' : 'AM'}`;
 
   return (
     <div className='profile-event-item'>

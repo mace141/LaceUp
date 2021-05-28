@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import logo from "../../style/assets/logoB.png";
 
 class NavBar extends React.Component {
-  constructor(props) {
+  constructor(props, context) {
     super(props);
     this.state = {
       sessionChange: this.props.loggedIn,
@@ -12,6 +12,7 @@ class NavBar extends React.Component {
 
     this.handleTabClick = this.handleTabClick.bind(this);
     this.leaveTab = this.leaveTab.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
     this.ensureSession = this.ensureSession.bind(this);
   }
 
@@ -25,13 +26,17 @@ class NavBar extends React.Component {
     currEle.classList.remove("selected");
   }
 
+  handleLogout() {
+    this.props.logout();
+    window.location.hash = "#/";
+  }
   ensureSession() {
     const { currentUser, openModal } = this.props;
 
     if (currentUser) {
-      openModal('newEvent');
+      openModal("newEvent");
     } else {
-      openModal('login');
+      openModal("login");
     }
   }
 
@@ -57,10 +62,16 @@ class NavBar extends React.Component {
       );
     } else {
       // logged in display
+
       return (
         <nav className="login-signup">
-          <Link to={`/users/${currentUser.id}`}>Profile</Link>
-          <button className='logout-btn' onClick={() => logout()}>Logout</button>
+          <button className="host-btn" onClick={() => openModal("newEvent")}>
+            Host
+          </button>
+          <Link to={`/users/${this.props.currentUser.id}`}>Profile</Link>
+          <button className="logout-btn" onClick={this.handleLogout}>
+            Logout
+          </button>
         </nav>
       );
     }
@@ -87,9 +98,6 @@ class NavBar extends React.Component {
             >
               Explore
             </Link>
-            <button className='host-btn' onClick={this.ensureSession}>
-              Host
-            </button>
             {this.sessionLinks()}
           </div>
         </div>

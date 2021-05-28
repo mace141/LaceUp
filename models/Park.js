@@ -38,10 +38,6 @@ const ParkSchema = new Schema({
     type: mongoose.Types.ObjectId,
     ref: "events",
   },
-  // users: {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "users"
-  // },
   date: {
     type: Date,
     default: Date.now,

@@ -3,9 +3,6 @@
   height: 700px;
   object-fit: cover;
   box-shadow: 0 4px 12px lightgrey;
-  // object-position: 100% 0;
-  // height: 100%;
-  //  margin-top: 20px;
 }
 
 .carousel-container {
@@ -40,9 +37,6 @@
   align-items: center;
   justify-content: center;
 }
-.splash-page-whole {
-  // display: flex;
-}
 
 .search-bar-container {
   width: 50%;
@@ -52,18 +46,15 @@
   width: 100%;
   position: relative;
   text-align: left;
+  padding: 0 10px;
   border: 1px solid grey;
   border-radius: 5px;
   height: 35px;
-  // padding-left: 5px;
   outline: 0;
   background-color: #f5f5f5;
-  // margin-bottom: 30px;
 }
 .silent-click {
-  // display: relative;
   box-shadow: 0 4px 12px lightgrey;
-  // background: pink;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -78,9 +69,6 @@
   background: pink;
 }
 .search-results-li {
-  // background-color: $neutralLightest;
-  // padding: 7px;
-
   color: black;
   color: $neutral;
   border-bottom: 1px solid #a39b9b;
@@ -91,7 +79,6 @@
 
   padding: 10px;
   .search-res-link {
-    // margin: 10px;
     display: block;
     width: 100%;
   }
@@ -105,17 +92,12 @@
   li:nth-child(odd) {
     background: rgb(253, 252, 252);
   }
-  // display: inline-block;
-  // border-radius: 10px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 
   width: 50%;
   background: white;
-  // padding: 0px;
   position: absolute;
   z-index: 1000;
-  // position: absolute;
-  // border: 1px solid black;
 }
 
 .app-header {
@@ -127,8 +109,6 @@
   justify-content: center;
   font-family: sans-serif;
   font-size: 16px;
-  //  font-weight: 600;
-  // color: #c4291f;
 }
 
 .app-header-two {
@@ -155,5 +135,65 @@
   font-weight: 600;
   padding-top: 5px;
   font-size: 38px;
-  // margin-bottom: 20px;
+}
+
+// .splash-under {
+//   display: flex;
+//   height: 300px;
+// }
+
+.splash-footer {
+  margin-top: 20px;
+  // margin-bottom: 10px;
+}
+
+.founders {
+  margin-bottom: 10px;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+.founder-info {
+  display: inline-block;
+  margin-right: 50px;
+  font-family: sans-serif;
+}
+
+.footer-name {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 600;
+  // margin-top: -10px;
+}
+.footer-linkedin {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.footer-linkedin:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.footer-site {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.footer-img {
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  margin-right: 10px;
+  // margin-top: 10px;
+}
+
+.founder-info-jack {
+  display: inline-block;
+  margin-right: 0px;
+  font-family: sans-serif;
 }

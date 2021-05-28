@@ -49,7 +49,6 @@ class Search extends React.Component {
   }
 
   showMenu(event) {
-    console.log("showmenu");
     event.preventDefault();
 
     this.setState({ showMenu: true }, () => {
@@ -58,7 +57,6 @@ class Search extends React.Component {
   }
 
   closeMenu(event) {
-    debugger;
     if (!this.dropdownMenu) {
       return null;
     }
@@ -75,12 +73,10 @@ class Search extends React.Component {
   handleEnterClick = (e) => {
     const { filtered } = this.state;
     if (e.key === "Enter") {
-      console.log("enter click");
       if (filtered.length > 0) {
         console.log(filtered[0].name);
         this.setState({ enterClickRedirect: true });
       }
-      console.log("no items in filter");
     }
   };
 
@@ -91,54 +87,55 @@ class Search extends React.Component {
         <h1 className="app-header">Looking for a casual pickup game? LaceUp has you covered!</h1>
         <h1 className="app-header-two first">Join today to find local sporting events </h1>
         <h1 className="app-header-two">that need YOU on their team. </h1>
-        <h1 className="app-header-three">Sign in, meet up, LaceUp.</h1>
+        <h1 className="app-header-three">Sign up, meet up, LaceUp.</h1>
         <br />
-      <div
-        onBlur={this.unDispDrop}
-        className="silent-click"
-        className="search-bar-container"
-      >
-        <div>
-          {enterClickRedirect ? (
-            <Redirect
-              to={{
-                pathname: "/explore",
-                state: { selectedPlace: filtered[0] },
+        <div
+          onBlur={this.unDispDrop}
+          className="silent-click"
+          className="search-bar-container"
+        >
+          <div>
+            {enterClickRedirect ? (
+              <Redirect
+                to={{
+                  pathname: "/explore",
+                  state: { selectedPlace: filtered[0] },
+                }}
+              />
+            ) : null}
+            <input
+              ref={(element) => {
+                this.dropdownMenu = element;
               }}
+              type="text"
+              className="search-bar-input"
+              onChange={this.handleChange}
+              onFocus={this.showMenu}
+              placeholder="Search by park..."
+              onKeyPress={this.handleEnterClick}
             />
-          ) : null}
-          <input
-            ref={(element) => {
-              this.dropdownMenu = element;
-            }}
-            type="text"
-            className="search-bar-input"
-            onFocus={this.showMenu}
-            placeholder="Search by park..."
-            onKeyPress={this.handleEnterClick}
-          />
-          {this.state.showMenu ? (
-            <ul id="search-res" className="search-results-ul">
-              {this.state.filtered.map((park) => (
-                <li key={park._id} className="search-results-li">
-                  <Link
-                    className="search-res-link"
-                    to={{
-                      pathname: `/explore`,
-                      state: {
-                        selectedPlace: park,
-                      },
-                    }}
-                  >
-                    {park.name}
-                  </Link>
-                  <span className="delete" />
-                </li>
-              ))}
-            </ul>
-          ) : null}
+            {this.state.showMenu ? (
+              <ul id="search-res" className="search-results-ul">
+                {this.state.filtered.map((park) => (
+                  <li key={park._id} className="search-results-li">
+                    <Link
+                      className="search-res-link"
+                      to={{
+                        pathname: `/explore`,
+                        state: {
+                          selectedPlace: park,
+                        },
+                      }}
+                    >
+                      {park.name}
+                    </Link>
+                    <span className="delete" />
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
         </div>
-      </div>
       </div>
     );
   }
