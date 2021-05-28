@@ -48,6 +48,9 @@ class NavBar extends React.Component {
       // logged in display
       return (
         <nav className="login-signup">
+          <button className='host-btn' onClick={() => openModal("newEvent")}>
+            Host
+          </button>
           <Link to={`/users/${this.props.currentUser.id}`}>Profile</Link>
           <button className='logout-btn' onClick={() => this.props.logout()}>Logout</button>
         </nav>
@@ -75,9 +78,9 @@ class NavBar extends React.Component {
             >
               Explore
             </Link>
-            <button className='host-btn' onClick={() => openModal("newEvent")}>
+            {/* <button className='host-btn' onClick={() => openModal("newEvent")}>
               Host
-            </button>
+            </button> */}
             {this.sessionLinks()}
           </div>
         </div>
