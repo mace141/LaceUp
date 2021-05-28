@@ -45,10 +45,12 @@ class MapContainer extends Component {
     const { activeMarker, selectedPlace } = this.state;
     if (!parks) return null;
     else {
-      // debugger;
       return (
         <div className="explore-page-container">
           <div className="explore-side-window">
+            {activeMarker ? null : (
+              <h1 className="side-window-header">Parks on LaceUp</h1>
+            )}
             {activeMarker ? (
               <EventIndexContainer park={selectedPlace} />
             ) : (
@@ -73,7 +75,7 @@ class MapContainer extends Component {
             zoom={13}
             // style={defaultMapStyles.styles}
             initialCenter={{
-              lat: 40.6710,
+              lat: 40.671,
               lng: -73.9999,
             }}
           >
@@ -94,7 +96,9 @@ class MapContainer extends Component {
               visible={this.state.showingInfoWindow}
             >
               <div>
-                <h1>{this.state.selectedPlace.name}</h1>
+                <div>
+                  <h1>{this.state.selectedPlace.name}</h1>
+                </div>
               </div>
             </InfoWindow>
           </Map>

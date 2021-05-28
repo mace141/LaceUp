@@ -161,7 +161,7 @@ class EventForm extends React.Component {
                                 <option value="Football">Football</option>
                                 <option value="Tennis">Tennis</option>
                                 <option value="Baseball">Baseball</option>
-                                <option value="Frisby">Frisby</option>
+                                <option value="Frisbee">Frisbee</option>
                                 <option value="Running">Running</option>
                                 <option value="Cycling">Cycling</option>
                                 <option value="Volleyball">Volleyball</option>

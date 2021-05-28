@@ -8,7 +8,7 @@ const EventsIndex = ({ events }) => {
     <div className='profile-events-index'>
       <ul>
         {events.map(event => (
-          <Link to={`/events/${event._id}`}>
+          <Link key={event._id} to={`/events/${event._id}`}>
             <EventIndexItem key={event._id} event={event}/>
           </Link>
         ))}

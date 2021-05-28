@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { updateUser } from '../../actions/user';
 import { closeModal } from '../../actions/modal_actions';
 import { fetchParks } from '../../actions/park';
+import defaultUser from '../../style/assets/defaultUser.png';
 
 class EditUserForm extends React.Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class EditUserForm extends React.Component {
           <div>
             <div className='edit-avatar-section'>
               <div className='avatar'>
-                <img src={this.state.avatarUrl} alt="Avatar"/>
+                <img src={this.state.avatarUrl || defaultUser} alt="Avatar"/>
                 <input type="file" id='avatar-input' accept='image/*' onChange={this.handleFile}/>
               </div>
               <span onClick={() => document.getElementById('avatar-input').click()}>New Avatar</span>
@@ -95,10 +96,15 @@ class EditUserForm extends React.Component {
                   <option value="Baseball" onClick={this.handleSports}>Baseball</option>
                   <option value="Football" onClick={this.handleSports}>Football</option>
                   <option value="Handball" onClick={this.handleSports}>Handball</option>
+                  <option value="Frisbee" onClick={this.handleSports}>Frisbee</option>
+                  <option value="Running" onClick={this.handleSports}>Running</option>
+                  <option value="Cycling" onClick={this.handleSports}>Cycling</option>
+                  <option value="Volleyball" onClick={this.handleSports}>Volleyball</option>
+                  <option value="Workout" onClick={this.handleSports}>Workout</option>
                 </select>
               </div>
               <div className='courts'>
-                <label>Home Courts</label><br/>
+                <label>Home Court</label><br/>
                 <select onChange={this.handleInput('home_court')}>
                   {this.props.parks.map(park => (
                     <option value={park.name}>{park.name}</option>

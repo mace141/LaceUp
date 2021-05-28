@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import EventsIndex from '../events/profile_events_index';
 import UserDetail from './user_detail';
-import { receiveUser, fetchUser } from '../../actions/user';
+import { receiveUser } from '../../actions/user';
+import { fetchUser } from '../../util/user_api';
 import { fetchParks } from '../../actions/park';
-import { fetchAllEvents } from '../../actions/event_actions';
+import { fetchEventsByUser } from '../../util/event_api';
 
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       tabIdx: 0,
       events: []
@@ -20,15 +21,13 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchUser, fetchParks, fetchAllEvents, receiveUser, dispatch, match } = this.props;
+    const { fetchUser, fetchParks, receiveUser, dispatch, match } = this.props;
 
     fetchParks();
-    fetchUser(match.params.id)
-    // .then(payload => {
-    //   dispatch(receiveUser(payload));
-    //   this.setState({ events: payload.data[1] });
-    // });
-    fetchAllEvents();
+    fetchUser(match.params.id).then(payload => {
+      dispatch(receiveUser(payload));
+      this.setState({ events: payload.data[1] });
+    });
   }
 
   toggleTabs(num) {
@@ -40,18 +39,17 @@ class Profile extends React.Component {
   }
 
   render() {
-    const { events } = this.props;
-    
+    const { events } = this.state;
+
     const newEvents = events.filter(
       event => Date.parse(event.date) > Date.now()
     ).sort((a, b) => Date.parse(a.date) > Date.parse(b.date) ? 1 : -1);
-
     const oldEvents = events.filter(
       event => Date.parse(event.date) <= Date.now()
     ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? 1 : -1);
     
     const tabs = [<EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>, <p>Club Component</p>];
-    
+
     return (
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
@@ -82,13 +80,8 @@ class Profile extends React.Component {
 }
 
 const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => {
-  const currentUserId = user.id; 
-
   return ({
     user: users[ownProps.match.params.id],
-    events: Object.values(events).filter(event => {
-      return event.user_id == ownProps.match.params.id
-    })
   })
 };
 
@@ -96,7 +89,7 @@ const mapDTP = dispatch => ({
   fetchUser: userId => fetchUser(userId),
   receiveUser: payload => receiveUser(payload),
   fetchParks: () => dispatch(fetchParks()),
-  fetchAllEvents: () => dispatch(fetchAllEvents()),
+  fetchEventsByUser: userId => fetchEventsByUser(userId),
   dispatch
 });
 

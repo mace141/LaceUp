@@ -13,7 +13,6 @@ const posts = require("./routes/api/posts");
 
 const app = express();
 
-// 
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connected to MongoDB"))

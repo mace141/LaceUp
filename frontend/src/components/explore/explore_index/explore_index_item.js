@@ -9,7 +9,17 @@ class ExploreIndexItem extends React.Component {
   componentDidMount() {
     // this.props.fetchEvents(this.props.eventId);
   }
-
+  titleize(str) {
+    if (!str.split) return str;
+    const _titleizeWord = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+      },
+      result = [];
+    str.split(" ").forEach((word) => {
+      result.push(_titleizeWord(word));
+    });
+    return result.join(" ");
+  }
   render() {
     const { park } = this.props;
     if (!park) {
@@ -18,7 +28,6 @@ class ExploreIndexItem extends React.Component {
       return (
         <>
           <div className="explore-index-item">
-            <h1>{park.name}</h1>
             <Link
               className="search-res-link"
               to={{
@@ -28,12 +37,12 @@ class ExploreIndexItem extends React.Component {
                 },
               }}
             >
-              Click here
+              <h1 className="park-idx-link">Events at {park.name}</h1>
             </Link>
-            <h2>
+            <h2>Sports: {this.titleize(park.sports)}</h2>
+            <h2 className="park-address">
               {park.address}, {park.borough}
             </h2>
-            <h2>{park.sports}</h2>
           </div>
         </>
       );

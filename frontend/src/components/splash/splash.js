@@ -9,13 +9,17 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import SearchContainer from "./search_container";
 import splash0 from "../../style/assets/splash0.jpeg";
-import splash1 from "../../style/assets/splash1.jpeg";
+import splash1 from "../../style/assets/splash1.jpg";
 import splash2 from "../../style/assets/splash2.jpg";
+<<<<<<< HEAD
 import propic from "../../style/assets/propic.png";
 import daniel from "../../style/assets/76175570.jpg";
 import alex from "../../style/assets/77806372.jpg";
 import andrew from "../../style/assets/andrew.png";
 
+=======
+import splash3 from "../../style/assets/splash3.jpg";
+>>>>>>> main
 class Splash extends React.Component {
   constructor(props) {
     super(props);
@@ -49,11 +53,15 @@ class Splash extends React.Component {
                 <img className="landing-image" src={splash1} />
               </Slide>
               <Slide index={2}>
+                <img className="landing-image" src={splash3} />
+              </Slide>
+              <Slide index={3}>
                 <img className="landing-image" src={splash2} />
               </Slide>
             </Slider>
           </CarouselProvider>
         </div>
+<<<<<<< HEAD
         <div className="splash-under">
           <div className="splash-footer">
             <h1 className="founders">Founders:</h1>
@@ -129,6 +137,8 @@ class Splash extends React.Component {
             </div> */}
           {/* </div> */}
         </div>
+=======
+>>>>>>> main
       </div>
     );
   }
