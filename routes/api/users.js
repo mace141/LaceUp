@@ -129,34 +129,6 @@ router.patch(
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    // async
-    // (req, res) => {
-    // let user = await User.findById(req.params.id);
-    // // let newAv;
-    // profileImgUpload(req, res, (error) => {
-    //   if (error) {
-    //     console.log("errors", error);
-    //     res.json({ error: error });
-    //   } else {
-    //     if (req.file === undefined) {
-    //       res.json("No file selected!");
-    //     }
-    //   }
-    //   // user.avatar = req.file.location
-    //   // user.save().then(user => res.json(user))
-    //   res.json(req.file.location).then((url) => {
-    //     user.avatar = url;
-    //     user.save();
-    //   });
-    //   // user.save().then(user => res.json(user))
-    // });
-
-    // const { errors, isValid } = validateUpdateInput(req.body);
-
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
-
     User.findByIdAndUpdate(
       { _id: req.params.id },
       {
@@ -165,9 +137,9 @@ router.patch(
         lname: req.body.lname,
         email: req.body.email,
         bio: req.body.bio,
-        // home_court: body.home_court.id,
+        home_court: req.body.home_court,
         favorite_sports: req.body.favorite_sports,
-        // avatar: imageLocation,
+        avatar: req.body.avatar,
       },
       { new: true },
       function (err, result) {
@@ -179,6 +151,66 @@ router.patch(
     );
   }
 );
+//WIP
+
+// router.patch(
+//   "/:id",
+//   passport.authenticate("jwt", { session: false }),
+//   async (req, res) => {
+//     const { errors, isValid } = validateUpdateInput(req.body);
+
+//     if (!isValid) {
+//       return res.status(400).json(errors);
+//     }
+//     // async
+//     // (req, res) => {
+//     // let user = await User.findById(req.params.id);
+//     // // let newAv;
+//     // profileImgUpload(req, res, (error) => {
+//     //   if (error) {
+//     //     console.log("errors", error);
+//     //     res.json({ error: error });
+//     //   } else {
+//     //     if (req.file === undefined) {
+//     //       res.json("No file selected!");
+//     //     }
+//     //   }
+//     //   // user.avatar = req.file.location
+//     //   // user.save().then(user => res.json(user))
+//     //   res.json(req.file.location).then((url) => {
+//     //     user.avatar = url;
+//     //     user.save();
+//     //   });
+//     //   // user.save().then(user => res.json(user))
+//     // });
+
+//     // const { errors, isValid } = validateUpdateInput(req.body);
+
+//     // if (!isValid) {
+//     //   return res.status(400).json(errors);
+//     // }
+//     User.findByIdAndUpdate(
+//       { _id: req.params.id },
+//       {
+//         username: req.body.username,
+//         fname: req.body.fname,
+//         lname: req.body.lname,
+//         email: req.body.email,
+//         bio: req.body.bio,
+//         // home_court: body.home_court.id,
+//         favorite_sports: req.body.favorite_sports,
+//         // avatar: imageLocation,
+//       },
+//       { new: true },
+//       function (err, result) {
+//         if (err) {
+//           res.json(err);
+//         }
+//         res.json(result);
+//       }
+//     );
+//   }
+// );
 
 router.get(
   "/current",
