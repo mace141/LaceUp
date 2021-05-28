@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import EventsIndex from '../events/profile_events_index';
 import UserDetail from './user_detail';
-import { receiveUser } from '../../actions/user';
-import { fetchUser } from '../../util/user_api';
+import { receiveUser, fetchUser } from '../../actions/user';
 import { fetchParks } from '../../actions/park';
-import { fetchEventsByUser } from '../../util/event_api';
+import { fetchAllEvents } from '../../actions/event_actions';
 
 class Profile extends React.Component {
   constructor(props) {
@@ -21,13 +20,15 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchUser, fetchParks, receiveUser, dispatch, match } = this.props;
+    const { fetchUser, fetchParks, fetchAllEvents, receiveUser, dispatch, match } = this.props;
 
     fetchParks();
-    fetchUser(match.params.id).then(payload => {
-      dispatch(receiveUser(payload));
-      this.setState({ events: payload.data[1] });
-    });
+    fetchUser(match.params.id)
+    // .then(payload => {
+    //   dispatch(receiveUser(payload));
+    //   this.setState({ events: payload.data[1] });
+    // });
+    fetchAllEvents();
   }
 
   toggleTabs(num) {
@@ -39,7 +40,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    const { events } = this.state;
+    const { events } = this.props;
     
     const newEvents = events.filter(
       event => Date.parse(event.date) > Date.now()
@@ -81,9 +82,13 @@ class Profile extends React.Component {
 }
 
 const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => {
+  const currentUserId = user.id; 
+
   return ({
     user: users[ownProps.match.params.id],
-
+    events: Object.values(events).filter(event => {
+      return event.user_id == ownProps.match.params.id
+    })
   })
 };
 
@@ -91,7 +96,7 @@ const mapDTP = dispatch => ({
   fetchUser: userId => fetchUser(userId),
   receiveUser: payload => receiveUser(payload),
   fetchParks: () => dispatch(fetchParks()),
-  fetchEventsByUser: userId => fetchEventsByUser(userId),
+  fetchAllEvents: () => dispatch(fetchAllEvents()),
   dispatch
 });
 
