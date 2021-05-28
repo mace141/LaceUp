@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { updateUser } from '../../actions/user';
 import { closeModal } from '../../actions/modal_actions';
 import { fetchParks } from '../../actions/park';
+import defaultUser from '../../style/assets/defaultUser.png';
 
 class EditUserForm extends React.Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class EditUserForm extends React.Component {
           <div>
             <div className='edit-avatar-section'>
               <div className='avatar'>
-                <img src={this.state.avatarUrl} alt="Avatar"/>
+                <img src={this.state.avatarUrl || defaultUser} alt="Avatar"/>
                 <input type="file" id='avatar-input' accept='image/*' onChange={this.handleFile}/>
               </div>
               <span onClick={() => document.getElementById('avatar-input').click()}>New Avatar</span>
@@ -98,7 +99,7 @@ class EditUserForm extends React.Component {
                 </select>
               </div>
               <div className='courts'>
-                <label>Home Courts</label><br/>
+                <label>Home Court</label><br/>
                 <select onChange={this.handleInput('home_court')}>
                   {this.props.parks.map(park => (
                     <option value={park.name}>{park.name}</option>
