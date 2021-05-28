@@ -40,6 +40,10 @@
       justify-content: space-around;
       padding-bottom: 5px;
       color: black;
+<<<<<<< HEAD
+=======
+      font-weight: 400;
+>>>>>>> main
     }
 
     button {
@@ -103,10 +107,9 @@
     overflow-y: scroll;
     max-height: calc(100vh - 375px);
     a:hover {
-      border-bottom: 2px solid $primary;
-      border-top: 2px solid $primary;
       border-radius: 5px;
-      transition: 0.1s;
+      transition: .1s;
+      text-decoration: underline;
     }
   }
 }

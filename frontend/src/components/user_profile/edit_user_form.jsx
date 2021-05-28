@@ -27,16 +27,14 @@ class EditUserForm extends React.Component {
   handleSports(e) {
     const options = this.state.favorite_sports.split(', ');
     
-    if (e.target.selected) {
+    let index = options.indexOf(e.target.value);
+    if (index < 0) {
       options.push(e.target.value);
-    } else {
-      let index = options.indexOf(e.target.value);
-      options.splice(index, 1);
-    }
+    } 
     
     let sports = options.join(', ');
     if (sports[0] === ',') sports = sports.slice(2);
-
+    
     this.setState({ favorite_sports: sports });
   }
 
@@ -96,6 +94,11 @@ class EditUserForm extends React.Component {
                   <option value="Baseball" onClick={this.handleSports}>Baseball</option>
                   <option value="Football" onClick={this.handleSports}>Football</option>
                   <option value="Handball" onClick={this.handleSports}>Handball</option>
+                  <option value="Frisbee" onClick={this.handleSports}>Frisbee</option>
+                  <option value="Running" onClick={this.handleSports}>Running</option>
+                  <option value="Cycling" onClick={this.handleSports}>Cycling</option>
+                  <option value="Volleyball" onClick={this.handleSports}>Volleyball</option>
+                  <option value="Workout" onClick={this.handleSports}>Workout</option>
                 </select>
               </div>
               <div className='courts'>
