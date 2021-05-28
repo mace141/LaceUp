@@ -13,17 +13,20 @@
   flex-direction: column;
   overflow-y: scroll;
   // position: relative;
-  div:nth-child(odd) {
+  .explore-index-item:nth-child(odd) {
     // background: $neutralLighter;
-    background: pink;
+    background: #f5f1f1;
   }
 }
+
 .side-window-header {
+  font-family: "Roboto", sans-serif;
   text-align: center;
-  font-size: large;
+  font-size: 35px;
   padding: 20px;
+  color: #111111;
   font-weight: bolder;
-  font-style: oblique;
+  font-style: italic;
   // background: pink;
   border-bottom: 1px solid black;
 }
@@ -41,8 +44,33 @@
   box-shadow: 1 30px 5px rgb(25 0 25 / 3%);
   border-bottom: 1px solid rgb(202, 197, 193);
   // border-top: 2px solid rgb(141, 140, 139);
+  // background: pink;
+  .event-info {
+    // border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #e4dbdb7c;
+    width: 90%;
+    div:nth-child(odd) {
+      // background: $neutralLighter;
+      background: #ffffff;
+    }
+    div {
+      p {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+  }
 }
-
+.link-to-event {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
 .add-an-event-btn {
   border-radius: 4px;
   background: $primary;
@@ -50,15 +78,47 @@
   box-shadow: none;
   padding: 7px;
 }
-
+.park-idx-link {
+  font-weight: bolder;
+  color: #141313;
+  padding: 5px;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.park-address {
+  text-align: center;
+  margin: 5px;
+}
 .join-game-btn {
   border-radius: 4px;
   background: $primary;
   box-shadow: none;
+  // width: 40%;
+  margin-top: 13px;
+  margin-bottom: 13px;
   padding: 7px;
   color: white;
   &:hover {
     // padding: 7px;
     background-color: $primaryDark;
   }
+}
+
+.host-a-game {
+  border-radius: 4px;
+  background: $primary;
+  box-shadow: none;
+  // width: 40%;
+  margin-top: 13px;
+  margin-bottom: 13px;
+  padding: 7px;
+  color: white;
+  &:hover {
+    // padding: 7px;
+    background-color: $primaryDark;
+  }
+}
+.ex-idx-sport-info {
+  text-align: right;
 }

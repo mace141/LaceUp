@@ -97,7 +97,9 @@ class MapContainer extends Component {
               visible={this.state.showingInfoWindow}
             >
               <div>
-                <h1>{this.state.selectedPlace.name}</h1>
+                <div>
+                  <h1>{this.state.selectedPlace.name}</h1>
+                </div>
               </div>
             </InfoWindow>
           </Map>
