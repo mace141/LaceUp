@@ -7,7 +7,7 @@ import Profile from "./user_profile/profile";
 import NavBarContainer from "./navbar/navbar_container";
 import Modal from "./modal/modal";
 import ExploreMainContainer from "./explore/explore_main_container";
-import EventShowContainer from "./events/event_show";
+import EventShowContainer from "./events/event_show_container";
 import SplashContainer from "./splash/splash_container";
 import ExploreReload from "./explore/explore_reload";
 // import LoginFormContainer from "./user_auth/login_form_container";

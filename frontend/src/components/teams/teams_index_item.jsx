@@ -1,12 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addPlayer } from '../../actions/team';
-import Spot from './spot';
+import SpotContainer from './spot_container';
 
 class TeamsIndexItem extends React.Component {
 
-  render() {
+  constructor(props){
+    super(props)
+    this.state = ({
+      teamSize: props.team.length
+    })
+    this.handleAdd = this.handleAdd.bind(this)
+  }
+
+  handleAdd(){
     const { team, addPlayer, currentUserId } = this.props;
+    addPlayer(team._id, currentUserId)
+    window.location.reload()
+  }
+  render() {
+    const { team, event, addPlayer, currentUserId } = this.props;
+    debugger
 
     let teamSpots = [];
     for (let i = 0; i < team.numPlayers; i++) {
@@ -23,15 +37,15 @@ class TeamsIndexItem extends React.Component {
         teamSpots.push('empty');
       }
     }
-    
+    debugger
     return (
       <div className='team-item'>
         <h1>{team.name}</h1>
         <h2>Players Needed: {team.numPlayers - team.player_id.length}</h2>
-        <button onClick={() => addPlayer(team._id, currentUserId)}>Join Team</button>
+        <button onClick={this.handleAdd}>Join Team</button>
         <div className='player-slots'>
           {teamSpots.map(spot => (
-            <Spot spot={spot}/>
+            <SpotContainer spot={spot} event={event} team={team}/>
           ))}
         </div>
       </div>
@@ -41,6 +55,7 @@ class TeamsIndexItem extends React.Component {
 
 const mapSTP = ({ session: { user } }) => {
   let id;
+
   if (user) id = user.id;
   return ({
   currentUserId: id

@@ -50,7 +50,7 @@ class SignupForm extends React.Component {
         this.handleEmail();
       }
       if (this.state.formNum === 1) {
-        this.checkPasswordMatch();
+        this.handlePassword();
       }
       if (this.state.formNum === 2) {
         this.handleSubmit();
@@ -79,32 +79,41 @@ class SignupForm extends React.Component {
       <>
         <div className="login-form-outer-container">
           <h1 className="modal-singin">Sign Up</h1>
-          <div onClick={this.props.closeModal} className="close-x">x</div>
+          <div onClick={this.props.closeModal} className="close-x">
+            x
+          </div>
           <p className="modal-slogan">Lets start with an email</p>
           {/* <br /> */}
           <div className="login-form-inner-container">
-          <div>
+            <div>
               {this.state.isValidEmail ? (
                 <></>
               ) : (
-                <div className="user-auth-error">Please enter a valid email</div>
+                <div className="user-auth-error">
+                  Please enter a valid email
+                </div>
               )}
-          <label className="modal-label">Email:</label>
-          <br />
-          <input
-            className="modal-input"
-            type="text"
-            value={this.state.email}
-            onChange={this.update("email")}
-            onKeyPress={this.handleEnterClick}
-          />
-          <br />
+              <label className="modal-label">Email:</label>
+              <br />
+              <input
+                className="modal-input"
+                type="text"
+                value={this.state.email}
+                onChange={this.update("email")}
+                onKeyPress={this.handleEnterClick}
+              />
+              <br />
               <p className="modal-nav-sentence">Already a member of LacedUp?</p>
-              <p className="modal-nav-link" onClick={this.props.otherForm}> Sign in</p>
-          <br />
-        </div>
-          <button className="modal-login-two" onClick={this.handleEmail}>Continue</button>
-        </div>
+              <p className="modal-nav-link" onClick={this.props.otherForm}>
+                {" "}
+                Sign in
+              </p>
+              <br />
+            </div>
+            <button className="modal-login-two" onClick={this.handleEmail}>
+              Continue
+            </button>
+          </div>
         </div>
       </>
     );
@@ -136,15 +145,19 @@ class SignupForm extends React.Component {
     return (
       <>
         <div className="login-form-outer-container">
-            <h1 className="modal-singin">Sign Up</h1>
-            <div onClick={this.props.closeModal} className="close-x">x</div>
-            <p className="modal-two-slogan">Next step is providing a password</p>
+          <h1 className="modal-singin">Sign Up</h1>
+          <div onClick={this.props.closeModal} className="close-x">
+            x
+          </div>
+          <p className="modal-two-slogan">Next step is providing a password</p>
           <div className="login-form-inner-container">
             <div>
               <div className="modal-password-errors">
                 {isPasswordMatch ? null : "Passwords do not match"}
                 <br />
-                {isPasswordLength ? null : "Password must be at least 6 characters"}
+                {isPasswordLength
+                  ? null
+                  : "Password must be at least 6 characters"}
               </div>
               <label className="modal-label">Password:</label>
               <br />
@@ -166,9 +179,13 @@ class SignupForm extends React.Component {
                 onKeyPress={this.handleEnterClick}
               />
               <br />
-              <p className="modal-back-link" onClick={this.setForm(0)}>Back</p>
+              <p className="modal-back-link" onClick={this.setForm(0)}>
+                Back
+              </p>
             </div>
-            <button className="modal-login-three" onClick={this.handlePassword}>Continue</button>
+            <button className="modal-login-three" onClick={this.handlePassword}>
+              Continue
+            </button>
           </div>
         </div>
       </>
@@ -197,9 +214,11 @@ class SignupForm extends React.Component {
     return (
       <>
         <div className="login-form-outer-container">
-            <h1 className="modal-singin">Sign Up</h1>
-            <div onClick={this.props.closeModal} className="close-x">x</div>
-            <p className="modal-two-slogan">Last step is your name!</p>
+          <h1 className="modal-singin">Sign Up</h1>
+          <div onClick={this.props.closeModal} className="close-x">
+            x
+          </div>
+          <p className="modal-two-slogan">Last step is your name!</p>
           <div className="login-form-inner-container">
             <div>
               <div className="modal-password-errors">
@@ -209,37 +228,41 @@ class SignupForm extends React.Component {
               </div>
               <label className="modal-label">First Name:</label>
               <br />
-            <input
-              className="modal-input"
-              type="text"
-              value={this.state.fname}
-              onChange={this.update("fname")}
+              <input
+                className="modal-input"
+                type="text"
+                value={this.state.fname}
+                onChange={this.update("fname")}
               />
-            <section className="modal-input-space"></section>
-            <br />
+              <section className="modal-input-space"></section>
+              <br />
               <label className="modal-label">Last Name:</label>
               <br />
-            <input
-              className="modal-input"
-              type="text"
-              value={this.state.lname}
-              onChange={this.update("lname")}
+              <input
+                className="modal-input"
+                type="text"
+                value={this.state.lname}
+                onChange={this.update("lname")}
               />
-            <section className="modal-input-space"></section>
-            <br />
-            <label className="modal-label">Username:</label>
-            <br />
-            <input
-              className="modal-input"
-              type="text"
-              value={this.state.username}
-              onChange={this.update("username")}
-              onKeyPress={this.handleEnterClick}
-            />
-            <br />
-              <p className="modal-back-link" onClick={this.setForm(1)}>Back</p>
+              <section className="modal-input-space"></section>
+              <br />
+              <label className="modal-label">Username:</label>
+              <br />
+              <input
+                className="modal-input"
+                type="text"
+                value={this.state.username}
+                onChange={this.update("username")}
+                onKeyPress={this.handleEnterClick}
+              />
+              <br />
+              <p className="modal-back-link" onClick={this.setForm(1)}>
+                Back
+              </p>
             </div>
-            <button className="modal-login-three" onClick={this.handleName}>Sign up</button>
+            <button className="modal-login-three" onClick={this.handleName}>
+              Sign up
+            </button>
           </div>
         </div>
       </>
