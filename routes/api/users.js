@@ -237,7 +237,7 @@ const multerS3 = require("multer-s3");
 const multer = require("multer");
 const path = require("path");
 const url = require("url");
-let AWS = require("../../config/keys_dev");
+// let AWS = require("../../config/keys_dev");
 
 const profileImgUpload = multer({
   storage: multerS3({
