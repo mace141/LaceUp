@@ -11,6 +11,18 @@ class EventIndexItem extends React.Component {
     fetchUser(event.user_id);
   }
 
+  titleize(str) {
+    if (!str.split) return str;
+    const _titleizeWord = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+      },
+      result = [];
+    str.split(" ").forEach((word) => {
+      result.push(_titleizeWord(word));
+    });
+    return result.join(" ");
+  }
+
   render() {
     const { event, park, host } = this.props;
 
@@ -40,33 +52,44 @@ class EventIndexItem extends React.Component {
     if (!host) {
       return null;
     } else {
+      // debugger;
       return (
         <>
           <div className="explore-index-item">
-            <div className="date-time">
-              <p>
-                Date/Time: <span>{`${time}, ${month} ${day}, ${year}`}</span>
-              </p>
-            </div>
-            <div className="location">
-              <p>
-                Location: <span>{park.name}</span>
-              </p>
-            </div>
-            <div className="sport">
-              <p>
-                Sport: <span>{event.sport}</span>
-              </p>
-            </div>
-            <div className="skill">
-              <p>
-                Skill level: <span>{event.skill}</span>
-              </p>
-            </div>
-            <div className="team-size">
-              <p>
-                Team Size: <span>{event.team_size}</span>
-              </p>
+            <div className="event-info">
+              <div className="sport">
+                <p>
+                  <span>Sport:</span>{" "}
+                  <span className="ex-idx-sport-info">
+                    {this.titleize(event.sport)}
+                  </span>
+                </p>
+              </div>
+              <div className="location">
+                <p>
+                  <span>Location:</span>{" "}
+                  <span className="ex-idx-sport-info">{park.name}</span>
+                </p>
+              </div>
+              <div className="date-time">
+                <p>
+                  <span>Date/Time:</span>{" "}
+                  <span>{`${time}, ${month} ${day}, ${year}`}</span>
+                </p>
+              </div>
+
+              <div className="skill">
+                <p>
+                  <span>Type:</span>{" "}
+                  <span className="ex-idx-sport-info">{event.type}</span>
+                </p>
+              </div>
+              <div className="team-size">
+                <p>
+                  <span>Team Size:</span>{" "}
+                  <span className="ex-idx-sport-info">{event.team_size}</span>
+                </p>
+              </div>
             </div>
             <div className="link-to-event">
               <button className="join-game-btn">

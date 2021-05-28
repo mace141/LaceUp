@@ -42,7 +42,6 @@ router.post("/register", (req, res) => {
         team_id: req.body.team_id,
 
         // post_id: req.body.team_id
-
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hashed) => {
@@ -233,7 +232,7 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.status(404).json(err));
 });
 
-// const aws = require("aws-sdk");
+const aws = require("aws-sdk");
 const multerS3 = require("multer-s3");
 const multer = require("multer");
 const path = require("path");
