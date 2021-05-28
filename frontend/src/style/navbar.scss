@@ -56,7 +56,7 @@
 //   background: red;
 // }
 
-.form-button, .logout-btn {
+.form-button, .logout-btn, .join-team {
   // border: 0;
   border-radius: 4px;
   background: $primary;
@@ -66,20 +66,38 @@
   // margin-right: 3px;
 }
 
-.logout-btn {
+.logout-btn, .join-team {
   color: white;
 }
+
+// .logout-btn:hover {
+//   font-weight: 600;
+//   // margin-left: -20px;
+// }
 
 .host-btn {
   border: none;
 }
+
+// .host-btn:hover {
+//   font-weight: 600;
+//   // margin-left: 0px;
+// }
 
 .login-btn {
   background: white;
   border: 4;
 }
 
+// .login-btn:hover {
+//     font-weight: 600;
+// }
+
 .signup-btn {
   border: 0;
   color: white;
 }
+
+// .signup-btn:hover {
+//     font-weight: 600;
+// }

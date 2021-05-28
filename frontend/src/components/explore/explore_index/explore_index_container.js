@@ -6,10 +6,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    // fetchEvents: () => dispatch(fetchEvents()),
-    // closeModal: () => dispatch(closeModal()),
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExploreIndexItem);

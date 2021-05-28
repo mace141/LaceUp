@@ -11,7 +11,7 @@ import { fetchEventsByUser } from '../../util/event_api';
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       tabIdx: 0,
       events: []
@@ -40,17 +40,16 @@ class Profile extends React.Component {
 
   render() {
     const { events } = this.state;
-    
+
     const newEvents = events.filter(
       event => Date.parse(event.date) > Date.now()
     ).sort((a, b) => Date.parse(a.date) > Date.parse(b.date) ? 1 : -1);
-
     const oldEvents = events.filter(
       event => Date.parse(event.date) <= Date.now()
     ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? 1 : -1);
     
     const tabs = [<EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>, <p>Club Component</p>];
-    
+
     return (
       <section className='profile-container'>
         <UserDetail user={this.props.user}/>
@@ -83,7 +82,6 @@ class Profile extends React.Component {
 const mapSTP = ({ entities: { users, events }, session: { user } }, ownProps) => {
   return ({
     user: users[ownProps.match.params.id],
-
   })
 };
 

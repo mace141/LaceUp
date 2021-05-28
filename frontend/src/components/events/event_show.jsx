@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { receiveEvent } from '../../actions/event_actions';
 import { fetchParks } from '../../actions/park';
 import { fetchTeams } from '../../actions/team';
@@ -15,10 +15,8 @@ class EventShow extends React.Component {
     this.state = {
       tabIdx: 0,
       event: { 
-        location_id: { 
-          name: null,
-          user_id: null
-        } 
+        location_id: { name: null },
+        user_id: { fname: null, lname: null }
       },
       num: 0,
       teams: this.props.teams
@@ -42,7 +40,6 @@ class EventShow extends React.Component {
   }
 
   render() {
-    // debugger;
     const { event, teams } = this.props;
     if (!event) return null;
 
@@ -103,7 +100,10 @@ class EventShow extends React.Component {
             </p>
           </div>
           <div className='event-host'>
-            <p>Hosted by: <span>{`${this.state.event.user_id.fname} ${this.state.event.user_id.lname}`}</span></p>
+            <p>Hosted by: <Link to={`/users/${this.state.event.user_id._id}`}>
+            <span>{`${this.state.event.user_id.fname} ${this.state.event.user_id.lname}`}</span>
+            </Link>
+            </p>
           </div>
         </div>
         <div>
