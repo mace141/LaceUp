@@ -18,9 +18,7 @@ const UserDetail = ({ user, openModal, match, currentUserId }) => {
       <div className='user-info'>
         <p>{user.username}</p>
         <p>{`${user.fname} ${user.lname}`}</p>
-        {/* <p>Favorite Sport{user.sports.length > 1 ? 's' : ''}: {user.sports.length ? user.sports.join(', ') : 'None'}</p> */}
         <p>Favorite Sports: {user.favorite_sports}</p>
-        {/* <p>Home Court{parks.length > 1 ? 's' : ''}: {parks.length ? parks.join(', ') : 'None'}</p> */}
         <p>Home Court: {user.home_court}</p>
         <p>Bio: {user.bio}</p>
         {editBtn}

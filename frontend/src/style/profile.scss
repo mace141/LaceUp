@@ -55,10 +55,11 @@
     border-right: 2px solid $primary;
     padding: 5px 0;
 
-    &:hover {
+     &:hover {
       background: $primaryLighter;
       transition: 0.3s;
       cursor: pointer;
+      color: $neutralLightest;
     }
   }
 

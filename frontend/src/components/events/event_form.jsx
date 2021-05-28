@@ -8,12 +8,12 @@ class EventForm extends React.Component {
         this.state = {
             event: {},
             errors: {},
-            location_id: "",
-            sport: "",
-            team_size: "",
-            num_teams: "",
-            skill: "",
-            type: "",
+            location_id: "60ae525feefd91faf0b8d0fd",
+            sport: 'Basketball',
+            team_size: 1,
+            num_teams: 1,
+            skill: "Beginner",
+            type: "Want to win",
             date: "",
             time: ""
         };

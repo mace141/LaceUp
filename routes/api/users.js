@@ -152,7 +152,9 @@ router.patch(
     );
   }
 );
-// router.put(
+//WIP
+
+// router.patch(
 //   "/:id",
 //   passport.authenticate("jwt", { session: false }),
 //   async (req, res) => {
@@ -161,6 +163,33 @@ router.patch(
 //     if (!isValid) {
 //       return res.status(400).json(errors);
 //     }
+//     // async
+//     // (req, res) => {
+//     // let user = await User.findById(req.params.id);
+//     // // let newAv;
+//     // profileImgUpload(req, res, (error) => {
+//     //   if (error) {
+//     //     console.log("errors", error);
+//     //     res.json({ error: error });
+//     //   } else {
+//     //     if (req.file === undefined) {
+//     //       res.json("No file selected!");
+//     //     }
+//     //   }
+//     //   // user.avatar = req.file.location
+//     //   // user.save().then(user => res.json(user))
+//     //   res.json(req.file.location).then((url) => {
+//     //     user.avatar = url;
+//     //     user.save();
+//     //   });
+//     //   // user.save().then(user => res.json(user))
+//     // });
+
+//     // const { errors, isValid } = validateUpdateInput(req.body);
+
+//     // if (!isValid) {
+//     //   return res.status(400).json(errors);
+//     // }
 //     User.findByIdAndUpdate(
 //       { _id: req.params.id },
 //       {
@@ -171,7 +200,7 @@ router.patch(
 //         bio: req.body.bio,
 //         // home_court: body.home_court.id,
 //         favorite_sports: req.body.favorite_sports,
-//         avatar: req.body.avatar,
+//         // avatar: imageLocation,
 //       },
 //       { new: true },
 //       function (err, result) {
@@ -204,4 +233,125 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.status(404).json(err));
 });
 
+// const aws = require("aws-sdk");
+const multerS3 = require("multer-s3");
+const multer = require("multer");
+const path = require("path");
+const url = require("url");
+let AWS = require("../../config/keys_dev");
+
+const profileImgUpload = multer({
+  storage: multerS3({
+    s3: AWS.s3,
+    bucket: "ak-laceup-bucket",
+    acl: "public-read",
+    key: function (req, file, cb) {
+      cb(
+        null,
+        path.basename(file.originalname, path.extname(file.originalname)) +
+          "-" +
+          Date.now() +
+          path.extname(file.originalname)
+      );
+    },
+  }),
+  limits: { fileSize: 2000000 },
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb);
+  },
+}).single("image");
+
+function checkFileType(file, cb) {
+  // Allowed ext
+  const filetypes = /jpeg|jpg|png|gif/;
+  // Check ext
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+  // Check mime
+  const mimetype = filetypes.test(file.mimetype);
+  if (mimetype && extname) {
+    return cb(null, true);
+  } else {
+    cb("Error: Images Only!");
+  }
+}
+
+// router.put("/:id/avatar", async(req, res) => {
+//   profileImgUpload(req, res, (error) => {
+//     if (error) {
+//       console.log("errors", error);
+//       res.json({ error: error });
+//     } else {
+//       // If File not found
+//       if (req.file === undefined) {
+//         console.log("Error: No File Selected!");
+//         res.json("Error: No File Selected");
+//       } else {
+//         let user = User.findBy(req.params.id)
+
+//         if (user.avatar) {
+//           let currentAvatar = currentUser.avatar;
+//           let newAvatar = req.file.location;
+//           user.avatar = newAvatar
+//         }  else {
+//           let newAvatar = req.file.location;
+//           user.avatar = newAvatar
+//         }
+//       }
+//     }
+//   }
+//   )
+// }
+// )
+
+// router.put("/:id/avatar", async (req, res) => {
+//   let user = await User.findById(req.params.id);
+//   profileImgUpload(req, res, (error) => {
+//     if (error) {
+//       console.log("errors", error);
+//       res.json({ error: error });
+//     } else {
+//       if (req.file === undefined) {
+//         res.json("No file selected!");
+//         // } else {
+//       }
+//       let newAv = req.file.location;
+//       user.avatar = newAv;
+//       user
+//         .save()
+//         .then((user) => {
+//           res.json(user);
+//         })
+//         .catch((e) => {
+//           res.status(400).json(e);
+//         });
+//       // }
+//     }
+//   });
+// });
+
+// to add to update route
+
+// passport.authenticate("jwt", { session: false }),
+// async
+// (req, res) => {
+// let user = await User.findById(req.params.id);
+// // let newAv;
+// profileImgUpload(req, res, (error) => {
+//   if (error) {
+//     console.log("errors", error);
+//     res.json({ error: error });
+//   } else {
+//     if (req.file === undefined) {
+//       res.json("No file selected!");
+//       }
+//     }
+//     user.avatar = req.file.location
+//     user.save().then(user => res.json(user))
+//   });
+
+// const { errors, isValid } = validateUpdateInput(req.body);
+
+// if (!isValid) {
+//   return res.status(400).json(errors);
+// }
 module.exports = router;
