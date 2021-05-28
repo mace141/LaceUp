@@ -100,11 +100,10 @@
   ul {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     font-size: 20px;
-    overflow: scroll;
-    max-height: 400px;
+    overflow-y: scroll;
+    max-height: calc(100vh - 375px);
     // letter-spacing: 1px;
     
     a:hover {
