@@ -11,22 +11,27 @@
     font-weight: 600;
   }
 
+  h1, .edit-avatar-section, div.username, textarea, .sports, .courts {
+    margin-bottom: 10px;
+  }
+
   .edit-avatar-section {
     display: flex;
     align-items: center;
+    justify-content: center;
+  }
 
-    span {
-      font-size: 14px;
-      padding: 5px 10px;
-      border-radius: 5px;
-      color: white;
-      background: $primary;
-    }
+  span, button{
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    background: $primary;
   }
 
   .avatar {
-    height: 60px;
-    width: 60px;
+    height: 80px;
+    width: 80px;
     border: 1px solid $primary;
     border-radius: 50%;
     margin-right: 10px;
@@ -37,13 +42,32 @@
     font-size: 14px;
   }
 
-  input, textarea {
+  input {
+    width: 230px;
+  }
+
+  input, textarea, select {
     padding: 5px;
     border-radius: 5px;
+    border: 1px solid gray;
+  }
+
+  select.sports {
+    width: 120px;
   }
 
   textarea {
-    width: 95%;
-    border: 1px solid black;
+    width: 300px;
+    height: 100px;
+  }
+
+  .sports-courts {
+    display: flex;
+    column-gap: 15px;
+  }
+
+  div.submit {
+    display: flex;
+    justify-content: flex-end;
   }
 }
