@@ -12,7 +12,8 @@ class EditUserForm extends React.Component {
     
     this.state = { 
       ...this.props.user, 
-      home_court: this.props.parks[0].name
+      home_court: this.props.parks[0].name,
+      favorite_sports: ""
     };
 
     this.handleFile = this.handleFile.bind(this);
