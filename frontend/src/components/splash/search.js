@@ -8,8 +8,7 @@ class Search extends React.Component {
       showMenu: false,
       enterClickRedirect: false,
     };
-    // this.dispDrop = this.dispDrop.bind(this);
-    // this.unDispDrop = this.unDispDrop.bind(this);
+
     this.showMenu = this.showMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
     this.handleChange = this.handleChange.bind(this);
