@@ -96,6 +96,11 @@ class EditUserForm extends React.Component {
                   <option value="Baseball" onClick={this.handleSports}>Baseball</option>
                   <option value="Football" onClick={this.handleSports}>Football</option>
                   <option value="Handball" onClick={this.handleSports}>Handball</option>
+                  <option value="Frisbee" onClick={this.handleSports}>Frisbee</option>
+                  <option value="Running" onClick={this.handleSports}>Running</option>
+                  <option value="Cycling" onClick={this.handleSports}>Cycling</option>
+                  <option value="Volleyball" onClick={this.handleSports}>Volleyball</option>
+                  <option value="Workout" onClick={this.handleSports}>Workout</option>
                 </select>
               </div>
               <div className='courts'>
