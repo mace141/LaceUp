@@ -4,7 +4,7 @@ import { RECEIVE_USER, RECEIVE_UPDATED_USER } from '../actions/user';
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
   let id;
-
+  
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       id = action.currentUser.id;
