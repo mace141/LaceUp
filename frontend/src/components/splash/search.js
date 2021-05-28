@@ -72,6 +72,11 @@ class Search extends React.Component {
     const { filtered, enterClickRedirect } = this.state;
     return (
       <div className="silent-click" onClick={() => console.log("click off")}>
+        <h1 className="app-header">Looking for a casual pickup game? LaceUp has you covered!</h1>
+        <h1 className="app-header-two">Join today to find local sporting events </h1>
+        <h1 className="app-header-two">that need YOU on their team. </h1>
+        <h1 className="app-header-three">Sign in, meet up, LaceUp.</h1>
+        <br />
         <div className="search-bar-container">
           {enterClickRedirect ? (
             <Redirect
