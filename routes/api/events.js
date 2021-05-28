@@ -35,6 +35,7 @@ router.post(
   }
 );
 
+
 router.get("/park/:location_id", (req, res) => {
   Event.find({ location_id: req.params.location_id })
     .sort({ date: -1 })

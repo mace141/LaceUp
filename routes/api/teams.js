@@ -75,6 +75,7 @@ router.patch(
 router.put("/:id/addplayer", async (req, res) => {
   const team = await Team.findById(req.params.id);
   let player = await User.findById(req.body.player_id);
+  // if (player && team.player_id.includes(player.id)) {
   if (team.player_id.includes(player.id)) {
     res.status(400).json("Player already on the team!");
   } else {
