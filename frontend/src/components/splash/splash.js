@@ -61,7 +61,6 @@ class Splash extends React.Component {
             </Slider>
           </CarouselProvider>
         </div>
-<<<<<<< HEAD
         <div className="splash-under">
           <div className="splash-footer">
             <h1 className="founders">Founders:</h1>
@@ -137,8 +136,6 @@ class Splash extends React.Component {
             </div> */}
           {/* </div> */}
         </div>
-=======
->>>>>>> main
       </div>
     );
   }
