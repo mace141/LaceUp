@@ -53,49 +53,6 @@ class Splash extends React.Component {
             </Slider>
           </CarouselProvider>
         </div>
-        <div className="splash-under">
-          <div className="splash-search">
-            <input
-              id="splash-search-bar"
-              type="search"
-              placeholder="Search for events near you"
-            />
-            <span className="splash-or">or</span>
-            <button
-              className="splash-btn"
-              id="splash-upload"
-              onClick={() => openModal("login")}
-            >
-              Host your own
-            </button>
-          </div>
-          <div className="splash-banner">
-            <h1 className="splash-explore-ask">
-              See what's happening near you
-            </h1>
-          </div>
-          <div className="splash-grid-trending"></div>
-
-          <div className="splash-thanks">
-            <h2>Boiler plate boiler plate</h2>
-            <button
-              id="create-act"
-              className="splash-btn"
-              onClick={() => openModal("signup")}
-            >
-              Create account
-            </button>
-            <div className="have-act">
-              <span>Already have an account?</span>
-              <button
-                className="splash-sign-in"
-                onClick={() => openModal("login")}
-              >
-                Sign in
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
