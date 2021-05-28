@@ -5,13 +5,13 @@
   box-shadow: 0 4px 12px lightgrey;
   // object-position: 100% 0;
   // height: 100%;
-//  margin-top: 20px;
+  //  margin-top: 20px;
 }
 
 .carousel-container {
   height: 700px;
   box-shadow: 0 4px 12px lightgrey;
-  margin-top: 20px;;
+  margin-top: 20px;
 }
 .carousel {
   height: 700px;
@@ -119,36 +119,41 @@
 }
 
 .app-header {
-  margin-top: 50px;
+  margin-top: 60px;
   margin-bottom: 3px;
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-    font-family: sans-serif;
-    font-size: 14px;
-    //  font-weight: 600;
-    // color: #c4291f;
+  font-family: sans-serif;
+  font-size: 16px;
+  //  font-weight: 600;
+  // color: #c4291f;
 }
 
 .app-header-two {
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-    font-family: sans-serif;
-    font-weight: 600;
-    font-size: 35px;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+.first {
+  margin-top: 10px;
 }
 
 .app-header-three {
-    display: flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-    font-family: sans-serif;
-    font-style: italic;
-    color: #c4291f;
-      font-weight: 600;
-      // margin-bottom: 20px;
+  font-family: sans-serif;
+  font-style: italic;
+  color: #c4291f;
+  font-weight: 600;
+  padding-top: 5px;
+  font-size: 38px;
+  // margin-bottom: 20px;
 }
