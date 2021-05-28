@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import logo from "../../style/assets/logoB.png";
 
 class NavBar extends React.Component {
-  constructor(props) {
+  constructor(props, context) {
     super(props);
     this.state = {
       sessionChange: this.props.loggedIn,
@@ -12,6 +12,7 @@ class NavBar extends React.Component {
 
     this.handleTabClick = this.handleTabClick.bind(this);
     this.leaveTab = this.leaveTab.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleTabClick(e) {
@@ -24,6 +25,10 @@ class NavBar extends React.Component {
     currEle.classList.remove("selected");
   }
 
+  handleLogout() {
+    this.props.logout();
+    window.location.hash = "#/";
+  }
   sessionLinks() {
     // conditional rendering for logged in/out
     const { openModal, currentUser } = this.props;
@@ -48,11 +53,13 @@ class NavBar extends React.Component {
       // logged in display
       return (
         <nav className="login-signup">
-          <button className='host-btn' onClick={() => openModal("newEvent")}>
+          <button className="host-btn" onClick={() => openModal("newEvent")}>
             Host
           </button>
           <Link to={`/users/${this.props.currentUser.id}`}>Profile</Link>
-          <button className='logout-btn' onClick={() => this.props.logout()}>Logout</button>
+          <button className="logout-btn" onClick={this.handleLogout}>
+            Logout
+          </button>
         </nav>
       );
     }
