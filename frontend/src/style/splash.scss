@@ -91,10 +91,10 @@
   }
 }
 .search-results-ul {
-  // border-left: 2px solid $neutralLight;
-  // border-right: 2px solid $neutralLight;
   :hover {
     display: block;
+    color: black;
+    background-color: $neutralLightest;
   }
   li:nth-child(odd) {
     background: rgb(253, 252, 252);
