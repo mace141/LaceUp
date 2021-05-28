@@ -27,7 +27,6 @@ class Search extends React.Component {
   }
 
   handleChange(e) {
-    console.log("change");
     let currentList = [];
     let newList = [];
 
@@ -50,7 +49,6 @@ class Search extends React.Component {
   }
 
   showMenu(event) {
-    console.log("showmenu");
     event.preventDefault();
 
     this.setState({ showMenu: true }, () => {
@@ -75,12 +73,10 @@ class Search extends React.Component {
   handleEnterClick = (e) => {
     const { filtered } = this.state;
     if (e.key === "Enter") {
-      console.log("enter click");
       if (filtered.length > 0) {
         console.log(filtered[0].name);
         this.setState({ enterClickRedirect: true });
       }
-      console.log("no items in filter");
     }
   };
 
