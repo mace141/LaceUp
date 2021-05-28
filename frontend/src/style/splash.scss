@@ -5,14 +5,17 @@
   box-shadow: 0 4px 12px lightgrey;
   // object-position: 100% 0;
   // height: 100%;
+//  margin-top: 20px;
 }
 
 .carousel-container {
   height: 700px;
   box-shadow: 0 4px 12px lightgrey;
+  margin-top: 20px;;
 }
 .carousel {
   height: 700px;
+  overflow: hidden;
 }
 
 .splash-btn {
@@ -55,16 +58,19 @@
   // padding-left: 5px;
   outline: 0;
   background-color: #f5f5f5;
+  // margin-bottom: 30px;
 }
 .silent-click {
-  display: relative;
+  // display: relative;
   box-shadow: 0 4px 12px lightgrey;
   // background: pink;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
+  padding-bottom: 40px;
 }
 .click-handler {
   position: absolute;
@@ -110,4 +116,39 @@
   z-index: 1000;
   // position: absolute;
   // border: 1px solid black;
+}
+
+.app-header {
+  margin-top: 50px;
+  margin-bottom: 3px;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    font-family: sans-serif;
+    font-size: 14px;
+    //  font-weight: 600;
+    // color: #c4291f;
+}
+
+.app-header-two {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 35px;
+}
+
+.app-header-three {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+    font-family: sans-serif;
+    font-style: italic;
+    color: #c4291f;
+      font-weight: 600;
+      // margin-bottom: 20px;
 }

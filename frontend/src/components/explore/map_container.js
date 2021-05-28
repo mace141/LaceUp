@@ -45,7 +45,6 @@ class MapContainer extends Component {
     const { activeMarker, selectedPlace } = this.state;
     if (!parks) return null;
     else {
-      // debugger;
       return (
         <div className="explore-page-container">
           <div className="explore-side-window">
