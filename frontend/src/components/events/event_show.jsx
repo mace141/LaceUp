@@ -67,7 +67,7 @@ class EventShow extends React.Component {
     const time = `${hours}:${minutes}`;
     
     const tabs = [<TeamsIndex teams={teams} event={event} />];
-    debugger
+    
     return (
       <div className="event-show">
         <div className="event-details">
