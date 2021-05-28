@@ -27,6 +27,7 @@ class Search extends React.Component {
   }
 
   handleChange(e) {
+    console.log("change");
     let currentList = [];
     let newList = [];
 
@@ -116,6 +117,7 @@ class Search extends React.Component {
               }}
               type="text"
               className="search-bar-input"
+              onChange={this.handleChange}
               onFocus={this.showMenu}
               placeholder="Search by park..."
               onKeyPress={this.handleEnterClick}
