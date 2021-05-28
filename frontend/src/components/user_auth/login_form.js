@@ -64,8 +64,10 @@ class LoginForm extends React.Component {
     return (
       <div className="login-form-outer-container">
         {/* <img className="modal-logo" src={logo}></img> */}
-        <h1 className= "modal-singin">Sign In</h1>
-        <div onClick={this.props.closeModal} className="close-x">x</div>
+        <h1 className="modal-singin">Sign In</h1>
+        <div onClick={this.props.closeModal} className="close-x">
+          x
+        </div>
         <p className="modal-slogan">Sign up, link up, lace up</p>
         <form
           className="login-form-inner-container"
@@ -80,7 +82,6 @@ class LoginForm extends React.Component {
               type="text"
               value={this.state.email}
               onChange={this.update("email")}
-              // placeholder="Email"
             />
             <section className="modal-input-space"></section>
             <br />
@@ -91,15 +92,17 @@ class LoginForm extends React.Component {
               type="password"
               value={this.state.password}
               onChange={this.update("password")}
-              // placeholder="Password"
             />
             <br />
-              <p className="modal-nav-sentence">Still need to join LacedUp?</p>
-              <p className="modal-nav-link" onClick={this.props.otherForm}> Sign up</p>
+            <p className="modal-nav-sentence">Still need to join LacedUp?</p>
+            <p className="modal-nav-link" onClick={this.props.otherForm}>
+              {" "}
+              Sign up
+            </p>
             <br />
           </div>
-            {/* <input className="modal-login" type="submit" value="Log in" /> */}
-            <input className="modal-login-two" type="submit" value="Log in" />
+          {/* <input className="modal-login" type="submit" value="Log in" /> */}
+          <input className="modal-login-two" type="submit" value="Log in" />
         </form>
       </div>
     );
