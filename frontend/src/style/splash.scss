@@ -151,3 +151,64 @@
       font-weight: 600;
       // margin-bottom: 20px;
 }
+
+// .splash-under {
+//   display: flex;
+//   height: 300px;
+// }
+
+.splash-footer {
+margin-top: 20px;
+// margin-bottom: 10px;
+}
+
+.founders {
+  margin-bottom: 10px;
+      font-family: sans-serif;
+    font-weight: 600;
+}
+
+.founder-info {
+  display: inline-block;
+  margin-right: 50px;
+  font-family: sans-serif;
+}
+
+.footer-name {
+  display: flex;
+  flex-direction: column;
+font-size: 16px;
+font-family: sans-serif;
+font-weight: 600;
+// margin-top: -10px;
+}
+.footer-linkedin {
+    display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.footer-linkedin:hover {
+text-decoration: underline;
+cursor: pointer;
+}
+
+.footer-site {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.footer-img {
+  height: 65px;
+  width: 65px;
+  border-radius: 50%;
+  margin-right: 10px;
+  // margin-top: 10px;
+}
+
+.founder-info-jack {
+  display: inline-block;
+  margin-right: 0px;
+  font-family: sans-serif;
+}
