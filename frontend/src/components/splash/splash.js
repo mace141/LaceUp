@@ -11,15 +11,12 @@ import SearchContainer from "./search_container";
 import splash0 from "../../style/assets/splash0.jpeg";
 import splash1 from "../../style/assets/splash1.jpg";
 import splash2 from "../../style/assets/splash2.jpg";
-<<<<<<< HEAD
 import propic from "../../style/assets/propic.png";
 import daniel from "../../style/assets/76175570.jpg";
 import alex from "../../style/assets/77806372.jpg";
 import andrew from "../../style/assets/andrew.png";
 
-=======
 import splash3 from "../../style/assets/splash3.jpg";
->>>>>>> main
 class Splash extends React.Component {
   constructor(props) {
     super(props);
