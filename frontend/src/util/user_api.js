@@ -8,5 +8,5 @@ export const updateUser = user => {
   const newUser = { ...user };
   delete newUser._id
 
-  return axios.put(`/api/users/update/${user._id}`, newUser)
+  return axios.patch(`/api/users/${user._id}`, newUser)
 };

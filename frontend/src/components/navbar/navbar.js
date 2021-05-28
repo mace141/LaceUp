@@ -75,12 +75,9 @@ class NavBar extends React.Component {
             >
               Explore
             </Link>
-            {/* <Link to="/host" onFocus={this.handleTabClick} onBlur={this.leaveTab}>
-            Host
-          </Link> */}
-            <Link to="/host" onClick={() => openModal("newEvent")}>
+            <button onClick={() => openModal("newEvent")}>
               Host
-            </Link>
+            </button>
             {this.sessionLinks()}
           </div>
         </div>
