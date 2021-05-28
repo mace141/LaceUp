@@ -99,7 +99,7 @@ class EditUserForm extends React.Component {
                 </select>
               </div>
               <div className='courts'>
-                <label>Home Courts</label><br/>
+                <label>Home Court</label><br/>
                 <select onChange={this.handleInput('home_court')}>
                   {this.props.parks.map(park => (
                     <option value={park.name}>{park.name}</option>

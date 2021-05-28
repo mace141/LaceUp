@@ -9,8 +9,9 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css";
 import SearchContainer from "./search_container";
 import splash0 from "../../style/assets/splash0.jpeg";
-import splash1 from "../../style/assets/splash1.jpeg";
+import splash1 from "../../style/assets/splash1.jpg";
 import splash2 from "../../style/assets/splash2.jpg";
+import splash3 from "../../style/assets/splash3.jpg";
 class Splash extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +33,7 @@ class Splash extends React.Component {
           <CarouselProvider
             naturalSlideWidth={100}
             naturalSlideHeight={125}
-            totalSlides={3}
+            totalSlides={4}
             height="inherit"
             isPlaying={true}
           >
@@ -44,6 +45,9 @@ class Splash extends React.Component {
                 <img className="landing-image" src={splash1} />
               </Slide>
               <Slide index={2}>
+                <img className="landing-image" src={splash3} />
+              </Slide>
+              <Slide index={3}>
                 <img className="landing-image" src={splash2} />
               </Slide>
             </Slider>
