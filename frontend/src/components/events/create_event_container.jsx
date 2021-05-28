@@ -10,8 +10,6 @@ import { createTeam } from "../../actions/team";
 
 const mapStateToProps = ({ entities: { parks }, session, errors }, ownProps) => {
     return {
-        // navLink: <Link to="/event">Event</Link>,
-        // currentuser: state.entities.users[state.session.id],
         currentuser: session.user,
         errors: errors.event,
         parks
