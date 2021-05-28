@@ -19,8 +19,7 @@ class TeamsIndexItem extends React.Component {
     window.location.reload()
   }
   render() {
-    const { team, event, addPlayer, currentUserId } = this.props;
-    debugger
+    const { team, event } = this.props;
 
     let teamSpots = [];
     for (let i = 0; i < team.numPlayers; i++) {

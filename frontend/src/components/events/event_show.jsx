@@ -1,5 +1,12 @@
-import React from "react";
-import TeamsIndex from "../teams/teams_index";
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { receiveEvent } from '../../actions/event_actions';
+import { fetchParks } from '../../actions/park';
+import { fetchTeams } from '../../actions/team';
+import { fetchUser } from '../../util/user_api';
+import { fetchEvent } from '../../util/event_api';
+import TeamsIndex from '../teams/teams_index';
 
 class EventShow extends React.Component {
   constructor(props) {
@@ -7,13 +14,31 @@ class EventShow extends React.Component {
 
     this.state = {
       tabIdx: 0,
+      event: { 
+        location_id: { 
+          name: null,
+          user_id: null
+        } 
+      },
+      num: 0,
+      teams: this.props.teams
     };
+
+    this.incrNum = this.incrNum.bind(this);
   }
 
   componentDidMount() {
-    const { fetchEvent, fetchTeams, match } = this.props;
-    fetchEvent(match.params.id);
+    const { fetchEvent, fetchTeams, receiveEvent, dispatch, match } = this.props;
+    
+    fetchEvent(match.params.id).then(payload => {
+      this.setState({ event: payload.data });
+      dispatch(receiveEvent(payload));
+    });
     fetchTeams();
+  }
+
+  incrNum() {
+    this.setState({ num: this.state.num + 1 });
   }
 
   render() {
@@ -43,8 +68,9 @@ class EventShow extends React.Component {
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const time = `${hours}:${minutes}`;
-    debugger
+    
     const tabs = [<TeamsIndex teams={teams} event={event} />];
+    
     return (
       <div className="event-show">
         <div className="event-details">
@@ -53,10 +79,8 @@ class EventShow extends React.Component {
               Date/Time: <span>{`${time}, ${month} ${day}, ${year}`}</span>
             </p>
           </div>
-          <div className="location">
-            <p>
-              Location: <span>{event.location_id.name}</span>
-            </p>
+          <div className='location'>
+            <p>Location: <span>{this.state.event.location_id.name}</span></p>
           </div>
           <div className="sport">
             <p>
@@ -78,11 +102,8 @@ class EventShow extends React.Component {
               # of Teams: <span>{event.num_teams}</span>
             </p>
           </div>
-          <div className="event-host">
-            <p>
-              Hosted by:{" "}
-              {/* <span>{`${event.user_id.fname} ${event.user_id.lname}`}</span> */}
-            </p>
+          <div className='event-host'>
+            <p>Hosted by: <span>{`${this.state.event.user_id.fname} ${this.state.event.user_id.lname}`}</span></p>
           </div>
         </div>
         <div>
@@ -94,4 +115,20 @@ class EventShow extends React.Component {
   }
 }
 
-export default EventShow;
+const mapSTP = ({ entities: { events, teams } }, ownProps) => ({
+  event: events[ownProps.match.params.id],
+  teams: Object.values(teams).filter(team => team.event_id == ownProps.match.params.id)
+});
+
+const mapDTP = dispatch => ({
+  fetchEvent: eventId => fetchEvent(eventId),
+  receiveEvent: payload => receiveEvent(payload),
+  fetchParks: () => dispatch(fetchParks()),
+  fetchUser: userId => fetchUser(userId),
+  fetchTeams: () => dispatch(fetchTeams()),
+  dispatch
+});
+
+const EventShowContainer = withRouter(connect(mapSTP, mapDTP)(EventShow));
+
+export default EventShowContainer;
