@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { updateUser } from '../../actions/user';
 import { closeModal } from '../../actions/modal_actions';
 import { fetchParks } from '../../actions/park';
+import defaultUser from '../../style/assets/defaultUser.png';
 
 class EditUserForm extends React.Component {
   constructor(props) {
@@ -73,39 +74,43 @@ class EditUserForm extends React.Component {
           <div>
             <div className='edit-avatar-section'>
               <div className='avatar'>
-                <img src={this.state.avatarUrl} alt="Avatar"/>
+                <img src={this.state.avatarUrl || defaultUser} alt="Avatar"/>
                 <input type="file" id='avatar-input' accept='image/*' onChange={this.handleFile}/>
               </div>
               <span onClick={() => document.getElementById('avatar-input').click()}>New Avatar</span>
             </div>
-            <div>
+            <div className='username'>
               <label>Username</label>
               <input type="text" value={this.state.username} onChange={this.handleInput('username')}/>
             </div>
           </div>
           <div>
             <textarea placeholder="Enter your bio" onChange={this.handleInput('bio')}>{this.state.bio}</textarea>
-            <div>
-              <label>Favorite Sports</label>
-              <select multiple>
-                <option value="Basketball" onClick={this.handleSports}>Basketball</option>
-                <option value="Soccer" onClick={this.handleSports}>Soccer</option>
-                <option value="Tennis" onClick={this.handleSports}>Tennis</option>
-                <option value="Baseball" onClick={this.handleSports}>Baseball</option>
-                <option value="Football" onClick={this.handleSports}>Football</option>
-                <option value="Handball" onClick={this.handleSports}>Handball</option>
-              </select>
-            </div>
-            <div>
-              <label>Home Courts</label>
-              <select onChange={this.handleInput('home_court')}>
-                {this.props.parks.map(park => (
-                  <option value={park.name}>{park.name}</option>
-                ))}
-              </select>
+            <div className='sports-courts'>
+              <div className='sports'>
+                <label>Favorite Sports</label><br/>
+                <select multiple className='sports'>
+                  <option value="Basketball" onClick={this.handleSports}>Basketball</option>
+                  <option value="Soccer" onClick={this.handleSports}>Soccer</option>
+                  <option value="Tennis" onClick={this.handleSports}>Tennis</option>
+                  <option value="Baseball" onClick={this.handleSports}>Baseball</option>
+                  <option value="Football" onClick={this.handleSports}>Football</option>
+                  <option value="Handball" onClick={this.handleSports}>Handball</option>
+                </select>
+              </div>
+              <div className='courts'>
+                <label>Home Court</label><br/>
+                <select onChange={this.handleInput('home_court')}>
+                  {this.props.parks.map(park => (
+                    <option value={park.name}>{park.name}</option>
+                    ))}
+                </select>
+              </div>
             </div>
           </div>
-          <button type='submit'>Submit</button>
+          <div className='submit'>
+            <button type='submit'>Submit</button>
+          </div>
         </form>
       </div>
     )

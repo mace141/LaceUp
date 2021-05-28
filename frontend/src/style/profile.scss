@@ -16,17 +16,32 @@
     border: 1px solid $primary;
     border-radius: 50%;
     margin-right: 15px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
-  
   .user-info {
     position: relative;
     width: 90%;
-    
     p {
       font-weight: 600;
       color: $primary;
+      font-size: 16px;
+    }
+
+    #username {
       font-size: 32px;
+    }
+    .secondary-info {
+      // display: flex;
+      justify-content: space-around;
+      padding-bottom: 5px;
+      color: black;
+      // color: ;
     }
 
     button {
@@ -36,6 +51,11 @@
       color: $primary;
       border: none;
       font-weight: 600;
+      padding: 5px;
+      &:hover {
+        background-color: $neutralLighter;
+        border-radius: 50px;
+      }
     }
   }
 }
@@ -47,7 +67,8 @@
   font-size: 20px;
   color: $primary;
   border-bottom: 2px solid $primary;
-  
+  border-top-left-radius: 5px;
+
   div {
     display: flex;
     justify-content: center;
@@ -63,7 +84,8 @@
     }
   }
 
-  div:last-child, button {
+  div:last-child,
+  button {
     border: none;
   }
 }
@@ -76,13 +98,32 @@
   border-bottom: 1px solid $primary;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 20px;
+    overflow: scroll;
+    max-height: 400px;
+    // letter-spacing: 1px;
+    
+    a:hover {
+      // background: $primaryLighter;
+      border-bottom: 2px solid $primary;
+      border-top: 2px solid $primary;
+      border-radius: 5px;
+      transition: .1s;
+    }
+  }
+ 
+  
 }
 
 .profile-event-item {
-  margin-bottom: 20px;
+  margin: 20px;
   color: $primary;
   font-weight: 600;
-
   span {
     font-weight: 400;
   }

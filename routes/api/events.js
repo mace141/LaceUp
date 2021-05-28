@@ -35,6 +35,7 @@ router.post(
   }
 );
 
+
 router.get("/park/:location_id", (req, res) => {
   Event.find({ location_id: req.params.location_id })
     .sort({ date: -1 })
@@ -61,6 +62,7 @@ router.get("/", async (req, res) => {
     .catch((err) => res.status(404).json(err));
   res.json(events);
 });
+
 
 router.get("/:id", async (req, res) => {
   const event = await Event.findById(req.params.id)

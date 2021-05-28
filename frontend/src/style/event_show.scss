@@ -16,6 +16,7 @@
   
   p {
     font-weight: 600;
+    
     span {
       font-weight: 400;
     }
@@ -36,13 +37,16 @@
 
 .team-index {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 15px;
   padding: 20px;
+  background: $neutralLightest;
+  border: 1px solid $primary;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 
   .team-item {
     position: relative;
     color: $primary;
+    margin-bottom: 10px;
 
     h1, h2, .player-slots {
       margin-bottom: 10px;
@@ -60,6 +64,10 @@
       position: absolute;
       top: 5px;
       right: 5px;
+    }
+
+    .player-slots {
+      display: flex;
     }
 
     .player-slots span {
