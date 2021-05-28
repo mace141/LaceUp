@@ -15,10 +15,8 @@ class EventShow extends React.Component {
     this.state = {
       tabIdx: 0,
       event: { 
-        location_id: { 
-          name: null,
-          user_id: null
-        } 
+        location_id: { name: null },
+        user_id: { fname: null, lname: null }
       },
       num: 0,
       teams: this.props.teams
@@ -42,7 +40,6 @@ class EventShow extends React.Component {
   }
 
   render() {
-    // debugger;
     const { event, teams } = this.props;
     if (!event) return null;
 
@@ -70,7 +67,7 @@ class EventShow extends React.Component {
     const time = `${hours}:${minutes}`;
     
     const tabs = [<TeamsIndex teams={teams} event={event} />];
-    
+    debugger
     return (
       <div className="event-show">
         <div className="event-details">
