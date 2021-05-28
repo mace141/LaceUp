@@ -45,13 +45,21 @@ router.get("/park/:location_id", (req, res) => {
         .json({ noeventsfound: "No events found for that location" })
     );
 });
-router.get("/", (req, res) => {
-  Event.find()
-    .sort({ date: -1 })
-    .then((events) => res.json(events))
-    .catch((err) =>
-      res.status(404).json({ noteventsfound: "No events found" })
-    );
+// router.get("/", (req, res) => {
+//   Event.find()
+//     .sort({ date: -1 })
+//     .then((events) => res.json(events))
+//     .catch((err) =>
+//       res.status(404).json({ noteventsfound: "No events found" })
+//     );
+// });
+router.get("/", async (req, res) => {
+  const events = await Event.find()
+    .populate("team_id")
+    .populate("location_id")
+    .populate("user_id")
+    .catch((err) => res.status(404).json(err));
+  res.json(events);
 });
 
 router.get("/:id", async (req, res) => {
