@@ -232,47 +232,47 @@ router.get("/:id", (req, res) => {
     .catch((err) => res.status(404).json(err));
 });
 
-const aws = require("aws-sdk");
-const multerS3 = require("multer-s3");
-const multer = require("multer");
-const path = require("path");
-const url = require("url");
-// let AWS = require("../../config/keys_dev");
+// const aws = require("aws-sdk");
+// const multerS3 = require("multer-s3");
+// const multer = require("multer");
+// const path = require("path");
+// const url = require("url");
+// // let AWS = require("../../config/keys_dev");
 
-const profileImgUpload = multer({
-  storage: multerS3({
-    s3: AWS.s3,
-    bucket: "ak-laceup-bucket",
-    acl: "public-read",
-    key: function (req, file, cb) {
-      cb(
-        null,
-        path.basename(file.originalname, path.extname(file.originalname)) +
-          "-" +
-          Date.now() +
-          path.extname(file.originalname)
-      );
-    },
-  }),
-  limits: { fileSize: 2000000 },
-  fileFilter: function (req, file, cb) {
-    checkFileType(file, cb);
-  },
-}).single("image");
+// const profileImgUpload = multer({
+//   storage: multerS3({
+//     s3: AWS.s3,
+//     bucket: "ak-laceup-bucket",
+//     acl: "public-read",
+//     key: function (req, file, cb) {
+//       cb(
+//         null,
+//         path.basename(file.originalname, path.extname(file.originalname)) +
+//           "-" +
+//           Date.now() +
+//           path.extname(file.originalname)
+//       );
+//     },
+//   }),
+//   limits: { fileSize: 2000000 },
+//   fileFilter: function (req, file, cb) {
+//     checkFileType(file, cb);
+//   },
+// }).single("image");
 
-function checkFileType(file, cb) {
-  // Allowed ext
-  const filetypes = /jpeg|jpg|png|gif/;
-  // Check ext
-  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  // Check mime
-  const mimetype = filetypes.test(file.mimetype);
-  if (mimetype && extname) {
-    return cb(null, true);
-  } else {
-    cb("Error: Images Only!");
-  }
-}
+// function checkFileType(file, cb) {
+//   // Allowed ext
+//   const filetypes = /jpeg|jpg|png|gif/;
+//   // Check ext
+//   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+//   // Check mime
+//   const mimetype = filetypes.test(file.mimetype);
+//   if (mimetype && extname) {
+//     return cb(null, true);
+//   } else {
+//     cb("Error: Images Only!");
+//   }
+// }
 
 // router.put("/:id/avatar", async(req, res) => {
 //   profileImgUpload(req, res, (error) => {
