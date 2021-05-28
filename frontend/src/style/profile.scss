@@ -103,11 +103,9 @@
     font-size: 20px;
     overflow-y: scroll;
     max-height: calc(100vh - 375px);
-    // letter-spacing: 1px;
-    
     a:hover {
       border-radius: 5px;
-      transition: .1s;
+      transition: 0.1s;
       text-decoration: underline;
     }
   }

@@ -3,8 +3,6 @@ import { openModal } from "../../actions/modal_actions";
 import Search from "./search";
 
 const mSTP = (state, ownProps) => {
-  // debugger;
-
   return {
     parks: Object.values(state.entities.parks),
   };
@@ -13,7 +11,6 @@ const mSTP = (state, ownProps) => {
 const mDTP = (dispatch) => {
   return {
     openModal: (modal) => dispatch(openModal(modal)),
-    // fetchEvents: () => dispatch(fetchEvents()),
   };
 };
 

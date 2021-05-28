@@ -47,12 +47,13 @@ class EventIndexItem extends React.Component {
     const year = date.getFullYear();
     const hours = date.getHours();
     const minutes = date.getMinutes();
-    const time = `${hours > 12 ? hours - 12 : hours}:${minutes < 10 ? '0'+minutes : minutes} ${hours > 12 ? 'PM' : 'AM'}`;
+    const time = `${hours > 12 ? hours - 12 : hours}:${
+      minutes < 10 ? "0" + minutes : minutes
+    } ${hours > 12 ? "PM" : "AM"}`;
 
     if (!host) {
       return null;
     } else {
-      // debugger;
       return (
         <>
           <div className="explore-index-item">

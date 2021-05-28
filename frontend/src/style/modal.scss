@@ -23,14 +23,13 @@
   width: 100px;
   align-items: left;
   margin-left: 17px;
-  // margin-left: -100px;
 }
 
 .modal-singin {
-    align-items: left;
+  align-items: left;
   margin-left: 22px;
   margin-top: 15px;
-    font-size: 22px;
+  font-size: 22px;
   font-family: sans-serif;
   font-weight: 600;
 }
@@ -38,26 +37,22 @@
 .modal-slogan {
   font-size: 13px;
   font-family: sans-serif;
-   margin-left: 22px;
+  margin-left: 22px;
   margin-bottom: 15px;
-  margin-top: 3px;;
+  margin-top: 3px;
 }
 
 .modal-two-slogan {
   font-size: 13px;
   font-family: sans-serif;
-   margin-left: 22px;
+  margin-left: 22px;
   margin-bottom: 0px;
-  margin-top: 3px;;
+  margin-top: 3px;
 }
 
 .login-form-outer-container {
   height: 100%;
   width: 100%;
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
 }
 
 .login-form-inner-container {
@@ -79,8 +74,8 @@
 
 .modal-input {
   text-align: left;
-  text-decoration: none; 
-  border-radius: 10px; 
+  text-decoration: none;
+  border-radius: 10px;
   border-color: lightgrey;
   border-width: 1px;
   box-shadow: inset 0 0 0 1px black;
@@ -96,8 +91,8 @@
 
 .modal-date-input {
   text-align: left;
-  text-decoration: none; 
-  border-radius: 10px; 
+  text-decoration: none;
+  border-radius: 10px;
   border-color: lightgrey;
   border-width: 1px;
   box-shadow: inset 0 0 0 1px black;
@@ -114,8 +109,7 @@
 
 .modal-time-input {
   text-align: left;
-  text-decoration: none; 
-  // border-radius: 10px; 
+  text-decoration: none;
   border-color: lightgrey;
   border-width: 1px;
   box-shadow: inset 0 0 0 1px black;
@@ -129,13 +123,11 @@
   padding-left: 10px;
 }
 
-
 .modal-nav-sentence {
   display: inline-block;
   font-size: 12px;
   font-family: sans-serif;
   padding-top: 5px;
-  // margin-left: 20px;
 }
 
 .modal-nav-link {
@@ -144,7 +136,7 @@
   font-weight: 600;
   color: darkgreen;
   font-family: sans-serif;
-  margin-left: 5px;;
+  margin-left: 5px;
 }
 
 .modal-nav-link:hover {
@@ -161,7 +153,7 @@
   height: 30px;
   padding-left: 3px;
   font-family: sans-serif;
-    border-radius: 8px; 
+  border-radius: 8px;
   border-color: lightgrey;
   border-width: 1px;
   box-shadow: inset 0 0 0 1px black;
@@ -172,7 +164,7 @@
   width: 170px;
   padding-left: 3px;
   font-family: sans-serif;
-    border-radius: 8px; 
+  border-radius: 8px;
   border-color: lightgrey;
   border-width: 1px;
   box-shadow: inset 0 0 0 1px black;
@@ -183,31 +175,30 @@
   width: 110px;
   padding-left: 3px;
   font-family: sans-serif;
-    border-radius: 8px; 
+  border-radius: 8px;
   border-color: lightgrey;
   border-width: 1px;
   box-shadow: inset 0 0 0 1px black;
 }
 
 .modal-dropdown-number {
-    height: 33px;
-    margin-top: -1px;
+  height: 33px;
+  margin-top: -1px;
   padding-left: 17px;
   padding-right: 7px;
   font-family: sans-serif;
-  border-radius: 6px; 
+  border-radius: 6px;
   border-color: lightgrey;
   border-width: 1px;
   box-shadow: inset 0 0 0 1px black;
 }
 
 .modal-dropdown-numteams {
-    height: 30px;
-    // width: 80px;
+  height: 30px;
   padding-left: 24px;
   padding-right: 10px;
   font-family: sans-serif;
-    border-radius: 8px; 
+  border-radius: 8px;
   border-color: lightgrey;
   border-width: 1px;
   box-shadow: inset 0 0 0 1px black;
@@ -218,7 +209,7 @@
   padding-left: 3px;
   width: 90px;
   font-family: sans-serif;
-    border-radius: 8px; 
+  border-radius: 8px;
   border-color: lightgrey;
   border-width: 1px;
   box-shadow: inset 0 0 0 1px black;
@@ -229,12 +220,11 @@
   padding-left: 3px;
   width: 105px;
   font-family: sans-serif;
-    border-radius: 8px; 
+  border-radius: 8px;
   border-color: lightgrey;
   border-width: 1px;
   box-shadow: inset 0 0 0 1px black;
 }
-
 
 .modal-login-two {
   border-radius: 40px;
@@ -243,7 +233,7 @@
   padding-bottom: 7px;
   padding-left: 7px;
   padding-right: 7px;
-  color: white; 
+  color: white;
   margin-top: 20px;
   width: 92%;
   text-align: center;
@@ -254,9 +244,7 @@
   background: #c4291f;
   padding-top: 7px;
   padding-bottom: 7px;
-  // padding-left: 7px;
-  // padding-right: 7px;
-  color: white; 
+  color: white;
   margin-top: 30px;
   margin-left: -10px;
   width: 92%;
@@ -273,51 +261,48 @@
   font-weight: 600;
 }
 
- .close-x {
-   position: absolute;
-  //  display: inline-block;
-   text-align: center;
-   font-size: 20px;
-  //  padding: px;
-   top: 5px;
-   right: 10px;
-   height: 25px;
-   width: 25px;
-   font-family: sans-serif;
-   cursor: pointer;
-   border-radius: 50%;
-   font-weight: 300;  
- }
-
-  .close-x:hover {
-    border-color: transparent;
-    background-color:rgb(238, 238, 238);
-    color:rgb(60, 60, 60);  
-    font-weight: 500;    
- }
-
- .user-auth-error {
-   color: red;
-    font-size: 12px;
+.close-x {
+  position: absolute;
+  text-align: center;
+  font-size: 20px;
+  top: 5px;
+  right: 10px;
+  height: 25px;
+  width: 25px;
   font-family: sans-serif;
-  margin-left: 2px;
-  // padding-top: -10;
- }
+  cursor: pointer;
+  border-radius: 50%;
+  font-weight: 300;
+}
 
-.modal-password-errors {
-     color: red;
-    font-size: 12px;
+.close-x:hover {
+  border-color: transparent;
+  background-color: rgb(238, 238, 238);
+  color: rgb(60, 60, 60);
+  font-weight: 500;
+}
+
+.user-auth-error {
+  color: red;
+  font-size: 12px;
   font-family: sans-serif;
   margin-left: 2px;
 }
 
- .modal-back-link {
+.modal-password-errors {
+  color: red;
+  font-size: 12px;
+  font-family: sans-serif;
+  margin-left: 2px;
+}
+
+.modal-back-link {
   display: inline-block;
   font-size: 12px;
   font-weight: 600;
   color: blue;
   font-family: sans-serif;
-  margin-left: 5px;;
+  margin-left: 5px;
 }
 
 .modal-back-link:hover {
@@ -332,10 +317,8 @@
   padding-bottom: 7px;
   padding-left: 7px;
   padding-right: 3px;
-  color: white; 
-  // margin-left: 180px;
+  color: white;
   margin-top: 10px;
-  // margin-bottom: 2px;
   width: 92%;
   text-align: center;
 }
