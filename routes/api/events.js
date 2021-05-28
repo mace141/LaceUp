@@ -58,7 +58,8 @@ router.get("/:id", async (req, res) => {
   const event = await Event.findById(req.params.id)
     .populate("team_id")
     .populate("location_id")
-    .populate("user_id");
+    .populate("user_id")
+    .catch((err) => res.status(404).json(err));
   res.json(event);
 });
 
