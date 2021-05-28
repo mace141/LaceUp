@@ -90,7 +90,6 @@ class Search extends React.Component {
       <div
         onBlur={this.unDispDrop}
         className="silent-click"
-        // onClick={() => console.log("click off")}
         className="search-bar-container"
       >
         <div>
@@ -110,19 +109,10 @@ class Search extends React.Component {
             className="search-bar-input"
             onFocus={this.showMenu}
             placeholder="Search by park..."
-            // onFocus={this.dispDrop}
-            // onBlur={this.unDispDrop}
             onKeyPress={this.handleEnterClick}
           />
           {this.state.showMenu ? (
-            <ul
-              id="search-res"
-              className="search-results-ul"
-              // onFocus={this.dispDrop}
-              // onBlur={this.unDispDrop}
-              // style={{ display: this.state.displayDrop }}
-              // display={this.state.displayDrop ? "inline-block" : "none"}
-            >
+            <ul id="search-res" className="search-results-ul">
               {this.state.filtered.map((park) => (
                 <li key={park._id} className="search-results-li">
                   <Link
