@@ -13,6 +13,6 @@ export const updatePost = post => (
 );
 
 export const deletePost = postId => (
-  axios.delete(`/api/posts/${postId}`)
+  axios.delete(`/api/posts/delete/${postId}`)
 );
 

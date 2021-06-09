@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { deletePost } from '../../actions/post';
 import defaultUser from '../../style/assets/defaultUser.png';
+import EditPostForm from './edit_post_form';
 
 class PostIndexItem extends React.Component {
   constructor(props) {
@@ -8,19 +10,49 @@ class PostIndexItem extends React.Component {
 
     this.state = { 
       ...props.post,
-      edit: false
+      edit: false,
+      drop: false
     };
 
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.clicked = this.clicked.bind(this);
+    this.leave = this.leave.bind(this);
   }
 
   toggleEdit() {
     this.setState({ edit: !this.state.edit });
   }
 
+  clicked() {
+    this.setState({ drop: true });
+  }
+
+  leave() {
+    this.setState({ drop: false });
+  }
+
   render() {
-    const { user_id, text, newPost } = this.state;
-    const avatarUrl = newPost ? this.props.avatar : user_id.avatar;
+    const { user_id, text, newPost, edit, drop, _id } = this.state;
+    const { avatar, user, deletePost } = this.props;
+
+    const avatarUrl = newPost ? avatar : user_id.avatar;
+    const name = newPost ? `${user.fname} ${user.lname}` : `${user_id.fname} ${user_id.lname}`;
+
+    const editForm = edit ? (
+      <EditPostForm toggleEdit={this.toggleEdit} post={this.state}/>
+    ) : (
+      <p>{text}</p>
+    );
+    
+    const dropdown = user_id._id == user.id ? (
+      <button onFocus={this.clicked} onBlur={this.leave} className='dropdown-btn'>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
+        <ul className={'post-dropdown ' + (drop ? 'reveal' : 'hide')}>
+          <li onClick={this.toggleEdit}><i className="far fa-edit"></i>Edit</li>
+          <li onClick={() => deletePost(_id)}><i className="far fa-trash-alt"></i>Delete</li>
+        </ul>
+      </button>
+    ) : null;
     
     return (
       <div className='post-item'>
@@ -28,16 +60,22 @@ class PostIndexItem extends React.Component {
           <div className='avatar'>
             <img src={ avatarUrl || defaultUser } alt="Avatar" />
           </div>
-          <p>{`${user_id.fname} ${user_id.lname}`}</p>
+          <p>{name}</p>
         </header>
-        <p>{text}</p>
+        {editForm}
+        {dropdown}
       </div>
     );
   }
 }
 
 const mapSTP = ({ session: { user } }) => ({
-  avatar: user.avatar
+  avatar: user.avatar,
+  user
 });
 
-export default connect(mapSTP)(PostIndexItem);
+const mapDTP = dispatch => ({
+  deletePost: postId => dispatch(deletePost(postId))
+});
+
+export default connect(mapSTP, mapDTP)(PostIndexItem);
