@@ -2,6 +2,25 @@
   width: 100%;
   height: 100%;
 }
+.explore-header {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  box-shadow: 1 30px 5px rgb(25 100 25 / 20%);
+  border-bottom: 1px solid rgb(243, 238, 233);
+  .invisible-sw-padding {
+    width: 350px;
+    height: 100%;
+  }
+  h1 {
+    padding-left: 10px;
+    font-weight: bolder;
+    font-size: 24px;
+    font-style: italic;
+  }
+}
 .explore-side-window {
   width: 350px;
   height: 100%;
