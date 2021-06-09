@@ -62,7 +62,14 @@ class EventIndexItem extends React.Component {
                 <p>
                   <span>Sport:</span>{" "}
                   <span className="ex-idx-sport-info">
-                    {this.titleize(event.sport)}
+                    <Link
+                      className="search-res-link"
+                      to={{
+                        pathname: `/explore/${event.sport.toLowerCase()}`,
+                      }}
+                    >
+                      {this.titleize(event.sport)}
+                    </Link>
                   </span>
                 </p>
               </div>
