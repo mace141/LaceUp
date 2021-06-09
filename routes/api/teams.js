@@ -31,8 +31,6 @@ router.post(
       name: req.body.name,
       numPlayers: req.body.numPlayers,
       playersToFill: req.body.playersToFill,
-      // player_id: req.body.player_id,
-      // player_id: req.user.id,
       event_id: req.body.event_id,
     });
     
