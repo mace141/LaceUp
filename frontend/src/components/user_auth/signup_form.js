@@ -300,13 +300,7 @@ class SignupForm extends React.Component {
 
     const { signup, errors, closeModal } = this.props;
     signup(user).then(() => {
-      if (errors) {
-        if (errors.length === 0) {
-          closeModal();
-        }
-      } else {
-        closeModal();
-      }
+      closeModal();
     });
   }
 
