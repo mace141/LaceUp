@@ -14,7 +14,7 @@ const UserDetail = ({ user, openModal, match, currentUserId }) => {
   return (
     <div className='user-detail'>
       <div className='user-avatar'>
-        <img src={user.avatarUrl || defaultUser} alt="Avatar"/>
+        <img src={user.avatar || defaultUser} alt="Avatar"/>
       </div>
       <div className="user-info">
         <p id="username">{user.username}</p>

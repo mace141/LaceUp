@@ -65,30 +65,72 @@ class Splash extends React.Component {
             <img className="footer-img" src={daniel} alt="daniel propic"></img>
             <div className="founder-info">
               <p className="footer-name">Daniel Wu</p>
-              <a className="footer-linkedin" href="https://www.linkedin.com/in/daniel-wu-2995a6140/">LinkedIn</a>
-              <a className="footer-linkedin" href="https://github.com/mace141">Github</a>
-              <a className="footer-site" href="https://www.google.com/">Personal Site</a>
+              <a
+                className="footer-linkedin"
+                href="https://www.linkedin.com/in/daniel-wu-2995a6140/"
+              >
+                LinkedIn
+              </a>
+              <a className="footer-linkedin" href="https://github.com/mace141">
+                Github
+              </a>
+              <a className="footer-site" href="https://www.google.com/">
+                Personal Site
+              </a>
             </div>
             <img className="footer-img" src={alex} alt="alex propic"></img>
             <div className="founder-info">
               <p className="footer-name">Alex Kerpelman</p>
-              <a className="footer-linkedin" href="https://www.linkedin.com/in/alexander-kerpelman-22587584/">LinkedIn</a>
-              <a className="footer-github" href="https://github.com/akerpelm">Github</a>
-              <a className="footer-site" href="https://www.google.com/">Personal Site</a>
+              <a
+                className="footer-linkedin"
+                href="https://www.linkedin.com/in/alexander-kerpelman-22587584/"
+              >
+                LinkedIn
+              </a>
+              <a className="footer-github" href="https://github.com/akerpelm">
+                Github
+              </a>
+              <a className="footer-site" href="https://www.google.com/">
+                Personal Site
+              </a>
             </div>
             <img className="footer-img" src={andrew} alt="andrew propic"></img>
             <div className="founder-info">
               <p className="footer-name">Andrew Kihs</p>
-              <a className="footer-linkedin" href="https://www.linkedin.com/in/andrew-kihs-7340a9145">LinkedIn</a>
-              <a className="footer-linkedin" href="https://github.com/andrewkihs">Github</a>
-              <a className="footer-site" href="https://www.google.com/">Personal Site</a>
+              <a
+                className="footer-linkedin"
+                href="https://www.linkedin.com/in/andrew-kihs"
+              >
+                LinkedIn
+              </a>
+              <a
+                className="footer-linkedin"
+                href="https://github.com/andrewkihs"
+              >
+                Github
+              </a>
+              <a className="footer-site" href="https://www.google.com/">
+                Personal Site
+              </a>
             </div>
             <img className="footer-img" src={propic} alt="jack propic"></img>
             <div className="founder-info-jack">
               <p className="footer-name">Jack Cusick</p>
-              <a className="footer-linkedin" href="https://www.linkedin.com/in/jack-cusick-2a5809b4/">LinkedIn</a>
-              <a className="footer-linkedin" href="https://github.com/jackcusick95">Github</a>
-              <a className="footer-site" href="https://www.google.com/">Personal Site</a>
+              <a
+                className="footer-linkedin"
+                href="https://www.linkedin.com/in/jack-cusick-2a5809b4/"
+              >
+                LinkedIn
+              </a>
+              <a
+                className="footer-linkedin"
+                href="https://github.com/jackcusick95"
+              >
+                Github
+              </a>
+              <a className="footer-site" href="https://www.google.com/">
+                Personal Site
+              </a>
             </div>
           </div>
           {/* <div className="splash-search">
