@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const EventSchema = new Schema({
-  location_id: {
-    type: mongoose.Types.ObjectId,
-    ref: "Park",
-  },
   user_id: {
     type: mongoose.Types.ObjectId,
     ref: "User",
@@ -16,6 +12,10 @@ const EventSchema = new Schema({
       ref: "Team",
     },
   ],
+  location_id: {
+    type: mongoose.Types.ObjectId,
+    ref: "Park",
+  },
   date: {
     type: Date,
   },
