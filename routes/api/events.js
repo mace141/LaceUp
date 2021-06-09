@@ -12,6 +12,7 @@ const Post = require("../../models/Post");
 const validateEventInput = require("../../validation/event");
 const { MongoClient, ObjectID } = require("mongodb");
 
+//create event
 router.post(
   "/create",
 
@@ -32,6 +33,7 @@ router.post(
   }
 );
 
+//event by park
 router.get("/park/:location_id", (req, res) => {
   Event.find({ location_id: req.params.location_id })
     .sort({ date: -1 })
@@ -39,6 +41,8 @@ router.get("/park/:location_id", (req, res) => {
     .catch((err) => res.status(404).json(err));
 });
 
+
+//index events
 router.get("/", async (req, res) => {
   const events = await Event.find()
     .populate("team_id")
@@ -48,6 +52,8 @@ router.get("/", async (req, res) => {
   res.json(events);
 });
 
+
+//show event
 router.get("/:id", async (req, res) => {
   const event = await Event.findById(req.params.id)
     .populate("team_id")
@@ -57,6 +63,8 @@ router.get("/:id", async (req, res) => {
   res.json(event);
 });
 
+
+//show event posts
 router.get("/:id/posts", async (req, res) => {
   await Post.find({ event_id: req.params.id })
     .populate("user_id")
@@ -64,6 +72,8 @@ router.get("/:id/posts", async (req, res) => {
     .catch((e) => res.status(404).json(e));
 });
 
+
+//update event
 router.patch(
   "/:id",
   passport.authenticate("jwt", { session: false }),
@@ -95,6 +105,7 @@ router.patch(
   }
 );
 
+//add team to event
 router.put("/:id/addteam", async (req, res) => {
   let event = await Event.findById(req.params.id);
   let team = await Team.findById(req.body.team_id);
