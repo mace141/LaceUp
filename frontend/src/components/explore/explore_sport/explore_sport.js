@@ -54,7 +54,7 @@ class ExploreSport extends React.Component {
   render() {
     const { parks, sport, events } = this.props;
     const { activeMarker, selectedPlace } = this.state;
-    if (!parks) return <>basketball</>;
+    if (!parks) return <></>;
     else {
       return (
         <div className="explore-map-outer">

@@ -77,7 +77,9 @@ class SportIndexItem extends React.Component {
               <div className="skill">
                 <p>
                   <span>Type:</span>{" "}
-                  <span className="ex-idx-sport-info">{event.type}</span>
+                  <span className="ex-idx-sport-info">
+                    {this.titleize(event.type)}
+                  </span>
                 </p>
               </div>
               <div className="team-size">

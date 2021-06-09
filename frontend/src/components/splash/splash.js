@@ -24,6 +24,7 @@ class Splash extends React.Component {
 
   componentDidMount() {
     this.props.fetchParks();
+    this.props.fetchAllEvents();
   }
 
   render() {

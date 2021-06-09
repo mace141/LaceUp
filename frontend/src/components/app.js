@@ -21,7 +21,7 @@ const App = () => (
         <Route exact path="/explore/reload" component={ExploreReload} />
         <Route
           exact
-          path="/explore/basketball"
+          path="/explore/:sportName"
           component={ExploreSportContainer}
         />
         <Route exact path="/users/:id" component={Profile} />
