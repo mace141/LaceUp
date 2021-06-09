@@ -1,4 +1,5 @@
 import React from 'react';
+import defaultUser from '../../style/assets/defaultUser.png';
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -12,9 +13,9 @@ class PostForm extends React.Component {
   }
 
   ensureContent() {
-    const { body } = this.state;
+    const { text } = this.state;
 
-    if (body.length) {
+    if (text.length) {
       return false;
     } else {
       return true;
@@ -22,38 +23,34 @@ class PostForm extends React.Component {
   }
 
   handleInput(e) {
-    this.setState({ body: e.target.value });
+    this.setState({ text: e.target.value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
     
     this.props.processForm(this.state);
-    this.setState({ body: "" });
+    this.setState({ text: "" });
   }
 
-  render() {    
+  render() {
     return (
-      <>
-        <div>
-          <form onSubmit={this.handleSubmit} className='post-form'>
-            <div className='post-body'>
-              <div>
-                <div className='avatar small'>
-                  <img src={this.props.user.avatarUrl || window.defaultUser} alt="Profile Pic" className='pfp small'/>
-                </div>
-                <h2>{this.props.name}</h2>
-              </div>
-              <div className='textarea'>
-                <textarea placeholder='What do you want to talk about?' value={this.state.body} onChange={this.handleInput}></textarea>
-              </div>
+      <form onSubmit={this.handleSubmit} className='post-form'>
+        <div className='post-body'>
+          <div>
+            <div className='avatar small'>
+              <img src={this.props.user.avatar || defaultUser} alt="Profile Pic" className='pfp'/>
             </div>
-            <footer className='post-form-footer footer'>
-              <button className='form-button' disabled={this.ensureContent()}>Post</button>
-            </footer>
-          </form>
+            <h2>{this.props.name}</h2>
+          </div>
+          <div className='textarea'>
+            <textarea placeholder='What do you want to talk about?' value={this.state.text} onChange={this.handleInput}></textarea>
+          </div>
         </div>
-      </>
+        <footer className='post-footer'>
+          <button className='form-button' disabled={this.ensureContent()}>Post</button>
+        </footer>
+      </form>
     )
   }
 };
