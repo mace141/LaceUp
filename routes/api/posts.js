@@ -8,6 +8,8 @@ const Post = require("../../models/Post");
 const validatePostInput = require("../../validation/post");
 const { MongoClient, ObjectID } = require("mongodb");
 
+
+//create post on event
 router.post(
   "/:event_id",
   passport.authenticate("jwt", { session: false }),
@@ -27,6 +29,8 @@ router.post(
   }
 );
 
+
+// get posts
 router.get("/", async (req, res) => {
   let posts = await Post.find()
     .sort({ date: -1 })
@@ -34,9 +38,10 @@ router.get("/", async (req, res) => {
     .catch((err) => res.status(404).json(err));
 });
 
+//update post
 router.patch(
   "/:id",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
 
@@ -59,6 +64,8 @@ router.patch(
   }
 );
 
+
+//delete post
 router.delete(
   "/delete/:id",
   passport.authenticate("jwt", { session: false }),

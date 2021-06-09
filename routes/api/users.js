@@ -42,8 +42,6 @@ router.post("/register", (req, res) => {
         avatar: req.body.avatar,
         event_id: req.body.event_id,
         team_id: req.body.team_id,
-
-        // post_id: req.body.team_id
       });
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hashed) => {
@@ -113,6 +111,7 @@ router.post("/login", (req, res) => {
   });
 });
 
+//delete user 
 router.delete(
   "/delete/:id",
   passport.authenticate("jwt", { session: false }),
@@ -122,6 +121,7 @@ router.delete(
   }
 );
 
+//update user
 router.patch(
   "/:id",
   passport.authenticate("jwt", { session: false }),
@@ -154,45 +154,42 @@ router.patch(
   }
 );
 
-
-router.get(
-  "/current",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json({
-      msg: "Persits",
-    });
-  }
-);
-
-router.get("/:id", (req, res) => {
+//get user
+router.get("/:id", async (req, res) => {
   let user = User.findById(req.params.id);
   let userEvents = Event.find({ user_id: req.params.id });
-  let userTeams = Team.find({ player_id: req.params.id });
-  let userPosts = Post.find({ user_id: req.params.id });
+  let userTeams = await Team.find({ player_id: req.params.id }).populate(
+    "event_id"
+  );
   Promise.all([user, userEvents, userTeams])
     .then((data) => res.json(data))
     .catch((err) => res.status(404).json(err));
 });
 
-router.post("/:id/image", upload.single("image"), async (req, res) => {
-  const currentUser = await User.findById(req.params.id);
-  if (currentUser.avatar) {
-    let imageUrl = currentUser.avatar;
-    let bucket = imageUrl.split("/")[2].split(".")[0];
-    let key = imageUrl.split("/")[3];
-    deleteImage(bucket, key)
-  }
+//post avatar
+router.post(
+  "/:id/image",
+  upload.single("image"),
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    const currentUser = await User.findById(req.params.id);
+    if (currentUser.avatar) {
+      let imageUrl = currentUser.avatar;
+      let bucket = imageUrl.split("/")[2].split(".")[0];
+      let key = imageUrl.split("/")[3];
+      deleteImage(bucket, key);
+    }
 
-  currentUser.avatar = req.file.location;
-  currentUser
-    .save()
-    .then((user) => {
-      res.json(user);
-    })
-    .catch((e) => {
-      res.status(400).json(err);
-    });
-});
+    currentUser.avatar = req.file.location;
+    currentUser
+      .save()
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((e) => {
+        res.status(400).json(err);
+      });
+  }
+);
 
 module.exports = router;
