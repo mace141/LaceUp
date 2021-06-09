@@ -72,11 +72,10 @@ class MapContainer extends Component {
             google={this.props.google}
             onClick={this.onMapClicked}
             // mapId="cd6df84189302f98"
-            zoom={13}
-            // style={defaultMapStyles.styles}
+            zoom={11.5}
             initialCenter={{
-              lat: 40.671,
-              lng: -73.9999,
+              lat: 40.7264,
+              lng: -73.9818,
             }}
           >
             {Object.entries(parks).map((key, i) => {

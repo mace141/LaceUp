@@ -16,13 +16,13 @@ class Search extends React.Component {
 
   componentDidMount() {
     this.setState({
-      filtered: this.props.parks,
+      filtered: this.props.parks.concat(this.props.sports),
     });
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      filtered: nextProps.parks,
+      filtered: nextProps.parks.concat(nextProps.sports),
     });
   }
 
@@ -31,10 +31,14 @@ class Search extends React.Component {
     let newList = [];
 
     if (e.target.value !== "") {
-      currentList = this.props.parks;
-      newList = currentList.filter((park) => {
-        const lc = park.name.toLowerCase();
-        const filter = e.target.value.toLowerCase();
+      currentList = this.props.parks.concat(this.props.sports);
+      newList = currentList.filter((item) => {
+        debugger;
+        let lc;
+        typeof item == "object"
+          ? (lc = item.name.toLowerCase())
+          : (lc = item.toLowerCase());
+        let filter = e.target.value.toLowerCase();
 
         return lc.includes(filter);
       });
@@ -74,7 +78,6 @@ class Search extends React.Component {
     const { filtered } = this.state;
     if (e.key === "Enter") {
       if (filtered.length > 0) {
-        console.log(filtered[0].name);
         this.setState({ enterClickRedirect: true });
       }
     }
@@ -82,10 +85,15 @@ class Search extends React.Component {
 
   render() {
     const { filtered, enterClickRedirect } = this.state;
+    let keyIdx = 0;
     return (
-      <div className="silent-click" onClick={() => console.log("click off")}>
-        <h1 className="app-header">Looking for a casual pickup game? LaceUp has you covered!</h1>
-        <h1 className="app-header-two first">Join today to find local sporting events </h1>
+      <div className="silent-click">
+        <h1 className="app-header">
+          Looking for a casual pickup game? LaceUp has you covered!
+        </h1>
+        <h1 className="app-header-two first">
+          Join today to find local sporting events{" "}
+        </h1>
         <h1 className="app-header-two">that need YOU on their team. </h1>
         <h1 className="app-header-three">Sign up, meet up, LaceUp.</h1>
         <br />
@@ -95,14 +103,32 @@ class Search extends React.Component {
           className="search-bar-container"
         >
           <div>
-            {enterClickRedirect ? (
-              <Redirect
-                to={{
-                  pathname: "/explore",
-                  state: { selectedPlace: filtered[0] },
-                }}
-              />
-            ) : null}
+            {(() => {
+              if (enterClickRedirect) {
+                debugger;
+                if (typeof filtered[0] == "object") {
+                  return (
+                    <Redirect
+                      to={{
+                        pathname: "/explore",
+                        state: { selectedPlace: filtered[0] },
+                      }}
+                    />
+                  );
+                } else {
+                  return (
+                    <Redirect
+                      to={{
+                        pathname: `/explore/${filtered[0]}`,
+                      }}
+                    />
+                  );
+                }
+              } else {
+                return null;
+              }
+            })()}
+
             <input
               ref={(element) => {
                 this.dropdownMenu = element;
@@ -111,27 +137,43 @@ class Search extends React.Component {
               className="search-bar-input"
               onChange={this.handleChange}
               onFocus={this.showMenu}
-              placeholder="Search by park..."
+              placeholder="Search by park or sport..."
               onKeyPress={this.handleEnterClick}
             />
             {this.state.showMenu ? (
               <ul id="search-res" className="search-results-ul">
-                {this.state.filtered.map((park) => (
-                  <li key={park._id} className="search-results-li">
-                    <Link
-                      className="search-res-link"
-                      to={{
-                        pathname: `/explore`,
-                        state: {
-                          selectedPlace: park,
-                        },
-                      }}
-                    >
-                      {park.name}
-                    </Link>
-                    <span className="delete" />
-                  </li>
-                ))}
+                {this.state.filtered.map((item) => {
+                  keyIdx += 1;
+                  return (
+                    <li key={keyIdx} className="search-results-li">
+                      {typeof item == "object" ? (
+                        <Link
+                          className="search-res-link"
+                          to={{
+                            pathname: `/explore`,
+                            state: {
+                              selectedPlace: item,
+                            },
+                          }}
+                        >
+                          {item.name}
+                        </Link>
+                      ) : (
+                        <>
+                          <Link
+                            className="search-res-link"
+                            to={{
+                              pathname: `/explore/${item.toLowerCase()}`,
+                            }}
+                          >
+                            {item}
+                          </Link>
+                        </>
+                      )}
+                      <span className="delete" />
+                    </li>
+                  );
+                })}
               </ul>
             ) : null}
           </div>

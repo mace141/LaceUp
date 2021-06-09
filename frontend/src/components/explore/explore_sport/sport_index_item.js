@@ -1,17 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
-import { openModal } from "../../../actions/modal_actions";
 
-class EventIndexItem extends React.Component {
+import { withRouter, Link } from "react-router-dom";
+
+class SportIndexItem extends React.Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-    const { event, fetchUser } = this.props;
-    fetchUser(event.user_id);
+    // this.props.fetchEvents(this.props.eventId);
   }
-
   titleize(str) {
     if (!str.split) return str;
     const _titleizeWord = (string) => {
@@ -23,10 +20,8 @@ class EventIndexItem extends React.Component {
     });
     return result.join(" ");
   }
-
   render() {
-    const { event, park, host, openModal, isCurrentUser } = this.props;
-
+    const { event, park } = this.props;
     const months = [
       "Jan",
       "Feb",
@@ -51,8 +46,7 @@ class EventIndexItem extends React.Component {
     const time = `${hours > 12 ? hours - 12 : hours}:${
       minutes < 10 ? "0" + minutes : minutes
     } ${hours > 12 ? "PM" : "AM"}`;
-
-    if (!host) {
+    if (!event) {
       return null;
     } else {
       return (
@@ -63,14 +57,7 @@ class EventIndexItem extends React.Component {
                 <p>
                   <span>Sport:</span>{" "}
                   <span className="ex-idx-sport-info">
-                    <Link
-                      className="search-res-link"
-                      to={{
-                        pathname: `/explore/${event.sport.toLowerCase()}`,
-                      }}
-                    >
-                      {this.titleize(event.sport)}
-                    </Link>
+                    {this.titleize(event.sport)}
                   </span>
                 </p>
               </div>
@@ -90,7 +77,9 @@ class EventIndexItem extends React.Component {
               <div className="skill">
                 <p>
                   <span>Type:</span>{" "}
-                  <span className="ex-idx-sport-info">{event.type}</span>
+                  <span className="ex-idx-sport-info">
+                    {this.titleize(event.type)}
+                  </span>
                 </p>
               </div>
               <div className="team-size">
@@ -101,18 +90,9 @@ class EventIndexItem extends React.Component {
               </div>
             </div>
             <div className="link-to-event">
-              {isCurrentUser ? (
-                <button className="join-game-btn">
-                  <Link to={`/events/${event._id}`}>Join game</Link>
-                </button>
-              ) : (
-                <button
-                  className="join-game-btn"
-                  onClick={isCurrentUser ? null : () => openModal("login")}
-                >
-                  Join Game
-                </button>
-              )}
+              <button className="join-game-btn">
+                <Link to={`/events/${event._id}`}>Join game</Link>
+              </button>
             </div>
           </div>
         </>
@@ -121,4 +101,4 @@ class EventIndexItem extends React.Component {
   }
 }
 
-export default withRouter(EventIndexItem);
+export default withRouter(SportIndexItem);
