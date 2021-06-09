@@ -56,7 +56,6 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    debugger;
     if (!!this.props.currentUser) {
       this.props.closeModal();
       return <></>;
