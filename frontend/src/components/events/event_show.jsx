@@ -8,6 +8,8 @@ import { fetchUser } from '../../util/user_api';
 import { fetchEvent } from '../../util/event_api';
 import TeamsIndex from '../teams/teams_index';
 import CreatePostForm from '../posts/create_post_form';
+import PostsIndex from '../posts/posts_index';
+import { fetchEventsPosts } from '../../actions/post';
 
 class EventShow extends React.Component {
   constructor(props) {
@@ -23,17 +25,20 @@ class EventShow extends React.Component {
   }
 
   componentDidMount() {
-    const { fetchEvent, fetchTeams, receiveEvent, dispatch, match } = this.props;
+    const { 
+      fetchEvent, fetchTeams, fetchEventsPosts, receiveEvent, dispatch, match 
+    } = this.props;
     
     fetchEvent(match.params.id).then(payload => {
       this.setState({ event: payload.data });
       dispatch(receiveEvent(payload));
     });
     fetchTeams();
+    fetchEventsPosts(match.params.id);
   }
 
   render() {
-    const { event, teams } = this.props;
+    const { event, teams, posts, user } = this.props;
     if (!event) return null;
 
     const months = [
@@ -101,16 +106,21 @@ class EventShow extends React.Component {
           <span>Players</span>
         </div>
         <TeamsIndex teams={teams} event={event}/>
-        <CreatePostForm/>
+        {user ? <CreatePostForm/> : null}
+        <PostsIndex posts={posts}/>
       </div>
     );
   }
 }
 
-const mapSTP = ({ entities: { events, teams } }, ownProps) => ({
-  event: events[ownProps.match.params.id],
-  teams: Object.values(teams).filter(team => team.event_id == ownProps.match.params.id)
-});
+const mapSTP = ({ entities: { events, teams, posts }, session: { user } }, ownProps) => {
+  const eventId = ownProps.match.params.id;
+  return ({
+  event: events[eventId],
+  teams: Object.values(teams).filter(team => team.event_id == eventId),
+  posts: Object.values(posts).filter(post => post.event_id == eventId),
+  user
+})};
 
 const mapDTP = dispatch => ({
   fetchEvent: eventId => fetchEvent(eventId),
@@ -118,6 +128,7 @@ const mapDTP = dispatch => ({
   fetchParks: () => dispatch(fetchParks()),
   fetchUser: userId => fetchUser(userId),
   fetchTeams: () => dispatch(fetchTeams()),
+  fetchEventsPosts: eventId => dispatch(fetchEventsPosts(eventId)),
   dispatch
 });
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PostIndexItem from './post_index_item';
 
 const PostsIndex = ({ posts }) => (
   <div className='post-index'>

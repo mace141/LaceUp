@@ -19,8 +19,8 @@ const removePost = postId => ({
   postId
 });
 
-export const fetchPosts = () => dispatch => {
-  PostAPI.fetchPosts().then(posts => (
+export const fetchEventsPosts = eventId => dispatch => {
+  PostAPI.fetchEventsPosts(eventId).then(posts => (
     dispatch(receivePosts(posts))
   ));
 };
