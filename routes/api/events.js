@@ -7,6 +7,7 @@ const { db } = require("../../models/Event");
 const Event = require("../../models/Event");
 const Team = require("../../models/Team");
 const User = require("../../models/User");
+const Post = require("../../models/Post");
 
 const validateEventInput = require("../../validation/event");
 const { MongoClient, ObjectID } = require("mongodb");
@@ -35,20 +36,8 @@ router.get("/park/:location_id", (req, res) => {
   Event.find({ location_id: req.params.location_id })
     .sort({ date: -1 })
     .then((events) => res.json(events))
-    .catch((err) =>
-      res
-        .status(404)
-        .json({ noeventsfound: "No events found for that location" })
-    );
+    .catch((err) => res.status(404).json(err));
 });
-// router.get("/", (req, res) => {
-//   Event.find()
-//     .sort({ date: -1 })
-//     .then((events) => res.json(events))
-//     .catch((err) =>
-//       res.status(404).json({ noteventsfound: "No events found" })
-//     );
-// });
 
 router.get("/", async (req, res) => {
   const events = await Event.find()
@@ -68,14 +57,21 @@ router.get("/:id", async (req, res) => {
   res.json(event);
 });
 
+router.get("/:id/posts", async (req, res) => {
+  await Post.find({ event_id: req.params.id })
+    .populate("user_id")
+    .then((posts) => res.json(posts))
+    .catch((e) => res.status(404).json(e));
+});
+
 router.patch(
   "/:id",
-  // passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // const { errors, isValid } = validateEventInput(req.body);
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
+    const { errors, isValid } = validateEventInput(req.body);
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
     Event.findByIdAndUpdate(
       { _id: req.params.id },
       {

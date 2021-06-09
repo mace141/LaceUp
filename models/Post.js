@@ -3,12 +3,13 @@ const Schema = mongoose.Schema;
 
 const PostSchema = new Schema({
   event_id: {
-    type: Number,
-    required: true,
+    type: Schema.Types.ObjectId,
+    ref: "event"
   },
   user_id: {
     type: Schema.Types.ObjectId,
-    ref: "users",
+    ref: "User",
+    required: true,
   },
   text: {
     type: String,
@@ -20,4 +21,4 @@ const PostSchema = new Schema({
   },
 });
 
-module.exports = Post = mongoose.model("post", PostSchema);
+module.exports = Post = mongoose.model("Post", PostSchema);

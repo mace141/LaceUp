@@ -8,10 +8,8 @@ const Post = require("../../models/Post");
 const validatePostInput = require("../../validation/post");
 const { MongoClient, ObjectID } = require("mongodb");
 
-router.get("/test", (req, res) => res.json({ msg: "Posts route test" }));
-
 router.post(
-  "/create",
+  "/:event_id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const { errors, isValid } = validatePostInput(req.body);
@@ -21,8 +19,8 @@ router.post(
     }
 
     const newPost = new Post({
-      event_id: req.body.event_id,
-      user_id: req.user.id,
+      event_id: req.params.event_id,
+      user_id: req.body.user_id,
       text: req.body.text,
     });
     newPost.save().then((post) => res.json(post));
@@ -31,22 +29,35 @@ router.post(
 
 router.get("/", async (req, res) => {
   let posts = await Post.find()
-    .populate("user_id")
-    .populate("event_id")
     .sort({ date: -1 })
-    // .then((posts) => res.json(posts))
-    // .catch((err) => res.status(404).json({ notpostsfound: "No posts found" }));
-    res.json(posts)
+    .then((posts) => res.json(posts))
+    .catch((err) => res.status(404).json(err));
 });
 
-//functional index:
+router.patch(
+  "/:id",
+  // passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validatePostInput(req.body);
 
-// router.get("/", (req, res) => {
-//   Post.find()
-//     .sort({ date: -1 })
-//     .then((posts) => res.json(posts))
-//     .catch((err) => res.status(404).json({ notpostsfound: "No posts found" }));
-// });
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
+    Post.findByIdAndUpdate(
+      { _id: req.params.id },
+      {
+        text: req.body.text,
+      },
+      { new: true },
+      function (e, result) {
+        if (e) {
+          res.json(e);
+        }
+        res.json(result);
+      }
+    );
+  }
+);
 
 router.delete(
   "/delete/:id",
