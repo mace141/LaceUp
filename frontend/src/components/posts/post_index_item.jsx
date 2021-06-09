@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import defaultUser from '../../style/assets/defaultUser.png';
 
 class PostIndexItem extends React.Component {
@@ -18,13 +19,14 @@ class PostIndexItem extends React.Component {
   }
 
   render() {
-    const { user_id, text } = this.state;
-
+    const { user_id, text, newPost } = this.state;
+    const avatarUrl = newPost ? this.props.avatar : user_id.avatar;
+    
     return (
       <div className='post-item'>
         <header>
           <div>
-            <img src={ user_id.avatar || defaultUser } alt="Avatar" />
+            <img src={ avatarUrl || defaultUser } alt="Avatar" />
           </div>
           <p>{`${user_id.fname} ${user_id.lname}`}</p>
         </header>
@@ -34,4 +36,8 @@ class PostIndexItem extends React.Component {
   }
 }
 
-export default PostIndexItem;
+const mapSTP = ({ session: { user } }) => ({
+  avatar: user.avatar
+});
+
+export default connect(mapSTP)(PostIndexItem);

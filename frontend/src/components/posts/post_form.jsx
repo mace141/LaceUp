@@ -29,7 +29,7 @@ class PostForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     
-    this.props.createPost(this.state);
+    this.props.createPost(this.state.event_id, this.state);
     this.setState({ text: "" });
   }
 

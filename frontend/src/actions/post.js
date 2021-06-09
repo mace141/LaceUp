@@ -25,8 +25,8 @@ export const fetchEventsPosts = eventId => dispatch => {
   ));
 };
 
-export const createPost = post => dispatch => {
-  PostAPI.createPost(post).then(post => (
+export const createPost = (eventId, post) => dispatch => {
+  PostAPI.createPost(eventId, post).then(post => (
     dispatch(receivePost(post))
   ));
 };

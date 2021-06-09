@@ -3,18 +3,18 @@ import { withRouter } from 'react-router-dom';
 import { createPost } from '../../actions/post';
 import PostForm from './post_form';
 
-const mapSTP = ({ session: user }, ownProps) => ({
+const mapSTP = ({ session: { user } }, ownProps) => ({
   post: {
-    user_id: user.user.id,
+    user_id: user.id,
     text: "",
     event_id: ownProps.match.params.id
   },
-  user: user.user,
-  name: `${user.user.fname} ${user.user.lname}`
+  user,
+  name: `${user.fname} ${user.lname}`
 });
 
 const mapDTP = dispatch => ({
-  createPost: post => dispatch(createPost(post))
+  createPost: (eventId, post) => dispatch(createPost(eventId, post))
 });
 
 export default withRouter(connect(mapSTP, mapDTP)(PostForm));

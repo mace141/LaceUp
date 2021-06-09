@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export const fetchEventsPosts = eventId => (
-  axios.get(`/api/${eventId}/posts`)
+  axios.get(`/api/events/${eventId}/posts`)
 );
 
-export const createPost = post => (
-  axios.post('/api/posts', post)
+export const createPost = (eventId, post) => (
+  axios.post(`/api/posts/${eventId}`, post)
 );
 
 export const updatePost = post => (
