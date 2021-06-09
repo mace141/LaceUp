@@ -32,12 +32,12 @@ class Search extends React.Component {
 
     if (e.target.value !== "") {
       currentList = this.props.parks.concat(this.props.sports);
-      newList = currentList.filter((park) => {
+      newList = currentList.filter((item) => {
         debugger;
         let lc;
-        typeof park == "object"
-          ? (lc = park.name.toLowerCase())
-          : (lc = park.toLowerCase());
+        typeof item == "object"
+          ? (lc = item.name.toLowerCase())
+          : (lc = item.toLowerCase());
         let filter = e.target.value.toLowerCase();
 
         return lc.includes(filter);
@@ -128,15 +128,7 @@ class Search extends React.Component {
                 return null;
               }
             })()}
-            {/* {enterClickRedirect ? (
-              {typeof filtered[0]=='object'? : }
-              <Redirect
-                to={{
-                  pathname: "/explore",
-                  state: { selectedPlace: filtered[0] },
-                }}
-              />
-            ) : null} */}
+
             <input
               ref={(element) => {
                 this.dropdownMenu = element;
@@ -145,36 +137,36 @@ class Search extends React.Component {
               className="search-bar-input"
               onChange={this.handleChange}
               onFocus={this.showMenu}
-              placeholder="Search by park..."
+              placeholder="Search by park or sport..."
               onKeyPress={this.handleEnterClick}
             />
             {this.state.showMenu ? (
               <ul id="search-res" className="search-results-ul">
-                {this.state.filtered.map((park) => {
+                {this.state.filtered.map((item) => {
                   keyIdx += 1;
                   return (
                     <li key={keyIdx} className="search-results-li">
-                      {typeof park == "object" ? (
+                      {typeof item == "object" ? (
                         <Link
                           className="search-res-link"
                           to={{
                             pathname: `/explore`,
                             state: {
-                              selectedPlace: park,
+                              selectedPlace: item,
                             },
                           }}
                         >
-                          {park.name}
+                          {item.name}
                         </Link>
                       ) : (
                         <>
                           <Link
                             className="search-res-link"
                             to={{
-                              pathname: `/explore/${park.toLowerCase()}`,
+                              pathname: `/explore/${item.toLowerCase()}`,
                             }}
                           >
-                            {park}
+                            {item}
                           </Link>
                         </>
                       )}
