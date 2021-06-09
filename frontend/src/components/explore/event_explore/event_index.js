@@ -16,16 +16,27 @@ class EventIndex extends React.Component {
   }
 
   render() {
-    const { park, errors, parksEvents } = this.props;
+    // debugger;
+    const { park, errors, parksEvents, isCurrentUser, openModal } = this.props;
     if (Object.keys(parksEvents).length === 0) {
       return <>No events found for {park.name}</>;
     } else {
       return (
         <>
-          <h1>Events for {park.name}</h1>
+          <h1 className="side-window-header">Events for {park.name}</h1>
           {Object.entries(parksEvents).map((key) => (
             <EventIndexItemContainer key={key} event={key[1]} park={park} />
           ))}
+          {isCurrentUser ? (
+            <div className="explore-index-item">
+              <button
+                className="host-a-game"
+                onClick={() => openModal("newEvent")}
+              >
+                Host your own
+              </button>
+            </div>
+          ) : null}
         </>
       );
     }

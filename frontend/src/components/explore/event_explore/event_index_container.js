@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import EventIndex from "./event_index";
 import { fetchParksEvents } from "../../../actions/event_actions";
+import { openModal } from "../../../actions/modal_actions";
 const mapStateToProps = (state, ownProps) => {
   const eventState = state.entities.events;
 
@@ -14,12 +15,14 @@ const mapStateToProps = (state, ownProps) => {
     park: ownProps.park,
     errors: state.errors.event,
     parksEvents: filteredEvents,
+    isCurrentUser: state.session.isAuthenticated,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchParksEvents: (parkId) => dispatch(fetchParksEvents(parkId)),
+    openModal: (modal) => dispatch(openModal(modal)),
   };
 };
 
