@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import { openModal } from "../../../actions/modal_actions";
 
 class EventIndexItem extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class EventIndexItem extends React.Component {
   }
 
   render() {
-    const { event, park, host } = this.props;
+    const { event, park, host, openModal, isCurrentUser } = this.props;
 
     const months = [
       "Jan",
@@ -100,9 +101,18 @@ class EventIndexItem extends React.Component {
               </div>
             </div>
             <div className="link-to-event">
-              <button className="join-game-btn">
-                <Link to={`/events/${event._id}`}>Join game</Link>
-              </button>
+              {isCurrentUser ? (
+                <button className="join-game-btn">
+                  <Link to={`/events/${event._id}`}>Join game</Link>
+                </button>
+              ) : (
+                <button
+                  className="join-game-btn"
+                  onClick={isCurrentUser ? null : () => openModal("login")}
+                >
+                  Join Game
+                </button>
+              )}
             </div>
           </div>
         </>
