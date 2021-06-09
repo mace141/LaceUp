@@ -25,7 +25,7 @@ class PostIndexItem extends React.Component {
     return (
       <div className='post-item'>
         <header>
-          <div>
+          <div className='avatar'>
             <img src={ avatarUrl || defaultUser } alt="Avatar" />
           </div>
           <p>{`${user_id.fname} ${user_id.lname}`}</p>

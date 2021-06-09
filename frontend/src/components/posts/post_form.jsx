@@ -36,9 +36,10 @@ class PostForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit} className='post-form'>
+        <h1>Create a post</h1>
         <div className='post-body'>
-          <div>
-            <div className='avatar small'>
+          <div className='subhead'>
+            <div className='avatar'>
               <img src={this.props.user.avatar || defaultUser} alt="Profile Pic" className='pfp'/>
             </div>
             <h2>{this.props.name}</h2>
@@ -47,7 +48,7 @@ class PostForm extends React.Component {
             <textarea placeholder='What do you want to talk about?' value={this.state.text} onChange={this.handleInput}></textarea>
           </div>
         </div>
-        <footer className='post-footer'>
+        <footer>
           <button className='form-button' disabled={this.ensureContent()}>Post</button>
         </footer>
       </form>
