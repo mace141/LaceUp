@@ -21,6 +21,7 @@ class EditPostForm extends React.Component {
     this.props.updatePost(this.state);
     this.setState({ text: "" });
     this.props.toggleEdit();
+    this.props.setEdit(this.state.text);
   }
 
   ensureChange() {

@@ -17,6 +17,7 @@ class PostIndexItem extends React.Component {
     this.toggleEdit = this.toggleEdit.bind(this);
     this.clicked = this.clicked.bind(this);
     this.leave = this.leave.bind(this);
+    this.setEdit = this.setEdit.bind(this);
   }
 
   toggleEdit() {
@@ -31,6 +32,11 @@ class PostIndexItem extends React.Component {
     this.setState({ drop: false });
   }
 
+  setEdit(newText) {
+    this.setState({ text: newText });
+    console.log('hello')
+  }
+
   render() {
     const { user_id, text, newPost, edit, drop, _id } = this.state;
     const { avatar, user, deletePost } = this.props;
@@ -39,13 +45,13 @@ class PostIndexItem extends React.Component {
     const name = newPost ? `${user.fname} ${user.lname}` : `${user_id.fname} ${user_id.lname}`;
 
     const editForm = edit ? (
-      <EditPostForm toggleEdit={this.toggleEdit} post={this.state}/>
+      <EditPostForm toggleEdit={this.toggleEdit} post={this.state} setEdit={this.setEdit}/>
     ) : (
       <p>{text}</p>
     );
     
     let dropdown;
-
+    
     if (user_id._id == user.id || newPost) {
       dropdown = (
         <button onFocus={this.clicked} onBlur={this.leave} className='dropdown-btn'>
