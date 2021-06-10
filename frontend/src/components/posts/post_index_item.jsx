@@ -44,16 +44,20 @@ class PostIndexItem extends React.Component {
       <p>{text}</p>
     );
     
-    const dropdown = user_id._id == user.id ? (
-      <button onFocus={this.clicked} onBlur={this.leave} className='dropdown-btn'>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
-        <ul className={'post-dropdown ' + (drop ? 'reveal' : 'hide')}>
-          <li onClick={this.toggleEdit}><i className="far fa-edit"></i>Edit</li>
-          <li onClick={() => deletePost(_id)}><i className="far fa-trash-alt"></i>Delete</li>
-        </ul>
-      </button>
-    ) : null;
-    
+    let dropdown;
+
+    if (user_id._id == user.id || newPost) {
+      dropdown = (
+        <button onFocus={this.clicked} onBlur={this.leave} className='dropdown-btn'>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
+          <ul className={'post-dropdown ' + (drop ? 'reveal' : 'hide')}>
+            <li onClick={this.toggleEdit}><i className="far fa-edit"></i>Edit</li>
+            <li onClick={() => deletePost(_id)}><i className="far fa-trash-alt"></i>Delete</li>
+          </ul>
+        </button>
+      );
+    }
+
     return (
       <div className='post-item'>
         <header>
