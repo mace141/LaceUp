@@ -6,7 +6,7 @@ const TeamsIndex = ({ teams , event}) => {
   return (
     <div className='team-index'> 
       {teams.map(team => (
-        <TeamsIndexItemContainer team={team} event={event}/>
+        <TeamsIndexItemContainer key={team._id} team={team} event={event}/>
       ))}
     </div>
   )

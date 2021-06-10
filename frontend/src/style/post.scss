@@ -1,0 +1,162 @@
+.post-form {
+  margin: 20px 0;
+  padding: 20px;
+  border: 1px solid $primary;
+  border-radius: 8px;
+  background: $neutralLightest;
+
+  h1 {
+    text-align: center;
+    font-weight: 600;
+    color: $primary;
+    font-size: 24px;
+  }
+
+  .post-body {
+    display: flex;
+  }
+  
+  .subhead {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+      color: $primary;
+      font-weight: 600;
+      font-size: 20px;
+      white-space: nowrap;
+      margin-right: 15px;
+    }
+  }
+
+  .textarea {
+    margin: 20px 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 7px -2px gray;
+    
+    textarea {
+      height: 100px;
+      width: 100%;
+      padding: 10px;
+    }
+  }
+
+  footer {
+    display: flex;
+    justify-content: center;
+
+    button {
+      color: white;
+      padding: 8px 15px;
+      font-weight: 600;
+    }
+  }
+}
+
+.avatar {
+  border: 1px solid $primary;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+  margin-right: 15px;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.post-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid $primary;
+  padding: 15px;
+  background: $neutralLightest;
+
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+
+    p {
+      color: $primary;
+      font-weight: 600;
+      white-space: nowrap;
+      margin-right: 15px;
+    }
+  }
+
+}
+
+.dropdown-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border: none;
+
+  img {
+    width: 20px;
+    height: auto;
+  }
+
+  ul {
+    position: absolute;
+    top: 15px;
+    right: 0px;
+    z-index: 1;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0px 0px 7px -2px gray;
+    overflow: hidden;
+    
+    li {
+      padding: 10px;
+    }
+    
+    li:hover {
+      background: lightgray;
+      transition: 0.3s;
+    }
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.reveal {
+  display: block;
+}
+
+.edit {
+  border-radius: 5px;
+  min-width: 600px;
+  
+  textarea {
+    padding: 10px;
+    background: white;
+    border-radius: 5px;
+    width: 100%;
+    box-shadow: 0px 0px 7px -2px gray;
+  }
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.edit-post-btns button {
+  padding: 5px 15px;
+  margin-right: 10px;
+  color: white;
+  background: $primary;
+  border-radius: 5px;
+}

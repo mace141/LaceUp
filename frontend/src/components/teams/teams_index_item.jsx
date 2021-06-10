@@ -48,8 +48,8 @@ class TeamsIndexItem extends React.Component {
         <h2>Players Needed: {team.numPlayers - team.player_id.length}</h2>
         {joinBtn}
         <div className='player-slots'>
-          {teamSpots.map(spot => (
-            <SpotContainer spot={spot} event={event} team={team}/>
+          {teamSpots.map((spot, i) => (
+            <SpotContainer key={i} spot={spot} event={event} team={team}/>
           ))}
         </div>
       </div>
