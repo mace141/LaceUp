@@ -1,4 +1,4 @@
-const keys = require("../config/keys_dev");
+const keys = require("../config/keys");
 
 const deleteImage = (bucket, key) => {
   let params = {
