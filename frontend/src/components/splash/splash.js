@@ -67,12 +67,15 @@ class Splash extends React.Component {
             <div className="founder-info">
               <p className="footer-name">Daniel Wu</p>
               <a
-                className="footer-linkedin"
+                className="footer-linkedin-git"
                 href="https://www.linkedin.com/in/daniel-wu-2995a6140/"
               >
                 LinkedIn
               </a>
-              <a className="footer-linkedin" href="https://github.com/mace141">
+              <a
+                className="footer-linkedin-git"
+                href="https://github.com/mace141"
+              >
                 Github
               </a>
               <a className="footer-site" href="https://www.google.com/">
@@ -83,12 +86,15 @@ class Splash extends React.Component {
             <div className="founder-info">
               <p className="footer-name">Alex Kerpelman</p>
               <a
-                className="footer-linkedin"
+                className="footer-linkedin-git"
                 href="https://www.linkedin.com/in/alexander-kerpelman-22587584/"
               >
                 LinkedIn
               </a>
-              <a className="footer-github" href="https://github.com/akerpelm">
+              <a
+                className="footer-linkedin-git"
+                href="https://github.com/akerpelm"
+              >
                 Github
               </a>
               <a className="footer-site" href="https://www.google.com/">
@@ -99,13 +105,13 @@ class Splash extends React.Component {
             <div className="founder-info">
               <p className="footer-name">Andrew Kihs</p>
               <a
-                className="footer-linkedin"
+                className="footer-linkedin-git"
                 href="https://www.linkedin.com/in/andrew-kihs"
               >
                 LinkedIn
               </a>
               <a
-                className="footer-linkedin"
+                className="footer-linkedin-git"
                 href="https://github.com/andrewkihs"
               >
                 Github
@@ -118,13 +124,13 @@ class Splash extends React.Component {
             <div className="founder-info-jack">
               <p className="footer-name">Jack Cusick</p>
               <a
-                className="footer-linkedin"
+                className="footer-linkedin-git"
                 href="https://www.linkedin.com/in/jack-cusick-2a5809b4/"
               >
                 LinkedIn
               </a>
               <a
-                className="footer-linkedin"
+                className="footer-linkedin-git"
                 href="https://github.com/jackcusick95"
               >
                 Github

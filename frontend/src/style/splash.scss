@@ -144,6 +144,7 @@
 
 .splash-footer {
   margin-top: 20px;
+  padding-bottom: 25px;
   // margin-bottom: 10px;
 }
 
@@ -167,13 +168,14 @@
   font-weight: 600;
   // margin-top: -10px;
 }
-.footer-linkedin {
+
+.footer-linkedin-git {
   display: flex;
   flex-direction: column;
   font-size: 14px;
 }
 
-.footer-linkedin:hover {
+.footer-linkedin-git:hover {
   text-decoration: underline;
   cursor: pointer;
 }
