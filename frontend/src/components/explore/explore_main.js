@@ -18,6 +18,10 @@ class ExploreMain extends React.Component {
     } else {
       return (
         <>
+          <div className="explore-header">
+            <div className="invisible-sw-padding" />
+            <h1>Select Location to View Events</h1>
+          </div>
           <div className="explore-map-outer">
             <MapContainer
               preSelected={!!preSelected ? preSelected.selectedPlace : null}

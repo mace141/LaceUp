@@ -30,11 +30,14 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
+<<<<<<< HEAD
     // const { errors, isValid } = validateTeamInput(req.body);
 
     // if (!isValid) {
     //   return res.status(400).json(errors);
     // }
+=======
+>>>>>>> main
     const newTeam = new Team({
       name: req.body.name,
       numPlayers: req.body.numPlayers,

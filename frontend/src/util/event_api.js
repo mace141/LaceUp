@@ -1,34 +1,33 @@
 import axios from "axios";
 
 export const fetchAllEvents = () => {
-    return axios.get('/api/events/')
+  return axios.get("/api/events/");
 };
 
-export const fetchEventsByUser = userId => {
-    return axios.get(`/api/events/user/${userId}`)
+export const fetchEventsByUser = (userId) => {
+  return axios.get(`/api/events/user/${userId}`);
 };
 
-export const fetchEventsByTeam = teamsId => {
-    return axios.get(`/api/events/team/${teamsId}`)
+export const fetchEventsByTeam = (teamsId) => {
+  return axios.get(`/api/events/team/${teamsId}`);
 };
 
-export const fetchEventsByLocation = locationId => {
-    return axios.get(`/api/events/park/${locationId}`)
+export const fetchEventsByLocation = (locationId) => {
+  return axios.get(`/api/events/park/${locationId}`);
 };
 
-export const createEvent = event => {
-    return axios.post('/api/events/create', event)
+export const createEvent = (event) => {
+  return axios.post("/api/events/create", event);
 };
 
-export const deleteEvent = eventId => {
-    return axios.delete(`/api/events/delete/${eventId}`)
+export const deleteEvent = (eventId) => {
+  return axios.delete(`/api/events/delete/${eventId}`);
 };
 
 export const fetchUsersEvents = (userId) =>
-    axios.get(`/api/events/user/${userId}`);
+  axios.get(`/api/events/user/${userId}`);
 
 export const fetchParksEvents = (parkId) =>
-    axios.get(`/api/events/park/${parkId}`);
+  axios.get(`/api/events/park/${parkId}`);
 
-export const fetchEvent = (eventId) => 
-  axios.get(`/api/events/${eventId}`);
+export const fetchEvent = (eventId) => axios.get(`/api/events/${eventId}`);

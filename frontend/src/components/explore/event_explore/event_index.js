@@ -19,7 +19,33 @@ class EventIndex extends React.Component {
     // debugger;
     const { park, errors, parksEvents, isCurrentUser, openModal } = this.props;
     if (Object.keys(parksEvents).length === 0) {
-      return <>No events found for {park.name}</>;
+      return (
+        <>
+          <h1 className="side-window-header">
+            No events found for {park.name}
+          </h1>
+          {isCurrentUser ? (
+            <div className="explore-index-item">
+              <button
+                className="host-a-game"
+                onClick={() => openModal("newEvent")}
+              >
+                Host your own?
+              </button>
+            </div>
+          ) : (
+            <div className="explore-index-item">
+              <button
+                className="join-game-btn"
+                onClick={() => openModal("login")}
+              >
+                Host your own?
+              </button>
+              {/* <>Sign in to host your own</> */}
+            </div>
+          )}
+        </>
+      );
     } else {
       return (
         <>
@@ -31,7 +57,11 @@ class EventIndex extends React.Component {
             <div className="explore-index-item">
               <button
                 className="host-a-game"
-                onClick={() => openModal("newEvent")}
+                onClick={
+                  isCurrentUser
+                    ? () => openModal("newEvent")
+                    : () => openModal("login")
+                }
               >
                 Host your own
               </button>

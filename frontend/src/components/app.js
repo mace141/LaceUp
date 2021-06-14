@@ -9,7 +9,7 @@ import ExploreMainContainer from "./explore/explore_main_container";
 import EventShowContainer from "./events/event_show";
 import SplashContainer from "./splash/splash_container";
 import ExploreReload from "./explore/explore_reload";
-
+import ExploreSportContainer from "./explore/explore_sport/explore_sport_container";
 const App = () => (
   <div>
     <Modal />
@@ -19,6 +19,11 @@ const App = () => (
         <Route exact path="/" component={SplashContainer} />
         <Route exact path="/explore" component={ExploreMainContainer} />
         <Route exact path="/explore/reload" component={ExploreReload} />
+        <Route
+          exact
+          path="/explore/:sportName"
+          component={ExploreSportContainer}
+        />
         <Route exact path="/users/:id" component={Profile} />
         <Route exact path="/events/:id" component={EventShowContainer} />
       </Switch>

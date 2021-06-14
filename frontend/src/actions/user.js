@@ -26,3 +26,9 @@ export const updateUser = user => dispatch => (
     user => dispatch(receiveUpdatedUser(user))
   )
 );
+
+export const updateUserImage = (userId, formData) => dispatch => (
+  UserAPI.updateUserImage(userId, formData).then(
+    user => dispatch(receiveUpdatedUser(user))
+  )
+);

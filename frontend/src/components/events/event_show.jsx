@@ -7,40 +7,38 @@ import { fetchTeams } from '../../actions/team';
 import { fetchUser } from '../../util/user_api';
 import { fetchEvent } from '../../util/event_api';
 import TeamsIndex from '../teams/teams_index';
+import CreatePostForm from '../posts/create_post_form';
+import PostsIndex from '../posts/posts_index';
+import { fetchEventsPosts } from '../../actions/post';
 
 class EventShow extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      tabIdx: 0,
       event: { 
         location_id: { name: null },
         user_id: { fname: null, lname: null }
       },
-      num: 0,
       teams: this.props.teams
     };
-
-    this.incrNum = this.incrNum.bind(this);
   }
 
   componentDidMount() {
-    const { fetchEvent, fetchTeams, receiveEvent, dispatch, match } = this.props;
+    const { 
+      fetchEvent, fetchTeams, fetchEventsPosts, receiveEvent, dispatch, match 
+    } = this.props;
     
     fetchEvent(match.params.id).then(payload => {
       this.setState({ event: payload.data });
       dispatch(receiveEvent(payload));
     });
     fetchTeams();
-  }
-
-  incrNum() {
-    this.setState({ num: this.state.num + 1 });
+    fetchEventsPosts(match.params.id);
   }
 
   render() {
-    const { event, teams } = this.props;
+    const { event, teams, posts, user } = this.props;
     if (!event) return null;
 
     const months = [
@@ -65,8 +63,6 @@ class EventShow extends React.Component {
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const time = `${hours > 12 ? hours - 12 : hours}:${minutes < 10 ? '0'+minutes : minutes} ${hours > 12 ? 'PM' : 'AM'}`;
-    
-    const tabs = [<TeamsIndex teams={teams} event={event} />];
     
     return (
       <div className="event-show">
@@ -101,24 +97,30 @@ class EventShow extends React.Component {
           </div>
           <div className='event-host'>
             <p>Hosted by: <Link to={`/users/${this.state.event.user_id._id}`}>
-            <span>{`${this.state.event.user_id.fname} ${this.state.event.user_id.lname}`}</span>
-            </Link>
+                <span>{`${this.state.event.user_id.fname} ${this.state.event.user_id.lname}`}</span>
+              </Link>
             </p>
           </div>
         </div>
         <div>
           <span>Players</span>
         </div>
-        {tabs[this.state.tabIdx]}
+        <TeamsIndex teams={teams} event={event}/>
+        {user ? <CreatePostForm/> : null}
+        <PostsIndex posts={posts}/>
       </div>
     );
   }
 }
 
-const mapSTP = ({ entities: { events, teams } }, ownProps) => ({
-  event: events[ownProps.match.params.id],
-  teams: Object.values(teams).filter(team => team.event_id == ownProps.match.params.id)
-});
+const mapSTP = ({ entities: { events, teams, posts }, session: { user } }, ownProps) => {
+  const eventId = ownProps.match.params.id;
+  return ({
+  event: events[eventId],
+  teams: Object.values(teams).filter(team => team.event_id == eventId),
+  posts: Object.values(posts).filter(post => post.event_id == eventId),
+  user
+})};
 
 const mapDTP = dispatch => ({
   fetchEvent: eventId => fetchEvent(eventId),
@@ -126,6 +128,7 @@ const mapDTP = dispatch => ({
   fetchParks: () => dispatch(fetchParks()),
   fetchUser: userId => fetchUser(userId),
   fetchTeams: () => dispatch(fetchTeams()),
+  fetchEventsPosts: eventId => dispatch(fetchEventsPosts(eventId)),
   dispatch
 });
 

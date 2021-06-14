@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { closeModal } from "../../actions/modal_actions";
 import logo from "../../style/assets/logoB.png";
 
 class LoginForm extends React.Component {
@@ -10,6 +11,7 @@ class LoginForm extends React.Component {
       email: "",
       password: "",
       errors: {},
+      currentUser: null,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,17 +39,10 @@ class LoginForm extends React.Component {
       email: this.state.email,
       password: this.state.password,
     };
-
+    // debugger;
     const { login, errors, closeModal } = this.props;
-    login(user).then(() => {
-      if (errors) {
-        if (errors.length === 0) {
-          closeModal();
-        }
-      } else {
-        closeModal();
-      }
-    });
+    login(user);
+    // login(user);
   }
   // Render the session errors if there are any
   renderErrors() {
@@ -61,51 +56,56 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    return (
-      <div className="login-form-outer-container">
-        {/* <img className="modal-logo" src={logo}></img> */}
-        <h1 className="modal-singin">Sign In</h1>
-        <div onClick={this.props.closeModal} className="close-x">
-          x
-        </div>
-        <p className="modal-slogan">Sign up, link up, lace up</p>
-        <form
-          className="login-form-inner-container"
-          onSubmit={this.handleSubmit}
-        >
-          <div>
-            {this.renderErrors()}
-            <label className="modal-label">Email:</label>
-            <br />
-            <input
-              className="modal-input"
-              type="text"
-              value={this.state.email}
-              onChange={this.update("email")}
-            />
-            <section className="modal-input-space"></section>
-            <br />
-            <label className="modal-label">Password:</label>
-            <br />
-            <input
-              className="modal-input"
-              type="password"
-              value={this.state.password}
-              onChange={this.update("password")}
-            />
-            <br />
-            <p className="modal-nav-sentence">Still need to join LacedUp?</p>
-            <p className="modal-nav-link" onClick={this.props.otherForm}>
-              {" "}
-              Sign up
-            </p>
-            <br />
+    if (!!this.props.currentUser) {
+      this.props.closeModal();
+      return <></>;
+    } else {
+      return (
+        <div className="login-form-outer-container">
+          {/* <img className="modal-logo" src={logo}></img> */}
+          <h1 className="modal-singin">Sign In</h1>
+          <div onClick={this.props.closeModal} className="close-x">
+            x
           </div>
-          {/* <input className="modal-login" type="submit" value="Log in" /> */}
-          <input className="modal-login-two" type="submit" value="Log in" />
-        </form>
-      </div>
-    );
+          <p className="modal-slogan">Sign up, link up, lace up</p>
+          <form
+            className="login-form-inner-container"
+            onSubmit={this.handleSubmit}
+          >
+            <div>
+              {this.renderErrors()}
+              <label className="modal-label">Email:</label>
+              <br />
+              <input
+                className="modal-input"
+                type="text"
+                value={this.state.email}
+                onChange={this.update("email")}
+              />
+              <section className="modal-input-space"></section>
+              <br />
+              <label className="modal-label">Password:</label>
+              <br />
+              <input
+                className="modal-input"
+                type="password"
+                value={this.state.password}
+                onChange={this.update("password")}
+              />
+              <br />
+              <p className="modal-nav-sentence">Still need to join LacedUp?</p>
+              <p className="modal-nav-link" onClick={this.props.otherForm}>
+                {" "}
+                Sign up
+              </p>
+              <br />
+            </div>
+            {/* <input className="modal-login" type="submit" value="Log in" /> */}
+            <input className="modal-login-two" type="submit" value="Log in" />
+          </form>
+        </div>
+      );
+    }
   }
 }
 

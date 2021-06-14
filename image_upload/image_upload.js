@@ -2,7 +2,7 @@ const AWS = require('aws-sdk');
 const multerS3 = require("multer-s3");
 const multer = require("multer");
 const path = require("path");
-const keys = require("../config/keys_dev")
+const keys = require("../config/keys")
 
 const fileFilter = (req, file, cb) => {
     if (file.mimetype.startsWith('image')) {
