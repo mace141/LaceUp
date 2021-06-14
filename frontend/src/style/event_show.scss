@@ -37,6 +37,7 @@
 
 .team-index {
   display: grid;
+  position: relative;
   padding: 20px;
   background: $neutralLightest;
   border: 1px solid $primary;
@@ -44,11 +45,14 @@
   border-bottom-right-radius: 8px;
 
   .team-item {
+    // display: inline-block;
     position: relative;
+    word-wrap: break-word;
     color: $primary;
     margin-bottom: 10px;
 
     h1, h2, .player-slots {
+      // display: inline-block;
       margin-bottom: 10px;
     }
 
@@ -67,10 +71,11 @@
     }
 
     .player-slots {
-      display: flex;
+      display: block;
     }
 
-    .player-slots span {
+    .player-slots p {
+      display: inline-block;
       margin: 5px;
     }
   }

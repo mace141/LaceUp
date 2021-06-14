@@ -21,10 +21,10 @@ class Spot extends React.Component {
 
   render() {
     const user = this.state.user;
-    if (!user) return <span>__________</span>;
+    if (!user) return <p>__________ </p>;
     
     return (
-      <span>{`${user.fname} ${user.lname}`}</span>
+      <p>{`${user.fname} ${user.lname}`}</p>
     )
   }
 }
