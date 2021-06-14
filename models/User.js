@@ -33,7 +33,7 @@ const UserSchema = new Schema({
   avatar: {
     type: String,
     required: false,
-    data: Buffer,
+    // data: Buffer,
   },
   home_court: {
     type: String,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { updateUser } from '../../actions/user';
+import { updateUser, updateUserImage } from '../../actions/user';
 import { closeModal } from '../../actions/modal_actions';
 import { fetchParks } from '../../actions/park';
 import defaultUser from '../../style/assets/defaultUser.png';
@@ -45,7 +45,7 @@ class EditUserForm extends React.Component {
     const fileReader = new FileReader();
 
     fileReader.onloadend = () => {
-      this.setState({ avatar: file, avatarUrl: fileReader.result });
+      this.setState({ image: file, avatar: fileReader.result });
     };
 
     if (file) {
@@ -58,7 +58,9 @@ class EditUserForm extends React.Component {
     e.preventDefault();
 
     const formData = new FormData();
-    
+    formData.append('image', this.state.image);
+
+    this.props.updateUserImage(this.state._id, formData);
     this.props.updateUser(this.state);
     document.getElementById('avatar-input').value = "";
     this.props.closeModal();
@@ -73,7 +75,7 @@ class EditUserForm extends React.Component {
           <div>
             <div className='edit-avatar-section'>
               <div className='avatar'>
-                <img src={this.state.avatarUrl || defaultUser} alt="Avatar"/>
+                <img src={this.state.avatar || defaultUser} alt="Avatar"/>
                 <input type="file" id='avatar-input' accept='image/*' onChange={this.handleFile}/>
               </div>
               <span onClick={() => document.getElementById('avatar-input').click()}>New Avatar</span>
@@ -129,6 +131,7 @@ const mapSTP = ({ entities: { users, parks } }, ownProps) => {
 
 const mapDTP = dispatch => ({
   updateUser: user => dispatch(updateUser(user)),
+  updateUserImage: (userId, formData) => dispatch(updateUserImage(userId, formData)),
   closeModal: () => dispatch(closeModal()),
   fetchParks: () => dispatch(fetchParks())
 });
