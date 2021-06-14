@@ -48,11 +48,12 @@ class MapContainer extends Component {
       return (
         <div className="explore-page-container">
           <div className="explore-side-window">
-            <div className="sw-header-container">
-              {activeMarker ? null : (
+            {activeMarker ? null : (
+              <div className="sw-header-container">
                 <h1 className="side-window-header">Parks on LaceUp</h1>
-              )}
-            </div>
+              </div>
+            )}
+
             {activeMarker ? (
               <EventIndexContainer park={selectedPlace} />
             ) : (
