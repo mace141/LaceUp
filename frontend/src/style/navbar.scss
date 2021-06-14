@@ -27,6 +27,7 @@
   background: white;
   height: 56px;
   display: flex;
+  // width: 80%;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #f0f0f5;
@@ -37,13 +38,14 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 81%;
+  width: 80%;
   height: 100%;
 }
 
 .navbar-right {
   display: flex;
   align-items: center;
+  height: 24px;
   // width: 100%;
   > button {
     margin-left: 10px;
