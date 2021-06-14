@@ -21,9 +21,11 @@ class EventIndex extends React.Component {
     if (Object.keys(parksEvents).length === 0) {
       return (
         <>
-          <h1 className="side-window-header">
-            No events found for {park.name}
-          </h1>
+          <div className="sw-header-container">
+            <h1 className="side-window-header">
+              No events found for {park.name}
+            </h1>
+          </div>
           {isCurrentUser ? (
             <div className="explore-index-item">
               <button
@@ -49,24 +51,26 @@ class EventIndex extends React.Component {
     } else {
       return (
         <>
-          <h1 className="side-window-header">Events for {park.name}</h1>
+          <div className="sw-header-container">
+            <h1 className="side-window-header">Events for {park.name}</h1>
+            {isCurrentUser ? (
+              <div className="host-your-own-btn">
+                <button
+                  className="host-a-game"
+                  onClick={
+                    isCurrentUser
+                      ? () => openModal("newEvent")
+                      : () => openModal("login")
+                  }
+                >
+                  Host an event
+                </button>
+              </div>
+            ) : null}
+          </div>
           {Object.entries(parksEvents).map((key) => (
             <EventIndexItemContainer key={key} event={key[1]} park={park} />
           ))}
-          {isCurrentUser ? (
-            <div className="explore-index-item">
-              <button
-                className="host-a-game"
-                onClick={
-                  isCurrentUser
-                    ? () => openModal("newEvent")
-                    : () => openModal("login")
-                }
-              >
-                Host your own
-              </button>
-            </div>
-          ) : null}
         </>
       );
     }

@@ -90,7 +90,10 @@ class EventIndexItem extends React.Component {
               <div className="skill">
                 <p>
                   <span>Type:</span>{" "}
-                  <span className="ex-idx-sport-info">{event.type}</span>
+                  <span className="ex-idx-sport-info">
+                    {/* capitalize first letter of str: just for fun => Just for fun */}
+                    {event.type.charAt(0).toUpperCase() + event.type.slice(1)}
+                  </span>
                 </p>
               </div>
               <div className="team-size">
