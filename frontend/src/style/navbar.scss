@@ -1,9 +1,23 @@
+@media (max-width: 610px) {
+  .header-logo {
+    width: 100px;
+  }
+  .navbar-left {
+    width: 100px;
+  }
+}
+@media (max-width: 450px) {
+  .host-btn {
+    display: none;
+  }
+}
 .nav-background {
   background: $neutralLighter;
   position: fixed;
   width: 100%;
 }
-
+.login-signup {
+}
 .full-navbar {
   background: white;
   height: 56px;
@@ -25,7 +39,7 @@
 .navbar-right {
   display: flex;
   align-items: center;
-
+  // width: 100%;
   > button {
     margin-left: 10px;
   }
@@ -41,6 +55,8 @@
   object-fit: cover;
 }
 .login-signup {
+  display: flex;
+  align-items: center;
   button,
   a {
     margin-left: 10px;
