@@ -76,12 +76,12 @@ router.get("/:id/posts", async (req, res) => {
 //update event
 router.patch(
   "/:id",
-  passport.authenticate("jwt", { session: false }),
+  // passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateEventInput(req.body);
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+  //   const { errors, isValid } = validateEventInput(req.body);
+  //   if (!isValid) {
+  //     return res.status(400).json(errors);
+  //   }
     Event.findByIdAndUpdate(
       { _id: req.params.id },
       {
