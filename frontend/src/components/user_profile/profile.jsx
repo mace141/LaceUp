@@ -66,12 +66,7 @@ class Profile extends React.Component {
                       }} className='tabs' id='tab1'>
             <button>History</button>
           </div>
-          <div onClick={() => {
-                        this.setState({ tabIdx: 2 });
-                        this.toggleTabs(2);
-                      }} className='tabs' id='tab2'>
-            <button>Clubs</button>
-          </div>
+
         </nav>
         {tabs[this.state.tabIdx]}
       </section>

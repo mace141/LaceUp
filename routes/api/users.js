@@ -111,7 +111,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-//delete user 
+//delete user
 router.delete(
   "/delete/:id",
   passport.authenticate("jwt", { session: false }),
@@ -158,10 +158,12 @@ router.patch(
 router.get("/:id", async (req, res) => {
   let user = User.findById(req.params.id);
   let userEvents = Event.find({ user_id: req.params.id });
-  let userTeams = await Team.find({ player_id: req.params.id }).populate(
-    "event_id"
+  // let test = Event.find({ team_id:req.params.id})
+  let userTeams = await Team.find({ player_id: req.params.id }).then(
+    Event.find({ user_id: req.params.id })
   );
-  Promise.all([user, userEvents, userTeams])
+
+  Promise.all([user, userTeams])
     .then((data) => res.json(data))
     .catch((err) => res.status(404).json(err));
 });
