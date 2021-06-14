@@ -48,7 +48,7 @@ class Profile extends React.Component {
       event => Date.parse(event.date) <= Date.now()
     ).sort((a, b) => Date.parse(a.date) < Date.parse(b.date) ? 1 : -1);
     
-    const tabs = [<EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>, <p>Club Component</p>];
+    const tabs = [<EventsIndex events={newEvents}/>, <EventsIndex events={oldEvents}/>];
 
     return (
       <section className='profile-container'>
@@ -65,12 +65,6 @@ class Profile extends React.Component {
                         this.toggleTabs(1);
                       }} className='tabs' id='tab1'>
             <button>History</button>
-          </div>
-          <div onClick={() => {
-                        this.setState({ tabIdx: 2 });
-                        this.toggleTabs(2);
-                      }} className='tabs' id='tab2'>
-            <button>Clubs</button>
           </div>
         </nav>
         {tabs[this.state.tabIdx]}
