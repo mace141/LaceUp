@@ -6,6 +6,11 @@
     width: 100px;
   }
 }
+@media (max-width: 610px) {
+  .header-logo {
+    width: 100px;
+  }
+}
 @media (max-width: 450px) {
   .host-btn {
     display: none;
