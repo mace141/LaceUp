@@ -16,6 +16,7 @@ class LoginForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
   // Once the user has been authenticated, redirect to the Tweets page
@@ -53,6 +54,13 @@ class LoginForm extends React.Component {
         ))}
       </ul>
     );
+  }
+
+  handleDemo() {
+    this.props.login({
+      email: 'demo@user.com',
+      password: 'password'
+    });
   }
 
   render() {
@@ -93,15 +101,15 @@ class LoginForm extends React.Component {
                 onChange={this.update("password")}
               />
               <br />
-              <p className="modal-nav-sentence">Still need to join LacedUp?</p>
+              <p className="modal-nav-sentence">Still need to join LaceUp?</p>
               <p className="modal-nav-link" onClick={this.props.otherForm}>
                 {" "}
                 Sign up
               </p>
               <br />
             </div>
-            {/* <input className="modal-login" type="submit" value="Log in" /> */}
-            <input className="modal-login-two" type="submit" value="Log in" />
+            <input className="modal-login-two" type="submit" value="Log In" />
+            <span className='modal-login-two' onClick={this.handleDemo}>Demo User</span>
           </form>
         </div>
       );

@@ -26,6 +26,7 @@ class SignupForm extends React.Component {
     this.handleName = this.handleName.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.setForm = this.setForm.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
     this.clearedErrors = false;
   }
 
@@ -74,6 +75,13 @@ class SignupForm extends React.Component {
     };
   }
 
+  handleDemo() {
+    this.props.login({
+      email: 'demo@user.com',
+      password: 'password'
+    });
+  }
+
   firstPage() {
     return (
       <>
@@ -113,6 +121,7 @@ class SignupForm extends React.Component {
             <button className="modal-login-two" onClick={this.handleEmail}>
               Continue
             </button>
+            <span className='modal-login-two' onClick={this.handleDemo}>Demo User</span>
           </div>
         </div>
       </>
