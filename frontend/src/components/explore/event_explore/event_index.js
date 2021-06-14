@@ -21,9 +21,11 @@ class EventIndex extends React.Component {
     if (Object.keys(parksEvents).length === 0) {
       return (
         <>
-          <h1 className="side-window-header">
-            No events found for {park.name}
-          </h1>
+          <div className="sw-header-container">
+            <h1 className="side-window-header">
+              No events found for {park.name}
+            </h1>
+          </div>
           {isCurrentUser ? (
             <div className="explore-index-item">
               <button
@@ -61,7 +63,7 @@ class EventIndex extends React.Component {
                       : () => openModal("login")
                   }
                 >
-                  Host your own
+                  Host an event
                 </button>
               </div>
             ) : null}
