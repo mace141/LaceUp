@@ -49,7 +49,7 @@ router.delete(
 * Any events a user joins or creates is updated into the schedule tab of profile in real time. Clicking on the event will create a link to the event show page. 
 * Any events that have passed are present in the history tab, so players can reminisce about their big win over city rivals.
 * Users may update their information, to remain up-to-date with their favorite sports, home court, bio, or avatar. The ability to change avatar was done through the use of AWS buckets. 
-![user_profile](frontend/public/UserProfile.PNG)
+![user_profile](./frontend/public/UserProfile.PNG)
 
 ### Posts
 * Once a user has joined an event, he/she can post in that event to organize practicalities such as who is bringing the baseball (or the beer).
