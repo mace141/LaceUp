@@ -11,7 +11,8 @@ class PostIndexItem extends React.Component {
     this.state = { 
       ...props.post,
       edit: false,
-      drop: false
+      drop: false,
+      timeAgo: Date.now() - Date.parse(props.post.timestamp)
     };
 
     this.toggleEdit = this.toggleEdit.bind(this);
@@ -37,6 +38,22 @@ class PostIndexItem extends React.Component {
     console.log('hello')
   }
 
+  timeFromNow() {
+    const { timeAgo } = this.state;
+
+    if (timeAgo < 60000) {
+      return '<1m';
+    } else if (timeAgo < 3600000) {
+      return Math.floor(timeAgo / 60000) + 'm';
+    } else if (timeAgo < 86400000) {
+      return Math.floor(timeAgo / 3600000) + 'h';
+    } else if (timeAgo < 31536000000) {
+      return Math.floor(timeAgo / 86400000) + 'd';
+    } else {
+      return Math.floor(timeAgo / 31536000000) +'y';
+    }
+  }
+
   render() {
     const { user_id, text, newPost, edit, drop, _id } = this.state;
     const { avatar, user, deletePost } = this.props;
@@ -52,7 +69,7 @@ class PostIndexItem extends React.Component {
     
     let dropdown;
     
-    if (user_id._id == user.id || newPost) {
+    if (!!user && (user_id._id == user.id || newPost)) {
       dropdown = (
         <button onFocus={this.clicked} onBlur={this.leave} className='dropdown-btn'>
           <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple_icon_ellipsis.svg" alt="ellipsis"/>
@@ -73,16 +90,21 @@ class PostIndexItem extends React.Component {
           <p>{name}</p>
         </header>
         {editForm}
+        <p className='timestamp'>{this.timeFromNow()}</p>
         {dropdown}
       </div>
     );
   }
 }
 
-const mapSTP = ({ session: { user } }) => ({
-  avatar: user.avatar,
-  user
-});
+const mapSTP = ({ session: { user } }) => {
+  const avatar = user ? user.avatar : defaultUser
+
+  return {
+    avatar,
+    user
+  }
+};
 
 const mapDTP = dispatch => ({
   deletePost: postId => dispatch(deletePost(postId))
