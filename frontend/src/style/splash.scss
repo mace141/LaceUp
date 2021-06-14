@@ -42,6 +42,7 @@
 }
 
 .search-bar-container {
+  margin-top: 15px;
   width: 50%;
 }
 
@@ -86,20 +87,26 @@
   border-right: 1px solid #a39b9b;
   box-shadow: 1px 4px 5px rgb(1 0 9 / 8%);
   z-index: 1001;
-
+  width: 100%;
   padding: 10px;
   .search-res-link {
     display: block;
     width: 100%;
+    height: 100%;
   }
 }
 .search-results-ul {
+  width: 100%;
   :hover {
     display: block;
+
     color: black;
     background-color: $neutralLightest;
   }
   li:nth-child(odd) {
+    background: white;
+  }
+  li:nth-child(even) {
     background: rgb(253, 252, 252);
   }
   > .search-results-li:nth-child(10) ~ .search-results-li {
