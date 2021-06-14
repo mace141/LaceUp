@@ -81,15 +81,16 @@ class EditUserForm extends React.Component {
               <span onClick={() => document.getElementById('avatar-input').click()}>New Avatar</span>
             </div>
             <div className='username'>
-              <label>Username</label>
+              <label>Username:</label>
               <input type="text" value={this.state.username} onChange={this.handleInput('username')}/>
             </div>
           </div>
-          <div>
+          <div className="form-bottom">
+            <label className="bio-label">Bio:</label>
             <textarea placeholder="Enter your bio" onChange={this.handleInput('bio')}>{this.state.bio}</textarea>
             <div className='sports-courts'>
               <div className='sports'>
-                <label>Favorite Sports</label><br/>
+                <label>Favorite Sports:</label><br/>
                 <select multiple className='sports'>
                   <option value="Basketball" onClick={this.handleSports}>Basketball</option>
                   <option value="Soccer" onClick={this.handleSports}>Soccer</option>
@@ -105,7 +106,7 @@ class EditUserForm extends React.Component {
                 </select>
               </div>
               <div className='courts'>
-                <label>Home Court</label><br/>
+                <label>Home Court:</label><br/>
                 <select onChange={this.handleInput('home_court')}>
                   {this.props.parks.map(park => (
                     <option value={park.name}>{park.name}</option>
