@@ -33,7 +33,7 @@ class Search extends React.Component {
     if (e.target.value !== "") {
       currentList = this.props.parks.concat(this.props.sports);
       newList = currentList.filter((item) => {
-        debugger;
+        // debugger;
         let lc;
         typeof item == "object"
           ? (lc = item.name.toLowerCase())
@@ -88,14 +88,16 @@ class Search extends React.Component {
     let keyIdx = 0;
     return (
       <div className="silent-click">
-        <h1 className="app-header">
-          Looking for a casual pickup game? LaceUp has you covered!
-        </h1>
-        <h1 className="app-header-two first">
-          Join today to find local sporting events{" "}
-        </h1>
-        <h1 className="app-header-two">that need YOU on their team. </h1>
-        <h1 className="app-header-three">Sign up, meet up, LaceUp.</h1>
+        <div className="splash-header-container">
+          <h1 className="app-header">
+            Looking for a casual pickup game? LaceUp has you covered!
+          </h1>
+          <h1 className="app-header-two first">
+            Join today to find local sporting events{" "}
+          </h1>
+          <h1 className="app-header-two">that need YOU on their team. </h1>
+          <h1 className="app-header-three">Sign up, meet up, LaceUp.</h1>
+        </div>
         <br />
         <div
           onBlur={this.unDispDrop}
@@ -105,7 +107,7 @@ class Search extends React.Component {
           <div>
             {(() => {
               if (enterClickRedirect) {
-                debugger;
+                // debugger;
                 if (typeof filtered[0] == "object") {
                   return (
                     <Redirect

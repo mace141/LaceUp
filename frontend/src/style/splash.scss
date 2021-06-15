@@ -3,7 +3,8 @@
   width: 100%;
   height: 700px;
   object-fit: cover;
-  box-shadow: 0 4px 12px lightgrey;
+  object-position: 20% 20%; /* even if we dont declare this the image will still be centered */
+  // box-shadow: 0 4px 12px lightgrey;
 }
 
 .carousel-container {
@@ -186,6 +187,9 @@
     grid-template-columns: repeat(2, 1fr);
     grid-row-gap: 20px;
   }
+  .landing-image {
+    height: calc(100vw - 200px);
+  }
   .carousel-container {
     height: calc(100vw - 200px);
     // height: 200px;
@@ -201,14 +205,42 @@
   }
 }
 @media (max-width: 510px) {
+  .landing-image {
+    object-fit: cover;
+    // height: calc(100vw - 200px);
+  }
+  .silent-click {
+    justify-content: space-between;
+  }
   .splash-footer {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
   }
+  .app-header {
+    margin-top: 10px;
+  }
   .search-comp-container {
     height: 400px;
   }
+  .splash-header-container {
+    margin: 0 10px;
+    h1 {
+      padding-bottom: 20px;
+    }
+  }
+  .splash-header-mid {
+    padding: 0px 0px;
+  }
 }
+// @media (max-width: 450px) {
+//   .splash-footer {
+//     display: grid;
+//     grid-template-columns: repeat(1, 1fr);
+//   }
+//   .search-comp-container {
+//     height: 400px;
+//   }
+// }
 .founders {
   margin-bottom: 10px;
   // display: flex;

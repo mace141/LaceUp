@@ -33,8 +33,27 @@ body {
   background: #f2f2f2;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 453px) {
+  .header-logo {
+    width: 80px;
+  }
   .main-content-div {
     width: 100%;
+  }
+  .navbar-inner {
+    // justify-content: space-between;
+    width: 95%;
+  }
+  .sw-header-container {
+    padding-bottom: 0px;
+    padding: 0px 0px;
+    background: rgb(235, 238, 234);
+  }
+  .sw-select-location {
+    font-size: 20px;
+  }
+  .nav-explore-link {
+    // font-size: 12px;
+    // display: none;
   }
 }
