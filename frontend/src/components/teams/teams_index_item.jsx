@@ -38,9 +38,10 @@ class TeamsIndexItem extends React.Component {
       }
     }
 
-    const joinBtn = team.player_id.includes(currentUserId) ? null : (
-      <button className='join-team' onClick={this.handleAdd}>Join Team</button>
-    );
+    const joinBtn = team.player_id.includes(currentUserId) || Date.parse(event.date) > Date.now() ? 
+      null : (
+        <button className='join-team' onClick={this.handleAdd}>Join Team</button>
+      );
     
     return (
       <div className='team-item'>
