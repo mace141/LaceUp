@@ -37,8 +37,8 @@ class TeamsIndexItem extends React.Component {
         teamSpots.push('empty');
       }
     }
-
-    const joinBtn = team.player_id.includes(currentUserId) || Date.parse(event.date) > Date.now() ? 
+    
+    const joinBtn = team.player_id.includes(currentUserId) || Date.parse(event.date) < Date.now() ? 
       null : (
         <button className='join-team' onClick={this.handleAdd}>Join Team</button>
       );
