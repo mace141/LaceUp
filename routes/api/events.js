@@ -34,13 +34,21 @@ router.post(
 );
 
 //event by park
-router.get("/park/:location_id", (req, res) => {
-  Event.find({ location_id: req.params.location_id })
-    .sort({ date: -1 })
-    .then((events) => res.json(events))
-    .catch((err) => res.status(404).json(err));
+router.get("/park/:location_id", async (req, res) => {
+  let events = await Event.find({ location_id: req.params.location_id });
+  let currentEvents = [];
+  events.forEach((event) => {
+    if (event.date.toISOString() >= new Date().toISOString()) {
+      currentEvents.push(event);
+    }
+  });
+  res
+    .json(currentEvents)
+    .catch((e) => res.status(404).json(e));
+  // .sort({ date: -1 })
+  // .then((events) => res.json(events))
+  // .catch((err) => res.status(404).json(err));
 });
-
 
 //index events
 router.get("/", async (req, res) => {
@@ -49,9 +57,14 @@ router.get("/", async (req, res) => {
     .populate("location_id")
     .populate("user_id")
     .catch((err) => res.status(404).json(err));
-  res.json(events);
-});
 
+  const currentEvents = [];
+  events.forEach((event) => {
+    if (event.date.toISOString() >= new Date().toISOString())
+      currentEvents.push(event);
+  });
+  res.json(currentEvents);
+});
 
 //show event
 router.get("/:id", async (req, res) => {
@@ -63,7 +76,6 @@ router.get("/:id", async (req, res) => {
   res.json(event);
 });
 
-
 //show event posts
 router.get("/:id/posts", async (req, res) => {
   await Post.find({ event_id: req.params.id })
@@ -71,7 +83,6 @@ router.get("/:id/posts", async (req, res) => {
     .then((posts) => res.json(posts))
     .catch((e) => res.status(404).json(e));
 });
-
 
 //update event
 router.patch(
