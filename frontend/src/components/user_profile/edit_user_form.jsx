@@ -57,10 +57,12 @@ class EditUserForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('image', this.state.image);
-
-    this.props.updateUserImage(this.state._id, formData);
+    if (this.state.image) {
+      const formData = new FormData();
+      formData.append('image', this.state.image);
+      
+      this.props.updateUserImage(this.state._id, formData);
+    }
     this.props.updateUser(this.state);
     document.getElementById('avatar-input').value = "";
     this.props.closeModal();

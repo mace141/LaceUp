@@ -121,6 +121,7 @@
   img {
     width: 20px;
     height: auto;
+    filter: opacity(50%) ;
   }
 
   ul {
@@ -176,3 +177,16 @@ button:disabled {
   background: $primary;
   border-radius: 5px;
 }
+
+.timestamp {
+  position: absolute;
+  top: 13px;
+  right: 30px;
+  font-size: 12px;
+  color: gray;
+}
+
+.post-index {
+  padding-bottom: 15px;
+}
+  

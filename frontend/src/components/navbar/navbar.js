@@ -93,6 +93,7 @@ class NavBar extends React.Component {
           <div className="navbar-right">
             <Link
               to="/explore"
+              className="nav-explore-link"
               onFocus={this.handleTabClick}
               onBlur={this.leaveTab}
             >

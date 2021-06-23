@@ -20,7 +20,9 @@ class ExploreMain extends React.Component {
         <>
           <div className="explore-header">
             <div className="invisible-sw-padding" />
-            <h1>Select Location to View Events</h1>
+            <h1 className="sw-select-location">
+              Select Location to View Events
+            </h1>
           </div>
           <div className="explore-map-outer">
             <MapContainer

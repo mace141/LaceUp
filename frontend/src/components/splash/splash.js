@@ -39,7 +39,7 @@ class Splash extends React.Component {
           <CarouselProvider
             naturalSlideWidth={100}
             naturalSlideHeight={100}
-            totalSlides={3}
+            totalSlides={4}
             height="inherit"
             isPlaying={true}
           >
@@ -60,24 +60,35 @@ class Splash extends React.Component {
           </CarouselProvider>
         </div>
         <div className="splash-under">
+          <h1 className="founders">Founders:</h1>
           <div className="splash-footer">
-            <h1 className="founders">Founders:</h1>
             {/* <img className="footer-img" src="pic_trulli.jpg" alt="Daniel propic"></img> */}
-            <img className="footer-img" src={daniel} alt="daniel propic"></img>
-            <div className="founder-info">
-              <p className="footer-name">Daniel Wu</p>
-              <a
-                className="footer-linkedin"
-                href="https://www.linkedin.com/in/daniel-wu-2995a6140/"
-              >
-                LinkedIn
-              </a>
-              <a className="footer-linkedin" href="https://github.com/mace141">
-                Github
-              </a>
-              <a className="footer-site" href="https://www.google.com/">
-                Personal Site
-              </a>
+            <div className="founder-container">
+              <img className="footer-img" src={daniel} alt="daniel propic" />
+              <div className="founder-info">
+                <p className="footer-name">Daniel Wu</p>
+                <a
+                  className="footer-linkedin-git"
+                  href="https://www.linkedin.com/in/daniel-wu-2995a6140/"
+                  target="_blank"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  className="footer-linkedin-git"
+                  href="https://github.com/mace141"
+                  target="_blank"
+                >
+                  Github
+                </a>
+                <a
+                  className="footer-site"
+                  href="https://www.google.com/"
+                  target="_blank"
+                >
+                  Personal Site
+                </a>
+              </div>
             </div>
             <img className="footer-img" src={alex} alt="alex propic"></img>
             <div className="founder-info">
@@ -94,25 +105,34 @@ class Splash extends React.Component {
               <a className="footer-site" href="https://www.akerpelmandev.com/">
                 Personal Site
               </a>
+
             </div>
-            <img className="footer-img" src={andrew} alt="andrew propic"></img>
-            <div className="founder-info">
-              <p className="footer-name">Andrew Kihs</p>
-              <a
-                className="footer-linkedin"
-                href="https://www.linkedin.com/in/andrew-kihs"
-              >
-                LinkedIn
-              </a>
-              <a
-                className="footer-linkedin"
-                href="https://github.com/andrewkihs"
-              >
-                Github
-              </a>
-              <a className="footer-site" href="https://www.google.com/">
-                Personal Site
-              </a>
+            <div className="founder-container">
+              <img className="footer-img" src={andrew} alt="andrew propic" />
+              <div className="founder-info">
+                <p className="footer-name">Andrew Kihs</p>
+                <a
+                  className="footer-linkedin-git"
+                  href="https://www.linkedin.com/in/andrew-kihs"
+                  target="_blank"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  className="footer-linkedin-git"
+                  href="https://github.com/andrewkihs"
+                  target="_blank"
+                >
+                  Github
+                </a>
+                <a
+                  className="footer-site"
+                  href="https://www.google.com/"
+                  target="_blank"
+                >
+                  Personal Site
+                </a>
+              </div>
             </div>
             <img className="footer-img" src={propic} alt="jack propic"></img>
             <div className="founder-info-jack">
