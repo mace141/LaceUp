@@ -16,6 +16,7 @@ class SignupForm extends React.Component {
       isPasswordMatch: true,
       isPasswordLength: true,
       isValidEmail: true,
+      isUniqueEmail: true,
       isValidPw: false,
       isFname: true,
       isLname: true,
@@ -99,6 +100,13 @@ class SignupForm extends React.Component {
               ) : (
                 <div className="user-auth-error">
                   Please enter a valid email
+                </div>
+              )}
+              {this.state.isUniqueEmail ? (
+                <></>
+              ) : (
+                <div className="user-auth-error">
+                  This email is already taken
                 </div>
               )}
               <label className="modal-label">Email:</label>
@@ -307,9 +315,16 @@ class SignupForm extends React.Component {
       lname: this.state.lname,
     };
 
-    const { signup, errors, closeModal } = this.props;
-    signup(user).then(() => {
-      closeModal();
+    const { signup, closeModal } = this.props;
+    signup(user).then(res => {
+      if (res.type == 'RECEIVE_SESSION_ERRORS') {
+        this.setState({
+          formNum: 0,
+          isUniqueEmail: false
+        });
+      } else {
+        closeModal();
+      }
     });
   }
 
