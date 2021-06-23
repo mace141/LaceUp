@@ -105,7 +105,7 @@ class EventShow extends React.Component {
         <div>
           <span>Players</span>
         </div>
-        <TeamsIndex teams={teams} event={event}/>
+        <TeamsIndex teams={teams} event={event} user={user}/>
         {user ? <CreatePostForm/> : null}
         <PostsIndex posts={posts}/>
       </div>
