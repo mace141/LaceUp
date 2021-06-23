@@ -20,6 +20,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         otherForm: () => dispatch(openModal("newEvent")),
         closeModal: () => dispatch(closeModal()),
+        openModal: (modal) => dispatch(openModal(modal)),
         createEvent: (event) =>createEvent(event),
         receiveEvent: event => receiveEvent(event),
         fetchParks: () => dispatch(fetchParks()),
