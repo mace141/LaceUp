@@ -1,8 +1,9 @@
 .post-form {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   padding: 20px;
   border: 1px solid $primary;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background: $neutralLightest;
 
   h1 {
@@ -79,6 +80,12 @@
   padding: 15px;
   background: $neutralLightest;
 
+  .post-item-text {
+    padding: 20px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid $primary;
+  }
   header {
     display: flex;
     flex-direction: column;
@@ -91,9 +98,18 @@
       font-weight: 600;
       white-space: nowrap;
       margin-right: 15px;
+      
     }
   }
 
+}
+
+.post-index {
+  padding-bottom: 50px;
+  .post-item {
+  border-left: 1px solid $primary;
+  border-right: 1px solid $primary;
+  }
 }
 
 .dropdown-btn {

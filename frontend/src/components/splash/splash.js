@@ -90,32 +90,22 @@ class Splash extends React.Component {
                 </a>
               </div>
             </div>
-            <div className="founder-container">
-              <img className="footer-img" src={alex} alt="alex propic" />
-              <div className="founder-info">
-                <p className="footer-name">Alex Kerpelman</p>
-                <a
-                  className="footer-linkedin-git"
-                  href="https://www.linkedin.com/in/alexander-kerpelman-22587584/"
-                  target="_blank"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  className="footer-linkedin-git"
-                  href="https://github.com/akerpelm"
-                  target="_blank"
-                >
-                  Github
-                </a>
-                <a
-                  className="footer-site"
-                  href="https://www.google.com/"
-                  target="_blank"
-                >
-                  Personal Site
-                </a>
-              </div>
+            <img className="footer-img" src={alex} alt="alex propic"></img>
+            <div className="founder-info">
+              <p className="footer-name">Alex Kerpelman</p>
+              <a
+                className="footer-linkedin"
+                href="https://www.linkedin.com/in/alexander-kerpelman-22587584/"
+              >
+                LinkedIn
+              </a>
+              <a className="footer-github" href="https://github.com/akerpelm">
+                Github
+              </a>
+              <a className="footer-site" href="https://www.akerpelmandev.com/">
+                Personal Site
+              </a>
+
             </div>
             <div className="founder-container">
               <img className="footer-img" src={andrew} alt="andrew propic" />
@@ -144,32 +134,24 @@ class Splash extends React.Component {
                 </a>
               </div>
             </div>
-            <div className="founder-container">
-              <img className="footer-img" src={propic} alt="jack propic"></img>
-              <div className="founder-info">
-                <p className="footer-name">Jack Cusick</p>
-                <a
-                  className="footer-linkedin-git"
-                  href="https://www.linkedin.com/in/jack-cusick-2a5809b4/"
-                  target="_blank"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  className="footer-linkedin-git"
-                  href="https://github.com/jackcusick95"
-                  target="_blank"
-                >
-                  Github
-                </a>
-                <a
-                  className="footer-site"
-                  href="https://www.google.com/"
-                  target="_blank"
-                >
-                  Personal Site
-                </a>
-              </div>
+            <img className="footer-img" src={propic} alt="jack propic"></img>
+            <div className="founder-info-jack">
+              <p className="footer-name">Jack Cusick</p>
+              <a
+                className="footer-linkedin"
+                href="https://www.linkedin.com/in/jack-cusick-2a5809b4/"
+              >
+                LinkedIn
+              </a>
+              <a
+                className="footer-linkedin"
+                href="https://github.com/jackcusick95"
+              >
+                Github
+              </a>
+              <a className="footer-site" href="https://www.jackcusick95.com/">
+                Personal Site
+              </a>
             </div>
           </div>
           {/* <div className="splash-search">

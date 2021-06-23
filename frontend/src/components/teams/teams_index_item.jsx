@@ -20,7 +20,7 @@ class TeamsIndexItem extends React.Component {
   }
 
   render() {
-    const { team, event, currentUserId } = this.props;
+    const { team, event, currentUserId, flag } = this.props;
 
     let teamSpots = [];
     for (let i = 0; i < team.numPlayers; i++) {
@@ -37,11 +37,10 @@ class TeamsIndexItem extends React.Component {
         teamSpots.push('empty');
       }
     }
-    
-    const joinBtn = team.player_id.includes(currentUserId) || Date.parse(event.date) < Date.now() ? 
-      null : (
-        <button className='join-team' onClick={this.handleAdd}>Join Team</button>
-      );
+
+    const joinBtn = flag ? null : (
+      <button className='join-team' onClick={this.handleAdd}>Join Team</button>
+    );
     
     return (
       <div className='team-item'>

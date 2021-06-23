@@ -213,7 +213,7 @@ class SignupForm extends React.Component {
     } else {
       this.setState({ isPasswordMatch: true });
     }
-    if (password === password && password.length > 5) {
+    if (password === password2 && password.length > 5) {
       this.setState({ formNum: 2 });
     }
   }
