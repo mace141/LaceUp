@@ -91,7 +91,7 @@ class Splash extends React.Component {
               <a className="footer-github" href="https://github.com/akerpelm">
                 Github
               </a>
-              <a className="footer-site" href="https://www.google.com/">
+              <a className="footer-site" href="https://www.akerpelmandev.com/">
                 Personal Site
               </a>
             </div>
@@ -129,7 +129,7 @@ class Splash extends React.Component {
               >
                 Github
               </a>
-              <a className="footer-site" href="https://www.google.com/">
+              <a className="footer-site" href="https://www.jackcusick95.com/">
                 Personal Site
               </a>
             </div>

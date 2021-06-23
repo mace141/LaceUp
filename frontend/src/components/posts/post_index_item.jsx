@@ -46,7 +46,7 @@ class PostIndexItem extends React.Component {
     const editForm = edit ? (
       <EditPostForm toggleEdit={this.toggleEdit} post={this.state} setEdit={this.setEdit}/>
     ) : (
-      <p>{text}</p>
+      <p className="post-item-text">{text}</p>
     );
     
     let dropdown;
