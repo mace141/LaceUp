@@ -34,7 +34,6 @@ class PostIndexItem extends React.Component {
 
   setEdit(newText) {
     this.setState({ text: newText });
-    console.log('hello')
   }
 
   render() {
