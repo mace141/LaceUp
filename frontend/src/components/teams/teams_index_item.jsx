@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addPlayer } from '../../actions/team';
-import { openModal, closeModal } from "../../actions/modal_actions";
+import { openModal } from "../../actions/modal_actions";
 import SpotContainer from './spot_container';
 
 class TeamsIndexItem extends React.Component {
@@ -15,9 +15,13 @@ class TeamsIndexItem extends React.Component {
   }
 
   handleAdd(){
-    const { team, addPlayer, currentUserId } = this.props;
-    addPlayer(team._id, currentUserId)
-    window.location.reload()
+    const { team, addPlayer, currentUserId, openModal } = this.props;
+
+    if (currentUserId) {
+      addPlayer(team._id, currentUserId);
+    } else {
+      openModal('login');
+    }
   }
 
   render() {
@@ -42,7 +46,7 @@ class TeamsIndexItem extends React.Component {
     const joinBtn = flag ||  team.numPlayers - team.player_id.length < 1 ? null :  (
       <button className='join-team' onClick={this.handleAdd}>Join Team</button>
     );
-    // debugger 
+
     return (
       <div className='team-item'>
         <h1>{team.name}</h1>
