@@ -20,14 +20,14 @@ import { openModal, closeModal } from "../../actions/modal_actions";
 class EventShow extends React.Component {
   constructor(props) {
     super(props);
-
+    // debugger
     this.state = {
       drop: false,
       event: { 
         location_id: { name: null },
         user_id: { fname: null, lname: null }
       },
-      teams: this.props.teams
+      teams: this.props.teams,
     };
 
     this.clicked = this.clicked.bind(this);
@@ -58,6 +58,7 @@ class EventShow extends React.Component {
   render() {
     console.log(this.props)
     const { event, teams, posts, user } = this.props;
+    debugger
     if (!event) return null;
 
     const months = [
@@ -82,9 +83,14 @@ class EventShow extends React.Component {
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const time = `${hours > 12 ? hours - 12 : hours}:${minutes < 10 ? '0'+minutes : minutes} ${hours > 12 ? 'PM' : 'AM'}`;
-    debugger
-    return (
-      <div className="event-show">
+    if (!event) {
+      return null
+    }
+    else{
+      debugger
+
+      return (
+        <div className="event-show">
         <div className="event-details">
           <div className="date-time">
             <p>
@@ -121,7 +127,7 @@ class EventShow extends React.Component {
             </p>
           </div>
           {this.props.user ? (this.props.user.id === this.props.event.user_id._id ? (
-
+            
             <div className="edit-delete-event">
             <button className="edit-event-button" onFocus={this.clicked} onBlur={this.leave}>
               <BsThreeDots />
@@ -145,13 +151,20 @@ class EventShow extends React.Component {
         <PostsIndex posts={posts}/>
       </div>
     );
+  } 
   }
 }
 
 const mapSTP = ({ entities: { events, teams, posts }, session: { user } }, ownProps) => {
   const eventId = ownProps.match.params.id;
+  let location = null
+  debugger
+  if (events[eventId]){
+    location = events[eventId].location_id
+  }
   return ({
   event: events[eventId],
+  location: location,
   teams: Object.values(teams).filter(team => team.event_id == eventId),
   posts: Object.values(posts).filter(post => post.event_id == eventId),
   user

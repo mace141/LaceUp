@@ -5,17 +5,18 @@ import { createEvent, updateEvent } from "../../util/event_api";
 import { openModal, closeModal } from "../../actions/modal_actions";
 import EditForm from "./edit_form";
 import { fetchParks } from "../../actions/park";
-import { receiveEvent } from "../../actions/event_actions";
+import { receiveEvent, fetchEvent } from "../../actions/event_actions";
 import { createTeam } from "../../actions/team";
 
 const mapStateToProps = ({ entities: { parks, events, posts}, session, errors }, ownProps) => {
     // const eventId = ownProps.match.params.id;
+
     return {
         currentuser: session.user,
         // event: events[eventId], 
         errors: errors.event,
         parks,
-        // events,
+        events,
         // event: {
         //     errors: null,
         //     location_id: ownProps.match.params.id,
@@ -38,6 +39,7 @@ const mapDispatchToProps = (dispatch) => {
         createEvent: (event) => createEvent(event),
         updateEvent: (event) => updateEvent(event),
         receiveEvent: event => receiveEvent(event),
+        fetchEvent: eventId => dispatch(fetchEvent(eventId)),
         fetchParks: () => dispatch(fetchParks()),
         createTeam: team => dispatch(createTeam(team)),
         dispatch
