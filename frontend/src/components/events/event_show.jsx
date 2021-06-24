@@ -81,6 +81,22 @@ class EventShow extends React.Component {
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const time = `${hours > 12 ? hours - 12 : hours}:${minutes < 10 ? '0'+minutes : minutes} ${hours > 12 ? 'PM' : 'AM'}`;
+
+    const editDelBtn = user.id == event.user_id ? (
+      <div className="edit-delete-event">
+        <button className="edit-event-button" onFocus={this.clicked} onBlur={this.leave}>
+          <BsThreeDots />
+          <ul className={this.state.drop ? 'showdrop' : "hidedrop"}>
+            <li className="event-edit-li" onClick={() => this.props.editForm("editEvent")}>
+              <span className="li-icon"><FaPencilAlt></FaPencilAlt></span><span>Edit Event</span>
+            </li>
+            <li className="event-edit-li" onClick={() => deleteEvent(this.state.event._id).then(this.props.history.push('/explore'))}>
+              <span className="li-icon"><FaTrashAlt></FaTrashAlt></span><span>Delete Event</span>
+            </li>
+          </ul>
+        </button>
+      </div>
+    ) : null;
     
     return (
       <div className="event-show">
@@ -119,19 +135,7 @@ class EventShow extends React.Component {
               </Link>
             </p>
           </div>
-          <div className="edit-delete-event">
-            <button className="edit-event-button" onFocus={this.clicked} onBlur={this.leave}>
-              <BsThreeDots />
-              <ul className={this.state.drop ? 'showdrop' : "hidedrop"}>
-                <li className="event-edit-li" onClick={() => this.props.editForm("editEvent")}>
-                  <span className="li-icon"><FaPencilAlt></FaPencilAlt></span><span>Edit Event</span>
-                </li>
-                <li className="event-edit-li" onClick={() => deleteEvent(this.state.event._id).then(this.props.history.push('/explore'))}>
-                  <span className="li-icon"><FaTrashAlt></FaTrashAlt></span><span>Delete Event</span>
-                </li>
-              </ul>
-            </button>
-          </div>
+          {editDelBtn}
         </div>
         <div>
           <span>Players</span>
