@@ -1,27 +1,37 @@
 import React from 'react';
 import { connect } from 'react-redux';
+// import { IconContext } from "react-icons";
+import { BsThreeDots } from 'react-icons/bs';
+import { IconContext } from "react-icons";
+import { FaTrashAlt, FaPencilAlt} from 'react-icons/fa';
 import { withRouter, Link } from 'react-router-dom';
 import { receiveEvent } from '../../actions/event_actions';
 import { fetchParks } from '../../actions/park';
 import { fetchTeams } from '../../actions/team';
 import { fetchUser } from '../../util/user_api';
 import { fetchEvent } from '../../util/event_api';
+import { deleteEvent } from '../../util/event_api';
 import TeamsIndex from '../teams/teams_index';
 import CreatePostForm from '../posts/create_post_form';
 import PostsIndex from '../posts/posts_index';
 import { fetchEventsPosts } from '../../actions/post';
+import { openModal, closeModal } from "../../actions/modal_actions";
 
 class EventShow extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      drop: false,
       event: { 
         location_id: { name: null },
         user_id: { fname: null, lname: null }
       },
       teams: this.props.teams
     };
+
+    this.clicked = this.clicked.bind(this);
+    this.leave = this.leave.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +47,16 @@ class EventShow extends React.Component {
     fetchEventsPosts(match.params.id);
   }
 
+  clicked() {
+    this.setState({ drop: true });
+  }
+
+  leave() {
+    this.setState({ drop: false });
+  }
+
   render() {
+    console.log(this.props)
     const { event, teams, posts, user } = this.props;
     if (!event) return null;
 
@@ -101,6 +120,19 @@ class EventShow extends React.Component {
               </Link>
             </p>
           </div>
+          <div className="edit-delete-event">
+            <button className="edit-event-button" onFocus={this.clicked} onBlur={this.leave}>
+              <BsThreeDots />
+              <ul className={this.state.drop ? 'showdrop' : "hidedrop"}>
+                <li className="event-edit-li" onClick={() => this.props.editForm("editEvent")}>
+                  <span className="li-icon"><FaPencilAlt></FaPencilAlt></span><span>Edit Event</span>
+                </li>
+                <li className="event-edit-li" onClick={() => deleteEvent(this.state.event._id).then(this.props.history.push('/explore'))}>
+                  <span className="li-icon"><FaTrashAlt></FaTrashAlt></span><span>Delete Event</span>
+                </li>
+              </ul>
+            </button>
+          </div>
         </div>
         <div>
           <span>Players</span>
@@ -123,11 +155,13 @@ const mapSTP = ({ entities: { events, teams, posts }, session: { user } }, ownPr
 })};
 
 const mapDTP = dispatch => ({
+  editForm: () => dispatch(openModal("editEvent")),
   fetchEvent: eventId => fetchEvent(eventId),
   receiveEvent: payload => receiveEvent(payload),
   fetchParks: () => dispatch(fetchParks()),
   fetchUser: userId => fetchUser(userId),
   fetchTeams: () => dispatch(fetchTeams()),
+  deleteEvent: (eventId) => dispatch(deleteEvent(eventId)),
   fetchEventsPosts: eventId => dispatch(fetchEventsPosts(eventId)),
   dispatch
 });
@@ -135,3 +169,5 @@ const mapDTP = dispatch => ({
 const EventShowContainer = withRouter(connect(mapSTP, mapDTP)(EventShow));
 
 export default EventShowContainer;
+
+

@@ -128,7 +128,7 @@ router.put("/:id/addteam", async (req, res) => {
   }
 });
 router.delete(
-  "/:id",
+  "/delete/:id",
   // passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     await db.collection("events").deleteOne({ _id: ObjectID(req.params.id) });
