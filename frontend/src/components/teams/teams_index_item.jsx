@@ -38,6 +38,7 @@ class TeamsIndexItem extends React.Component {
       }
     }
 
+    debugger
     const joinBtn = flag ? null : (
       <button className='join-team' onClick={this.handleAdd}>Join Team</button>
     );
