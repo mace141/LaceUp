@@ -23,10 +23,14 @@ export default function (state = initialState, action) {
         user: null,
       };
     case RECEIVE_USER_SIGN_IN:
+      const userObj = { 
+        ...action.data.data, 
+        id: action.data.data._id
+      }
       return {
         ...state,
         isAuthenticated: !!action.data.data._id,
-        user: action.data.data._id,
+        user: userObj,
         isSignedIn: true,
       };
     default:
