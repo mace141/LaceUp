@@ -89,7 +89,7 @@ class EditUserForm extends React.Component {
           </div>
           <div className="form-bottom">
             <label className="bio-label">Bio:</label>
-            <textarea placeholder="Enter your bio" onChange={this.handleInput('bio')}>{this.state.bio}</textarea>
+            <textarea placeholder="Enter your bio" onChange={this.handleInput('bio')} value={this.state.bio}></textarea>
             <div className='sports-courts'>
               <div className='sports'>
                 <label>Favorite Sports:</label><br/>

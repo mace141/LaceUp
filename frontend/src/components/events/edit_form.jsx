@@ -8,7 +8,6 @@ class EditForm extends React.Component {
         const eventId = this.props.location.pathname.replace("/events/", "")
         this.state = this.props.events[eventId]; 
 
-        
         this.handleSubmit = this.handleSubmit.bind(this);
         this.update = this.update.bind(this);
         this.updateTime = this.updateTime.bind(this)

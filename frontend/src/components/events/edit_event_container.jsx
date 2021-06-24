@@ -8,6 +8,7 @@ import { fetchParks } from "../../actions/park";
 import { receiveEvent, fetchEvent } from "../../actions/event_actions";
 import { createTeam } from "../../actions/team";
 
+
 const mapStateToProps = ({ entities: { parks, events, posts}, session, errors }, ownProps) => {
     // const eventId = ownProps.match.params.id;
 
@@ -44,6 +45,7 @@ const mapDispatchToProps = (dispatch) => {
         createTeam: team => dispatch(createTeam(team)),
         dispatch
     };
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditForm);
