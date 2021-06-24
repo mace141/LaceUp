@@ -20,14 +20,14 @@ import { openModal, closeModal } from "../../actions/modal_actions";
 class EventShow extends React.Component {
   constructor(props) {
     super(props);
-
+    // debugger
     this.state = {
       drop: false,
       event: { 
         location_id: { name: null },
         user_id: { fname: null, lname: null }
       },
-      teams: this.props.teams
+      teams: this.props.teams,
     };
 
     this.clicked = this.clicked.bind(this);
@@ -57,6 +57,7 @@ class EventShow extends React.Component {
 
   render() {
     const { event, teams, posts, user } = this.props;
+    debugger
     if (!event) return null;
 
     const months = [
@@ -81,6 +82,16 @@ class EventShow extends React.Component {
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const time = `${hours > 12 ? hours - 12 : hours}:${minutes < 10 ? '0'+minutes : minutes} ${hours > 12 ? 'PM' : 'AM'}`;
+
+    if (!event) {
+      return null
+    }
+    else{
+      debugger
+
+      return (
+        <div className="event-show">
+
 
     const editDelBtn = user && user.id == event.user_id ? (
       <div className="edit-delete-event">
@@ -135,7 +146,26 @@ class EventShow extends React.Component {
               </Link>
             </p>
           </div>
+
+          {this.props.user ? (this.props.user.id === this.props.event.user_id._id ? (
+            
+            <div className="edit-delete-event">
+            <button className="edit-event-button" onFocus={this.clicked} onBlur={this.leave}>
+              <BsThreeDots />
+              <ul className={this.state.drop ? 'showdrop' : "hidedrop"}>
+                <li className="event-edit-li" onClick={() => this.props.editForm("editEvent")}>
+                  <span className="li-icon"><FaPencilAlt></FaPencilAlt></span><span>Edit Event</span>
+                </li>
+                <li className="event-edit-li" onClick={() => deleteEvent(this.state.event._id).then(this.props.history.push('/explore'))}>
+                  <span className="li-icon"><FaTrashAlt></FaTrashAlt></span><span>Delete Event</span>
+                </li>
+              </ul>
+            </button>
+          </div>
+            ) : null) : null }
+
           {editDelBtn}
+
         </div>
         <div>
           <span>Players</span>
@@ -145,13 +175,20 @@ class EventShow extends React.Component {
         <PostsIndex posts={posts}/>
       </div>
     );
+  } 
   }
 }
 
 const mapSTP = ({ entities: { events, teams, posts }, session: { user } }, ownProps) => {
   const eventId = ownProps.match.params.id;
+  let location = null
+  debugger
+  if (events[eventId]){
+    location = events[eventId].location_id
+  }
   return ({
   event: events[eventId],
+  location: location,
   teams: Object.values(teams).filter(team => team.event_id == eventId),
   posts: Object.values(posts).filter(post => post.event_id == eventId),
   user
