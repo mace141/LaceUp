@@ -1,15 +1,18 @@
+@use "sass:math";
 .landing-image {
   width: 100%;
   height: 700px;
   object-fit: cover;
-  box-shadow: 0 4px 12px lightgrey;
+  object-position: 20% 20%; /* even if we dont declare this the image will still be centered */
+  // box-shadow: 0 4px 12px lightgrey;
 }
 
 .carousel-container {
   height: 700px;
-  box-shadow: 0 4px 12px lightgrey;
-  margin-top: 20px;
+  // box-shadow: 0 4px 12px lightgrey;
+  // margin-top: 20px;
 }
+
 .carousel {
   height: 700px;
   overflow: hidden;
@@ -31,19 +34,26 @@
 }
 .search-comp-container {
   width: 100%;
-  height: 200px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  // margin-bottom: 25px;
 }
 
 .search-bar-container {
+  margin-top: 15px;
   width: 50%;
 }
 
 .search-bar-input {
+  ::placeholder {
+    text-overflow: ellipsis;
+    color: pink;
+  }
   width: 100%;
+  text-overflow: ellipsis;
   position: relative;
   text-align: left;
   padding: 0 10px;
@@ -59,6 +69,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-left: 20px;
+  margin-right: 20px;
   height: 100%;
   width: 100%;
   padding-bottom: 40px;
@@ -76,21 +88,30 @@
   border-right: 1px solid #a39b9b;
   box-shadow: 1px 4px 5px rgb(1 0 9 / 8%);
   z-index: 1001;
-
+  width: 100%;
   padding: 10px;
   .search-res-link {
     display: block;
     width: 100%;
+    height: 100%;
   }
 }
 .search-results-ul {
+  width: 100%;
   :hover {
     display: block;
+
     color: black;
     background-color: $neutralLightest;
   }
   li:nth-child(odd) {
+    background: white;
+  }
+  li:nth-child(even) {
     background: rgb(253, 252, 252);
+  }
+  > .search-results-li:nth-child(10) ~ .search-results-li {
+    display: none;
   }
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 
@@ -101,31 +122,44 @@
 }
 
 .app-header {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+
   margin-top: 60px;
   margin-bottom: 3px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .app-header-two {
-  display: flex;
-  flex-direction: column;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+
+  // display: flex;
+  // flex-direction: column;
+  text-align: center;
   align-items: center;
   justify-content: center;
   font-family: sans-serif;
   font-weight: 600;
   font-size: 20px;
+  span {
+    color: $primary;
+  }
 }
 .first {
   margin-top: 10px;
 }
 
 .app-header-three {
+  // margin-top: 50px;
+  // margin-bottom: 10px;
   display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -135,27 +169,108 @@
   font-weight: 600;
   padding-top: 5px;
   font-size: 38px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  .app-header-content {
+    font-size: 48px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  }
 }
 
 // .splash-under {
 //   display: flex;
 //   height: 300px;
 // }
+.splash-under {
+  padding-top: 20px;
+}
+.splash-page-whole {
+  background: white;
+}
 
 .splash-footer {
   margin-top: 20px;
-  // margin-bottom: 10px;
+  margin-left: 25px;
+  margin-right: 25px;
+  padding-bottom: 25px;
+  // display: flex;
+  // flex-direction: row;
+  justify-content: space-between;
 }
-
+@media (max-width: 950px) {
+  .splash-footer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 20px;
+  }
+  .landing-image {
+    height: calc(100vw - 200px);
+  }
+  .carousel-container {
+    height: calc(100vw - 200px);
+    // height: 200px;
+  }
+  .carousel {
+    height: calc(100vw - 200px);
+    // height: 200px;
+  }
+}
+@media (max-width: 610px) {
+  .header-logo {
+    width: 100px;
+  }
+}
+@media (max-width: 510px) {
+  .landing-image {
+    object-fit: cover;
+    // height: calc(100vw - 200px);
+  }
+  .silent-click {
+    justify-content: space-between;
+  }
+  .splash-footer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .app-header {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .search-comp-container {
+    height: 400px;
+  }
+  .splash-header-container {
+    margin: 0 10px;
+    h1 {
+      padding-bottom: 20px;
+    }
+  }
+  .splash-header-mid {
+    padding: 0px 0px;
+  }
+}
+// @media (max-width: 450px) {
+//   .splash-footer {
+//     display: grid;
+//     grid-template-columns: repeat(1, 1fr);
+//   }
+//   .search-comp-container {
+//     height: 400px;
+//   }
+// }
 .founders {
   margin-bottom: 10px;
+  // display: flex;
+  // flex-direction: row;
   font-family: sans-serif;
   font-weight: 600;
 }
 
-.founder-info {
-  display: inline-block;
-  margin-right: 50px;
+.founder-container {
+  display: flex;
+  flex-direction: row;
+  // margin-right: 50px;
+  // width: 100%;
   font-family: sans-serif;
 }
 
@@ -167,13 +282,18 @@
   font-weight: 600;
   // margin-top: -10px;
 }
-.footer-linkedin {
+
+.footer-linkedin-git {
   display: flex;
   flex-direction: column;
   font-size: 14px;
 }
 
-.footer-linkedin:hover {
+// .founders {
+//   padding-left: 25px;
+// }
+
+.footer-linkedin-git:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -192,8 +312,82 @@
   // margin-top: 10px;
 }
 
-.founder-info-jack {
-  display: inline-block;
+.founder-info {
   margin-right: 0px;
   font-family: sans-serif;
+}
+
+//Foter
+
+.footer-wrapper {
+  font-family: sans-serif;
+  color: black;
+  font-size: 14px;
+  padding: 0px 0px;
+  .footer-nav {
+    margin-bottom: 100px;
+    width: 100%;
+    .footer-logo {
+      border-bottom: 10px solid $primary;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+    }
+    .footer-flex {
+      display: flex;
+    }
+    .row {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    .link-section {
+      display: flex;
+      justify-content: center;
+      flex: 1 1 33%;
+      max-width: 1 1 33%;
+      .link-section-header {
+        margin-bottom: 20px;
+        margin-top: 20px;
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-family: sans-serif;
+        font-size: 20px;
+        color: $primary;
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .founders {
+        display: flex;
+        flex-direction: column;
+        p {
+          text-align: left;
+        }
+        a {
+          text-align: left;
+        }
+        .founder-container {
+          padding-bottom: 15px;
+        }
+      }
+      #code-repo {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+      li {
+        margin: 10px 0;
+        font-weight: bold;
+        a {
+          text-decoration: none;
+          color: black;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
 }

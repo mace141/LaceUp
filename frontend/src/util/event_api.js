@@ -20,6 +20,10 @@ export const createEvent = (event) => {
   return axios.post("/api/events/create", event);
 };
 
+export const updateEvent = event => (
+  axios.patch(`/api/events/${event._id}`, event)
+);
+
 export const deleteEvent = (eventId) => {
   return axios.delete(`/api/events/delete/${eventId}`);
 };

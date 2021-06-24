@@ -3,6 +3,47 @@
   max-width: 1100px;
 }
 
+.edit-event-button {
+ border:none;
+}
+
+
+.showdrop {
+  font-family: sans-serif;
+  font-size: 13px;
+  background-color: white;
+  position: absolute;
+  width: 125px;
+  right: 0px;
+  top: 20px;
+  border-radius: 5%;
+  border-width: 2px solid black;
+  box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 20%);
+}
+
+.event-edit-li {
+  padding: 7px;
+}
+
+.event-edit-li:hover {
+  font-weight: 600;
+  padding: 7px;
+}
+
+.li-icon {
+  margin-right: 15px;
+}
+
+.hidedrop {
+  display: none;
+}
+
+.edit-delete-event {
+  position: absolute;
+  right: 12px;
+  top: 23px;
+}
+
 .event-details {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -37,6 +78,7 @@
 
 .team-index {
   display: grid;
+  position: relative;
   padding: 20px;
   background: $neutralLightest;
   border: 1px solid $primary;
@@ -44,11 +86,14 @@
   border-bottom-right-radius: 8px;
 
   .team-item {
+    // display: inline-block;
     position: relative;
+    word-wrap: break-word;
     color: $primary;
     margin-bottom: 10px;
 
     h1, h2, .player-slots {
+      // display: inline-block;
       margin-bottom: 10px;
     }
 
@@ -67,10 +112,11 @@
     }
 
     .player-slots {
-      display: flex;
+      display: block;
     }
 
-    .player-slots span {
+    .player-slots p {
+      display: inline-block;
       margin: 5px;
     }
   }

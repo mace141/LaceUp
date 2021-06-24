@@ -2,6 +2,24 @@
   width: 100%;
   height: 100%;
 }
+.host-your-own-btn {
+  display: flex;
+  // width: 180px;
+  padding-bottom: 0px;
+  .host-a-game {
+    width: 100px;
+  }
+  height: 60px;
+  align-items: center;
+  // padding-right: 20px;
+}
+.sw-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+  justify-content: center;
+}
 .explore-header {
   height: 50px;
   display: flex;
@@ -11,7 +29,7 @@
   box-shadow: 1 30px 5px rgb(25 100 25 / 20%);
   border-bottom: 1px solid rgb(243, 238, 233);
   .invisible-sw-padding {
-    width: 350px;
+    width: 40%;
     height: 100%;
   }
   h1 {
@@ -22,12 +40,12 @@
   }
 }
 .explore-side-window {
-  width: 350px;
+  width: 40%;
   height: 100%;
   position: absolute;
   z-index: 2;
   background: $neutralLightest;
-  display: flex;
+  // display: flex;
   flex-direction: column;
   overflow-y: scroll;
   .explore-index-item:nth-child(odd) {
@@ -39,10 +57,14 @@
   font-family: "Roboto", sans-serif;
   text-align: center;
   font-size: 35px;
-  padding: 20px;
+  padding: 0 20px;
+  padding-top: 20px;
   color: #111111;
   font-weight: bolder;
   font-style: italic;
+  // border-bottom: 1px solid black;
+}
+.sw-header-container {
   border-bottom: 1px solid black;
 }
 .explore-index-item {
@@ -126,4 +148,34 @@
 }
 .ex-idx-sport-info {
   text-align: right;
+}
+@media (max-width: 900px) {
+  .explore-side-window {
+    display: absolute;
+    // justify-content: flex-end;
+    padding-bottom: 0px;
+    bottom: 0px;
+    // top: 800px;
+    width: 100%;
+    height: 300px;
+  }
+  .host-your-own-btn {
+    display: flex;
+    align-items: center;
+    padding-right: 20px;
+  }
+  .sw-header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .side-window-header {
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+  }
+  .invisible-sw-padding {
+    display: none;
+  }
 }

@@ -1,8 +1,9 @@
 .post-form {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   padding: 20px;
   border: 1px solid $primary;
-  border-radius: 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
   background: $neutralLightest;
 
   h1 {
@@ -15,7 +16,7 @@
   .post-body {
     display: flex;
   }
-  
+
   .subhead {
     display: flex;
     flex-direction: column;
@@ -37,7 +38,7 @@
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 0px 7px -2px gray;
-    
+
     textarea {
       height: 100px;
       width: 100%;
@@ -67,7 +68,8 @@
 
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
@@ -79,6 +81,12 @@
   padding: 15px;
   background: $neutralLightest;
 
+  .post-item-text {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid $primary;
+  }
   header {
     display: flex;
     flex-direction: column;
@@ -93,7 +101,14 @@
       margin-right: 15px;
     }
   }
+}
 
+.post-index {
+  padding-bottom: 50px;
+  .post-item {
+    border-left: 1px solid $primary;
+    border-right: 1px solid $primary;
+  }
 }
 
 .dropdown-btn {
@@ -105,6 +120,7 @@
   img {
     width: 20px;
     height: auto;
+    filter: opacity(50%);
   }
 
   ul {
@@ -116,11 +132,11 @@
     background: white;
     box-shadow: 0px 0px 7px -2px gray;
     overflow: hidden;
-    
+
     li {
       padding: 10px;
     }
-    
+
     li:hover {
       background: lightgray;
       transition: 0.3s;
@@ -139,7 +155,7 @@
 .edit {
   border-radius: 5px;
   min-width: 600px;
-  
+
   textarea {
     padding: 10px;
     background: white;
@@ -159,4 +175,16 @@ button:disabled {
   color: white;
   background: $primary;
   border-radius: 5px;
+}
+
+.timestamp {
+  position: absolute;
+  top: 13px;
+  right: 30px;
+  font-size: 12px;
+  color: gray;
+}
+
+.post-index {
+  padding-bottom: 15px;
 }

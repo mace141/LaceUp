@@ -48,13 +48,17 @@ router.delete(
 
 * Any events a user joins or creates is updated into the schedule tab of profile in real time. Clicking on the event will create a link to the event show page. 
 * Any events that have passed are present in the history tab, so players can reminisce about their big win over city rivals.
-* Users may update their information, to remain up-to-date with their favorite sports, home court, or bio. 
-![user_profile](https://user-images.githubusercontent.com/77806372/120011909-d1331c80-bfac-11eb-95f5-32ae3aba8fa8.png)
+* Users may update their information, to remain up-to-date with their favorite sports, home court, bio, or avatar. The ability to change avatar was done through the use of AWS buckets. 
+![user_profile](./frontend/public/UserProfile.PNG)
+
+### Posts
+* Once a user has joined an event, he/she can post in that event to organize practicalities such as who is bringing the baseball (or the beer).
+* Users can create, update, and delete their posts on an event.
+<img width="1112" alt="Screen Shot 2021-06-14 at 12 38 04 PM" src="https://user-images.githubusercontent.com/77806372/121927798-75d38f00-cd0d-11eb-8b3c-2aa5829c1d4c.png">
+
 
 
 ## Future Direction: 
-* Connect AWS to allow users to create avatar images for more customizable user profiles. 
-* Users can post in event pages to organize practicalities such as who is bringing the baseball (or the beer).
 * Users can be ranked based on their performance in an event. This includes statistics such as their win/loss ratio, or total number of events they have participated in.
 * Users can be commended for good sportsmanship, professionalism, or being an overall great player to have on your team.
 * Users can create clubs, a way to create a community, and house a core group of players for various events throughout their city. Clubs are ranked, based on the total number of wins and losses that teams within the club has.

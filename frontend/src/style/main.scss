@@ -8,7 +8,7 @@
 @import "edit_user_form.scss";
 @import "splash.scss";
 @import "event_show.scss";
-@import 'post.scss';
+@import "post.scss";
 @import url("https://fonts.googleapis.com/css2?family=Fjalla+One&family=Roboto:wght@900&display=swap");
 body {
   background-color: #f2f2f2;
@@ -23,12 +23,35 @@ body {
   background: white;
   top: 56px;
   left: 0;
-  bottom: 0;
   right: 0;
   margin: 0 auto;
-  min-height: calc(100vh-56px);
 }
 
 body {
   background: #f2f2f2;
+}
+
+@media (max-width: 453px) {
+  .header-logo {
+    width: 80px;
+  }
+  .main-content-div {
+    width: 100%;
+  }
+  .navbar-inner {
+    // justify-content: space-between;
+    width: 95%;
+  }
+  .sw-header-container {
+    padding-bottom: 0px;
+    padding: 0px 0px;
+    background: rgb(235, 238, 234);
+  }
+  .sw-select-location {
+    font-size: 20px;
+  }
+  .nav-explore-link {
+    // font-size: 12px;
+    // display: none;
+  }
 }

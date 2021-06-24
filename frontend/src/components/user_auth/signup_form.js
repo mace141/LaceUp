@@ -16,6 +16,7 @@ class SignupForm extends React.Component {
       isPasswordMatch: true,
       isPasswordLength: true,
       isValidEmail: true,
+      isUniqueEmail: true,
       isValidPw: false,
       isFname: true,
       isLname: true,
@@ -26,6 +27,7 @@ class SignupForm extends React.Component {
     this.handleName = this.handleName.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.setForm = this.setForm.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
     this.clearedErrors = false;
   }
 
@@ -74,6 +76,13 @@ class SignupForm extends React.Component {
     };
   }
 
+  handleDemo() {
+    this.props.login({
+      email: 'demo@user.com',
+      password: 'password'
+    });
+  }
+
   firstPage() {
     return (
       <>
@@ -91,6 +100,13 @@ class SignupForm extends React.Component {
               ) : (
                 <div className="user-auth-error">
                   Please enter a valid email
+                </div>
+              )}
+              {this.state.isUniqueEmail ? (
+                <></>
+              ) : (
+                <div className="user-auth-error">
+                  This email is already taken
                 </div>
               )}
               <label className="modal-label">Email:</label>
@@ -113,6 +129,7 @@ class SignupForm extends React.Component {
             <button className="modal-login-two" onClick={this.handleEmail}>
               Continue
             </button>
+            <span className='modal-login-two' onClick={this.handleDemo}>Demo User</span>
           </div>
         </div>
       </>
@@ -122,7 +139,7 @@ class SignupForm extends React.Component {
   isValidEmail(email) {
     //regex pulled from https://www.w3resource.com/javascript/form/email-validation.php
     if (
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/.test(
         email
       )
     ) {
@@ -204,7 +221,7 @@ class SignupForm extends React.Component {
     } else {
       this.setState({ isPasswordMatch: true });
     }
-    if (password === password && password.length > 5) {
+    if (password === password2 && password.length > 5) {
       this.setState({ formNum: 2 });
     }
   }
@@ -298,9 +315,17 @@ class SignupForm extends React.Component {
       lname: this.state.lname,
     };
 
-    const { signup, errors, closeModal } = this.props;
-    signup(user).then(() => {
-      closeModal();
+    const { signup, closeModal, login } = this.props;
+    signup(user).then(res => {
+      if (res.type == 'RECEIVE_SESSION_ERRORS') {
+        this.setState({
+          formNum: 0,
+          isUniqueEmail: false
+        });
+      } else {
+        login(user);
+        closeModal();
+      }
     });
   }
 

@@ -20,6 +20,7 @@
 
     img {
       width: 100%;
+      object-fit: cover;
       height: 100%;
     }
   }
@@ -50,10 +51,11 @@
       color: $primary;
       border: none;
       font-weight: 600;
-      padding: 5px;
+      padding: 10px;
       &:hover {
-        background-color: $neutralLighter;
-        border-radius: 50px;
+        background-color: $primaryDark;
+        color: white;
+        border-radius: 10px;
       }
     }
   }
@@ -76,7 +78,8 @@
     padding: 5px 0;
 
     &:hover {
-      background: $primaryLighter;
+      background: $primaryDark;
+      color: white;
       transition: 0.3s;
       cursor: pointer;
       color: $neutralLightest;
@@ -104,19 +107,41 @@
     font-size: 20px;
     overflow-y: scroll;
     max-height: calc(100vh - 375px);
+    a {
+      width: 75%;
+    }
     a:hover {
       border-radius: 5px;
       transition: 0.1s;
-      text-decoration: underline;
+      div {
+        cursor: pointer;
+      }
+      // text-decoration: underline;
+    }
+  }
+
+  div {
+    p {
+      display: flex;
+      justify-content: space-between;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
 
 .profile-event-item {
-  margin: 20px;
   color: $primary;
   font-weight: 600;
+  border-radius: 4px;
+  padding: 20px;
   span {
     font-weight: 400;
+  }
+  &:hover {
+    background-color: $primaryDark;
+    color: white;
+    transition: 1s;
   }
 }

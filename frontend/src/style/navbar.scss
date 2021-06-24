@@ -1,13 +1,37 @@
+@media (max-width: 610px) {
+  .header-logo {
+    width: 100px;
+  }
+  .navbar-left {
+    width: 100px;
+  }
+}
+@media (max-width: 610px) {
+  .header-logo {
+    width: 100px;
+  }
+}
+@media (max-width: 450px) {
+  .host-btn {
+    display: none;
+  }
+}
 .nav-background {
   background: $neutralLighter;
   position: fixed;
   width: 100%;
 }
+.login-signup {
+}
 
+#host-container {
+  height: 100px;
+}
 .full-navbar {
   background: white;
   height: 56px;
   display: flex;
+  // width: 80%;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid #f0f0f5;
@@ -18,14 +42,15 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 81%;
+  width: 80%;
   height: 100%;
 }
 
 .navbar-right {
   display: flex;
   align-items: center;
-
+  height: 24px;
+  // width: 100%;
   > button {
     margin-left: 10px;
   }
@@ -41,6 +66,8 @@
   object-fit: cover;
 }
 .login-signup {
+  display: flex;
+  align-items: center;
   button,
   a {
     margin-left: 10px;
