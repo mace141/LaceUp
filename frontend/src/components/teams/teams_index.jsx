@@ -3,13 +3,16 @@ import TeamsIndexItemContainer from './teams_index_item';
 
 const TeamsIndex = ({ user, teams , event}) => {
 let flag = false; 
-teams.forEach(team => {
-    if (team.player_id.includes(user.id)) {
-      flag = true
-      return
-    }
+  if (user) {
+    teams.forEach(team => {
+      if (team.player_id.includes(user.id)) {
+        flag = true
+        return
+      }
+    })
+  } else {
+    flag = true;
   }
-  )
 
   
   return (
