@@ -38,15 +38,14 @@ class TeamsIndexItem extends React.Component {
       }
     }
 
-    debugger
-    const joinBtn = flag ? null : (
+    const joinBtn = flag ||  team.numPlayers - team.player_id.length < 1 ? null :  (
       <button className='join-team' onClick={this.handleAdd}>Join Team</button>
     );
     
     return (
       <div className='team-item'>
         <h1>{team.name}</h1>
-        <h2>Players Needed: {team.numPlayers - team.player_id.length}</h2>
+        <h2>Players Needed: {team.numPlayers - team.player_id.length >= 0 ? team.numPlayers - team.player_id.length : 0 }</h2>
         {joinBtn}
         <div className='player-slots'>
           {teamSpots.map((spot, i) => (
