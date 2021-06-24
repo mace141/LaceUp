@@ -42,10 +42,7 @@ router.get("/park/:location_id", async (req, res) => {
       currentEvents.push(event);
     }
   });
-  res.json(currentEvents)//.catch((e) => res.status(404).json(e));
-  // .sort({ date: -1 })
-  // .then((events) => res.json(events))
-  // .catch((err) => res.status(404).json(err));
+  res.json(currentEvents);
 });
 
 //index events
@@ -87,10 +84,10 @@ router.patch(
   "/:id",
   // passport.authenticate("jwt", { session: false }),
   (req, res) => {
-  //   const { errors, isValid } = validateEventInput(req.body);
-  //   if (!isValid) {
-  //     return res.status(400).json(errors);
-  //   }
+    //   const { errors, isValid } = validateEventInput(req.body);
+    //   if (!isValid) {
+    //     return res.status(400).json(errors);
+    //   }
     Event.findByIdAndUpdate(
       { _id: req.params.id },
       {
