@@ -5,6 +5,8 @@ import LoginFormContainer from "../user_auth/login_form_container";
 import SignupFormContainer from "../user_auth/signup_form_container";
 import EditUserFormContainer from '../user_profile/edit_user_form';
 import CreateEventContainer from '../events/create_event_container'; 
+import EditEventContainer  from '../events/edit_event_container'; 
+
 
 function Modal({ modal, closeModal }) {
   if (!modal) {
@@ -23,6 +25,9 @@ function Modal({ modal, closeModal }) {
       break;
     case 'newEvent':
       component = <CreateEventContainer />;
+      break;
+    case 'editEvent':
+      component = <EditEventContainer />;
       break;
     default:
       return null;

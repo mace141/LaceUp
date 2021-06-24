@@ -1,7 +1,5 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { closeModal } from "../../actions/modal_actions";
-import logo from "../../style/assets/logoB.png";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -40,10 +38,8 @@ class LoginForm extends React.Component {
       email: this.state.email,
       password: this.state.password,
     };
-    // debugger;
-    const { login, errors, closeModal } = this.props;
+    const { login } = this.props;
     login(user);
-    // login(user);
   }
   // Render the session errors if there are any
   renderErrors() {
