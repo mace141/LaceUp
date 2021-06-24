@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addPlayer } from '../../actions/team';
+import { openModal, closeModal } from "../../actions/modal_actions";
 import SpotContainer from './spot_container';
 
 class TeamsIndexItem extends React.Component {
@@ -41,7 +42,7 @@ class TeamsIndexItem extends React.Component {
     const joinBtn = flag ||  team.numPlayers - team.player_id.length < 1 ? null :  (
       <button className='join-team' onClick={this.handleAdd}>Join Team</button>
     );
-    
+    // debugger 
     return (
       <div className='team-item'>
         <h1>{team.name}</h1>
@@ -66,7 +67,8 @@ const mapSTP = ({ session: { user } }) => {
 })};
 
 const mapDTP = dispatch => ({
-  addPlayer: (team_id, player_id) => dispatch(addPlayer(team_id, player_id))
+  addPlayer: (team_id, player_id) => dispatch(addPlayer(team_id, player_id)),
+  openModal: (modal) => dispatch(openModal(modal))
 });
 
 const TeamsIndexItemContainer = connect(mapSTP, mapDTP)(TeamsIndexItem);

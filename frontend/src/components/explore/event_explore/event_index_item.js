@@ -98,18 +98,9 @@ class EventIndexItem extends React.Component {
             </div>
           </div>
           <div className="link-to-event">
-            {isCurrentUser ? (
-              <button className="join-game-btn">
-                <Link to={`/events/${event._id}`}>Join game</Link>
-              </button>
-            ) : (
-              <button
-                className="join-game-btn"
-                onClick={isCurrentUser ? null : () => openModal("login")}
-              >
-                Join Game
-              </button>
-            )}
+            <button className="join-game-btn">
+              <Link to={`/events/${event._id}`}>Join game</Link>
+            </button>
           </div>
         </div>
       </>

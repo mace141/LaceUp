@@ -15,7 +15,6 @@ class EventIndex extends React.Component {
     const { park, fetchParksEvents } = this.props;
     if (this.props.park._id !== prevProps.park._id) {
       fetchParksEvents(park._id).then((payload) => {
-        debugger;
         this.setState({ parksEvents: payload.events });
       });
     }
@@ -23,13 +22,11 @@ class EventIndex extends React.Component {
   componentDidMount() {
     const { park, fetchParksEvents } = this.props;
     fetchParksEvents(park._id).then((payload) => {
-      debugger;
       this.setState({ parksEvents: payload.events });
     });
   }
 
   render() {
-    // debugger;
     const { park, errors, isCurrentUser, openModal } = this.props;
     const { parksEvents } = this.state;
     if (Object.keys(parksEvents).length === 0) {
