@@ -5,7 +5,6 @@ class EditForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = this.props.event; 
-        console.log(this.props.events)
     
         this.handleSubmit = this.handleSubmit.bind(this);
         this.update = this.update.bind(this);

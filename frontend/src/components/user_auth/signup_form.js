@@ -315,7 +315,7 @@ class SignupForm extends React.Component {
       lname: this.state.lname,
     };
 
-    const { signup, closeModal } = this.props;
+    const { signup, closeModal, login } = this.props;
     signup(user).then(res => {
       if (res.type == 'RECEIVE_SESSION_ERRORS') {
         this.setState({
@@ -323,6 +323,7 @@ class SignupForm extends React.Component {
           isUniqueEmail: false
         });
       } else {
+        login(user);
         closeModal();
       }
     });

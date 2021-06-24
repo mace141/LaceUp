@@ -56,7 +56,6 @@ class EventShow extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const { event, teams, posts, user } = this.props;
     if (!event) return null;
 
