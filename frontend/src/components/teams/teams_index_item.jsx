@@ -40,9 +40,9 @@ class TeamsIndexItem extends React.Component {
     }
 
     const joinBtn = flag ? null : (
-      <button className='join-team' onClick={this.handleAdd}>Join Team</button>
+      <button className='join-team' onClick={this.props.currentUser ? this.handleAdd : () => this.props.openModal('login')}>Join Team</button>
     );
-    
+    // debugger 
     return (
       <div className='team-item'>
         <h1>{team.name}</h1>
