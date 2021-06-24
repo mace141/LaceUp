@@ -89,14 +89,16 @@ class Search extends React.Component {
     return (
       <div className="silent-click">
         <div className="splash-header-container">
-          <h1 className="app-header">
-            Looking for a casual pickup game? LaceUp has you covered!
-          </h1>
+          <h1 className="app-header">Pickup sports, reimagined.</h1>
           <h1 className="app-header-two first">
-            Join today to find local sporting events{" "}
+            Join today to find local sporting events that need <span>you</span>{" "}
+            on their team.
           </h1>
-          <h1 className="app-header-two">that need YOU on their team. </h1>
-          <h1 className="app-header-three">Sign up, meet up, LaceUp.</h1>
+          <h1 className="app-header-three">
+            Sign up, meet up,{" "}
+            <content className="app-header-content">LaceUp.</content>
+          </h1>
+          <h1 className="app-header-two"></h1>
         </div>
         <br />
         <div
