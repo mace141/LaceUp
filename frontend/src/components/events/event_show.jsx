@@ -82,7 +82,7 @@ class EventShow extends React.Component {
     const hours = date.getHours();
     const minutes = date.getMinutes();
     const time = `${hours > 12 ? hours - 12 : hours}:${minutes < 10 ? '0'+minutes : minutes} ${hours > 12 ? 'PM' : 'AM'}`;
-    
+    debugger
     return (
       <div className="event-show">
         <div className="event-details">
@@ -120,7 +120,9 @@ class EventShow extends React.Component {
               </Link>
             </p>
           </div>
-          <div className="edit-delete-event">
+          {this.props.user ? (this.props.user.id === this.props.event.user_id._id ? (
+
+            <div className="edit-delete-event">
             <button className="edit-event-button" onFocus={this.clicked} onBlur={this.leave}>
               <BsThreeDots />
               <ul className={this.state.drop ? 'showdrop' : "hidedrop"}>
@@ -133,6 +135,7 @@ class EventShow extends React.Component {
               </ul>
             </button>
           </div>
+            ) : null) : null }
         </div>
         <div>
           <span>Players</span>

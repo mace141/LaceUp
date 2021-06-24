@@ -3,7 +3,6 @@ import EventIndexItem from "./event_index_item";
 import { fetchUser } from "../../../actions/user";
 import { openModal } from "../../../actions/modal_actions";
 const mapStateToProps = (state, ownProps) => {
-  debugger;
   return {
     event: ownProps.event,
     park: ownProps.park,
