@@ -30,8 +30,8 @@ const UserDetail = ({ user, openModal, match, currentUserId }) => {
   );
 }
 
-const mapSTP = (state, ownProps) => ({
-  currentUserId: ownProps.match.params.id
+const mapSTP = ({ session: { user } }, ownProps) => ({
+  currentUserId: user.id
 });
 
 const mapDTP = dispatch => ({
