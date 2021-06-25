@@ -40,6 +40,14 @@
 .edit-delete-event {
   position: absolute;
   // top: 23px;
+  svg {
+    // font-size: 30px;
+    font-weight: bold;
+    &:hover {
+      background-color: $neutral;
+      border-radius: 5px;
+    }
+  }
 }
 
 .event-details {
