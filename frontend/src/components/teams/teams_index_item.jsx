@@ -8,26 +8,27 @@ import SpotContainer from "./spot_container";
 class TeamsIndexItem extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       teamSize: props.team.length,
-      teamSpots: [],
     };
+
     this.handleAdd = this.handleAdd.bind(this);
   }
 
   handleAdd() {
-    const { team, addPlayer, currentUserId, openModal } = this.props;
+    const { team, addPlayer, currentUserId, openModal, setFlagTrue } = this.props;
 
     if (currentUserId) {
       addPlayer(team._id, currentUserId);
-      this.setState({ teamSpots: this.state.teamSpots.push(currentUserId) });
+      setFlagTrue();
     } else {
       openModal("login");
     }
   }
 
   render() {
-    const { team, event, currentUserId, flag } = this.props;
+    const { team, event, flag } = this.props;
 
     let teamSpots = [];
     for (let i = 0; i < team.numPlayers; i++) {
