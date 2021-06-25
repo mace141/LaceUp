@@ -39,9 +39,10 @@
 
 .edit-delete-event {
   position: absolute;
-  // top: 23px;
+  bottom: 10px;
+  right: 20px;
+
   svg {
-    // font-size: 30px;
     font-weight: bold;
     &:hover {
       background-color: $neutral;
@@ -60,12 +61,17 @@
   padding: 20px;
   color: $primary;
   font-size: 24px;
+  position: relative;
 
   p {
     font-weight: 600;
 
     span {
       font-weight: 400;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 

@@ -159,7 +159,6 @@ class EventShow extends React.Component {
             <p>
               # of Teams: <span>{event.num_teams}</span>
             </p>
-            {editDelBtn}
           </div>
           <div className="event-host">
             <p>
@@ -169,6 +168,7 @@ class EventShow extends React.Component {
               </Link>
             </p>
           </div>
+          {editDelBtn}
         </div>
         <div>
           <span>Players</span>
