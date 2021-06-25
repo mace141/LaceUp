@@ -10,6 +10,7 @@ class TeamsIndexItem extends React.Component {
     super(props);
     this.state = {
       teamSize: props.team.length,
+      teamSpots: []
     };
     this.handleAdd = this.handleAdd.bind(this);
   }
@@ -19,7 +20,7 @@ class TeamsIndexItem extends React.Component {
 
     if (currentUserId) {
       addPlayer(team._id, currentUserId);
-      window.location.reload();
+      this.setState({ teamSpots: this.state.teamSpots.push(currentUserId) });
     } else {
       openModal("login");
     }
@@ -27,7 +28,7 @@ class TeamsIndexItem extends React.Component {
 
   render() {
     const { team, event, currentUserId, flag } = this.props;
-
+    
     let teamSpots = [];
     for (let i = 0; i < team.numPlayers; i++) {
       let playerId;
@@ -50,7 +51,7 @@ class TeamsIndexItem extends React.Component {
           Join Team
         </button>
       );
-
+    
     return (
       <div className="team-item">
         <h1>{team.name}</h1>
@@ -60,9 +61,9 @@ class TeamsIndexItem extends React.Component {
         </h2>
         {joinBtn}
         <div className="player-slots">
-          {teamSpots.map((spot, i) => (
-            <SpotContainer key={i} spot={spot} event={event} team={team} />
-          ))}
+          {teamSpots.map((spot, i) => {
+            return <SpotContainer key={i} spot={spot} event={event} team={team} />
+          })}
         </div>
       </div>
     );

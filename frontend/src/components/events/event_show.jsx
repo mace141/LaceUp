@@ -62,7 +62,7 @@ class EventShow extends React.Component {
 
   render() {
     const { event, teams, posts, user } = this.props;
-    // debugger;
+    
     if (!event) return null;
 
     const months = [
@@ -90,137 +90,132 @@ class EventShow extends React.Component {
       minutes < 10 ? "0" + minutes : minutes
     } ${hours > 12 ? "PM" : "AM"}`;
 
-    if (!event) {
-      return null;
-    } else {
-      const editDelBtn =
-        user && user.id == event.user_id ? (
-          <div className="edit-delete-event">
-            <button
-              className="edit-event-button"
-              onFocus={this.clicked}
-              onBlur={this.leave}
+    const editDelBtn = user && user.id == event.user_id ? (
+      <div className="edit-delete-event">
+        <button
+          className="edit-event-button"
+          onFocus={this.clicked}
+          onBlur={this.leave}
+        >
+          <BsThreeDots />
+          <ul className={this.state.drop ? "showdrop" : "hidedrop"}>
+            {/* <li
+              className="event-edit-li"
+              onClick={() => this.props.editForm("editEvent")}
             >
-              <BsThreeDots />
-              <ul className={this.state.drop ? "showdrop" : "hidedrop"}>
-                {/* <li
-                  className="event-edit-li"
-                  onClick={() => this.props.editForm("editEvent")}
+              <span className="li-icon">
+                <FaPencilAlt></FaPencilAlt>
+              </span>
+              <span>Edit Event</span>
+            </li> */}
+            <li
+              className="event-edit-li"
+              onClick={() =>
+                deleteEvent(this.state.event._id).then(
+                  this.props.history.push("/explore")
+                )
+              }
+            >
+              <span className="li-icon">
+                <FaTrashAlt></FaTrashAlt>
+              </span>
+              <span>Delete Event</span>
+            </li>
+          </ul>
+        </button>
+      </div>
+    ) : null;
+    
+    return (
+      <div className="event-show">
+        <div className="event-details">
+          <div className="date-time">
+            <p>
+              Date/Time: <span>{`${time}, ${month} ${day}, ${year}`}</span>
+            </p>
+          </div>
+          <div className="location">
+            <p>
+              Location: <span>{this.state.event.location_id.name}</span>
+            </p>
+          </div>
+          <div className="sport">
+            <p>
+              Sport: <span>{event.sport}</span>
+            </p>
+          </div>
+          <div className="skill">
+            <p>
+              Skill Level: <span>{event.skill}</span>
+            </p>
+          </div>
+          <div className="team-size">
+            <p>
+              Team Size: <span>{event.team_size}</span>
+            </p>
+          </div>
+          <div className="num-teams">
+            <p>
+              # of Teams: <span>{event.num_teams}</span>
+            </p>
+          </div>
+          <div className="event-host">
+            <p>
+              Hosted by:{" "}
+              <Link to={`/users/${this.state.event.user_id._id}`}>
+                <span>{`${this.state.event.user_id.fname} ${this.state.event.user_id.lname}`}</span>
+              </Link>
+            </p>
+          </div>
+
+          {/* {this.props.user ? (
+            this.props.user.id === this.props.event.user_id._id ? (
+              <div className="edit-delete-event">
+                <button
+                  className="edit-event-button"
+                  onFocus={this.clicked}
+                  onBlur={this.leave}
                 >
-                  <span className="li-icon">
-                    <FaPencilAlt></FaPencilAlt>
-                  </span>
-                  <span>Edit Event</span>
-                </li> */}
-                <li
-                  className="event-edit-li"
-                  onClick={() =>
-                    deleteEvent(this.state.event._id).then(
-                      this.props.history.push("/explore")
-                    )
-                  }
-                >
-                  <span className="li-icon">
-                    <FaTrashAlt></FaTrashAlt>
-                  </span>
-                  <span>Delete Event</span>
-                </li>
-              </ul>
-            </button>
-          </div>
-        ) : null;
+                  <BsThreeDots />
+                  <ul className={this.state.drop ? "showdrop" : "hidedrop"}>
+                    <li
+                      className="event-edit-li"
+                      onClick={() => this.props.editForm("editEvent")}
+                    >
+                      <span className="li-icon">
+                        <FaPencilAlt></FaPencilAlt>
+                      </span>
+                      <span>Edit Event</span>
+                    </li>
+                    <li
+                      className="event-edit-li"
+                      onClick={() =>
+                        deleteEvent(this.state.event._id).then(
+                          this.props.history.push("/explore")
+                        )
+                      }
+                    >
+                      <span className="li-icon">
+                        <FaTrashAlt></FaTrashAlt>
+                      </span>
+                      <span>Delete Event</span>
+                    </li>
+                  </ul>
+                </button>
+              </div>
+            ) : null
+          ) : null} */}
 
-      return (
-        <div className="event-show">
-          <div className="event-details">
-            <div className="date-time">
-              <p>
-                Date/Time: <span>{`${time}, ${month} ${day}, ${year}`}</span>
-              </p>
-            </div>
-            <div className="location">
-              <p>
-                Location: <span>{this.state.event.location_id.name}</span>
-              </p>
-            </div>
-            <div className="sport">
-              <p>
-                Sport: <span>{event.sport}</span>
-              </p>
-            </div>
-            <div className="skill">
-              <p>
-                Skill Level: <span>{event.skill}</span>
-              </p>
-            </div>
-            <div className="team-size">
-              <p>
-                Team Size: <span>{event.team_size}</span>
-              </p>
-            </div>
-            <div className="num-teams">
-              <p>
-                # of Teams: <span>{event.num_teams}</span>
-              </p>
-            </div>
-            <div className="event-host">
-              <p>
-                Hosted by:{" "}
-                <Link to={`/users/${this.state.event.user_id._id}`}>
-                  <span>{`${this.state.event.user_id.fname} ${this.state.event.user_id.lname}`}</span>
-                </Link>
-              </p>
-            </div>
-
-            {/* {this.props.user ? (
-              this.props.user.id === this.props.event.user_id._id ? (
-                <div className="edit-delete-event">
-                  <button
-                    className="edit-event-button"
-                    onFocus={this.clicked}
-                    onBlur={this.leave}
-                  >
-                    <BsThreeDots />
-                    <ul className={this.state.drop ? "showdrop" : "hidedrop"}>
-                      <li
-                        className="event-edit-li"
-                        onClick={() => this.props.editForm("editEvent")}
-                      >
-                        <span className="li-icon">
-                          <FaPencilAlt></FaPencilAlt>
-                        </span>
-                        <span>Edit Event</span>
-                      </li>
-                      <li
-                        className="event-edit-li"
-                        onClick={() =>
-                          deleteEvent(this.state.event._id).then(
-                            this.props.history.push("/explore")
-                          )
-                        }
-                      >
-                        <span className="li-icon">
-                          <FaTrashAlt></FaTrashAlt>
-                        </span>
-                        <span>Delete Event</span>
-                      </li>
-                    </ul>
-                  </button>
-                </div>
-              ) : null
-            ) : null} */}
-
-            {editDelBtn}
-          </div>
-          <div>
-            <span>Players</span>
-          </div>
-          <TeamsIndex teams={teams} event={event} user={user} />
-          {user ? <CreatePostForm /> : null}
-          <PostsIndex posts={posts} />
+          {editDelBtn}
         </div>
-      );
-    }
+        <div>
+          <span>Players</span>
+        </div>
+        <TeamsIndex teams={teams} event={event} user={user} />
+        {user ? <CreatePostForm /> : null}
+        <PostsIndex posts={posts} />
+      </div>
+    );
   }
 }
 
@@ -230,14 +225,21 @@ const mapSTP = (
 ) => {
   const eventId = ownProps.match.params.id;
   let location = null;
-  // debugger;
+
   if (events[eventId]) {
     location = events[eventId].location_id;
   }
+  const teamsObj = {};
+  Object.values(teams).forEach(team => {
+    if (team.event_id == eventId) {
+      teamsObj[team._id] = team
+    }
+  });
+  
   return {
     event: events[eventId],
     location: location,
-    teams: Object.values(teams).filter((team) => team.event_id == eventId),
+    teams: Object.values(teamsObj),
     posts: Object.values(posts).filter((post) => post.event_id == eventId),
     user,
   };
