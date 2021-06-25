@@ -4,9 +4,8 @@
 }
 
 .edit-event-button {
- border:none;
+  border: none;
 }
-
 
 .showdrop {
   font-family: sans-serif;
@@ -54,10 +53,10 @@
   padding: 20px;
   color: $primary;
   font-size: 24px;
-  
+
   p {
     font-weight: 600;
-    
+
     span {
       font-weight: 400;
     }
@@ -92,7 +91,9 @@
     color: $primary;
     margin-bottom: 10px;
 
-    h1, h2, .player-slots {
+    h1,
+    h2,
+    .player-slots {
       // display: inline-block;
       margin-bottom: 10px;
     }

@@ -142,8 +142,10 @@ class EventForm extends React.Component {
                 className="modal-dropdown-park"
                 onChange={this.update("location_id")}
               >
-                {parks.map((park) => (
-                  <option value={park._id}>{park.name}</option>
+                {parks.map((park, i) => (
+                  <option key={i} value={park._id}>
+                    {park.name}
+                  </option>
                 ))}
               </select>
             </div>
