@@ -10,7 +10,7 @@ class TeamsIndexItem extends React.Component {
     super(props);
     this.state = {
       teamSize: props.team.length,
-      teamSpots: []
+      teamSpots: [],
     };
     this.handleAdd = this.handleAdd.bind(this);
   }
@@ -28,7 +28,7 @@ class TeamsIndexItem extends React.Component {
 
   render() {
     const { team, event, currentUserId, flag } = this.props;
-    
+
     let teamSpots = [];
     for (let i = 0; i < team.numPlayers; i++) {
       let playerId;
@@ -51,18 +51,22 @@ class TeamsIndexItem extends React.Component {
           Join Team
         </button>
       );
-    
+
     return (
       <div className="team-item">
         <h1>{team.name}</h1>
         <h2>
           Players Needed:
-          {team.numPlayers - team.player_id.length}
+          {team.numPlayers - team.player_id.length > 0
+            ? team.numPlayers - team.player_id.length
+            : 0}
         </h2>
         {joinBtn}
         <div className="player-slots">
           {teamSpots.map((spot, i) => {
-            return <SpotContainer key={i} spot={spot} event={event} team={team} />
+            return (
+              <SpotContainer key={i} spot={spot} event={event} team={team} />
+            );
           })}
         </div>
       </div>

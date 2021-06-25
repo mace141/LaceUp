@@ -62,7 +62,7 @@ class EventShow extends React.Component {
 
   render() {
     const { event, teams, posts, user } = this.props;
-    
+
     if (!event) return null;
 
     const months = [
@@ -90,16 +90,17 @@ class EventShow extends React.Component {
       minutes < 10 ? "0" + minutes : minutes
     } ${hours > 12 ? "PM" : "AM"}`;
 
-    const editDelBtn = user && user.id == event.user_id ? (
-      <div className="edit-delete-event">
-        <button
-          className="edit-event-button"
-          onFocus={this.clicked}
-          onBlur={this.leave}
-        >
-          <BsThreeDots />
-          <ul className={this.state.drop ? "showdrop" : "hidedrop"}>
-            {/* <li
+    const editDelBtn =
+      user && user.id == event.user_id ? (
+        <div className="edit-delete-event">
+          <button
+            className="edit-event-button"
+            onFocus={this.clicked}
+            onBlur={this.leave}
+          >
+            <BsThreeDots />
+            <ul className={this.state.drop ? "showdrop" : "hidedrop"}>
+              {/* <li
               className="event-edit-li"
               onClick={() => this.props.editForm("editEvent")}
             >
@@ -108,24 +109,24 @@ class EventShow extends React.Component {
               </span>
               <span>Edit Event</span>
             </li> */}
-            <li
-              className="event-edit-li"
-              onClick={() =>
-                deleteEvent(this.state.event._id).then(
-                  this.props.history.push("/explore")
-                )
-              }
-            >
-              <span className="li-icon">
-                <FaTrashAlt></FaTrashAlt>
-              </span>
-              <span>Delete Event</span>
-            </li>
-          </ul>
-        </button>
-      </div>
-    ) : null;
-    
+              <li
+                className="event-edit-li"
+                onClick={() =>
+                  deleteEvent(this.state.event._id).then(
+                    this.props.history.push("/explore")
+                  )
+                }
+              >
+                <span className="li-icon">
+                  <FaTrashAlt></FaTrashAlt>
+                </span>
+                <span>Delete Event</span>
+              </li>
+            </ul>
+          </button>
+        </div>
+      ) : null;
+
     return (
       <div className="event-show">
         <div className="event-details">
@@ -158,6 +159,7 @@ class EventShow extends React.Component {
             <p>
               # of Teams: <span>{event.num_teams}</span>
             </p>
+            {editDelBtn}
           </div>
           <div className="event-host">
             <p>
@@ -167,46 +169,6 @@ class EventShow extends React.Component {
               </Link>
             </p>
           </div>
-
-          {/* {this.props.user ? (
-            this.props.user.id === this.props.event.user_id._id ? (
-              <div className="edit-delete-event">
-                <button
-                  className="edit-event-button"
-                  onFocus={this.clicked}
-                  onBlur={this.leave}
-                >
-                  <BsThreeDots />
-                  <ul className={this.state.drop ? "showdrop" : "hidedrop"}>
-                    <li
-                      className="event-edit-li"
-                      onClick={() => this.props.editForm("editEvent")}
-                    >
-                      <span className="li-icon">
-                        <FaPencilAlt></FaPencilAlt>
-                      </span>
-                      <span>Edit Event</span>
-                    </li>
-                    <li
-                      className="event-edit-li"
-                      onClick={() =>
-                        deleteEvent(this.state.event._id).then(
-                          this.props.history.push("/explore")
-                        )
-                      }
-                    >
-                      <span className="li-icon">
-                        <FaTrashAlt></FaTrashAlt>
-                      </span>
-                      <span>Delete Event</span>
-                    </li>
-                  </ul>
-                </button>
-              </div>
-            ) : null
-          ) : null} */}
-
-          {editDelBtn}
         </div>
         <div>
           <span>Players</span>
@@ -230,12 +192,12 @@ const mapSTP = (
     location = events[eventId].location_id;
   }
   const teamsObj = {};
-  Object.values(teams).forEach(team => {
+  Object.values(teams).forEach((team) => {
     if (team.event_id == eventId) {
-      teamsObj[team._id] = team
+      teamsObj[team._id] = team;
     }
   });
-  
+
   return {
     event: events[eventId],
     location: location,
