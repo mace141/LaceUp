@@ -2,7 +2,6 @@ import { connect } from "react-redux";
 import SportIndexItem from "./sport_index_item";
 
 const mapStateToProps = (state, ownProps) => {
-  debugger;
   let park;
   if (typeof ownProps.event.location_id == "object") {
     park = ownProps.event.location_id;

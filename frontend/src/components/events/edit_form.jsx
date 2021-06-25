@@ -30,7 +30,6 @@ class EditForm extends React.Component {
     //     type: this.state.type,
     // };
 
-    // debugger;
     // this.props.location.pathname.split("events/")[1];
     if (Date.parse(this.state.date) > Date.now()) {
       const {

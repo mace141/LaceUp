@@ -4,7 +4,6 @@ import { fetchAllEvents } from "../../../actions/event_actions";
 import { fetchParks } from "../../../actions/park";
 
 const mapStateToProps = (state, ownProps) => {
-  debugger;
   let selectedSport = ownProps.match.params.sportName;
   return {
     events: Object.values(state.entities.events).filter(

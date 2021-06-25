@@ -9,7 +9,9 @@ const teamsReducer = (state = {}, action) => {
       nextState[action.team._id] = action.team;
       return nextState;
     case RECEIVE_TEAMS:
-      nextState = action.teams;
+      action.teams.forEach(team => {
+        nextState[team._id] = team
+      });
       return nextState;
     default:
       return state;
